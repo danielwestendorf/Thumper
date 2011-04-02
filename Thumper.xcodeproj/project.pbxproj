@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827CE5C61347B49D00170589 /* Cocoa.framework */; };
+		827CE5C91347B49D00170589 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827CE5C81347B49D00170589 /* MacRuby.framework */; };
+		827CE5D01347B49D00170589 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5CE1347B49D00170589 /* InfoPlist.strings */; };
+		827CE5D31347B49D00170589 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 827CE5D21347B49D00170589 /* main.m */; };
+		827CE5D71347B49D00170589 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5D51347B49D00170589 /* MainMenu.xib */; };
+		827CE5DA1347B49D00170589 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5D91347B49D00170589 /* rb_main.rb */; };
+		827CE5DC1347B49D00170589 /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5DB1347B49D00170589 /* AppDelegate.rb */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		827CE5C21347B49D00170589 /* Thumper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thumper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		827CE5C61347B49D00170589 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		827CE5C81347B49D00170589 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = System/Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
+		827CE5CD1347B49D00170589 /* Thumper-Info.plist */ = {isa = PBXFileReference; path = "Thumper-Info.plist"; sourceTree = "<group>"; };
+		827CE5CF1347B49D00170589 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		827CE5D11347B49D00170589 /* Thumper-Prefix.pch */ = {isa = PBXFileReference; path = "Thumper-Prefix.pch"; sourceTree = "<group>"; };
+		827CE5D21347B49D00170589 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		827CE5D61347B49D00170589 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		827CE5D91347B49D00170589 /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
+		827CE5DB1347B49D00170589 /* AppDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = AppDelegate.rb; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		827CE5BF1347B49D00170589 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */,
+				827CE5C91347B49D00170589 /* MacRuby.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		827CE5B71347B49D00170589 = {
+			isa = PBXGroup;
+			children = (
+				827CE5CB1347B49D00170589 /* Thumper */,
+				827CE5C51347B49D00170589 /* Frameworks */,
+				827CE5C31347B49D00170589 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		827CE5C31347B49D00170589 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				827CE5C21347B49D00170589 /* Thumper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		827CE5C51347B49D00170589 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				827CE5C61347B49D00170589 /* Cocoa.framework */,
+				827CE5C81347B49D00170589 /* MacRuby.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		827CE5CB1347B49D00170589 /* Thumper */ = {
+			isa = PBXGroup;
+			children = (
+				827CE5DB1347B49D00170589 /* AppDelegate.rb */,
+				827CE5D41347B49D00170589 /* Resources */,
+				827CE5D81347B49D00170589 /* Other Sources */,
+				827CE5CC1347B49D00170589 /* Supporting Files */,
+			);
+			path = Thumper;
+			sourceTree = "<group>";
+		};
+		827CE5CC1347B49D00170589 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				827CE5CD1347B49D00170589 /* Thumper-Info.plist */,
+				827CE5CE1347B49D00170589 /* InfoPlist.strings */,
+				827CE5D11347B49D00170589 /* Thumper-Prefix.pch */,
+				827CE5D21347B49D00170589 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		827CE5D41347B49D00170589 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				827CE5D51347B49D00170589 /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		827CE5D81347B49D00170589 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				827CE5D91347B49D00170589 /* rb_main.rb */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		827CE5CA1347B49D00170589 /* Deployment */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "--compile --embed";
+			buildConfigurationList = 827CE5E21347B49D00170589 /* Build configuration list for PBXLegacyTarget "Deployment" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/local/bin/macruby_deploy;
+			dependencies = (
+			);
+			name = Deployment;
+			passBuildSettingsInEnvironment = 1;
+			productName = Deployment;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		827CE5C11347B49D00170589 /* Thumper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 827CE5DF1347B49D00170589 /* Build configuration list for PBXNativeTarget "Thumper" */;
+			buildPhases = (
+				827CE5BE1347B49D00170589 /* Sources */,
+				827CE5BF1347B49D00170589 /* Frameworks */,
+				827CE5C01347B49D00170589 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Thumper;
+			productName = Thumper;
+			productReference = 827CE5C21347B49D00170589 /* Thumper.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		827CE5B91347B49D00170589 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Scott USA";
+			};
+			buildConfigurationList = 827CE5BC1347B49D00170589 /* Build configuration list for PBXProject "Thumper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 827CE5B71347B49D00170589;
+			productRefGroup = 827CE5C31347B49D00170589 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				827CE5C11347B49D00170589 /* Thumper */,
+				827CE5CA1347B49D00170589 /* Deployment */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		827CE5C01347B49D00170589 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				827CE5D01347B49D00170589 /* InfoPlist.strings in Resources */,
+				827CE5D71347B49D00170589 /* MainMenu.xib in Resources */,
+				827CE5DA1347B49D00170589 /* rb_main.rb in Resources */,
+				827CE5DC1347B49D00170589 /* AppDelegate.rb in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		827CE5BE1347B49D00170589 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				827CE5D31347B49D00170589 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		827CE5CE1347B49D00170589 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				827CE5CF1347B49D00170589 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		827CE5D51347B49D00170589 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				827CE5D61347B49D00170589 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		827CE5DD1347B49D00170589 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		827CE5DE1347B49D00170589 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		827CE5E01347B49D00170589 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Thumper/Thumper-Prefix.pch";
+				INFOPLIST_FILE = "Thumper/Thumper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		827CE5E11347B49D00170589 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Thumper/Thumper-Prefix.pch";
+				INFOPLIST_FILE = "Thumper/Thumper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		827CE5E31347B49D00170589 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		827CE5E41347B49D00170589 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		827CE5BC1347B49D00170589 /* Build configuration list for PBXProject "Thumper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				827CE5DD1347B49D00170589 /* Debug */,
+				827CE5DE1347B49D00170589 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		827CE5DF1347B49D00170589 /* Build configuration list for PBXNativeTarget "Thumper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				827CE5E01347B49D00170589 /* Debug */,
+				827CE5E11347B49D00170589 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		827CE5E21347B49D00170589 /* Build configuration list for PBXLegacyTarget "Deployment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				827CE5E31347B49D00170589 /* Debug */,
+				827CE5E41347B49D00170589 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 827CE5B91347B49D00170589 /* Project object */;
+}
