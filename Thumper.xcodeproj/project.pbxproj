@@ -7,26 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		826170AE134914EA0026F381 /* ThumperArtistAlbumDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170AD134914EA0026F381 /* ThumperArtistAlbumDelegate.rb */; };
+		826170B1134922400026F381 /* ThumperAlbumSongsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170B0134922400026F381 /* ThumperAlbumSongsDelegate.rb */; };
+		826170B3134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */; };
+		826170C7134C305F0026F381 /* X.png in Resources */ = {isa = PBXBuildFile; fileRef = 826170C6134C305F0026F381 /* X.png */; };
+		826170C9134C33CE0026F381 /* Library.png in Resources */ = {isa = PBXBuildFile; fileRef = 826170C8134C33CE0026F381 /* Library.png */; };
+		826170CC134C351A0026F381 /* PlayList.png in Resources */ = {isa = PBXBuildFile; fileRef = 826170CA134C351A0026F381 /* PlayList.png */; };
+		826170CD134C351A0026F381 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 826170CB134C351A0026F381 /* Search.png */; };
 		827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827CE5C61347B49D00170589 /* Cocoa.framework */; };
 		827CE5C91347B49D00170589 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827CE5C81347B49D00170589 /* MacRuby.framework */; };
 		827CE5D01347B49D00170589 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5CE1347B49D00170589 /* InfoPlist.strings */; };
 		827CE5D31347B49D00170589 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 827CE5D21347B49D00170589 /* main.m */; };
 		827CE5D71347B49D00170589 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5D51347B49D00170589 /* MainMenu.xib */; };
 		827CE5DA1347B49D00170589 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5D91347B49D00170589 /* rb_main.rb */; };
-		827CE5DC1347B49D00170589 /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5DB1347B49D00170589 /* AppDelegate.rb */; };
+		827CE5DC1347B49D00170589 /* ThumperDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5DB1347B49D00170589 /* ThumperDelegate.rb */; };
+		827CE5E61347B4D200170589 /* SubsonicQuery.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5E51347B4D200170589 /* SubsonicQuery.rb */; };
+		82965E3B1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		826170AD134914EA0026F381 /* ThumperArtistAlbumDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperArtistAlbumDelegate.rb; sourceTree = "<group>"; };
+		826170B0134922400026F381 /* ThumperAlbumSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperAlbumSongsDelegate.rb; sourceTree = "<group>"; };
+		826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperCurrentPlaylistDelegate.rb; sourceTree = "<group>"; };
+		826170C6134C305F0026F381 /* X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = X.png; path = Icons/X.png; sourceTree = "<group>"; };
+		826170C8134C33CE0026F381 /* Library.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Library.png; path = Icons/Library.png; sourceTree = "<group>"; };
+		826170CA134C351A0026F381 /* PlayList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayList.png; path = Icons/PlayList.png; sourceTree = "<group>"; };
+		826170CB134C351A0026F381 /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Search.png; path = Icons/Search.png; sourceTree = "<group>"; };
 		827CE5C21347B49D00170589 /* Thumper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thumper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		827CE5C61347B49D00170589 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		827CE5C81347B49D00170589 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = System/Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
-		827CE5CD1347B49D00170589 /* Thumper-Info.plist */ = {isa = PBXFileReference; path = "Thumper-Info.plist"; sourceTree = "<group>"; };
+		827CE5CD1347B49D00170589 /* Thumper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Thumper-Info.plist"; sourceTree = "<group>"; };
 		827CE5CF1347B49D00170589 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		827CE5D11347B49D00170589 /* Thumper-Prefix.pch */ = {isa = PBXFileReference; path = "Thumper-Prefix.pch"; sourceTree = "<group>"; };
+		827CE5D11347B49D00170589 /* Thumper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thumper-Prefix.pch"; sourceTree = "<group>"; };
 		827CE5D21347B49D00170589 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		827CE5D61347B49D00170589 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		827CE5D91347B49D00170589 /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
-		827CE5DB1347B49D00170589 /* AppDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = AppDelegate.rb; sourceTree = "<group>"; };
+		827CE5DB1347B49D00170589 /* ThumperDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = ThumperDelegate.rb; sourceTree = "<group>"; };
+		827CE5E51347B4D200170589 /* SubsonicQuery.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = SubsonicQuery.rb; path = Classes/SubsonicQuery.rb; sourceTree = "<group>"; };
+		82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperArtistIndexDelegate.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +60,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		826170C4134C30470026F381 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				826170CA134C351A0026F381 /* PlayList.png */,
+				826170CB134C351A0026F381 /* Search.png */,
+				826170C8134C33CE0026F381 /* Library.png */,
+				826170C6134C305F0026F381 /* X.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		827CE5B71347B49D00170589 = {
 			isa = PBXGroup;
 			children = (
@@ -71,7 +100,12 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
-				827CE5DB1347B49D00170589 /* AppDelegate.rb */,
+				826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */,
+				826170B0134922400026F381 /* ThumperAlbumSongsDelegate.rb */,
+				826170AD134914EA0026F381 /* ThumperArtistAlbumDelegate.rb */,
+				827CE5E51347B4D200170589 /* SubsonicQuery.rb */,
+				82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */,
+				827CE5DB1347B49D00170589 /* ThumperDelegate.rb */,
 				827CE5D41347B49D00170589 /* Resources */,
 				827CE5D81347B49D00170589 /* Other Sources */,
 				827CE5CC1347B49D00170589 /* Supporting Files */,
@@ -93,6 +127,7 @@
 		827CE5D41347B49D00170589 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				826170C4134C30470026F381 /* Icons */,
 				827CE5D51347B49D00170589 /* MainMenu.xib */,
 			);
 			name = Resources;
@@ -176,7 +211,16 @@
 				827CE5D01347B49D00170589 /* InfoPlist.strings in Resources */,
 				827CE5D71347B49D00170589 /* MainMenu.xib in Resources */,
 				827CE5DA1347B49D00170589 /* rb_main.rb in Resources */,
-				827CE5DC1347B49D00170589 /* AppDelegate.rb in Resources */,
+				827CE5DC1347B49D00170589 /* ThumperDelegate.rb in Resources */,
+				827CE5E61347B4D200170589 /* SubsonicQuery.rb in Resources */,
+				82965E3B1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb in Resources */,
+				826170AE134914EA0026F381 /* ThumperArtistAlbumDelegate.rb in Resources */,
+				826170B1134922400026F381 /* ThumperAlbumSongsDelegate.rb in Resources */,
+				826170B3134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb in Resources */,
+				826170C7134C305F0026F381 /* X.png in Resources */,
+				826170C9134C33CE0026F381 /* Library.png in Resources */,
+				826170CC134C351A0026F381 /* PlayList.png in Resources */,
+				826170CD134C351A0026F381 /* Search.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +352,7 @@
 				827CE5E11347B49D00170589 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		827CE5E21347B49D00170589 /* Build configuration list for PBXLegacyTarget "Deployment" */ = {
 			isa = XCConfigurationList;
@@ -316,6 +361,7 @@
 				827CE5E41347B49D00170589 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

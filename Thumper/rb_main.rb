@@ -3,7 +3,7 @@
 #  Thumper
 #
 #  Created by Daniel Westendorf on 4/2/11.
-#  Copyright (c) 2011 Scott USA. All rights reserved.
+#  Copyright (c) 2011 Daniel Westendorf. All rights reserved.
 #
 
 # Loading the Cocoa framework. If you need to load more frameworks, you can
