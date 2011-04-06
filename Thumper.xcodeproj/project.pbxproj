@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		824656A1134CD26400AAB744 /* Save.png in Resources */ = {isa = PBXBuildFile; fileRef = 824656A0134CD26400AAB744 /* Save.png */; };
 		826170AE134914EA0026F381 /* ThumperArtistAlbumDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170AD134914EA0026F381 /* ThumperArtistAlbumDelegate.rb */; };
 		826170B1134922400026F381 /* ThumperAlbumSongsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170B0134922400026F381 /* ThumperAlbumSongsDelegate.rb */; };
 		826170B3134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */; };
@@ -23,9 +24,11 @@
 		827CE5DC1347B49D00170589 /* ThumperDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5DB1347B49D00170589 /* ThumperDelegate.rb */; };
 		827CE5E61347B4D200170589 /* SubsonicQuery.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5E51347B4D200170589 /* SubsonicQuery.rb */; };
 		82965E3B1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */; };
+		82D434DF134D236B00E21EAB /* Reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 82D434DE134D236B00E21EAB /* Reload.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		824656A0134CD26400AAB744 /* Save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Save.png; path = Icons/Save.png; sourceTree = "<group>"; };
 		826170AD134914EA0026F381 /* ThumperArtistAlbumDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperArtistAlbumDelegate.rb; sourceTree = "<group>"; };
 		826170B0134922400026F381 /* ThumperAlbumSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperAlbumSongsDelegate.rb; sourceTree = "<group>"; };
 		826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperCurrentPlaylistDelegate.rb; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 		827CE5DB1347B49D00170589 /* ThumperDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = ThumperDelegate.rb; sourceTree = "<group>"; };
 		827CE5E51347B4D200170589 /* SubsonicQuery.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = SubsonicQuery.rb; path = Classes/SubsonicQuery.rb; sourceTree = "<group>"; };
 		82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperArtistIndexDelegate.rb; sourceTree = "<group>"; };
+		82D434DE134D236B00E21EAB /* Reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Reload.png; path = Icons/Reload.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 		826170C4134C30470026F381 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				82D434DE134D236B00E21EAB /* Reload.png */,
+				824656A0134CD26400AAB744 /* Save.png */,
 				826170CA134C351A0026F381 /* PlayList.png */,
 				826170CB134C351A0026F381 /* Search.png */,
 				826170C8134C33CE0026F381 /* Library.png */,
@@ -221,6 +227,8 @@
 				826170C9134C33CE0026F381 /* Library.png in Resources */,
 				826170CC134C351A0026F381 /* PlayList.png in Resources */,
 				826170CD134C351A0026F381 /* Search.png in Resources */,
+				824656A1134CD26400AAB744 /* Save.png in Resources */,
+				82D434DF134D236B00E21EAB /* Reload.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
