@@ -20,10 +20,13 @@ class ThumperDelegate
         @artist_albums = []
         @album_songs = []
         @current_playlist = []
+        @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url']
+        @username = NSUserDefaults.standardUserDefaults['thumper.com.username']
+        @password = NSUserDefaults.standardUserDefaults['thumper.com.password']
     end
     
     def applicationDidFinishLaunching(a_notification)
-        show_server_info_modal
+        @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton 
     end
     
     def show_server_info_modal
@@ -40,20 +43,26 @@ class ThumperDelegate
     end
         
     def submit_connection_info(sender)
-        #        self.server_url = server_url_field.stringValue
-        #self.username = username_field.stringValue
-        #self.password = password_field.stringValue
-        server_url = "http://danielwestendorf.subsonic.org"
-        username = "admin"
-        password = "blink182"
+        @server_url = server_url_field.stringValue
+        @username = username_field.stringValue
+        @password = password_field.stringValue
+        NSUserDefaults.standardUserDefaults['thumper.com.server_url'] = @server_url
+        NSUserDefaults.standardUserDefaults['thumper.com.username'] = @username
+        NSUserDefaults.standardUserDefaults['thumper.com.password'] = @password
+        NSUserDefaults.standardUserDefaults.synchronize
+
         NSApp.endSheet(server_info_window)
         server_info_window.orderOut(sender)
         if server_url.blank? || username.blank? || password.blank?
             show_server_info_modal
         else
-            @subsonic = SubsonicQuery.new(server_url, username, password)
-            @subsonic.ping(self, :server_online, :server_offline)
+            setup_subsonic_conneciton
         end
+    end
+    
+    def setup_subsonic_conneciton
+        @subsonic = SubsonicQuery.new(server_url, username, password)
+        @subsonic.ping(self, :server_online, :server_offline) 
     end
     
     def hide_connection_info(sender)
@@ -75,6 +84,13 @@ class ThumperDelegate
     end
 
     def get_artist_indexes
+        @artists = []
+        DB[:artists].all.each do |artist|
+            @artists << {:name => artist[:name], :id => artist[:subsonic_id]}
+        end
+        @artist_albums.count != 1 ? word = " Artists" : word = " Artist"
+        @artist_count_label.stringValue = @artists.count.to_s + word
+        @artist_indexes_table_view.reloadData
         @subsonic.getIndexes(self, :update_artists_indexes)
     end
     
@@ -90,7 +106,14 @@ class ThumperDelegate
         @artist_albums.count != 1 ? word = " Artists" : word = " Artist"
         @artist_count_label.stringValue = @artists.count.to_s + word
         @artist_indexes_table_view.reloadData
+        NSLog "Persisting Aritsts to the DB"
+        if DB[:artists].all.count < 1
+            DB.transaction do
+                @artists.each {|a| DB[:artists].insert(:name => a[:name], :subsonic_id => a[:id]) } 
+            end
+        end
     end
+    
     
     def get_artist_albums(id)
         @subsonic.getMusicDirectory(self, :update_artist_albums, {:id => id})

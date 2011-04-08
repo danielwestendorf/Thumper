@@ -25,6 +25,8 @@
 		827CE5E61347B4D200170589 /* SubsonicQuery.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5E51347B4D200170589 /* SubsonicQuery.rb */; };
 		82965E3B1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */; };
 		82D434DF134D236B00E21EAB /* Reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 82D434DE134D236B00E21EAB /* Reload.png */; };
+		82EA85A3134FA87200C38A05 /* ThumperApplicaiton.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */; };
+		82EA85A6134FB0B300C38A05 /* Database.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A5134FB0B300C38A05 /* Database.rb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		827CE5E51347B4D200170589 /* SubsonicQuery.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = SubsonicQuery.rb; path = Classes/SubsonicQuery.rb; sourceTree = "<group>"; };
 		82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperArtistIndexDelegate.rb; sourceTree = "<group>"; };
 		82D434DE134D236B00E21EAB /* Reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Reload.png; path = Icons/Reload.png; sourceTree = "<group>"; };
+		82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperApplicaiton.rb; sourceTree = "<group>"; };
+		82EA85A5134FB0B300C38A05 /* Database.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Database.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
+				82EA85A5134FB0B300C38A05 /* Database.rb */,
+				82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */,
 				826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */,
 				826170B0134922400026F381 /* ThumperAlbumSongsDelegate.rb */,
 				826170AD134914EA0026F381 /* ThumperArtistAlbumDelegate.rb */,
@@ -229,6 +235,8 @@
 				826170CD134C351A0026F381 /* Search.png in Resources */,
 				824656A1134CD26400AAB744 /* Save.png in Resources */,
 				82D434DF134D236B00E21EAB /* Reload.png in Resources */,
+				82EA85A3134FA87200C38A05 /* ThumperApplicaiton.rb in Resources */,
+				82EA85A6134FB0B300C38A05 /* Database.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
