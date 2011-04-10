@@ -17,7 +17,7 @@ class ThumperCurrentPlaylistDelegate
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
         #NSLog "Asked for Current Playlist Row:#{row}, Column:#{column.identifier}"
-        if row < parent.album_songs.length
+        if row < parent.songs.length
             return parent.current_playlist[row].valueForKey(column.identifier.to_sym)
         end
         nil

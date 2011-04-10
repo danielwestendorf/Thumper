@@ -21,9 +21,9 @@ class ThumperArtistIndexDelegate
     end
     
     def tableViewSelectionDidChange(notification)
-        parent.artist_albums = []
-        parent.artist_albums_table_view.enabled = false
-        parent.artist_albums_table_view.reloadData
+        parent.albums = []
+        parent.albums_table_view.enabled = false
+        parent.albums_table_view.reloadData
         parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id])
         #NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}"
     end
