@@ -65,6 +65,7 @@ module Subsonic
             end
         end
         NSLog "All Albums presisted to the DB"
+        @parent.get_album_songs(@albums.first[:id]) if @albums.length == 1
 	end
 	
 	def songs_response(xml)
@@ -133,6 +134,7 @@ module Subsonic
 		end
 		xml = nil
         @parent.artists = @artists 
+        @parent.all_artists = @artists
         @parent.artists.count != 1 ? word = " Artists" : word = " Artist"
         @parent.artist_count_label.stringValue = @artists.count.to_s + word
         @parent.artist_indexes_table_view.reloadData
@@ -196,9 +198,7 @@ module Subsonic
     end
     
     def stream_audio(id, delegate, method)
-        request = build_request('/rest/stream.view', {:id => id})
-        NSLog "attempting to stream file #{id}"
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::StreamResponse.new(delegate, method))
+        
     end
 	
 	class XMLResponse
@@ -276,22 +276,12 @@ module Subsonic
         def connection(connection, didReceiveResponse:response)
             @response = response
             @downloadData = NSMutableData.data
-            @sizeIncrement = 200000
         end
         
         def connection(connection, didReceiveData:data)
-            NSLog "#{@downloadData.length}"
+            @movie = QTMovie.alloc.initWithData(@downloadData) unless @movie
+            NSLog "#{@movie.class}"
             @downloadData.appendData(data)
-            if @downloadData.length > @sizeIncrement
-                new_player = NSSound.alloc.initWithData(@downloadData)
-                @player ? time = @player.currentTime : time = 0
-                new_player.setCurrentTime(time)
-                new_player.play 
-                @player.pause if @player
-                @player = new_player
-                @sizeIncrement += 200000
-            end
-
         end
         
         def connectionDidFinishLoading(connection)

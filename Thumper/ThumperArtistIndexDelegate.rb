@@ -7,6 +7,7 @@
 #
 class ThumperArtistIndexDelegate
     attr_accessor :parent
+    attr_accessor :filter_input
     
     def numberOfRowsInTableView(tableView)
         parent.artists.count 
@@ -22,10 +23,27 @@ class ThumperArtistIndexDelegate
     
     def tableViewSelectionDidChange(notification)
         parent.albums = []
+        parent.songs = []
         parent.albums_table_view.enabled = false
-        parent.albums_table_view.reloadData
+        parent.songs_table_view.enabled = false
         parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id])
         #NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}"
+    end
+    
+    def textInputOnEnterPressed(sender)
+        NSLog "#{filter_input.stringValue}"
+        filter = filter_input.stringValue.downcase.strip
+        unless filter.empty?
+            new_artists = []
+            parent.all_artists.each {|a| new_artists << a unless a[:name].downcase.scan(filter).empty? }
+            parent.artists = new_artists
+
+        else
+            parent.artists = parent.all_artists
+        end
+        parent.albums = []
+        parent.songs = []
+        parent.reload_artists
     end
 
 end

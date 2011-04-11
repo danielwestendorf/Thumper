@@ -10,11 +10,12 @@ class ThumperDelegate
     attr_accessor :main_window, :status_label, :subsonic, :format_time
     attr_accessor :server_info_window, :server_url_field, :username_field, :password_field
     attr_accessor :server_url, :username, :password
-    attr_accessor :artists, :artist_indexes_table_view, :artist_count_label
+    attr_accessor :artists, :all_artists, :artist_indexes_table_view, :artist_count_label
     attr_accessor :albums, :albums_table_view, :album_count_label
     attr_accessor :songs, :songs_table_view, :songs_count_label
     attr_accessor :current_playlist, :current_playlist_table_view, :current_playlist_count_label
-    attr_accessor :audio_data
+    attr_accessor :playing_song_object, :playing_song
+    attr_accessor :artist_reload_button, :album_reload_button, :song_reload_button
     
     def initialize
         @artists = []
@@ -81,10 +82,17 @@ class ThumperDelegate
         DB[:artists].all.each do |artist|
             @artists << {:name => artist[:name], :id => artist[:id]}
         end
-        @albums.count != 1 ? word = " Artists" : word = " Artist"
-        @artist_count_label.stringValue = @artists.count.to_s + word
-        @artist_indexes_table_view.reloadData
+        @all_artists = @artists
+        reload_artists
         @subsonic.artists(@subsonic, :artists_response)
+    end
+    
+    def reload_artists
+        @artists.count != 1 ? word = " Artists" : word = " Artist"
+        @artist_count_label.stringValue = @artists.count.to_s + word
+        albums_table_view.reloadData
+        songs_table_view.reloadData
+        artist_indexes_table_view.reloadData
     end
     
     
