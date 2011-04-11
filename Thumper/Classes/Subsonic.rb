@@ -26,10 +26,16 @@ module Subsonic
         @albums = []
         if xml.class == NSXMLDocument
             albums = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
-            albums.each do |album|
-                @albums << {:id => album.attributeForName("id").stringValue, :title => album.attributeForName("title").stringValue, :artist => album.attributeForName("artist").stringValue, 
-                    :cover_art => album.attributeForName("coverArt").stringValue, :artist_id => album.attributeForName("parent").stringValue} if album.attributeForName("isDir").stringValue == "true"
-                @parent.get_cover_art(album.attributeForName("coverArt").stringValue)
+            albums.each do |xml_album|
+                attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir"]
+                album = {}
+                attributeNames.each do |name|
+                    album[name.to_sym] = xml_album.attributeForName(name).stringValue unless xml_album.attributeForName(name).nil? 
+                end
+                album[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{album[:coverArt]}.jpg"
+                album[:artist_id] = album[:parent]
+                @albums << album if album[:isDir] == "true"
+                @parent.get_cover_art(album[:coverArt]) unless album[:coverArt].nil? || File.exists?(album[:cover_art]) 
             end
         else
             NSLog "Invalid response from server"
@@ -65,15 +71,20 @@ module Subsonic
         @songs = []
         if xml.class == NSXMLDocument
             songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
-            songs.each do |song|
-                @songs << {:id => song.attributeForName("id").stringValue, :title => song.attributeForName("title").stringValue, :artist => song.attributeForName("artist").stringValue, 
-                    :cover_art => song.attributeForName("coverArt").stringValue, :album_id => song.attributeForName("parent").stringValue, 
-                    :duration => song.attributeForName("duration").stringValue, :bitrate => song.attributeForName("bitRate").stringValue,
-                    :track => song.attributeForName("track").stringValue, :year => song.attributeForName("year").stringValue, :genre => song.attributeForName("genre").stringValue,
-                    :size => song.attributeForName("size").stringValue, :suffix => song.attributeForName("suffix").stringValue, :album => song.attributeForName("album").stringValue,
-                    :path => song.attributeForName("path").stringValue } if song.attributeForName("isDir").stringValue == "false"
+            songs.each do |xml_song|
+                attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
+                                "album", "path", "size"]
+                song = {}
+                attributeNames.each do |name|
+                    song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
+                end
+                song[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
+                song[:album_id] = song[:parent]
+                song[:bitrate] = song[:bitRate]
+                song[:duration] = @parent.format_time(song[:duration].to_i)
+                @songs << song if song[:isDir] == "false"
             end
-            else
+        else
             NSLog "Invalid response from server"
         end
         xml = nil
@@ -96,9 +107,9 @@ module Subsonic
             end
         else
             Dispatch::Queue.new('com.qweef.db').async do
-                @albums.each do |a|
-                    return if DB[:albums].filter(:id => a[:id]).all.first 
-                    DB[:albums].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
+                @songs.each do |s|
+                    return if DB[:songs].filter(:id => s[:id]).all.first 
+                    DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
                                        :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
                                        :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
                                        :cover_art => s[:cover_art], :path => s[:path])
@@ -142,8 +153,13 @@ module Subsonic
         NSLog "All Artists presisted to the DB"
 	end
     
-    def image_response(data)
-        NSLog "Here is the image data"
+    def stream_response()
+
+    end
+    
+    def image_response(data, path)
+        response = data.writeToFile(path, atomically:true)
+        @parent.albums_table_view.reloadData
     end
 	
 	
@@ -175,7 +191,14 @@ module Subsonic
     
     def cover_art(id, delegate, method)
         request = build_request('/rest/getCoverArt.view', {:id => id})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::ImageResponse.new(delegate, method))
+        path = Dir.home + "/Library/Thumper/CoverArt/#{id}.jpg"
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::ImageResponse.new(delegate, method, path))
+    end
+    
+    def stream_audio(id, delegate, method)
+        request = build_request('/rest/stream.view', {:id => id})
+        NSLog "attempting to stream file #{id}"
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::StreamResponse.new(delegate, method))
     end
 	
 	class XMLResponse
@@ -205,22 +228,20 @@ module Subsonic
                 if xml
                     @delegate.method(@method).call(xml)
                 end
-                else
+            else
                 @delegate.method(@method).call(@response.statusCode)
             end
         end
-        
-        def errorParsingXML
-            NSLog "There was an error parsing the response from the server"
-        end
+
         
     end
     
     class ImageResponse
         
-        def initialize(delegate, method)
+        def initialize(delegate, method, path)
             @delegate = delegate
             @method = method
+            @path = path
         end
         
         def connection(connection, didReceiveResponse:response)
@@ -235,16 +256,53 @@ module Subsonic
         def connectionDidFinishLoading(connection)
             case @response.statusCode
             when 200...300
-                @responseBody = NSString.alloc.initWithData(@downloadData, encoding:NSUTF8StringEncoding)
-                NSLog @responseBody
-                @delegate.method(@method).call(@downloadData)
+                @delegate.method(@method).call(@downloadData, @path)
             else
+                NSLog "Image response: #{@response.statusCode}"
                 @delegate.method(@method).call(@response.statusCode)
             end
         end
         
-        def errorParsingXML
-            NSLog "There was an error parsing the response from the server"
+    end
+    
+    class StreamResponse
+        
+        def initialize(delegate, method)
+            NSLog "initialized download"
+            @delegate = delegate
+            @method = method
+        end
+        
+        def connection(connection, didReceiveResponse:response)
+            @response = response
+            @downloadData = NSMutableData.data
+            @sizeIncrement = 200000
+        end
+        
+        def connection(connection, didReceiveData:data)
+            NSLog "#{@downloadData.length}"
+            @downloadData.appendData(data)
+            if @downloadData.length > @sizeIncrement
+                new_player = NSSound.alloc.initWithData(@downloadData)
+                @player ? time = @player.currentTime : time = 0
+                new_player.setCurrentTime(time)
+                new_player.play 
+                @player.pause if @player
+                @player = new_player
+                @sizeIncrement += 200000
+            end
+
+        end
+        
+        def connectionDidFinishLoading(connection)
+            NSLog "got all the data"
+            case @response.statusCode
+            when 200...300
+                @delegate.method(@method).call(@downloadData)
+            else
+                NSLog "Stream response: #{@response.statusCode}"
+                @delegate.method(@method).call(@response.statusCode)
+            end
         end
         
     end

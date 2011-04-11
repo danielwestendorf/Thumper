@@ -9,6 +9,7 @@
 # Loading the Cocoa framework. If you need to load more frameworks, you can
 # do that here too.
 framework 'Cocoa'
+framework 'QTKit'
 
 applicaitonDirectory = Dir.home << '/Library/Thumper'
 Dir.mkdir(applicaitonDirectory) unless File.exists?(applicaitonDirectory)

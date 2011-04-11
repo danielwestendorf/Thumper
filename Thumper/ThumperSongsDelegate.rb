@@ -17,11 +17,12 @@ class ThumperSongsDelegate
     
     def double_click(sender)
         row = parent.songs_table_view.selectedRow
-        NSLog "Adding #{parent.songs[row][:title]} to the current playlist" unless parent.current_playlist.include?(parent.songs[row])
         parent.current_playlist << parent.songs[row] unless parent.current_playlist.include?(parent.songs[row])
+        NSLog "#{parent.current_playlist}"
         parent.current_playlist.count != 1 ? word = " Songs" : word = " Song"
         parent.current_playlist_count_label.stringValue = parent.current_playlist.count.to_s + word
         parent.current_playlist_table_view.reloadData
+        parent.current_playlist_table_view.scrollRowToVisible(parent.current_playlist.length - 1)
     end
     
     def numberOfRowsInTableView(tableView)

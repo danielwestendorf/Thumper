@@ -17,6 +17,8 @@ class ThumperAlbumDelegate
         #NSLog "Asked for Album Row:#{row}, Column:#{column.identifier}"
         if row < parent.albums.length
             if column.identifier.to_s == "cover_art"
+                image = parent.albums[row].valueForKey(column.identifier.to_sym)
+                return NSImage.alloc.initWithContentsOfFile(image) if File.exists?(image)
                 return NSImage.imageNamed("album") 
             end
             return parent.albums[row].valueForKey(column.identifier.to_sym)

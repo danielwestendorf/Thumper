@@ -14,6 +14,7 @@ class ThumperDelegate
     attr_accessor :albums, :albums_table_view, :album_count_label
     attr_accessor :songs, :songs_table_view, :songs_count_label
     attr_accessor :current_playlist, :current_playlist_table_view, :current_playlist_count_label
+    attr_accessor :audio_data
     
     def initialize
         @artists = []
@@ -27,7 +28,7 @@ class ThumperDelegate
     end
     
     def applicationDidFinishLaunching(a_notification)
-        @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton 
+        @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton
     end
     
     def show_server_info_modal
