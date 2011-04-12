@@ -44,11 +44,7 @@ module Subsonic
         NSLog "Update of artist albums complete. #{@albums.length} albums"
         if @parent.artists[@parent.artist_indexes_table_view.selectedRow][:id] == @albums.first[:artist_id]
             @parent.albums = @albums
-
-            @parent.albums.count != 1 ? word = " Albums" : word = " Album"
-            @parent.album_count_label.stringValue = @parent.albums.count.to_s + word
-            @parent.albums_table_view.reloadData
-            @parent.albums_table_view.enabled = true
+            @parent.reload_albums
         end
         NSLog "Persisting albums to the DB"
         if DB[:albums].filter(:artist_id => @albums.first[:artist_id]).all.count < 1
@@ -65,6 +61,7 @@ module Subsonic
             end
         end
         NSLog "All Albums presisted to the DB"
+        @parent.albums_progress.stopAnimation(nil)
         @parent.get_album_songs(@albums.first[:id]) if @albums.length == 1
 	end
 	
@@ -72,9 +69,9 @@ module Subsonic
         @songs = []
         if xml.class == NSXMLDocument
             songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
+            attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
+                            "album", "path", "size"]
             songs.each do |xml_song|
-                attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
-                                "album", "path", "size"]
                 song = {}
                 attributeNames.each do |name|
                     song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
@@ -83,6 +80,7 @@ module Subsonic
                 song[:album_id] = song[:parent]
                 song[:bitrate] = song[:bitRate]
                 song[:duration] = @parent.format_time(song[:duration].to_i)
+                NSLog "Duration: #{song[:duration]}"
                 @songs << song if song[:isDir] == "false"
             end
         else
@@ -91,9 +89,7 @@ module Subsonic
         xml = nil
         if @parent.albums[@parent.albums_table_view.selectedRow][:id] == @songs.first[:album_id]
             @parent.songs = @songs
-            @parent.songs.count != 1 ? word = " Songs" : word = " Song"
-            @parent.songs_count_label.stringValue = @songs.count.to_s + word
-            @parent.songs_table_view.reloadData
+            @parent.reload_songs
             @parent.songs_table_view.enabled = true
         else
 
@@ -118,6 +114,7 @@ module Subsonic
                 end
             end
         end
+        @parent.songs_progress.stopAnimation(nil)
         NSLog "All songs presisted to the DB"
 	end
 	
@@ -152,11 +149,45 @@ module Subsonic
                 end
             end
         end
+        @parent.artists_progress.stopAnimation(nil)
         NSLog "All Artists presisted to the DB"
 	end
-    
-    def stream_response()
 
+    def playlists_response(xml)
+        @playlists = []
+        if xml.class == NSXMLDocument
+            playlists = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlists', error:nil).first.nodesForXPath('playlist', error:nil)
+            playlists.each do |playlist|
+                @playlists << {:name => playlist.attributeForName("name").stringValue, :id => playlist.attributeForName("id").stringValue}
+            end
+        end
+        NSLog "Got playlists from server"
+        @parent.playlists = @playlists
+        @parent.reload_playlists
+        @parent.playlists_progress.stopAnimation(nil)
+    end
+    
+    def playlist_response(xml)
+        @playlist_songs = []
+        if xml.class == NSXMLDocument
+            playlist_songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.nodesForXPath('entry', error:nil)
+            attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
+            "album", "path", "size"]
+            playlist_songs.each do |xml_song|
+                song = {}
+                attributeNames.each do |name|
+                    song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
+                end
+                song[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
+                song[:album_id] = song[:parent]
+                song[:bitrate] = song[:bitRate]
+                song[:duration] = @parent.format_time(song[:duration].to_i)
+                @playlist_songs << song if song[:isDir] == "false"
+            end 
+        end
+        @parent.playlist_songs = @playlist_songs
+        @parent.reload_playlist_songs
+        @parent.playlist_songs_progress.stopAnimation(nil)
     end
     
     def image_response(data, path)
@@ -197,8 +228,14 @@ module Subsonic
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::ImageResponse.new(delegate, method, path))
     end
     
-    def stream_audio(id, delegate, method)
-        
+    def playlists(delegate, method)
+        request = build_request('/rest/getPlaylists.view', {})
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+    end
+    
+    def playlist(id, delegate, method)
+        request = build_request('/rest/getPlaylist.view', {:id => id})
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
     end
 	
 	class XMLResponse
@@ -259,38 +296,6 @@ module Subsonic
                 @delegate.method(@method).call(@downloadData, @path)
             else
                 NSLog "Image response: #{@response.statusCode}"
-                @delegate.method(@method).call(@response.statusCode)
-            end
-        end
-        
-    end
-    
-    class StreamResponse
-        
-        def initialize(delegate, method)
-            NSLog "initialized download"
-            @delegate = delegate
-            @method = method
-        end
-        
-        def connection(connection, didReceiveResponse:response)
-            @response = response
-            @downloadData = NSMutableData.data
-        end
-        
-        def connection(connection, didReceiveData:data)
-            @movie = QTMovie.alloc.initWithData(@downloadData) unless @movie
-            NSLog "#{@movie.class}"
-            @downloadData.appendData(data)
-        end
-        
-        def connectionDidFinishLoading(connection)
-            NSLog "got all the data"
-            case @response.statusCode
-            when 200...300
-                @delegate.method(@method).call(@downloadData)
-            else
-                NSLog "Stream response: #{@response.statusCode}"
                 @delegate.method(@method).call(@response.statusCode)
             end
         end

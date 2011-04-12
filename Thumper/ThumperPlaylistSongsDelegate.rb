@@ -1,23 +1,21 @@
 #
-#  ThumperAlbumSongsDelegate.rb
+#  ThumperPlaylistSongsDelegate.rb
 #  Thumper
 #
-#  Created by Daniel Westendorf on 4/3/11.
+#  Created by Daniel Westendorf on 4/12/11.
 #  Copyright 2011 Daniel Westendorf. All rights reserved.
 #
-
-
-class ThumperSongsDelegate
+class ThumperPlaylistSongsDelegate
     attr_accessor :parent
     
     def awakeFromNib
-        parent.songs_table_view.doubleAction = 'double_click:'
-        parent.songs_table_view.target = self
+        parent.playlist_songs_table_view.doubleAction = 'double_click:'
+        parent.playlist_songs_table_view.target = self
     end
     
     def double_click(sender)
-        row = parent.songs_table_view.selectedRow
-        parent.current_playlist << parent.songs[row] unless parent.current_playlist.include?(parent.songs[row])
+        row = parent.playlist_songs_table_view.selectedRow
+        parent.current_playlist << parent.playlist_songs[row] unless parent.current_playlist.include?(parent.playlist_songs[row])
         #NSLog "#{parent.current_playlist}"
         parent.current_playlist.count != 1 ? word = " Songs" : word = " Song"
         parent.current_playlist_count_label.stringValue = parent.current_playlist.count.to_s + word
@@ -26,15 +24,16 @@ class ThumperSongsDelegate
     end
     
     def numberOfRowsInTableView(tableView)
-        parent.songs.count 
+        parent.playlist_songs.count 
     end
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
         #NSLog "Asked for Song Row:#{row}, Column:#{column.identifier}"
-        if row < parent.songs.length
-            return parent.songs[row].valueForKey(column.identifier.to_sym)
+        if row < parent.playlist_songs.length
+            return parent.playlist_songs[row].valueForKey(column.identifier.to_sym)
         end
         nil
     end
     
 end
+
