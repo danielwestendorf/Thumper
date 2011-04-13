@@ -37,7 +37,7 @@ class ThumperArtistIndexDelegate
             new_artists = []
             parent.all_artists.each {|a| new_artists << a unless a[:name].downcase.scan(filter).empty? }
             parent.artists = new_artists
-            parent.get_artist_albums(new_artists.first[:id]) if new_artists.length = 1
+            parent.get_artist_albums(new_artists.first[:id]) if new_artists.length == 1
         else
             parent.artists = parent.all_artists
         end

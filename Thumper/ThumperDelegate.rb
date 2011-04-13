@@ -189,5 +189,56 @@ class ThumperDelegate
         
         return result << ":" + format("%02d",seconds.to_s)
     end
+    
+    def play_song(id)
+        Dispatch::Queue.new('com.thumper.player').async do
+            url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{id}")
+            NSLog "Streaming song #{id}"
+            @playing_song_object.stop if @playing_song_object
+            @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
+            NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
+            NSNotificationCenter.defaultCenter.addObserver(self, selector:'volumeDidChange:', name:QTMovieVolumeDidChangeNotification, object:@playing_song_object)
+            NSNotificationCenter.defaultCenter.addObserver(self, selector:'timeDidChange:', name:QTMovieTimeDidChangeNotification, object:@playing_song_object)
+            NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
+            @playing_song_object.autoplay
+        end 
+    end
+    
+    def volumeDidChange(notificaiton)
+        NSLog "Volume Changed"
+    end
+    
+    def timeDidChange(notification)
+        NSLog "Time Changed"
+    end
+    
+    def songEnded(notification)
+        NSLog "Song is over Go to the next nigger"
+        unless @playing_song + 2 > @current_playlist.length
+            @playing_song += 1
+            play_song(@current_playlist[@playing_song][:id])
+        end
+    end
+    
+    def loadStateChanged(notification)
+        if @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 100000
+            path = Dir.home + '/Library/Thumper/CachedMusic/' + @current_playlist[@playing_song][:path]
+            path_step = "/"
+            split_path = path.split('/')
+            split_path.delete_at(0)
+            split_path.delete_at(split_path.length - 1)
+            split_path.each do |dir|
+                path_step << dir
+                if !File.exists?(path_step)
+                    Dir.mkdir(path_step)
+                    NSLog "Create path #{path_step}" 
+                end
+                path_step << '/'
+            end
+            result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:nil)
+            NSLog "Saving of file resulted in #{result}"
+        end
+        NSLog "Change in the load state"
+    end
 end
 
