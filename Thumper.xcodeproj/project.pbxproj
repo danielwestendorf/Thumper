@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		820ED6C81357874600C0D484 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ED6C71357874600C0D484 /* BWToolkitFramework.framework */; };
+		820ED6FD135788AA00C0D484 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 820ED6C71357874600C0D484 /* BWToolkitFramework.framework */; };
 		824656A1134CD26400AAB744 /* Save.png in Resources */ = {isa = PBXBuildFile; fileRef = 824656A0134CD26400AAB744 /* Save.png */; };
 		826170AE134914EA0026F381 /* ThumperAlbumDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */; };
 		826170B1134922400026F381 /* ThumperSongsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170B0134922400026F381 /* ThumperSongsDelegate.rb */; };
@@ -37,9 +39,24 @@
 		82EF509D1356388C00E0C062 /* sliderright.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EF50991356388C00E0C062 /* sliderright.png */; };
 		82EF50A213563B5E00E0C062 /* PWPolishedSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EF509F13563B5E00E0C062 /* PWPolishedSlider.m */; };
 		82EF50A313563B5E00E0C062 /* PWPolishedSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EF50A113563B5E00E0C062 /* PWPolishedSliderCell.m */; };
+		82EF50A513576BA200E0C062 /* ThumperProgressIndicator.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		820ED70E135788BA00C0D484 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				820ED6FD135788AA00C0D484 /* BWToolkitFramework.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		820ED6C71357874600C0D484 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/dwestendorf/Library/BWToolkit/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
 		824656A0134CD26400AAB744 /* Save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Save.png; path = Icons/Save.png; sourceTree = "<group>"; };
 		826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperAlbumDelegate.rb; sourceTree = "<group>"; };
 		826170B0134922400026F381 /* ThumperSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperSongsDelegate.rb; sourceTree = "<group>"; };
@@ -75,6 +92,7 @@
 		82EF509F13563B5E00E0C062 /* PWPolishedSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWPolishedSlider.m; sourceTree = "<group>"; };
 		82EF50A013563B5E00E0C062 /* PWPolishedSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWPolishedSliderCell.h; sourceTree = "<group>"; };
 		82EF50A113563B5E00E0C062 /* PWPolishedSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWPolishedSliderCell.m; sourceTree = "<group>"; };
+		82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperProgressIndicator.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +102,7 @@
 			files = (
 				827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */,
 				827CE5C91347B49D00170589 /* MacRuby.framework in Frameworks */,
+				820ED6C81357874600C0D484 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +148,7 @@
 		827CE5C51347B49D00170589 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				820ED6C71357874600C0D484 /* BWToolkitFramework.framework */,
 				827CE5C61347B49D00170589 /* Cocoa.framework */,
 				827CE5C81347B49D00170589 /* MacRuby.framework */,
 			);
@@ -138,6 +158,7 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
+				82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */,
 				82B2FFB21354F4A0000DBA78 /* ThumperPlaylistSongsDelegate.rb */,
 				82B2FFAF1354E698000DBA78 /* ThumperPlaylistsDelegate.rb */,
 				82EA85A5134FB0B300C38A05 /* Database.rb */,
@@ -213,6 +234,7 @@
 				827CE5BE1347B49D00170589 /* Sources */,
 				827CE5BF1347B49D00170589 /* Frameworks */,
 				827CE5C01347B49D00170589 /* Resources */,
+				820ED70E135788BA00C0D484 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -279,6 +301,7 @@
 				82EF509B1356388C00E0C062 /* sliderfill.png in Resources */,
 				82EF509C1356388C00E0C062 /* sliderleft.png in Resources */,
 				82EF509D1356388C00E0C062 /* sliderright.png in Resources */,
+				82EF50A513576BA200E0C062 /* ThumperProgressIndicator.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +377,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Library/BWToolkit\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
@@ -371,6 +398,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Library/BWToolkit\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
