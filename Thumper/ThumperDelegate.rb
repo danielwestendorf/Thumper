@@ -190,17 +190,26 @@ class ThumperDelegate
         return result << ":" + format("%02d",seconds.to_s)
     end
     
-    def play_song(id)
+    def play_song
         Dispatch::Queue.new('com.thumper.player').async do
-            url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{id}")
-            NSLog "Streaming song #{id}"
-            @playing_song_object.stop if @playing_song_object
-            @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
-            NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
-            NSNotificationCenter.defaultCenter.addObserver(self, selector:'volumeDidChange:', name:QTMovieVolumeDidChangeNotification, object:@playing_song_object)
-            NSNotificationCenter.defaultCenter.addObserver(self, selector:'timeDidChange:', name:QTMovieTimeDidChangeNotification, object:@playing_song_object)
-            NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
-            @playing_song_object.autoplay
+            song = @current_playlist[@playing_song]
+            NSLog "#{song[:path]}"
+            if File.exists?(song[:cache_path])
+                @playing_song_object.stop if @playing_song_object
+                @playing_song_object = QTMovie.alloc.initWithFile(song[:cache_path], error:nil)
+                @playing_song_object.autoplay
+                NSLog "Playing song from cache"
+            else
+                url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
+                NSLog "Streaming song"
+                @playing_song_object.stop if @playing_song_object
+                @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
+                NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
+                NSNotificationCenter.defaultCenter.addObserver(self, selector:'volumeDidChange:', name:QTMovieVolumeDidChangeNotification, object:@playing_song_object)
+                NSNotificationCenter.defaultCenter.addObserver(self, selector:'timeDidChange:', name:QTMovieTimeDidChangeNotification, object:@playing_song_object)
+                NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
+                @playing_song_object.autoplay 
+            end
         end 
     end
     
@@ -216,13 +225,13 @@ class ThumperDelegate
         NSLog "Song is over Go to the next nigger"
         unless @playing_song + 2 > @current_playlist.length
             @playing_song += 1
-            play_song(@current_playlist[@playing_song][:id])
+            play_song
         end
     end
     
     def loadStateChanged(notification)
         if @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 100000
-            path = Dir.home + '/Library/Thumper/CachedMusic/' + @current_playlist[@playing_song][:path]
+            path = @current_playlist[@playing_song][:cache_path]
             path_step = "/"
             split_path = path.split('/')
             split_path.delete_at(0)
@@ -235,10 +244,19 @@ class ThumperDelegate
                 end
                 path_step << '/'
             end
-            result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:nil)
+            result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:nil) unless File.exists?(path)
             NSLog "Saving of file resulted in #{result}"
         end
+        update_progress_bar
         NSLog "Change in the load state"
+    end
+    
+    def update_progress_bar
+        time = @playing_song_object.currentTime.timeValue/@playing_song_object.currentTime.timeScale.to_f
+        duration = @playing_song_object.duration.timeValue/@playing_song_object.duration.timeScale.to_f
+        NSLog "Current Time: #{format_time(time.to_i)}"
+        NSLog "Duration: #{format_time(duration.to_i)}"
+        NSLog "Percentage: #{time/duration * 100.00}"
     end
 end
 

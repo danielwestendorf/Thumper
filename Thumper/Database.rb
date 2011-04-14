@@ -51,6 +51,7 @@ class Song < Sequel::Model
         String :album
         String :cover_art
         String :path
+        String :cache_path
         String :album_id, :index => true
     end
 

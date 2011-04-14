@@ -80,6 +80,7 @@ module Subsonic
                 song[:album_id] = song[:parent]
                 song[:bitrate] = song[:bitRate]
                 song[:duration] = @parent.format_time(song[:duration].to_i)
+                song[:cache_path] = Dir.home + '/Library/Thumper/MusicCache/' + song[:path]
                 NSLog "Duration: #{song[:duration]}"
                 @songs << song if song[:isDir] == "false"
             end

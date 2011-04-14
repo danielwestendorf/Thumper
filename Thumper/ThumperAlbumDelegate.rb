@@ -31,7 +31,7 @@ class ThumperAlbumDelegate
         parent.songs_table_view.enabled = false
         parent.songs_table_view.reloadData
         parent.get_album_songs(parent.albums[parent.albums_table_view.selectedRow][:id]) if parent.albums.length > 0
-        NSLog "Selected Artist #{parent.albums_table_view.selectedRow}"
+        #NSLog "Selected Artist #{parent.albums_table_view.selectedRow}"
     end
 
 end
