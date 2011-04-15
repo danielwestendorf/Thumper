@@ -107,17 +107,17 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 324527365;
-			PBXWorkspaceStateSaveDate = 324527365;
+			PBXPerProjectTemplateStateSaveDate = 324529826;
+			PBXWorkspaceStateSaveDate = 324529826;
 		};
 		perUserProjectItems = {
 			820ED7F01357B06B00C0D484 /* PBXTextBookmark */ = 820ED7F01357B06B00C0D484 /* PBXTextBookmark */;
+			82C2C3711357EEB5004E9E03 /* PBXTextBookmark */ = 82C2C3711357EEB5004E9E03 /* PBXTextBookmark */;
+			82C2C3721357EEB5004E9E03 /* XCBuildMessageTextBookmark */ = 82C2C3721357EEB5004E9E03 /* XCBuildMessageTextBookmark */;
+			82C2C3771357EED7004E9E03 /* PBXTextBookmark */ = 82C2C3771357EED7004E9E03 /* PBXTextBookmark */;
 			82E574061357E6510013F5A4 /* PBXTextBookmark */ = 82E574061357E6510013F5A4 /* PBXTextBookmark */;
 			82E574071357E6510013F5A4 /* PBXTextBookmark */ = 82E574071357E6510013F5A4 /* PBXTextBookmark */;
-			82E574081357E6510013F5A4 /* PBXTextBookmark */ = 82E574081357E6510013F5A4 /* PBXTextBookmark */;
 			82E574091357E6510013F5A4 /* PlistBookmark */ = 82E574091357E6510013F5A4 /* PlistBookmark */;
-			82E5740A1357E6510013F5A4 /* PBXBookmark */ = 82E5740A1357E6510013F5A4 /* PBXBookmark */;
-			82E574211357E6D30013F5A4 /* PBXTextBookmark */ = 82E574211357E6D30013F5A4 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 820ED6B41357811400C0D484 /* Source Control */;
 		userBuildSettings = {
@@ -134,7 +134,7 @@
 	};
 	827CE5CF1347B49D00170589 /* en */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {950, 456}}";
+			sepNavIntBoundsRect = "{{0, 0}, {950, 452}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 45}";
 		};
@@ -161,6 +161,35 @@
 			sepNavWindowFrame = "{{15, 855}, {750, 558}}";
 		};
 	};
+	82C2C3711357EEB5004E9E03 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 827CE5CF1347B49D00170589 /* en */;
+		name = "InfoPlist.strings: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 45;
+		vrLoc = 0;
+	};
+	82C2C3721357EEB5004E9E03 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "'MacRuby/MacRuby.h' file not found";
+		fRef = 827CE5D21347B49D00170589 /* main.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 10;
+		rType = 1;
+	};
+	82C2C3771357EED7004E9E03 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 827CE5D21347B49D00170589 /* main.m */;
+		name = "main.m: 11";
+		rLen = 0;
+		rLoc = 161;
+		rType = 0;
+		vrLen = 270;
+		vrLoc = 0;
+	};
 	82E574061357E6510013F5A4 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */;
@@ -181,16 +210,6 @@
 		vrLen = 145;
 		vrLoc = 0;
 	};
-	82E574081357E6510013F5A4 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 827CE5D21347B49D00170589 /* main.m */;
-		name = "main.m: 11";
-		rLen = 0;
-		rLoc = 161;
-		rType = 0;
-		vrLen = 270;
-		vrLoc = 0;
-	};
 	82E574091357E6510013F5A4 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 827CE5CD1347B49D00170589 /* Thumper-Info.plist */;
@@ -200,21 +219,7 @@
 		);
 		name = "/Users/dwestendorf/Desktop/Thumper/Thumper/Thumper-Info.plist";
 		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	82E5740A1357E6510013F5A4 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 827CE5CF1347B49D00170589 /* en */;
-	};
-	82E574211357E6D30013F5A4 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 827CE5CF1347B49D00170589 /* en */;
-		name = "InfoPlist.strings: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 45;
-		vrLoc = 0;
+		rLoc = 9223372036854775808;
 	};
 	82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */ = {
 		uiCtxt = {

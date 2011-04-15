@@ -16,7 +16,8 @@ class ThumperDelegate
     attr_accessor :current_playlist, :current_playlist_table_view, :current_playlist_count_label
     attr_accessor :playing_song_object, :playing_song
     attr_accessor :artist_reload_button, :album_reload_button, :song_reload_button
-    attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label, :playlists_progress, :playlist_song_progress	
+    attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label
+    attr_accessor :playlists_progress, :playlist_songs_progress	
 	attr_accessor :playing_song_progress_view
     
     def initialize

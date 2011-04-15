@@ -17,8 +17,8 @@ class ThumperDelegate
     attr_accessor :playing_song_object, :playing_song
     attr_accessor :artist_reload_button, :album_reload_button, :song_reload_button
     attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label
-    attr_accessor :playlists_progress, :playlist_songs_progress	
-	attr_accessor :playing_song_progress_view
+    attr_accessor :playlists_progress, :playlist_songs_progress
+	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining
     
     def initialize
         @artists = []
@@ -28,6 +28,7 @@ class ThumperDelegate
         @playlist_songs = []
         @current_playlist_id = DB[:playlists].where(:name => "Thumper Current").all.first
         @current_playlist = []
+        @playing_song_object = QTMovie.alloc
         @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url']
         @username = NSUserDefaults.standardUserDefaults['thumper.com.username']
         @password = NSUserDefaults.standardUserDefaults['thumper.com.password']
@@ -212,7 +213,52 @@ class ThumperDelegate
                 NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
                 @playing_song_object.autoplay 
             end
+        end
+        @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.1,
+            target: self,
+            selector: 'update_progress_bar:',
+            userInfo: nil,
+            repeats: true
+        set_playing_cover_art
+    end
+    
+    def set_playing_cover_art
+        image = @current_playlist[@playing_song][:cover_art]
+        if File.exists?(image)
+            @playing_cover_art.setImage(NSImage.alloc.initWithContentsOfFile(image))
+        else
+            @playing_cover_art.setImage(NSImage.imageNamed("album"))
         end 
+    end
+    
+    def play_toggle_button(sender)
+        play_toggle 
+    end
+    
+    def play_toggle 
+        @playing_song_object.rate != 0 ? @playing_song_object.stop : @playing_song_object.play 
+    end
+    
+    def play_previous_button(sender)
+        play_previous
+    end
+    
+    def play_previous
+        unless @playing_song == 0
+            @playing_song -= 1
+            play_song
+        end
+    end
+    
+    def play_next_button(sender)
+        play_next 
+    end
+    
+    def play_next 
+        unless @playing_song + 2 > @current_playlist.length
+            @playing_song += 1
+            play_song
+        end
     end
     
     def volumeDidChange(notificaiton)
@@ -228,10 +274,7 @@ class ThumperDelegate
 		@playing_song_progress_view.progressPercent = 0.00
 		@playing_song_progress_view.display
         NSLog "Song is over Go to the next nigger"
-        unless @playing_song + 2 > @current_playlist.length
-            @playing_song += 1
-            play_song
-        end
+        play_next
     end
     
     def loadStateChanged(notification)
@@ -252,20 +295,21 @@ class ThumperDelegate
             result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:nil) unless File.exists?(path)
             NSLog "Saving of file resulted in #{result}"
 		elsif @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 20000
-			@progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.1,
-                                           target: self,
-                                           selector: 'update_progress_bar:',
-                                           userInfo: nil,
-                                           repeats: true
+			#ready to play
+            set_playing_cover_art
         end
         NSLog "Change in the load state"
     end
     
     def update_progress_bar(timer)
-        time = @playing_song_object.currentTime.timeValue/@playing_song_object.currentTime.timeScale.to_f
-        duration = @playing_song_object.duration.timeValue/@playing_song_object.duration.timeScale.to_f
-		@playing_song_progress_view.progressPercent = time/duration * 100.00
-		@playing_song_progress_view.display
+        if @playing_song_object.currentTime
+            time = @playing_song_object.currentTime.timeValue/@playing_song_object.currentTime.timeScale.to_f
+            duration = @playing_song_object.duration.timeValue/@playing_song_object.duration.timeScale.to_f
+            @playing_time_elapsed.stringValue = format_time(time.to_i)
+            @playing_time_remaining.stringValue = "-#{format_time((duration - time).to_i)}"
+            @playing_song_progress_view.progressPercent = time/duration * 100.00
+            @playing_song_progress_view.display 
+        end
     end
 end
 

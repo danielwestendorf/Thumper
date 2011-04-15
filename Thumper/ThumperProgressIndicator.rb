@@ -17,7 +17,6 @@ class ThumperProgressIndicator < NSView
 		duration = @parent.playing_song_object.duration.timeValue/@parent.playing_song_object.duration.timeScale.to_f
 		new_time = duration * click_percent
 		@parent.playing_song_object.setCurrentTime(QTTime.new(new_time, 1, false))
-		NSLog "Duration:#{duration} Percent:#{click_percent} New time #{new_time}"
 	end
 	
     def drawRect(rect)

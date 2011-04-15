@@ -319,7 +319,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>InfoPlist.strings</string>
+								<string>main.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -327,19 +327,19 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>InfoPlist.strings</string>
+										<string>main.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>82E574211357E6D30013F5A4</string>
+										<string>82C2C3771357EED7004E9E03</string>
 										<key>history</key>
 										<array>
 											<string>820ED7F01357B06B00C0D484</string>
 											<string>82E574061357E6510013F5A4</string>
 											<string>82E574071357E6510013F5A4</string>
-											<string>82E574081357E6510013F5A4</string>
 											<string>82E574091357E6510013F5A4</string>
-											<string>82E5740A1357E6510013F5A4</string>
+											<string>82C2C3711357EEB5004E9E03</string>
+											<string>82C2C3721357EEB5004E9E03</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -351,14 +351,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1011, 488}}</string>
+								<string>{{0, 0}, {1011, 484}}</string>
 								<key>RubberWindowFrame</key>
 								<string>67 173 1282 661 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>488pt</string>
+							<string>484pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -371,14 +371,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 493}, {1011, 127}}</string>
+								<string>{{0, 489}, {1011, 131}}</string>
 								<key>RubberWindowFrame</key>
 								<string>67 173 1282 661 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>127pt</string>
+							<string>131pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -397,9 +397,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>82E573F21357E5240013F5A4</string>
+				<string>82C2C3741357EEB5004E9E03</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>82E573F31357E5240013F5A4</string>
+				<string>82C2C3751357EEB5004E9E03</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -537,10 +537,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>820ED6B21357811400C0D484</string>
 		<string>/Users/dwestendorf/Desktop/Thumper/Thumper.xcodeproj</string>
-		<string>82E574221357E6D30013F5A4</string>
+		<string>820ED6B21357811400C0D484</string>
 	</array>
 	<key>WindowString</key>
 	<string>67 173 1282 661 0 0 1440 878 </string>
@@ -622,7 +620,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>820ED6B21357811400C0D484</string>
-				<string>82E573F51357E5240013F5A4</string>
+				<string>82C2C3761357EEB5004E9E03</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
