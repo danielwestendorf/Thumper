@@ -25,6 +25,10 @@
 		827CE5DA1347B49D00170589 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5D91347B49D00170589 /* rb_main.rb */; };
 		827CE5DC1347B49D00170589 /* ThumperDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5DB1347B49D00170589 /* ThumperDelegate.rb */; };
 		827CE5E61347B4D200170589 /* Subsonic.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5E51347B4D200170589 /* Subsonic.rb */; };
+		828D56E41358BA9C0072A9EC /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D56E31358BA9C0072A9EC /* Play.png */; };
+		828D56E61358BD0A0072A9EC /* Next.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D56E51358BD0A0072A9EC /* Next.png */; };
+		828D56E81358BDBA0072A9EC /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D56E71358BDBA0072A9EC /* Previous.png */; };
+		828D56EA1358C1BD0072A9EC /* Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D56E91358C1BD0072A9EC /* Pause.png */; };
 		82965E3B1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */; };
 		82B2FFB01354E698000DBA78 /* ThumperPlaylistsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82B2FFAF1354E698000DBA78 /* ThumperPlaylistsDelegate.rb */; };
 		82B2FFB31354F4A0000DBA78 /* ThumperPlaylistSongsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82B2FFB21354F4A0000DBA78 /* ThumperPlaylistSongsDelegate.rb */; };
@@ -76,6 +80,10 @@
 		827CE5D91347B49D00170589 /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		827CE5DB1347B49D00170589 /* ThumperDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = ThumperDelegate.rb; sourceTree = "<group>"; };
 		827CE5E51347B4D200170589 /* Subsonic.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = Subsonic.rb; path = Classes/Subsonic.rb; sourceTree = "<group>"; };
+		828D56E31358BA9C0072A9EC /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play.png; path = Icons/Play.png; sourceTree = "<group>"; };
+		828D56E51358BD0A0072A9EC /* Next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next.png; path = Icons/Next.png; sourceTree = "<group>"; };
+		828D56E71358BDBA0072A9EC /* Previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous.png; path = Icons/Previous.png; sourceTree = "<group>"; };
+		828D56E91358C1BD0072A9EC /* Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause.png; path = Icons/Pause.png; sourceTree = "<group>"; };
 		82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperArtistIndexDelegate.rb; sourceTree = "<group>"; };
 		82B2FFAF1354E698000DBA78 /* ThumperPlaylistsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperPlaylistsDelegate.rb; sourceTree = "<group>"; };
 		82B2FFB21354F4A0000DBA78 /* ThumperPlaylistSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperPlaylistSongsDelegate.rb; sourceTree = "<group>"; };
@@ -112,6 +120,10 @@
 		826170C4134C30470026F381 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				828D56E91358C1BD0072A9EC /* Pause.png */,
+				828D56E71358BDBA0072A9EC /* Previous.png */,
+				828D56E51358BD0A0072A9EC /* Next.png */,
+				828D56E31358BA9C0072A9EC /* Play.png */,
 				82EF50961356388C00E0C062 /* sliderbutton.png */,
 				82EF50971356388C00E0C062 /* sliderfill.png */,
 				82EF50981356388C00E0C062 /* sliderleft.png */,
@@ -302,6 +314,10 @@
 				82EF509C1356388C00E0C062 /* sliderleft.png in Resources */,
 				82EF509D1356388C00E0C062 /* sliderright.png in Resources */,
 				82EF50A513576BA200E0C062 /* ThumperProgressIndicator.rb in Resources */,
+				828D56E41358BA9C0072A9EC /* Play.png in Resources */,
+				828D56E61358BD0A0072A9EC /* Next.png in Resources */,
+				828D56E81358BDBA0072A9EC /* Previous.png in Resources */,
+				828D56EA1358C1BD0072A9EC /* Pause.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

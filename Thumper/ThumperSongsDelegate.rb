@@ -20,6 +20,7 @@ class ThumperSongsDelegate
         parent.current_playlist << parent.songs[row] unless parent.current_playlist.include?(parent.songs[row])
         #NSLog "#{parent.current_playlist}"
         parent.current_playlist.count != 1 ? word = " Songs" : word = " Song"
+        parent.play_song if parent.current_playlist.count == 1
         parent.current_playlist_count_label.stringValue = parent.current_playlist.count.to_s + word
         parent.current_playlist_table_view.reloadData
         parent.current_playlist_table_view.scrollRowToVisible(parent.current_playlist.length - 1)

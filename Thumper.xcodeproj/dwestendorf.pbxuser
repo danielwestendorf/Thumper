@@ -107,14 +107,14 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 324529826;
-			PBXWorkspaceStateSaveDate = 324529826;
+			PBXPerProjectTemplateStateSaveDate = 324570084;
+			PBXWorkspaceStateSaveDate = 324570084;
 		};
 		perUserProjectItems = {
 			820ED7F01357B06B00C0D484 /* PBXTextBookmark */ = 820ED7F01357B06B00C0D484 /* PBXTextBookmark */;
 			82C2C3711357EEB5004E9E03 /* PBXTextBookmark */ = 82C2C3711357EEB5004E9E03 /* PBXTextBookmark */;
-			82C2C3721357EEB5004E9E03 /* XCBuildMessageTextBookmark */ = 82C2C3721357EEB5004E9E03 /* XCBuildMessageTextBookmark */;
 			82C2C3771357EED7004E9E03 /* PBXTextBookmark */ = 82C2C3771357EED7004E9E03 /* PBXTextBookmark */;
+			82CC4A7A13588C5200D284A3 /* PBXTextBookmark */ = 82CC4A7A13588C5200D284A3 /* PBXTextBookmark */;
 			82E574061357E6510013F5A4 /* PBXTextBookmark */ = 82E574061357E6510013F5A4 /* PBXTextBookmark */;
 			82E574071357E6510013F5A4 /* PBXTextBookmark */ = 82E574071357E6510013F5A4 /* PBXTextBookmark */;
 			82E574091357E6510013F5A4 /* PlistBookmark */ = 82E574091357E6510013F5A4 /* PlistBookmark */;
@@ -148,9 +148,9 @@
 	};
 	827CE5D21347B49D00170589 /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 221}}";
+			sepNavIntBoundsRect = "{{0, 0}, {950, 448}}";
 			sepNavSelRange = "{161, 0}";
-			sepNavVisRange = "{0, 268}";
+			sepNavVisRange = "{0, 270}";
 		};
 	};
 	827CE5DB1347B49D00170589 /* ThumperDelegate.rb */ = {
@@ -171,16 +171,17 @@
 		vrLen = 45;
 		vrLoc = 0;
 	};
-	82C2C3721357EEB5004E9E03 /* XCBuildMessageTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "'MacRuby/MacRuby.h' file not found";
-		fRef = 827CE5D21347B49D00170589 /* main.m */;
-		fallbackIsa = XCBuildMessageTextBookmark;
-		rLen = 1;
-		rLoc = 10;
-		rType = 1;
-	};
 	82C2C3771357EED7004E9E03 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 827CE5D21347B49D00170589 /* main.m */;
+		name = "main.m: 11";
+		rLen = 0;
+		rLoc = 161;
+		rType = 0;
+		vrLen = 270;
+		vrLoc = 0;
+	};
+	82CC4A7A13588C5200D284A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 827CE5D21347B49D00170589 /* main.m */;
 		name = "main.m: 11";

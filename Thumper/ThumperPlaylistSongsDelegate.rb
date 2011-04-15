@@ -16,7 +16,7 @@ class ThumperPlaylistSongsDelegate
     def double_click(sender)
         row = parent.playlist_songs_table_view.selectedRow
         parent.current_playlist << parent.playlist_songs[row] unless parent.current_playlist.include?(parent.playlist_songs[row])
-        #NSLog "#{parent.current_playlist}"
+        NSLog "#{parent.current_playlist}"
         parent.current_playlist.count != 1 ? word = " Songs" : word = " Song"
         parent.current_playlist_count_label.stringValue = parent.current_playlist.count.to_s + word
         parent.current_playlist_table_view.reloadData

@@ -18,17 +18,19 @@ class ThumperDelegate
     attr_accessor :artist_reload_button, :album_reload_button, :song_reload_button
     attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label
     attr_accessor :playlists_progress, :playlist_songs_progress
-	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining
+	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info
     
     def initialize
         @artists = []
         @albums = []
         @songs = []
         @playlists = []
+        @volume = 1.0
         @playlist_songs = []
         @current_playlist_id = DB[:playlists].where(:name => "Thumper Current").all.first
         @current_playlist = []
         @playing_song_object = QTMovie.alloc
+        @playing_song = 0
         @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url']
         @username = NSUserDefaults.standardUserDefaults['thumper.com.username']
         @password = NSUserDefaults.standardUserDefaults['thumper.com.password']
@@ -194,32 +196,38 @@ class ThumperDelegate
     end
     
     def play_song
-        Dispatch::Queue.new('com.thumper.player').async do
-            song = @current_playlist[@playing_song]
-            NSLog "#{song[:path]}"
-            if File.exists?(song[:cache_path])
-                @playing_song_object.stop if @playing_song_object
+        song = @current_playlist[@playing_song]
+        @current_playlist_table_view.selectRowIndexes(NSIndexSet.alloc.initWithIndex(@playing_song), byExtendingSelection: false)
+        NSLog "#{song[:path]}"
+        if File.exists?(song[:cache_path])
+            NSLog "Playing song from cache"
+            @playing_song_object.stop if @playing_song_object
+            Dispatch::Queue.new('com.Thumper.playback').sync do 
                 @playing_song_object = QTMovie.alloc.initWithFile(song[:cache_path], error:nil)
-                @playing_song_object.autoplay
-                NSLog "Playing song from cache"
-            else
-                url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
-                NSLog "Streaming song"
-                @playing_song_object.stop if @playing_song_object
+            end
+        else
+            url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
+            NSLog "Streaming song"
+            @playing_song_object.stop if @playing_song_object
+            Dispatch::Queue.new('com.Thumper.playback').sync do 
                 @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
-                NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
-                NSNotificationCenter.defaultCenter.addObserver(self, selector:'volumeDidChange:', name:QTMovieVolumeDidChangeNotification, object:@playing_song_object)
-                NSNotificationCenter.defaultCenter.addObserver(self, selector:'timeDidChange:', name:QTMovieTimeDidChangeNotification, object:@playing_song_object)
-                NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
-                @playing_song_object.autoplay 
             end
         end
-        @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.1,
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'volumeDidChange:', name:QTMovieVolumeDidChangeNotification, object:@playing_song_object)
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'timeDidChange:', name:QTMovieTimeDidChangeNotification, object:@playing_song_object)
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
+        @playing_song_object.setVolume(@volume)
+        @playing_song_object.autoplay
+        @playing_title.stringValue = song[:title]
+        @playing_info.stringValue = "#{song[:artist]} -- #{song[:album]}"
+        @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.2,
             target: self,
             selector: 'update_progress_bar:',
             userInfo: nil,
             repeats: true
         set_playing_cover_art
+        @play_button.setImage(NSImage.imageNamed("Pause"))
     end
     
     def set_playing_cover_art
@@ -236,7 +244,13 @@ class ThumperDelegate
     end
     
     def play_toggle 
-        @playing_song_object.rate != 0 ? @playing_song_object.stop : @playing_song_object.play 
+        if @playing_song_object.rate != 0
+            @playing_song_object.stop
+            @play_button.setImage(NSImage.imageNamed("Play"))
+        else
+            @playing_song_object.play 
+            @play_button.setImage(NSImage.imageNamed("Pause"))
+        end
     end
     
     def play_previous_button(sender)
@@ -252,6 +266,12 @@ class ThumperDelegate
     
     def play_next_button(sender)
         play_next 
+    end
+    
+    def volume_changed(sender)
+        NSLog "Volume was changed"
+        @volume = @volume_slider.floatValue
+        @playing_song_object.setVolume(@volume)
     end
     
     def play_next 
@@ -271,9 +291,10 @@ class ThumperDelegate
     
     def songEnded(notification)
 		@progress_timer.invalidate
-		@playing_song_progress_view.progressPercent = 0.00
-		@playing_song_progress_view.display
+		@playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
+        update_progress_bar(@progress_timer)
         NSLog "Song is over Go to the next nigger"
+        @play_button.setImage(NSImage.imageNamed("Play"))
         play_next
     end
     
@@ -302,13 +323,15 @@ class ThumperDelegate
     end
     
     def update_progress_bar(timer)
-        if @playing_song_object.currentTime
-            time = @playing_song_object.currentTime.timeValue/@playing_song_object.currentTime.timeScale.to_f
-            duration = @playing_song_object.duration.timeValue/@playing_song_object.duration.timeScale.to_f
-            @playing_time_elapsed.stringValue = format_time(time.to_i)
-            @playing_time_remaining.stringValue = "-#{format_time((duration - time).to_i)}"
-            @playing_song_progress_view.progressPercent = time/duration * 100.00
-            @playing_song_progress_view.display 
+        Dispatch::Queue.new('com.Thumper.play_progress').sync do 
+            if @playing_song_object.currentTime
+                time = @playing_song_object.currentTime.timeValue/@playing_song_object.currentTime.timeScale.to_f
+                duration = @playing_song_object.duration.timeValue/@playing_song_object.duration.timeScale.to_f
+                @playing_time_elapsed.stringValue = format_time(time.to_i)
+                @playing_time_remaining.stringValue = "-#{format_time((duration - time).to_i)}"
+                @playing_song_progress_view.progressPercent = time/duration * 100.00
+                @playing_song_progress_view.display 
+            end
         end
     end
 end
