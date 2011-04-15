@@ -67,7 +67,7 @@
 		826170CB134C351A0026F381 /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Search.png; path = Icons/Search.png; sourceTree = "<group>"; };
 		827CE5C21347B49D00170589 /* Thumper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thumper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		827CE5C61347B49D00170589 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		827CE5C81347B49D00170589 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = System/Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
+		827CE5C81347B49D00170589 /* MacRuby.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = MacRuby.framework; path = ../../../Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		827CE5CD1347B49D00170589 /* Thumper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Thumper-Info.plist"; sourceTree = "<group>"; };
 		827CE5CF1347B49D00170589 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		827CE5D11347B49D00170589 /* Thumper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thumper-Prefix.pch"; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 		827CE5B91347B49D00170589 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				ORGANIZATIONNAME = "Scott USA";
+				ORGANIZATIONNAME = "Daniel Westendorf";
 			};
 			buildConfigurationList = 827CE5BC1347B49D00170589 /* Build configuration list for PBXProject "Thumper" */;
 			compatibilityVersion = "Xcode 3.2";

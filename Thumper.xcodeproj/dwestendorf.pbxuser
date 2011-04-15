@@ -44,10 +44,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	820ED76B135798A300C0D484 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */;
-	};
 	820ED7F01357B06B00C0D484 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 827CE5DB1347B49D00170589 /* ThumperDelegate.rb */;
@@ -57,36 +53,6 @@
 		rType = 0;
 		vrLen = 2028;
 		vrLoc = 9082;
-	};
-	820ED7F11357B06B00C0D484 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */;
-		name = "ThumperProgressIndicator.rb: 12";
-		rLen = 0;
-		rLoc = 246;
-		rType = 0;
-		vrLen = 903;
-		vrLoc = 0;
-	};
-	820ED82D1357B79D00C0D484 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */;
-		name = "ThumperProgressIndicator.rb: 39";
-		rLen = 0;
-		rLoc = 1186;
-		rType = 0;
-		vrLen = 1186;
-		vrLoc = 0;
-	};
-	820ED82E1357B79D00C0D484 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */;
-		name = "ThumperProgressIndicator.rb: 34";
-		rLen = 0;
-		rLoc = 1034;
-		rType = 0;
-		vrLen = 1039;
-		vrLoc = 0;
 	};
 	827CE5B91347B49D00170589 /* Project object */ = {
 		activeBuildConfigurationName = Debug;
@@ -102,7 +68,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					809,
+					772,
 					20,
 					48,
 					43,
@@ -141,15 +107,17 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 324501755;
-			PBXWorkspaceStateSaveDate = 324501755;
+			PBXPerProjectTemplateStateSaveDate = 324527365;
+			PBXWorkspaceStateSaveDate = 324527365;
 		};
 		perUserProjectItems = {
-			820ED76B135798A300C0D484 /* PBXBookmark */ = 820ED76B135798A300C0D484 /* PBXBookmark */;
 			820ED7F01357B06B00C0D484 /* PBXTextBookmark */ = 820ED7F01357B06B00C0D484 /* PBXTextBookmark */;
-			820ED7F11357B06B00C0D484 /* PBXTextBookmark */ = 820ED7F11357B06B00C0D484 /* PBXTextBookmark */;
-			820ED82D1357B79D00C0D484 /* PBXTextBookmark */ = 820ED82D1357B79D00C0D484 /* PBXTextBookmark */;
-			820ED82E1357B79D00C0D484 /* PBXTextBookmark */ = 820ED82E1357B79D00C0D484 /* PBXTextBookmark */;
+			82E574061357E6510013F5A4 /* PBXTextBookmark */ = 82E574061357E6510013F5A4 /* PBXTextBookmark */;
+			82E574071357E6510013F5A4 /* PBXTextBookmark */ = 82E574071357E6510013F5A4 /* PBXTextBookmark */;
+			82E574081357E6510013F5A4 /* PBXTextBookmark */ = 82E574081357E6510013F5A4 /* PBXTextBookmark */;
+			82E574091357E6510013F5A4 /* PlistBookmark */ = 82E574091357E6510013F5A4 /* PlistBookmark */;
+			82E5740A1357E6510013F5A4 /* PBXBookmark */ = 82E5740A1357E6510013F5A4 /* PBXBookmark */;
+			82E574211357E6D30013F5A4 /* PBXTextBookmark */ = 82E574211357E6D30013F5A4 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 820ED6B41357811400C0D484 /* Source Control */;
 		userBuildSettings = {
@@ -164,6 +132,27 @@
 	827CE5CA1347B49D00170589 /* Deployment */ = {
 		activeExec = 0;
 	};
+	827CE5CF1347B49D00170589 /* en */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {950, 456}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 45}";
+		};
+	};
+	827CE5D11347B49D00170589 /* Thumper-Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {987, 567}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 145}";
+		};
+	};
+	827CE5D21347B49D00170589 /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {439, 221}}";
+			sepNavSelRange = "{161, 0}";
+			sepNavVisRange = "{0, 268}";
+		};
+	};
 	827CE5DB1347B49D00170589 /* ThumperDelegate.rb */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1384, 3367}}";
@@ -172,12 +161,67 @@
 			sepNavWindowFrame = "{{15, 855}, {750, 558}}";
 		};
 	};
+	82E574061357E6510013F5A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */;
+		name = "ThumperProgressIndicator.rb: 39";
+		rLen = 0;
+		rLoc = 1186;
+		rType = 0;
+		vrLen = 1186;
+		vrLoc = 0;
+	};
+	82E574071357E6510013F5A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 827CE5D11347B49D00170589 /* Thumper-Prefix.pch */;
+		name = "Thumper-Prefix.pch: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 145;
+		vrLoc = 0;
+	};
+	82E574081357E6510013F5A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 827CE5D21347B49D00170589 /* main.m */;
+		name = "main.m: 11";
+		rLen = 0;
+		rLoc = 161;
+		rType = 0;
+		vrLen = 270;
+		vrLoc = 0;
+	};
+	82E574091357E6510013F5A4 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 827CE5CD1347B49D00170589 /* Thumper-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/dwestendorf/Desktop/Thumper/Thumper/Thumper-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	82E5740A1357E6510013F5A4 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 827CE5CF1347B49D00170589 /* en */;
+	};
+	82E574211357E6D30013F5A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 827CE5CF1347B49D00170589 /* en */;
+		name = "InfoPlist.strings: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 45;
+		vrLoc = 0;
+	};
 	82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {831, 494}}";
+			sepNavIntBoundsRect = "{{0, 0}, {831, 507}}";
 			sepNavSelRange = "{1034, 0}";
 			sepNavVisRange = "{0, 1039}";
-			sepNavWindowFrame = "{{38, 834}, {750, 558}}";
+			sepNavWindowFrame = "{{14, 310}, {750, 558}}";
 		};
 	};
 }
