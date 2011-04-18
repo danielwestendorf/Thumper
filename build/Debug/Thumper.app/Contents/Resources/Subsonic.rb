@@ -183,7 +183,9 @@ module Subsonic
                 song[:album_id] = song[:parent]
                 song[:bitrate] = song[:bitRate]
                 song[:duration] = @parent.format_time(song[:duration].to_i)
+                song[:cache_path] = Dir.home + '/Library/Thumper/MusicCache/' + song[:path]
                 @playlist_songs << song if song[:isDir] == "false"
+                @parent.get_cover_art(song[:coverArt]) unless song[:coverArt].nil? || File.exists?(song[:cover_art]) 
             end 
         end
         @parent.playlist_songs = @playlist_songs

@@ -27,4 +27,9 @@ class ThumperPlaylistsDelegate
         #NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}"
     end
     
+    def update_playlists(sender)
+        parent.playlist_songs = []
+        parent.reload_playlist_songs
+        parent.get_playlists
+    end
 end

@@ -26,7 +26,7 @@ class ThumperArtistIndexDelegate
         parent.songs = []
         parent.albums_table_view.enabled = false
         parent.songs_table_view.enabled = false
-        parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id])
+        parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id]) if parent.artist_indexes_table_view.selectedRow && parent.artists.length > 0
         #NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}"
     end
     
@@ -44,6 +44,10 @@ class ThumperArtistIndexDelegate
         parent.albums = []
         parent.songs = []
         parent.reload_artists
+    end
+    
+    def update_artists(sender)
+        parent.get_artist_indexes
     end
 
 end

@@ -33,5 +33,8 @@ class ThumperAlbumDelegate
         parent.get_album_songs(parent.albums[parent.albums_table_view.selectedRow][:id]) if parent.albums.length > 0
         #NSLog "Selected Artist #{parent.albums_table_view.selectedRow}"
     end
-
+    
+    def update_albums(sender)
+        parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id])
+    end
 end

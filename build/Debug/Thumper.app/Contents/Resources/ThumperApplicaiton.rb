@@ -22,11 +22,11 @@ class ThumperApplicaiton < NSApplication
     
     def mediaKeyPressed(keyCode)
         if keyCode == 20
-            puts "Prev track"
-            elsif keyCode == 19
-            puts "Next track"
-            elsif keyCode == 16
-            puts "Play toggle"
+            NSNotificationCenter.defaultCenter.postNotificationName('ThumperPreviousTrack', object:nil)
+        elsif keyCode == 19
+            NSNotificationCenter.defaultCenter.postNotificationName('ThumperNextTrack', object:nil)
+        elsif keyCode == 16
+            NSNotificationCenter.defaultCenter.postNotificationName('ThumperPlayToggle', object:nil)
         end
     end
 end

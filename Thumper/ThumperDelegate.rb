@@ -30,10 +30,18 @@ class ThumperDelegate
         @current_playlist_id = DB[:playlists].where(:name => "Thumper Current").all.first
         @current_playlist = []
         @playing_song_object = QTMovie.alloc
+        @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.2,
+                                                        target: self,
+                                                        selector: 'update_progress_bar:',
+                                                        userInfo: nil,
+                                                        repeats: true
         @playing_song = 0
         @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url']
         @username = NSUserDefaults.standardUserDefaults['thumper.com.username']
         @password = NSUserDefaults.standardUserDefaults['thumper.com.password']
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'playNext:', name:"ThumperNextTrack", object:nil)
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'playPrevious:', name:"ThumperPreviousTrack", object:nil)
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'playToggle:', name:"ThumperPlayToggle", object:nil)
     end
     
     def applicationDidFinishLaunching(a_notification)
@@ -54,7 +62,7 @@ class ThumperDelegate
     end
         
     def submit_connection_info(sender)
-        @server_url = server_url_field.stringValue
+        server_url_field.stringValue.scan("http").length > 0 ? @server_url = server_url_field.stringValue : @server_url = "http://" + server_url_field.stringValue
         @username = username_field.stringValue
         @password = password_field.stringValue
         NSUserDefaults.standardUserDefaults['thumper.com.server_url'] = @server_url
@@ -64,7 +72,7 @@ class ThumperDelegate
 
         NSApp.endSheet(server_info_window)
         server_info_window.orderOut(sender)
-        if server_url.blank? || username.blank? || password.blank?
+        if server_url.empty? || username.empty? || password.empty?
             show_server_info_modal
         else
             setup_subsonic_conneciton
@@ -82,8 +90,6 @@ class ThumperDelegate
     def hide_connection_info(sender)
         NSApp.endSheet(server_info_window)
         server_info_window.orderOut(sender)
-        @subsonic = SubsonicQuery.new(server_url, username, password)
-        @subsonic.ping(self, :server_online, :server_offline)
     end
     
     def get_artist_indexes
@@ -145,6 +151,17 @@ class ThumperDelegate
         @playlist_songs_table_view.enabled = true
     end
     
+    def reload_current_playlist
+        current_playlist.count != 1 ? word = " Songs" : word = " Song"
+        current_playlist_count_label.stringValue = current_playlist.count.to_s + word
+        current_playlist_table_view.reloadData
+    end
+    
+    def add_to_current_playlist(song)
+        current_playlist << song unless current_playlist.include?(song)
+        reload_current_playlist
+    end
+    
     def get_artist_albums(id)
         @albums_progress.startAnimation(nil)
         @albums = []
@@ -153,7 +170,6 @@ class ThumperDelegate
         end
         reload_albums
         @subsonic.albums(id, @subsonic, :albums_response)
-        NSLog "Getting albums for #{id}"
     end
         
     def get_album_songs(id)
@@ -167,12 +183,10 @@ class ThumperDelegate
         end
         reload_songs
         @subsonic.songs(id, @subsonic, :songs_response)
-        NSLog "Getting songs for #{id}"
     end
     
     def get_cover_art(id)
         @subsonic.cover_art(id, @subsonic, :image_response)
-        NSLog "Got cover art"
     end
     
     def format_time (timeElapsed)
@@ -196,9 +210,8 @@ class ThumperDelegate
     end
     
     def play_song
+        @playing_song = 0 if @playing_song.nil? 
         song = @current_playlist[@playing_song]
-        @current_playlist_table_view.selectRowIndexes(NSIndexSet.alloc.initWithIndex(@playing_song), byExtendingSelection: false)
-        NSLog "#{song[:path]}"
         if File.exists?(song[:cache_path])
             NSLog "Playing song from cache"
             @playing_song_object.stop if @playing_song_object
@@ -214,29 +227,41 @@ class ThumperDelegate
             end
         end
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
-        NSNotificationCenter.defaultCenter.addObserver(self, selector:'volumeDidChange:', name:QTMovieVolumeDidChangeNotification, object:@playing_song_object)
-        NSNotificationCenter.defaultCenter.addObserver(self, selector:'timeDidChange:', name:QTMovieTimeDidChangeNotification, object:@playing_song_object)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
         @playing_song_object.setVolume(@volume)
         @playing_song_object.autoplay
-        @playing_title.stringValue = song[:title]
-        @playing_info.stringValue = "#{song[:artist]} -- #{song[:album]}"
-        @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.2,
-            target: self,
-            selector: 'update_progress_bar:',
-            userInfo: nil,
-            repeats: true
+        set_playing_info
         set_playing_cover_art
         @play_button.setImage(NSImage.imageNamed("Pause"))
+        @current_playlist_table_view.reloadData
+        current_playlist_table_view.scrollRowToVisible(@playing_song)
+    end
+    
+    def set_playing_info
+        if @playing_song
+            song = @current_playlist[@playing_song]
+            title = song[:title]
+            info = "#{song[:artist]} -- #{song[:album]}" 
+        else
+            title = ""
+            info = ""
+        end
+        @playing_title.stringValue = title
+        @playing_info.stringValue =  info
+
     end
     
     def set_playing_cover_art
-        image = @current_playlist[@playing_song][:cover_art]
-        if File.exists?(image)
-            @playing_cover_art.setImage(NSImage.alloc.initWithContentsOfFile(image))
+        if @playing_song
+            image = @current_playlist[@playing_song][:cover_art]
+            if File.exists?(image)
+                @playing_cover_art.setImage(NSImage.alloc.initWithContentsOfFile(image))
+            else
+                @playing_cover_art.setImage(NSImage.imageNamed("album"))
+            end 
         else
             @playing_cover_art.setImage(NSImage.imageNamed("album"))
-        end 
+        end
     end
     
     def play_toggle_button(sender)
@@ -258,8 +283,11 @@ class ThumperDelegate
     end
     
     def play_previous
-        unless @playing_song == 0
+        unless @playing_song == 0 || @playing_song.nil?
             @playing_song -= 1
+            play_song
+        else
+            @playing_song = current_playlist.length - 1
             play_song
         end
     end
@@ -269,31 +297,35 @@ class ThumperDelegate
     end
     
     def volume_changed(sender)
-        NSLog "Volume was changed"
         @volume = @volume_slider.floatValue
         @playing_song_object.setVolume(@volume)
     end
     
     def play_next 
-        unless @playing_song + 2 > @current_playlist.length
+        unless @playing_song.nil? ||@playing_song + 2 > @current_playlist.length
             @playing_song += 1
+            play_song
+        else
+            @playing_song = 0
             play_song
         end
     end
     
-    def volumeDidChange(notificaiton)
-        NSLog "Volume Changed"
+    def playNext(notificaiton)
+        play_next
     end
     
-    def timeDidChange(notification)
-        NSLog "Time Changed"
+    def playToggle(notificaiton)
+        play_toggle
+    end
+    
+    def playPrevious(notificaiton)
+        play_previous
     end
     
     def songEnded(notification)
-		@progress_timer.invalidate
 		@playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
         update_progress_bar(@progress_timer)
-        NSLog "Song is over Go to the next nigger"
         @play_button.setImage(NSImage.imageNamed("Play"))
         play_next
     end
@@ -309,17 +341,14 @@ class ThumperDelegate
                 path_step << dir
                 if !File.exists?(path_step)
                     Dir.mkdir(path_step)
-                    NSLog "Create path #{path_step}" 
                 end
                 path_step << '/'
             end
             result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:nil) unless File.exists?(path)
-            NSLog "Saving of file resulted in #{result}"
 		elsif @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 20000
 			#ready to play
             set_playing_cover_art
         end
-        NSLog "Change in the load state"
     end
     
     def update_progress_bar(timer)

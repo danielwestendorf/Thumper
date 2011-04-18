@@ -10,8 +10,10 @@
 	<array/>
 	<key>CFBundleExecutable</key>
 	<string>Thumper</string>
+	<key>CFBundleIconFile</key>
+	<string>Dock</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.prowestech.Thumper</string>
+	<string>com.Thumper</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

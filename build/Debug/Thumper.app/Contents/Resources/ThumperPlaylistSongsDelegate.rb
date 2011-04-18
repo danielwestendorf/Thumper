@@ -15,12 +15,8 @@ class ThumperPlaylistSongsDelegate
     
     def double_click(sender)
         row = parent.playlist_songs_table_view.selectedRow
-        parent.current_playlist << parent.playlist_songs[row] unless parent.current_playlist.include?(parent.playlist_songs[row])
-        #NSLog "#{parent.current_playlist}"
-        parent.current_playlist.count != 1 ? word = " Songs" : word = " Song"
-        parent.current_playlist_count_label.stringValue = parent.current_playlist.count.to_s + word
-        parent.current_playlist_table_view.reloadData
-        parent.current_playlist_table_view.scrollRowToVisible(parent.current_playlist.length - 1)
+        parent.add_to_current_playlist(parent.playlist_songs[row])
+        parent.play_song if parent.current_playlist.length == 1
     end
     
     def numberOfRowsInTableView(tableView)
@@ -33,6 +29,25 @@ class ThumperPlaylistSongsDelegate
             return parent.playlist_songs[row].valueForKey(column.identifier.to_sym)
         end
         nil
+    end
+    
+    def add_playlist_to_current(sender)
+        Dispatch::Queue.new('com.Thumper.playlist_thread').sync do
+            @parent.playlist_songs.each do |song|
+                parent.add_to_current_playlist(song)
+                parent.play_song if parent.current_playlist.length == 1
+            end
+        end
+    end
+    
+    def update_songs(sender)
+        parent.get_playlist(parent.playlists[parent.playlists_table_view.selectedRow][:id])
+    end
+    
+    def add_song_to_current(sender)
+        row = parent.playlist_songs_table_view.selectedRow
+        parent.add_to_current_playlist(parent.playlist_songs[row])
+        parent.play_song if parent.current_playlist.length == 1
     end
     
 end

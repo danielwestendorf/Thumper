@@ -80,7 +80,7 @@ module Subsonic
                 song[:album_id] = song[:parent]
                 song[:bitrate] = song[:bitRate]
                 song[:duration] = @parent.format_time(song[:duration].to_i)
-                song[:cache_path] = Dir.home + '/Library/Thumper/MusicCache/' + song[:path]
+                song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
                 NSLog "Duration: #{song[:duration]}"
                 @songs << song if song[:isDir] == "false"
             end
@@ -104,7 +104,7 @@ module Subsonic
                                                    :cover_art => s[:cover_art], :path => s[:path]) } 
             end
         else
-            Dispatch::Queue.new('com.qweef.db').async do
+            Dispatch::Queue.new('com.Thumper.db').async do
                 @songs.each do |s|
                     return if DB[:songs].filter(:id => s[:id]).all.first 
                     DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
@@ -183,7 +183,9 @@ module Subsonic
                 song[:album_id] = song[:parent]
                 song[:bitrate] = song[:bitRate]
                 song[:duration] = @parent.format_time(song[:duration].to_i)
+                song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
                 @playlist_songs << song if song[:isDir] == "false"
+                @parent.get_cover_art(song[:coverArt]) unless song[:coverArt].nil? || File.exists?(song[:cover_art]) 
             end 
         end
         @parent.playlist_songs = @playlist_songs
