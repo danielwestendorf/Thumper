@@ -17,6 +17,7 @@
 		826170C9134C33CE0026F381 /* Library.png in Resources */ = {isa = PBXBuildFile; fileRef = 826170C8134C33CE0026F381 /* Library.png */; };
 		826170CC134C351A0026F381 /* PlayList.png in Resources */ = {isa = PBXBuildFile; fileRef = 826170CA134C351A0026F381 /* PlayList.png */; };
 		826170CD134C351A0026F381 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 826170CB134C351A0026F381 /* Search.png */; };
+		82645E22135CE8CF00B3CDEF /* ThumperSearchDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82645E21135CE8CF00B3CDEF /* ThumperSearchDelegate.rb */; };
 		827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827CE5C61347B49D00170589 /* Cocoa.framework */; };
 		827CE5C91347B49D00170589 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827CE5C81347B49D00170589 /* MacRuby.framework */; };
 		827CE5D01347B49D00170589 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5CE1347B49D00170589 /* InfoPlist.strings */; };
@@ -45,6 +46,16 @@
 		82F67F29135B78350099A6FC /* Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F67F28135B78350099A6FC /* Remove.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		82645E19135C8B4B00B3CDEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 827CE5B91347B49D00170589 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 827CE5C11347B49D00170589;
+			remoteInfo = Thumper;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		820ED70E135788BA00C0D484 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -68,6 +79,7 @@
 		826170C8134C33CE0026F381 /* Library.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Library.png; path = Icons/Library.png; sourceTree = "<group>"; };
 		826170CA134C351A0026F381 /* PlayList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayList.png; path = Icons/PlayList.png; sourceTree = "<group>"; };
 		826170CB134C351A0026F381 /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Search.png; path = Icons/Search.png; sourceTree = "<group>"; };
+		82645E21135CE8CF00B3CDEF /* ThumperSearchDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperSearchDelegate.rb; sourceTree = "<group>"; };
 		827CE5C21347B49D00170589 /* Thumper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thumper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		827CE5C61347B49D00170589 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		827CE5C81347B49D00170589 /* MacRuby.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = MacRuby.framework; path = ../../../Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
@@ -167,6 +179,7 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
+				82645E21135CE8CF00B3CDEF /* ThumperSearchDelegate.rb */,
 				82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */,
 				82B2FFB21354F4A0000DBA78 /* ThumperPlaylistSongsDelegate.rb */,
 				82B2FFAF1354E698000DBA78 /* ThumperPlaylistsDelegate.rb */,
@@ -218,12 +231,14 @@
 /* Begin PBXLegacyTarget section */
 		827CE5CA1347B49D00170589 /* Deployment */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--compile --embed";
+			buildArgumentsString = "--compile --embed --gem sqlite3 --gem sequel";
 			buildConfigurationList = 827CE5E21347B49D00170589 /* Build configuration list for PBXLegacyTarget "Deployment" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/local/bin/macruby_deploy;
+			buildWorkingDirectory = "";
 			dependencies = (
+				82645E1A135C8B4B00B3CDEF /* PBXTargetDependency */,
 			);
 			name = Deployment;
 			passBuildSettingsInEnvironment = 1;
@@ -326,6 +341,7 @@
 				82F67F26135B75BD0099A6FC /* Playing.png in Resources */,
 				82F67F27135B75BD0099A6FC /* RemoveAll.png in Resources */,
 				82F67F29135B78350099A6FC /* Remove.png in Resources */,
+				82645E22135CE8CF00B3CDEF /* ThumperSearchDelegate.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +357,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82645E1A135C8B4B00B3CDEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 827CE5C11347B49D00170589 /* Thumper */;
+			targetProxy = 82645E19135C8B4B00B3CDEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		827CE5CE1347B49D00170589 /* InfoPlist.strings */ = {
@@ -516,6 +540,7 @@
 				82AE36CB135B8DED007C39A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

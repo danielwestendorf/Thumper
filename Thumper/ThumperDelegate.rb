@@ -160,6 +160,7 @@ class ThumperDelegate
     def add_to_current_playlist(song)
         current_playlist << song unless current_playlist.include?(song)
         reload_current_playlist
+        play_song && @playing_song = 0 if current_playlist.length == 1
     end
     
     def get_artist_albums(id)

@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">10J3250</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
 		<string key="IBDocument.InterfaceBuilderVersion">851</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -22,7 +22,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="582"/>
-			<integer value="899"/>
+			<integer value="802"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1455,7 +1455,7 @@
 														<reference key="NSSupport" ref="349965944"/>
 														<reference key="NSControlView" ref="596318728"/>
 														<int key="NSButtonFlags">-2042347265</int>
-														<int key="NSButtonFlags2">160</int>
+														<int key="NSButtonFlags2">32</int>
 														<object class="NSCustomResource" key="NSNormalImage">
 															<string key="NSClassName">NSImage</string>
 															<string key="NSResourceName">Previous</string>
@@ -1469,7 +1469,7 @@
 												<object class="NSButton" id="682726372">
 													<reference key="NSNextResponder" ref="520106763"/>
 													<int key="NSvFlags">289</int>
-													<string key="NSFrame">{{281, 35}, {55, 55}}</string>
+													<string key="NSFrame">{{287, 41}, {43, 43}}</string>
 													<reference key="NSSuperview" ref="520106763"/>
 													<int key="NSViewLayerContentsRedrawPolicy">2</int>
 													<bool key="NSEnabled">YES</bool>
@@ -4256,6 +4256,9 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 			<object class="NSUserDefaultsController" id="357973096">
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
+			<object class="NSCustomObject" id="387127234">
+				<string key="NSClassName">ThumperSearchDelegate</string>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -5619,6 +5622,54 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<reference key="destination" ref="496952475"/>
 					</object>
 					<int key="connectionID">1372</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">parent</string>
+						<reference key="source" ref="387127234"/>
+						<reference key="destination" ref="976324537"/>
+					</object>
+					<int key="connectionID">1375</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">search_query</string>
+						<reference key="source" ref="387127234"/>
+						<reference key="destination" ref="858110128"/>
+					</object>
+					<int key="connectionID">1376</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">search_table_view</string>
+						<reference key="source" ref="387127234"/>
+						<reference key="destination" ref="496952475"/>
+					</object>
+					<int key="connectionID">1377</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">textInputOnEnterPressed:</string>
+						<reference key="source" ref="387127234"/>
+						<reference key="destination" ref="858110128"/>
+					</object>
+					<int key="connectionID">1378</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="496952475"/>
+						<reference key="destination" ref="387127234"/>
+					</object>
+					<int key="connectionID">1379</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="496952475"/>
+						<reference key="destination" ref="387127234"/>
+					</object>
+					<int key="connectionID">1380</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -7738,12 +7789,12 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<reference ref="642377340"/>
 							<reference ref="1012248689"/>
 							<reference ref="596318728"/>
-							<reference ref="682726372"/>
 							<reference ref="600412942"/>
 							<reference ref="853389166"/>
 							<reference ref="550976773"/>
 							<reference ref="654234071"/>
 							<reference ref="245557474"/>
+							<reference ref="682726372"/>
 						</object>
 						<reference key="parent" ref="1041332667"/>
 						<string key="objectName">Player Controls</string>
@@ -8262,6 +8313,11 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<reference key="object" ref="35733524"/>
 						<reference key="parent" ref="0"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1373</int>
+						<reference key="object" ref="387127234"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -8368,6 +8424,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>1366.IBViewBoundsToFrameTransform</string>
 					<string>1367.IBPluginDependency</string>
 					<string>1368.IBPluginDependency</string>
+					<string>1373.IBPluginDependency</string>
 					<string>143.IBPluginDependency</string>
 					<string>143.ImportedFromIB2</string>
 					<string>144.IBPluginDependency</string>
@@ -8815,7 +8872,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDjIAAwrAAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDjIAAwpgAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
@@ -8960,6 +9017,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -9067,10 +9125,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{329, 226}, {1024, 600}}</string>
+					<string>{{634, 411}, {1024, 600}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{329, 226}, {1024, 600}}</string>
+					<string>{{634, 411}, {1024, 600}}</string>
 					<integer value="1"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<boolean value="YES"/>
@@ -9467,7 +9525,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1372</int>
+			<int key="maxID">1380</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -10227,9 +10285,11 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>add_all_songs_to_current:</string>
 							<string>add_selected_to_playlist:</string>
 							<string>double_click:</string>
+							<string>textInputOnEnterPressed:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -10242,6 +10302,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>add_all_songs_to_current:</string>
 							<string>add_selected_to_playlist:</string>
 							<string>double_click:</string>
+							<string>textInputOnEnterPressed:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -10255,6 +10316,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">double_click:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">textInputOnEnterPressed:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

@@ -142,7 +142,7 @@ module Subsonic
                 @artists.each {|a| DB[:artists].insert(:name => a[:name], :id => a[:id]) } 
             end
             else
-            Dispatch::Queue.new('com.qweef.db').async do
+            Dispatch::Queue.new('com.Thumper.db').async do
                 @artists.each do |a|
                     return if DB[:artists].filter(:id => a[:id]).all.first 
                     DB[:artists].insert(:id => a[:id], :name => a[:name])
@@ -165,6 +165,12 @@ module Subsonic
         NSLog "Got playlists from server"
         @parent.playlists = @playlists
         @parent.reload_playlists
+        Dispatch::Queue.new("com.Thumper.db").async do
+            @playlists.each do |playlist|
+                return if DB[:playlists].filter(:id => playlist[:id], :name => playlist[:name]).all.first
+                DB[:playlists].insert(:id => playlist[:id], :name => playlist[:name])
+            end
+        end
         @parent.playlists_progress.stopAnimation(nil)
     end
     
@@ -238,6 +244,11 @@ module Subsonic
     
     def playlist(id, delegate, method)
         request = build_request('/rest/getPlaylist.view', {:id => id})
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+    end
+    
+    def search(query, delegate, method)
+        request = build_request('/rest/search.view', {:any => query, :count => 100})
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
     end
 	

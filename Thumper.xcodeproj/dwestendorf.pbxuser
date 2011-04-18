@@ -117,14 +117,14 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 324767137;
-			PBXWorkspaceStateSaveDate = 324767137;
+			PBXPerProjectTemplateStateSaveDate = 324830956;
+			PBXWorkspaceStateSaveDate = 324830956;
 		};
 		perUserProjectItems = {
 			820ED7F01357B06B00C0D484 /* PBXTextBookmark */ = 820ED7F01357B06B00C0D484 /* PBXTextBookmark */;
 			823E941B135B8DAB007046E6 /* PBXTextBookmark */ = 823E941B135B8DAB007046E6 /* PBXTextBookmark */;
+			82A59CA6135C86F10071083C /* PBXTextBookmark */ = 82A59CA6135C86F10071083C /* PBXTextBookmark */;
 			82C2C3711357EEB5004E9E03 /* PBXTextBookmark */ = 82C2C3711357EEB5004E9E03 /* PBXTextBookmark */;
-			82CC4A7A13588C5200D284A3 /* PBXTextBookmark */ = 82CC4A7A13588C5200D284A3 /* PBXTextBookmark */;
 			82E574061357E6510013F5A4 /* PBXTextBookmark */ = 82E574061357E6510013F5A4 /* PBXTextBookmark */;
 			82E574071357E6510013F5A4 /* PBXTextBookmark */ = 82E574071357E6510013F5A4 /* PBXTextBookmark */;
 			82E574091357E6510013F5A4 /* PlistBookmark */ = 82E574091357E6510013F5A4 /* PlistBookmark */;
@@ -158,7 +158,7 @@
 	};
 	827CE5D21347B49D00170589 /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {950, 443}}";
+			sepNavIntBoundsRect = "{{0, 0}, {950, 438}}";
 			sepNavSelRange = "{161, 0}";
 			sepNavVisRange = "{0, 270}";
 		};
@@ -171,6 +171,19 @@
 			sepNavWindowFrame = "{{15, 855}, {750, 558}}";
 		};
 	};
+	82A59CA6135C86F10071083C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 827CE5D21347B49D00170589 /* main.m */;
+		name = "main.m: 11";
+		rLen = 0;
+		rLoc = 161;
+		rType = 0;
+		vrLen = 270;
+		vrLoc = 0;
+	};
+	82AE36C9135B8DED007C39A3 /* ThumperDeployment */ = {
+		activeExec = 0;
+	};
 	82C2C3711357EEB5004E9E03 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 827CE5CF1347B49D00170589 /* en */;
@@ -179,16 +192,6 @@
 		rLoc = 0;
 		rType = 0;
 		vrLen = 45;
-		vrLoc = 0;
-	};
-	82CC4A7A13588C5200D284A3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 827CE5D21347B49D00170589 /* main.m */;
-		name = "main.m: 11";
-		rLen = 0;
-		rLoc = 161;
-		rType = 0;
-		vrLen = 270;
 		vrLoc = 0;
 	};
 	82E574061357E6510013F5A4 /* PBXTextBookmark */ = {

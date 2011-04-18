@@ -18,7 +18,6 @@ class ThumperSongsDelegate
     def double_click(sender)
         row = parent.songs_table_view.selectedRow
         parent.add_to_current_playlist(parent.songs[row])
-        parent.play_song if parent.current_playlist.length == 1
     end
     
     def numberOfRowsInTableView(tableView)
@@ -37,7 +36,6 @@ class ThumperSongsDelegate
         Dispatch::Queue.new('com.Thumper.playlist_thread').sync do
             parent.songs.each do |song|
                 parent.add_to_current_playlist(song)
-                parent.play_song if parent.current_playlist.length == 1
             end
         end
     end

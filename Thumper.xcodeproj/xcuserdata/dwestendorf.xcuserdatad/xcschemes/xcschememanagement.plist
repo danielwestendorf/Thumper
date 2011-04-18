@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ThumperDeployment.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>827CE5CA1347B49D00170589</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82AE36C9135B8DED007C39A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

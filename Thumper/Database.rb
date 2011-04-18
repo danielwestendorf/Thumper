@@ -76,7 +76,7 @@ class PlaylistSong < Sequel::Model
     plugin :schema
     
     set_schema do
-        String :id, :primary_key => true
+        primary_key :id
         String :playlist_id, :index => true
         String :song_id, :index => true
     end
