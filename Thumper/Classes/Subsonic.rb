@@ -248,7 +248,8 @@ module Subsonic
     end
     
     def search(query, delegate, method)
-        request = build_request('/rest/search.view', {:any => query, :count => 100})
+        NSLog "Searching..."
+        request = build_request('/rest/search.view', {:any => query, :count => 1000})
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
     end
 	
@@ -279,7 +280,9 @@ module Subsonic
                 if xml
                     @delegate.method(@method).call(xml)
                 end
+                NSLog "NO XML!"
             else
+                NSLog "ERROR!"
                 @delegate.method(@method).call(@response.statusCode)
             end
         end
@@ -322,7 +325,7 @@ module Subsonic
 	def build_request(resource, options)
         options_string = options.collect {|key, value| "#{key}=#{value}"}.join("&")
         url = NSURL.URLWithString(@base_url + resource + "?" + options_string + @extra_params)
-        request = NSMutableURLRequest.requestWithURL(url)
+        request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:60.0)
         request.setValue("Basic #{@auth_token}", forHTTPHeaderField:"Authorization")
         return request
 	end

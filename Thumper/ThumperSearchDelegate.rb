@@ -1,5 +1,5 @@
 class ThumperSearchDelegate
-    attr_accessor :parent, :search_query, :search_table_view, :search
+    attr_accessor :parent, :search_query, :search_table_view, :search, :search_progress, :search_count_label
     
     def initialize
         @search = []
@@ -12,6 +12,7 @@ class ThumperSearchDelegate
     
     def double_click(sender)
         row = search_table_view.selectedRow
+        NSLog "#{search[row]}"
         parent.add_to_current_playlist(search[row])
     end
     
@@ -21,25 +22,20 @@ class ThumperSearchDelegate
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
         NSLog "Asked for Song Row:#{row}, Column:#{column.identifier}"
-        if row < search.length
-            return search[row].valueForKey(column.identifier.to_sym)
+        if row < @search.length
+            return @search[row].valueForKey(column.identifier.to_sym)
         end
         nil
     end
     
-    def add_all_songs_to_current(sender)
-        Dispatch::Queue.new('com.Thumper.playlist_thread').sync do
-            search.each do |song|
-                parent.add_to_current_playlist(song)
-                parent.play_song if parent.current_playlist.length == 1
-            end
-        end
-    end
-    
     def textInputOnEnterPressed(sender)
+        @search = []
+        reload_search
         NSLog "searching for by #{search_query.stringValue}"
         query = search_query.stringValue.downcase.strip
-        unless query.empty?
+        @search_progress.stopAnimation(nil)
+        unless query.length < 3
+            @search_progress.startAnimation(nil)
             parent.subsonic.search(query, self, :search_response)
         end
     end
@@ -47,14 +43,19 @@ class ThumperSearchDelegate
     def add_selected_to_playlist(sender)
         row = search_table_view.selectedRow
         row = 0 if row.nil?
-        parent.add_to_current_playlist(parent.search[row])
+        parent.add_to_current_playlist(@search[row])
+    end
+    
+    def reload_search
+        @search.count != 1 ? word = " Songs" : word = " Song"
+        @search_count_label.stringValue = @search.count.to_s + word
+        search_table_view.reloadData
     end
     
     def search_response(xml)
+        NSLog "got a response"
         if xml.class == NSXMLDocument
             songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('searchResult', error:nil).first.nodesForXPath('match', error:nil)
-            total_results = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('searchResult', error:nil).first.nodesForXPath('totalHits', error:nil)
-            offset = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('searchResult', error:nil).first.nodesForXPath('offset', error:nil)
             attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
             "album", "path", "size"]
             @search = []
@@ -71,7 +72,8 @@ class ThumperSearchDelegate
                 NSLog "Duration: #{song[:duration]}"
                 @search << song if song[:isDir] == "false"
             end
-            search_table_view.reloadData
+            reload_search
+            @search_progress.stopAnimation(nil)
         end
 
     end
