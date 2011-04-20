@@ -81,7 +81,6 @@ module Subsonic
                 song[:bitrate] = song[:bitRate]
                 song[:duration] = @parent.format_time(song[:duration].to_i)
                 song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
-                NSLog "Duration: #{song[:duration]}"
                 @songs << song if song[:isDir] == "false"
             end
         else
@@ -202,6 +201,7 @@ module Subsonic
     def image_response(data, path)
         response = data.writeToFile(path, atomically:true)
         @parent.albums_table_view.reloadData
+        @parent.set_playing_cover_art
     end
 	
 	
@@ -280,7 +280,6 @@ module Subsonic
                 if xml
                     @delegate.method(@method).call(xml)
                 end
-                NSLog "NO XML!"
             else
                 NSLog "ERROR!"
                 @delegate.method(@method).call(@response.statusCode)
@@ -313,7 +312,6 @@ module Subsonic
                 @delegate.method(@method).call(@downloadData, @path)
             else
                 NSLog "Image response: #{@response.statusCode}"
-                @delegate.method(@method).call(@response.statusCode)
             end
         end
         

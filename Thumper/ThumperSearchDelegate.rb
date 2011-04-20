@@ -1,3 +1,5 @@
+require 'uri'
+
 class ThumperSearchDelegate
     attr_accessor :parent, :search_query, :search_table_view, :search, :search_progress, :search_count_label
     
@@ -11,9 +13,11 @@ class ThumperSearchDelegate
     end
     
     def double_click(sender)
-        row = search_table_view.selectedRow
-        NSLog "#{search[row]}"
-        parent.add_to_current_playlist(search[row])
+        row = @search_table_view.selectedRow
+        row = 0 if row.nil?
+        song = @search[row]
+        parent.get_cover_art(song[:coverArt]) unless song[:coverArt].nil? || File.exists?(song[:cover_art])
+        parent.add_to_current_playlist(song)
     end
     
     def numberOfRowsInTableView(tableView)
@@ -21,7 +25,7 @@ class ThumperSearchDelegate
     end
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
-        NSLog "Asked for Song Row:#{row}, Column:#{column.identifier}"
+        #NSLog "Asked for Song Row:#{row}, Column:#{column.identifier}"
         if row < @search.length
             return @search[row].valueForKey(column.identifier.to_sym)
         end
@@ -29,10 +33,9 @@ class ThumperSearchDelegate
     end
     
     def textInputOnEnterPressed(sender)
-        @search = []
         reload_search
         NSLog "searching for by #{search_query.stringValue}"
-        query = search_query.stringValue.downcase.strip
+        query = URI.escape(search_query.stringValue.downcase.strip)
         @search_progress.stopAnimation(nil)
         unless query.length < 3
             @search_progress.startAnimation(nil)
@@ -58,23 +61,26 @@ class ThumperSearchDelegate
             songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('searchResult', error:nil).first.nodesForXPath('match', error:nil)
             attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
             "album", "path", "size"]
-            @search = []
-            songs.each do |xml_song|
-                song = {}
-                attributeNames.each do |name|
-                    song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
-                end
-                song[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
-                song[:album_id] = song[:parent]
-                song[:bitrate] = song[:bitRate]
-                song[:duration] = @parent.format_time(song[:duration].to_i)
-                song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
-                NSLog "Duration: #{song[:duration]}"
-                @search << song if song[:isDir] == "false"
+            if songs.length > 0
+                @search = []
+                songs.each do |xml_song|
+                    song = {}
+                    attributeNames.each do |name|
+                        song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
+                    end
+                    song[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
+                    song[:album_id] = song[:parent]
+                    song[:bitrate] = song[:bitRate]
+                    song[:duration] = @parent.format_time(song[:duration].to_i)
+                    song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
+                    @search << song if song[:isDir] == "false"
+                end 
             end
             reload_search
             @search_progress.stopAnimation(nil)
+        else
+            NSLog "#{xml}"
         end
-
     end
+    
 end

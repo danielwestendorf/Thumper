@@ -14,11 +14,11 @@ class ThumperDelegate
     attr_accessor :albums, :albums_table_view, :album_count_label, :albums_progress
     attr_accessor :songs, :songs_table_view, :songs_count_label, :songs_progress
     attr_accessor :current_playlist, :current_playlist_table_view, :current_playlist_count_label
-    attr_accessor :playing_song_object, :playing_song
+    attr_accessor :playing_song_object, :playing_song, :playing_song_object_progress
     attr_accessor :artist_reload_button, :album_reload_button, :song_reload_button
     attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label
     attr_accessor :playlists_progress, :playlist_songs_progress
-	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info
+	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info, :stop_button
     
     def initialize
         @artists = []
@@ -35,7 +35,6 @@ class ThumperDelegate
                                                         selector: 'update_progress_bar:',
                                                         userInfo: nil,
                                                         repeats: true
-        @playing_song = 0
         @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url']
         @username = NSUserDefaults.standardUserDefaults['thumper.com.username']
         @password = NSUserDefaults.standardUserDefaults['thumper.com.password']
@@ -225,6 +224,7 @@ class ThumperDelegate
             @playing_song_object.stop if @playing_song_object
             Dispatch::Queue.new('com.Thumper.playback').sync do 
                 @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
+                @playing_song_object_progress.startAnimation(nil)
             end
         end
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
@@ -236,13 +236,14 @@ class ThumperDelegate
         @play_button.setImage(NSImage.imageNamed("Pause"))
         @current_playlist_table_view.reloadData
         current_playlist_table_view.scrollRowToVisible(@playing_song)
+        get_cover_art(song[:id])
     end
     
     def set_playing_info
         if @playing_song
             song = @current_playlist[@playing_song]
             title = song[:title]
-            info = "#{song[:artist]} -- #{song[:album]}" 
+            info = "#{song[:artist]} - #{song[:album]}" 
         else
             title = ""
             info = ""
@@ -270,12 +271,14 @@ class ThumperDelegate
     end
     
     def play_toggle 
-        if @playing_song_object.rate != 0
-            @playing_song_object.stop
-            @play_button.setImage(NSImage.imageNamed("Play"))
-        else
-            @playing_song_object.play 
-            @play_button.setImage(NSImage.imageNamed("Pause"))
+        if @current_playlist.length > 0
+            if @playing_song_object.rate != 0
+                @playing_song_object.stop
+                @play_button.setImage(NSImage.imageNamed("Play"))
+                else
+                @playing_song_object.play 
+                @play_button.setImage(NSImage.imageNamed("Pause"))
+            end
         end
     end
     
@@ -284,10 +287,10 @@ class ThumperDelegate
     end
     
     def play_previous
-        unless @playing_song == 0 || @playing_song.nil?
+        if @playing_song != 0 && !@playing_song.nil? && @current_playlist.length > 1
             @playing_song -= 1
             play_song
-        else
+        elsif @current_playlist.length > 1 && !@playing_song.nil?
             @playing_song = current_playlist.length - 1
             play_song
         end
@@ -297,16 +300,28 @@ class ThumperDelegate
         play_next 
     end
     
+    def stop_button(sender)
+        if @playing_song_object
+            NSLog "STOP"
+            @play_button.setImage(NSImage.imageNamed("Play"))
+            @playing_song_object.stop 
+            @playing_song_object.setCurrentTime(QTTime.new(0,1,false))
+        end
+    end
+    
     def volume_changed(sender)
         @volume = @volume_slider.floatValue
         @playing_song_object.setVolume(@volume)
     end
     
     def play_next 
-        unless @playing_song.nil? ||@playing_song + 2 > @current_playlist.length
+        if !@playing_song.nil? && !@current_playlist[@playing_song + 1].nil?
             @playing_song += 1
             play_song
-        else
+        elsif @repeat_single == true
+            @playing_song_object.setCurrentTime(QTTime.new(0,1,false))
+            play_song
+        elsif @repeat_all == true
             @playing_song = 0
             play_song
         end
@@ -328,11 +343,12 @@ class ThumperDelegate
 		@playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
         update_progress_bar(@progress_timer)
         @play_button.setImage(NSImage.imageNamed("Play"))
-        play_next
+        play_next unless @current_playlist[@playing_song + 1].nil?
     end
     
     def loadStateChanged(notification)
         if @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 100000
+            @playing_song_object_progress.stopAnimation(nil)
             path = @current_playlist[@playing_song][:cache_path]
             path_step = "/"
             split_path = path.split('/')
