@@ -37,6 +37,9 @@ class ThumperDelegate
         @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url']
         @username = NSUserDefaults.standardUserDefaults['thumper.com.username']
         @password = NSUserDefaults.standardUserDefaults['thumper.com.password']
+        p = []
+        String.new(@password).each_byte{|c| p << sprintf("%02X", c)}
+        @enc_password = 'enc:' + p.join('')
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playNext:', name:"ThumperNextTrack", object:nil)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playPrevious:', name:"ThumperPreviousTrack", object:nil)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playToggle:', name:"ThumperPlayToggle", object:nil)
@@ -66,8 +69,10 @@ class ThumperDelegate
         NSUserDefaults.standardUserDefaults['thumper.com.server_url'] = @server_url
         NSUserDefaults.standardUserDefaults['thumper.com.username'] = @username
         NSUserDefaults.standardUserDefaults['thumper.com.password'] = @password
+        p = []
+        String.new(@password).each_byte{|c| p << sprintf("%02X", c)}
+        @enc_password = 'enc:' + p.join('')
         NSUserDefaults.standardUserDefaults.synchronize
-
         NSApp.endSheet(server_info_window)
         server_info_window.orderOut(sender)
         if server_url.empty? || username.empty? || password.empty?
@@ -158,7 +163,18 @@ class ThumperDelegate
     def add_to_current_playlist(song)
         current_playlist << song unless current_playlist.include?(song)
         reload_current_playlist
-        play_song && @playing_song = 0 if current_playlist.length == 1
+        if current_playlist.length == 1
+            @playing_song = 0
+            play_song
+        elsif @playing_song_object.rate == 0
+            @playing_song = current_playlist.length - 1
+            play_song
+        elsif @playing_song == current_playlist.lenght - 2
+            next_song = @current_playlist[@playing_song + 1]
+            unless File.exists?(next_song[:cache_path])
+                @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)
+            end
+        end
         Dispatch::Queue.new('com.Thumper.playback').async do
             DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
         end
@@ -216,12 +232,19 @@ class ThumperDelegate
         song = @current_playlist[@playing_song]
         if File.exists?(song[:cache_path])
             NSLog "Playing song from cache"
+            @playing_song_object_progress.stopAnimation(nil)
             @playing_song_object.stop if @playing_song_object
             Dispatch::Queue.new('com.Thumper.playback').sync do 
                 @playing_song_object = QTMovie.alloc.initWithFile(song[:cache_path], error:nil)
+                if @current_playlist.length >= @playing_song + 2
+                    next_song = @current_playlist[@playing_song + 1]
+                    unless File.exists?(next_song[:cache_path])
+                        @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)
+                    end
+                end
             end
         else
-            url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
+            url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
             NSLog "Streaming song"
             @playing_song_object.stop if @playing_song_object
             Dispatch::Queue.new('com.Thumper.playback').sync do 
@@ -239,6 +262,7 @@ class ThumperDelegate
         @current_playlist_table_view.reloadData
         current_playlist_table_view.scrollRowToVisible(@playing_song)
         get_cover_art(song[:coverArt])
+        @subsonic.scrobble(song[:id], @subsonic, :scrobble_response)
     end
     
     def set_playing_info
@@ -363,6 +387,10 @@ class ThumperDelegate
                 path_step << '/'
             end
             result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:nil) unless File.exists?(path)
+            if @current_playlist.length >= @playing_song + 2
+                next_song = @current_playlist[@playing_song + 1]
+                 @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)
+            end
 		elsif @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 20000
 			#ready to play
             set_playing_cover_art

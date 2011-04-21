@@ -7,7 +7,7 @@ module Subsonic
         @parent = parent
 		@base_url = base_url
 		@auth_token = Base64.encode64("#{username}:#{password}").strip
-		@extra_params = "&f=xml&v=1.4.0&c=Thumper"
+		@extra_params = "&f=xml&v=1.5.0&c=Thumper"
 	end
 	
 	#response methods
@@ -189,12 +189,20 @@ module Subsonic
         @parent.playlist_songs_progress.stopAnimation(nil)
     end
     
-    def image_response(data, path)
+    def image_response(data, path, id)
         response = data.writeToFile(path, atomically:true)
         @parent.albums_table_view.reloadData
         @parent.set_playing_cover_art
     end
+    
+    def download_media_response(data, path, id)
+        response = data.writeToFile(path, atomically:true)
+        NSLog "Saved downloaded file to #{path}"
+    end
 	
+    def scrobble_response(xml)
+        NSLog "Successfully scrobbled song" if xml.class == NSXMLDocument 
+    end
 	
 	#Actual data request methods
 	def ping(delegate, method)
@@ -225,7 +233,7 @@ module Subsonic
     def cover_art(id, delegate, method)
         request = build_request('/rest/getCoverArt.view', {:id => id})
         path = Dir.home + "/Library/Thumper/CoverArt/#{id}.jpg"
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::ImageResponse.new(delegate, method, path))
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::DownloadResponse.new(path, nil, delegate, method))
     end
     
     def playlists(delegate, method)
@@ -239,8 +247,24 @@ module Subsonic
     end
     
     def search(query, delegate, method)
-        NSLog "Searching..."
         request = build_request('/rest/search.view', {:any => query, :count => 100})
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+    end
+    
+    def create_playlist(name, song_ids, delegate, method)
+        request = build_request('/rest/createPlaylist.view', {:name => name, :songId => song_ids})
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+    end
+    
+    def download_media(path, id, delegate, method)
+        NSLog "Attempting to download #{id}"
+        request = build_request('/rest/download.view', {:id => id})
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::DownloadResponse.new(path, id, delegate, method))
+    end
+    
+    def scrobble(id, delegate, method)
+        NSLog "Attempting to scrobble now playing"
+        request = build_request('/rest/scrobble.view', {:id => id})
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
     end
 	
@@ -272,7 +296,7 @@ module Subsonic
                     @delegate.method(@method).call(xml)
                 end
             else
-                NSLog "ERROR!"
+                NSLog "ERROR! #{@response.statusCode}"
                 @delegate.method(@method).call(@response.statusCode)
             end
         end
@@ -280,12 +304,13 @@ module Subsonic
         
     end
     
-    class ImageResponse
+    class DownloadResponse
         
-        def initialize(delegate, method, path)
+        def initialize(path, id, delegate, method)
             @delegate = delegate
             @method = method
             @path = path
+            @id = id
         end
         
         def connection(connection, didReceiveResponse:response)
@@ -300,7 +325,7 @@ module Subsonic
         def connectionDidFinishLoading(connection)
             case @response.statusCode
             when 200...300
-                @delegate.method(@method).call(@downloadData, @path)
+                @delegate.method(@method).call(@downloadData, @path, @id)
             else
                 NSLog "Image response: #{@response.statusCode}"
             end
@@ -312,8 +337,14 @@ module Subsonic
 	private
 	
 	def build_request(resource, options)
-        options_string = options.collect {|key, value| "#{key}=#{value}"}.join("&")
-        url = NSURL.URLWithString(@base_url + resource + "?" + options_string + @extra_params)
+        options_string = options.collect do |key, value| 
+            if value.class != Array
+                "#{key}=#{value}"   
+            else
+                value.collect {|array_value| "#{key}=#{array_value}"}.join("&")
+            end
+        end
+        url = NSURL.URLWithString(@base_url + resource + "?" + options_string.join("&") + @extra_params)
         request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:60.0)
         request.setValue("Basic #{@auth_token}", forHTTPHeaderField:"Authorization")
         return request

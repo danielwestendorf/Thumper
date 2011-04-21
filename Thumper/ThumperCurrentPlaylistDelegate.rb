@@ -39,6 +39,7 @@ class ThumperCurrentPlaylistDelegate
     
     def clear_playlist(sender)
         @parent.current_playlist = []
+        DB[:playlist_songs].filter(:playlist_id => '666current666').delete
         @parent.playing_song_object.stop
         @parent.playing_song = nil
         @parent.playing_song_object = QTMovie.alloc
@@ -57,6 +58,15 @@ class ThumperCurrentPlaylistDelegate
             @parent.reload_current_playlist
             @parent.play_song if selected == @parent.playing_song && @parent.current_playlist.length > 0
         end
+    end
+    
+    def save_playlist(sender)
+        song_ids = parent.current_playlist.collect {|song| song[:id]}
+        parent.subsonic.create_playlist('Test', song_ids, self, :save_playlist_response)
+    end
+    
+    def save_playlist_response(xml)
+        NSLog "Playlist saved"
     end
     
 end
