@@ -27,8 +27,7 @@ class ThumperDelegate
         @playlists = []
         @volume = 1.0
         @playlist_songs = []
-        @current_playlist_id = DB[:playlists].where(:name => "Thumper Current").all.first
-        @current_playlist = []
+        @current_playlist = DB[:playlist_songs].join(:songs, :id => :song_id).filter(:playlist_id => '666current666').all
         @playing_song_object = QTMovie.alloc
         @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.2,
                                                         target: self,
@@ -160,6 +159,9 @@ class ThumperDelegate
         current_playlist << song unless current_playlist.include?(song)
         reload_current_playlist
         play_song && @playing_song = 0 if current_playlist.length == 1
+        Dispatch::Queue.new('com.Thumper.playback').async do
+            DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
+        end
     end
     
     def get_artist_albums(id)
@@ -236,7 +238,7 @@ class ThumperDelegate
         @play_button.setImage(NSImage.imageNamed("Pause"))
         @current_playlist_table_view.reloadData
         current_playlist_table_view.scrollRowToVisible(@playing_song)
-        get_cover_art(song[:id])
+        get_cover_art(song[:coverArt])
     end
     
     def set_playing_info
@@ -302,7 +304,6 @@ class ThumperDelegate
     
     def stop_button(sender)
         if @playing_song_object
-            NSLog "STOP"
             @play_button.setImage(NSImage.imageNamed("Play"))
             @playing_song_object.stop 
             @playing_song_object.setCurrentTime(QTTime.new(0,1,false))

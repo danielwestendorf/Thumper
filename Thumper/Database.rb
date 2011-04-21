@@ -58,29 +58,16 @@ class Song < Sequel::Model
     create_table unless table_exists?
 end
 
-class Playlist < Sequel::Model
-    plugin :schema
-    
-    set_schema do
-        String :id, :primary_key => true
-        String :name
-    end
-    
-    create_table unless table_exists?
-
-end
-
-DB[:playlists].insert(:name => "Thumper Current") if DB[:playlists].empty?
-
 class PlaylistSong < Sequel::Model
     plugin :schema
     
     set_schema do
         primary_key :id
         String :playlist_id, :index => true
-        String :song_id, :index => true
+        String :song_id
+        String :name, :index => true
     end
-
+    
     create_table unless table_exists?
 
 end

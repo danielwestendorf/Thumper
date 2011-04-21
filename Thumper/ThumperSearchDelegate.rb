@@ -38,6 +38,8 @@ class ThumperSearchDelegate
         query = URI.escape(search_query.stringValue.downcase.strip)
         @search_progress.stopAnimation(nil)
         unless query.length < 3
+            @search = []
+            reload_search
             @search_progress.startAnimation(nil)
             parent.subsonic.search(query, self, :search_response)
         end

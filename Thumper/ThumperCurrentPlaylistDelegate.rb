@@ -51,6 +51,8 @@ class ThumperCurrentPlaylistDelegate
     def remove_selected_from_playlist(sender)
         selected = parent.current_playlist_table_view.selectedRow
         if selected > -1
+            song_id = @parent.current_playlist[selected][:id]
+            DB[:playlist_songs].filter(:song_id => song_id).delete
             @parent.current_playlist.delete_at(selected)
             @parent.reload_current_playlist
             @parent.play_song if selected == @parent.playing_song && @parent.current_playlist.length > 0

@@ -91,8 +91,6 @@ module Subsonic
             @parent.songs = @songs
             @parent.reload_songs
             @parent.songs_table_view.enabled = true
-        else
-
         end
         NSLog "Persisting songs to the DB"
         if DB[:songs].filter(:album_id => @songs.first[:album_id]).all.count < 1
@@ -100,7 +98,7 @@ module Subsonic
                 @songs.each {|s| DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
                                                    :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
                                                    :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
-                                                   :cover_art => s[:cover_art], :path => s[:path]) } 
+                                                   :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path]) } 
             end
         else
             Dispatch::Queue.new('com.Thumper.db').async do
@@ -109,7 +107,7 @@ module Subsonic
                     DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
                                        :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
                                        :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
-                                       :cover_art => s[:cover_art], :path => s[:path])
+                                       :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
                     NSLog "Added Album: #{a[:title]}"
                 end
             end
@@ -164,12 +162,6 @@ module Subsonic
         NSLog "Got playlists from server"
         @parent.playlists = @playlists
         @parent.reload_playlists
-        Dispatch::Queue.new("com.Thumper.db").async do
-            @playlists.each do |playlist|
-                return if DB[:playlists].filter(:id => playlist[:id], :name => playlist[:name]).all.first
-                DB[:playlists].insert(:id => playlist[:id], :name => playlist[:name])
-            end
-        end
         @parent.playlists_progress.stopAnimation(nil)
     end
     
@@ -190,7 +182,6 @@ module Subsonic
                 song[:duration] = @parent.format_time(song[:duration].to_i)
                 song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
                 @playlist_songs << song if song[:isDir] == "false"
-                @parent.get_cover_art(song[:coverArt]) unless song[:coverArt].nil? || File.exists?(song[:cover_art]) 
             end 
         end
         @parent.playlist_songs = @playlist_songs
@@ -249,7 +240,7 @@ module Subsonic
     
     def search(query, delegate, method)
         NSLog "Searching..."
-        request = build_request('/rest/search.view', {:any => query, :count => 1000})
+        request = build_request('/rest/search.view', {:any => query, :count => 100})
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
     end
 	
