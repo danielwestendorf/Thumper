@@ -28,8 +28,10 @@ class ThumperDelegate
         @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
         @volume = 1.0
         @playlist_songs = []
+        @shuffle = false
+        @repeat_single = false
+        @repeat_all = false
         @current_playlist = DB[:playlist_songs].join(:songs, :id => :song_id).filter(:playlist_id => '666current666').all
-        @playing_song_object = QTMovie.alloc
         @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.2,
                                                         target: self,
                                                         selector: 'update_progress_bar:',
@@ -47,6 +49,27 @@ class ThumperDelegate
     end
     
     def applicationDidFinishLaunching(a_notification)
+        if @current_playlist.length > 0
+            @playing_song = 0
+            if File.exists?(@current_playlist[0][:cache_path])
+                Dispatch::Queue.new('com.Thumper.playback').sync do 
+                    @playing_song_object = QTMovie.alloc.initWithFile(@current_playlist[0][:cache_path], error:nil)
+                end
+            else
+                url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
+                @playing_song_object.stop if @playing_song_object
+                Dispatch::Queue.new('com.Thumper.playback').sync do 
+                    @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
+                    @playing_song_object_progress.startAnimation(nil)
+                end
+            end
+            set_playing_info
+            set_playing_cover_art
+            reload_current_playlist
+        else
+            @playing_song_object = QTMovie.alloc
+        end
+        
         @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton
     end
     
@@ -183,16 +206,14 @@ class ThumperDelegate
         if current_playlist.length == 1
             @playing_song = 0
             play_song
-        elsif @playing_song_object.rate == 0
-            @playing_song = current_playlist.length - 1
-            play_song
         elsif @playing_song == current_playlist.length - 2
             next_song = @current_playlist[@playing_song + 1]
             unless File.exists?(next_song[:cache_path])
                 @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)
+                get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
             end
         end
-        Dispatch::Queue.new('com.Thumper.playback').async do
+        Dispatch::Queue.new('com.Thumper.playback').sync do
             DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
         end
     end
@@ -247,6 +268,7 @@ class ThumperDelegate
     def play_song
         @playing_song = 0 if @playing_song.nil? 
         song = @current_playlist[@playing_song]
+        NSLog "#{song}"
         if File.exists?(song[:cache_path])
             NSLog "Playing song from cache"
             @playing_song_object_progress.stopAnimation(nil)
@@ -257,6 +279,7 @@ class ThumperDelegate
                     next_song = @current_playlist[@playing_song + 1]
                     unless File.exists?(next_song[:cache_path])
                         @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)
+                        get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
                     end
                 end
             end
@@ -278,7 +301,7 @@ class ThumperDelegate
         @play_button.setImage(NSImage.imageNamed("Pause"))
         @current_playlist_table_view.reloadData
         current_playlist_table_view.scrollRowToVisible(@playing_song)
-        get_cover_art(song[:coverArt])
+        get_cover_art(song[:cover_art].split("/").last.split(".").first)
         @subsonic.scrobble(song[:id], @subsonic, :scrobble_response)
     end
     
@@ -318,7 +341,7 @@ class ThumperDelegate
             if @playing_song_object.rate != 0
                 @playing_song_object.stop
                 @play_button.setImage(NSImage.imageNamed("Play"))
-                else
+            else
                 @playing_song_object.play 
                 @play_button.setImage(NSImage.imageNamed("Pause"))
             end
@@ -357,15 +380,44 @@ class ThumperDelegate
     end
     
     def play_next 
-        if !@playing_song.nil? && !@current_playlist[@playing_song + 1].nil?
-            @playing_song += 1
-            play_song
-        elsif @repeat_single == true
+        if @repeat_single == true
             @playing_song_object.setCurrentTime(QTTime.new(0,1,false))
             play_song
-        elsif @repeat_all == true
+            NSLog "Repeat Single"
+        elsif @repeat_all == true && @playing_song == @current_playlist.length - 1
             @playing_song = 0
             play_song
+            NSLog "Repeat all"
+        elsif @shuffle == true
+            current = @playing_song
+            begin
+                @playing_song = rand(current_playlist.length)
+            end while @playing_song == current
+            play_song
+            NSLog "Shuffle"
+        elsif !@playing_song.nil? && !@current_playlist[@playing_song + 1].nil?
+            @playing_song += 1
+            play_song
+        end
+    end
+    
+    def repeat_single(sender)
+        if @repeat_single == true
+            @repeat_single = false 
+            sender.setState(NSOffState) 
+        else 
+            @repeat_single = true
+            sender.setState(NSOnState)
+        end
+    end
+    
+    def repeat_all(sender)
+        if @repeat_all == true 
+            @repeat_all = false
+            sender.setState(NSOffState)
+        else
+            @repeat_all = true 
+            sender.setState(NSOnState)
         end
     end
     
@@ -381,11 +433,21 @@ class ThumperDelegate
         play_previous
     end
     
+    def shuffle_all(sender)
+        if @shuffle == true
+            @shuffle = false
+            sender.setState(NSOffState)
+        else
+            @shuffle = true
+            sender.setState(NSOnState)
+        end
+    end
+    
     def songEnded(notification)
 		@playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
         update_progress_bar(@progress_timer)
         @play_button.setImage(NSImage.imageNamed("Play"))
-        play_next unless @current_playlist[@playing_song + 1].nil?
+        play_next unless @current_playlist[@playing_song + 1].nil? && @repeat_all == false && @shuffle == false
     end
     
     def loadStateChanged(notification)
@@ -406,7 +468,8 @@ class ThumperDelegate
             result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:nil) unless File.exists?(path)
             if @current_playlist.length >= @playing_song + 2
                 next_song = @current_playlist[@playing_song + 1]
-                 @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)
+                @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)
+                get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
             end
 		elsif @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 20000
 			#ready to play

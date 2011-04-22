@@ -17,7 +17,6 @@ class ThumperApplicaiton < NSApplication
         else
             super(event)
         end
-        
     end
     
     def mediaKeyPressed(keyCode)
@@ -29,4 +28,5 @@ class ThumperApplicaiton < NSApplication
             NSNotificationCenter.defaultCenter.postNotificationName('ThumperPlayToggle', object:nil)
         end
     end
+    
 end

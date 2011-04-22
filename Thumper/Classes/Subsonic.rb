@@ -210,6 +210,17 @@ module Subsonic
     end
     
     def download_media_response(data, path, id)
+        path_step = "/"
+        split_path = path.split('/')
+        split_path.delete_at(0)
+        split_path.delete_at(split_path.length - 1)
+        split_path.each do |dir|
+            path_step << dir
+            if !File.exists?(path_step)
+                Dir.mkdir(path_step)
+            end
+            path_step << '/'
+        end
         response = data.writeToFile(path, atomically:true)
         NSLog "Saved downloaded file to #{path}"
     end

@@ -62,7 +62,7 @@ class ThumperCurrentPlaylistDelegate
     
     def save_playlist(sender)
         if parent.current_playlist.length > 0
-            names = DB[:playlist_songs].group(:name).all.collect {|p| p[:name]}
+            names = parent.playlists.collect {|p| p[:name]}
             playlist_name.addItemsWithObjectValues(names)
             NSApp.beginSheet(save_window,
                          modalForWindow:parent.main_window,
