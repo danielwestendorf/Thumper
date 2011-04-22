@@ -108,7 +108,7 @@ module Subsonic
                                        :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
                                        :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
                                        :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
-                    NSLog "Added Album: #{a[:title]}"
+                    NSLog "Added songs: #{song[:title]}"
                 end
             end
         end
@@ -168,6 +168,8 @@ module Subsonic
     def playlist_response(xml)
         @playlist_songs = []
         if xml.class == NSXMLDocument
+            playlist_id = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.attributeForName("id").stringValue
+            playlist_name = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.attributeForName("name").stringValue
             playlist_songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.nodesForXPath('entry', error:nil)
             attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
             "album", "path", "size"]
@@ -185,6 +187,18 @@ module Subsonic
             end 
         end
         @parent.playlist_songs = @playlist_songs
+        Dispatch::Queue.new('com.Thumper.db').async do
+            DB[:playlist_songs].filter(:playlist_id => playlist_id).delete
+            @playlist_songs.each do |s|
+                if DB[:songs].filter(:id => s[:id]).all.first.nil?
+                    DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
+                                  :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
+                                  :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
+                                  :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
+                end
+                DB[:playlist_songs].insert(:playlist_id => playlist_id, :name => playlist_name, :song_id => s[:id])
+            end
+        end
         @parent.reload_playlist_songs
         @parent.playlist_songs_progress.stopAnimation(nil)
     end

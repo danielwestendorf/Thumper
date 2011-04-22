@@ -9,7 +9,7 @@
 
 class ThumperCurrentPlaylistDelegate
 
-    attr_accessor :parent
+    attr_accessor :parent, :save_window, :playlist_name
     
     def numberOfRowsInTableView(tableView)
         parent.current_playlist.count 
@@ -61,8 +61,29 @@ class ThumperCurrentPlaylistDelegate
     end
     
     def save_playlist(sender)
+        if parent.current_playlist.length > 0
+            names = DB[:playlist_songs].group(:name).all.collect {|p| p[:name]}
+            playlist_name.addItemsWithObjectValues(names)
+            NSApp.beginSheet(save_window,
+                         modalForWindow:parent.main_window,
+                         modalDelegate:self,
+                         didEndSelector:nil,
+                         contextInfo:nil) 
+        end
+    end
+    
+    def submit_playlist_name(sender)
+        name = playlist_name.stringValue
         song_ids = parent.current_playlist.collect {|song| song[:id]}
-        parent.subsonic.create_playlist('Test', song_ids, self, :save_playlist_response)
+        parent.subsonic.create_playlist(name, song_ids, self, :save_playlist_response)
+        NSApp.endSheet(save_window)
+        save_window.orderOut(sender)
+        DB[:playlist_songs].filter(:name => name).delete
+    end
+    
+    def close_save_window(sender)
+        NSApp.endSheet(save_window)
+        save_window.orderOut(sender)
     end
     
     def save_playlist_response(xml)

@@ -19,12 +19,13 @@ class ThumperDelegate
     attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label
     attr_accessor :playlists_progress, :playlist_songs_progress
 	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info, :stop_button
+    attr_accessor :confirmation_window, :confirmation_text
     
     def initialize
         @artists = []
         @albums = []
         @songs = []
-        @playlists = []
+        @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
         @volume = 1.0
         @playlist_songs = []
         @current_playlist = DB[:playlist_songs].join(:songs, :id => :song_id).filter(:playlist_id => '666current666').all
@@ -47,6 +48,25 @@ class ThumperDelegate
     
     def applicationDidFinishLaunching(a_notification)
         @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton
+    end
+    
+    def show_confirmation_window(words)
+        confirmation_text.stringValue = words
+        NSApp.beginSheet(confirmation_window,
+                         modalForWindow:main_window,
+                         modalDelegate:self,
+                         didEndSelector:nil,
+                         contextInfo:nil)
+    end
+    
+    def confrim_yes(sender)
+        NSApp.endSheet(confirmation_window)
+        server_info_window.orderOut(sender)
+    end
+    
+    def confrim_no(sender)
+        NSApp.endSheet(confirmation_window)
+        server_info_window.orderOut(sender)
     end
     
     def show_server_info_modal
@@ -113,9 +133,6 @@ class ThumperDelegate
     
     def get_playlist(id)
         @playlist_songs_progress.startAnimation(nil)
-        @playlist_songs = []
-        @playlist_songs_table_view.enabled = false
-        reload_playlist_songs
         @subsonic.playlist(id, @subsonic, :playlist_response)
     end
     
@@ -169,7 +186,7 @@ class ThumperDelegate
         elsif @playing_song_object.rate == 0
             @playing_song = current_playlist.length - 1
             play_song
-        elsif @playing_song == current_playlist.lenght - 2
+        elsif @playing_song == current_playlist.length - 2
             next_song = @current_playlist[@playing_song + 1]
             unless File.exists?(next_song[:cache_path])
                 @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)

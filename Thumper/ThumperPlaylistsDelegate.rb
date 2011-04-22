@@ -13,7 +13,6 @@ class ThumperPlaylistsDelegate
     end
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
-        #NSLog "Asked for Artist Row:#{row}, Column:#{column.identifier}"
         if row < parent.playlists.length
             return parent.playlists[row][:name] 
         end
@@ -21,10 +20,9 @@ class ThumperPlaylistsDelegate
     end
     
     def tableViewSelectionDidChange(notification)
-        parent.playlist_songs = []
-        parent.playlist_songs_table_view.enabled = false
+        parent.playlist_songs = DB[:playlist_songs].join(:songs, :id => :song_id).filter(:playlist_id => parent.playlists[parent.playlists_table_view.selectedRow][:id]).all
+        parent.reload_playlist_songs
         parent.get_playlist(parent.playlists[parent.playlists_table_view.selectedRow][:id])
-        #NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}"
     end
     
     def update_playlists(sender)
