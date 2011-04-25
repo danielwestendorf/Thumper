@@ -51,9 +51,10 @@ class ThumperDelegate
     def applicationDidFinishLaunching(a_notification)
         if @current_playlist.length > 0
             @playing_song = 0
-            if File.exists?(@current_playlist[0][:cache_path])
+            song = @current_playlist[0]
+            if File.exists?(song[:cache_path])
                 Dispatch::Queue.new('com.Thumper.playback').sync do 
-                    @playing_song_object = QTMovie.alloc.initWithFile(@current_playlist[0][:cache_path], error:nil)
+                    @playing_song_object = QTMovie.alloc.initWithFile(song[:cache_path], error:nil)
                 end
             else
                 url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")

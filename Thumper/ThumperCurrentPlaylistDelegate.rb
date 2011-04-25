@@ -61,6 +61,7 @@ class ThumperCurrentPlaylistDelegate
     end
     
     def save_playlist(sender)
+        NSLog "Saving Playlist"
         if parent.current_playlist.length > 0
             names = parent.playlists.collect {|p| p[:name]}
             playlist_name.addItemsWithObjectValues(names)
