@@ -186,7 +186,7 @@ module Subsonic
                 @playlist_songs << song if song[:isDir] == "false"
             end 
         end
-        @parent.playlist_songs = @playlist_songs
+        @parent.playlist_songs = @playlist_songs if @parent.playlists[@parent.playlists_table_view.selectedRow][:id] == playlist_id
         Dispatch::Queue.new('com.Thumper.db').async do
             DB[:playlist_songs].filter(:playlist_id => playlist_id).delete
             @playlist_songs.each do |s|
@@ -271,6 +271,11 @@ module Subsonic
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
     end
     
+    def delete_playlist(id, delegate, method)
+        request = build_request('/rest/deletePlaylist.view', {:id => id})
+        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+    end
+    
     def search(query, delegate, method)
         request = build_request('/rest/search.view', {:any => query, :count => 100})
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
@@ -289,8 +294,19 @@ module Subsonic
     
     def scrobble(id, delegate, method)
         NSLog "Attempting to scrobble now playing"
-        request = build_request('/rest/scrobble.view', {:id => id})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        scrobble_request = build_request('/rest/scrobble.view', {:id => id})
+        NSURLConnection.connectionWithRequest(scrobble_request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        now_playing_request = build_request('/rest/stream.view', {:id => id})
+        @conn = NSURLConnection.connectionWithRequest(now_playing_request, delegate:self)
+    end
+    
+    def connection(connection, didReceiveResponse:response)
+        if response.statusCode == 200..300
+            @conn.cancel
+            NSLog "Canceled KilledResposne"
+            else
+            NSLog "There was an error with the request: #{response.statusCode}"
+        end
     end
 	
 	class XMLResponse
@@ -324,9 +340,7 @@ module Subsonic
                 NSLog "ERROR! #{@response.statusCode}"
                 @delegate.method(@method).call(@response.statusCode)
             end
-        end
-
-        
+        end        
     end
     
     class DownloadResponse
@@ -357,7 +371,6 @@ module Subsonic
         end
         
     end
-	
 	
 	private
 	

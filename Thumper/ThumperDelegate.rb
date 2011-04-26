@@ -19,7 +19,6 @@ class ThumperDelegate
     attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label
     attr_accessor :playlists_progress, :playlist_songs_progress
 	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info, :stop_button
-    attr_accessor :confirmation_window, :confirmation_text
     
     def initialize
         @artists = []
@@ -74,25 +73,6 @@ class ThumperDelegate
         @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton
     end
     
-    def show_confirmation_window(words)
-        confirmation_text.stringValue = words
-        NSApp.beginSheet(confirmation_window,
-                         modalForWindow:main_window,
-                         modalDelegate:self,
-                         didEndSelector:nil,
-                         contextInfo:nil)
-    end
-    
-    def confrim_yes(sender)
-        NSApp.endSheet(confirmation_window)
-        server_info_window.orderOut(sender)
-    end
-    
-    def confrim_no(sender)
-        NSApp.endSheet(confirmation_window)
-        server_info_window.orderOut(sender)
-    end
-    
     def show_server_info_modal
         @status_label.stringValue = "Offline"
         NSApp.beginSheet(server_info_window,
@@ -130,6 +110,7 @@ class ThumperDelegate
         NSLog "Connecting to subsonic"
         @subsonic = Subsonic.new(self, server_url, username, password)
         @subsonic.ping(@subsonic, :ping_response)
+        @subsonic.scrobble(@current_playlist[0][:id], @subsonic, :scrobble_response) if @current_playlist.length > 0
         get_artist_indexes
         get_playlists
     end
@@ -390,10 +371,12 @@ class ThumperDelegate
             play_song
             NSLog "Repeat all"
         elsif @shuffle == true
-            current = @playing_song
-            begin
-                @playing_song = rand(current_playlist.length)
-            end while @playing_song == current
+            unless @current_playlist.length == 1
+                current = @playing_song
+                begin
+                    @playing_song = rand(current_playlist.length)
+                end while @playing_song == current
+            end
             play_song
             NSLog "Shuffle"
         elsif !@playing_song.nil? && !@current_playlist[@playing_song + 1].nil?
@@ -448,7 +431,7 @@ class ThumperDelegate
 		@playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
         update_progress_bar(@progress_timer)
         @play_button.setImage(NSImage.imageNamed("Play"))
-        play_next unless @current_playlist[@playing_song + 1].nil? && @repeat_all == false && @shuffle == false
+        play_next unless @current_playlist[@playing_song + 1].nil? && @repeat_all == false && @shuffle == false && @repeat_single == false
     end
     
     def loadStateChanged(notification)

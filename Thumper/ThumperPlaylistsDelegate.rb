@@ -6,7 +6,7 @@
 #  Copyright 2011 Daniel Westendorf. All rights reserved.
 #
 class ThumperPlaylistsDelegate
-    attr_accessor :parent
+    attr_accessor :parent, :confirmation_window
     
     def numberOfRowsInTableView(tableView)
         parent.playlists.count 
@@ -30,4 +30,40 @@ class ThumperPlaylistsDelegate
         parent.reload_playlist_songs
         parent.get_playlists
     end
+    
+    def delete_playlist(sender)
+        NSApp.beginSheet(confirmation_window,
+                         modalForWindow:parent.main_window,
+                         modalDelegate:self,
+                         didEndSelector:nil,
+                         contextInfo:nil)
+        
+    end
+    
+    def confrimed_delete_playlist(sender)
+        NSApp.endSheet(confirmation_window)
+        confirmation_window.orderOut(sender)
+        row = parent.playlists_table_view.selectedRow
+        id = parent.playlists[row][:id]
+        parent.subsonic.delete_playlist(id, self, :delete_playlist_response)
+        parent.playlists.delete_at(row)
+        parent.playlist_songs = []
+        parent.reload_playlists
+        parent.reload_playlist_songs 
+    end
+    
+    def canceled_delete_playlist(sender)
+        NSApp.endSheet(confirmation_window)
+        confirmation_window.orderOut(sender)
+    end
+    
+    def delete_playlist_response(xml)
+        if xml.class == NSXMLDocument
+            NSLog "Playlist deleted from the server"
+        else
+            NSLog "There was an error deleting the playlist from the server #{xml}"
+        end
+    end
+    
+    
 end
