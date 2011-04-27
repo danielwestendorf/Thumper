@@ -16,7 +16,7 @@ class ThumperCurrentPlaylistDelegate
     end
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
-        #NSLog "Asked for Current Playlist Row:#{row}, Column:#{column.identifier}"
+        NSLog "Asked for Current Playlist Row:#{row}, Column:#{column.identifier}"
         if row < parent.current_playlist.length
             if column.identifier == "indicator"
                 return NSImage.imageNamed("Playing") if row == parent.playing_song

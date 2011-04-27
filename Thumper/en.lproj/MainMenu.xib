@@ -21,11 +21,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="29"/>
 			<integer value="581"/>
-			<integer value="1514"/>
-			<integer value="1456"/>
 			<integer value="1428"/>
+			<integer value="371"/>
+			<integer value="1589"/>
+			<integer value="1456"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -306,6 +306,15 @@
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMenuItem" id="649454794">
 									<reference key="NSMenu" ref="109475179"/>
+									<string key="NSTitle">Close Window</string>
+									<string key="NSKeyEquiv">w</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="696225682">
+									<reference key="NSMenu" ref="109475179"/>
 									<string key="NSTitle">Minimize</string>
 									<string key="NSKeyEquiv">m</string>
 									<int key="NSKeyEquivModMask">1048576</int>
@@ -375,7 +384,7 @@
 				<string key="NSName">_NSMainMenu</string>
 			</object>
 			<object class="NSWindowTemplate" id="972006081">
-				<int key="NSWindowStyleMask">4109</int>
+				<int key="NSWindowStyleMask">4111</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{0, 278}, {1024, 600}}</string>
 				<int key="NSWTFlags">1954032640</int>
@@ -4562,14 +4571,6 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">performMiniaturize:</string>
-						<reference key="source" ref="1014"/>
-						<reference key="destination" ref="649454794"/>
-					</object>
-					<int key="connectionID">1478</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">play_previous_button:</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="1011231497"/>
@@ -4903,6 +4904,46 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<reference key="destination" ref="650222241"/>
 					</object>
 					<int key="connectionID">1604</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">mute_menu_item</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="47254601"/>
+					</object>
+					<int key="connectionID">1618</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">repeat_all_menu_item</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="625202149"/>
+					</object>
+					<int key="connectionID">1619</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">repeat_one_menu_item</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="625202149"/>
+					</object>
+					<int key="connectionID">1620</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">hide:</string>
+						<reference key="source" ref="1021"/>
+						<reference key="destination" ref="649454794"/>
+					</object>
+					<int key="connectionID">1623</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">performMiniaturize:</string>
+						<reference key="source" ref="1014"/>
+						<reference key="destination" ref="696225682"/>
+					</object>
+					<int key="connectionID">1624</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -6704,6 +6745,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<reference ref="348864529"/>
 							<reference ref="4805288"/>
 							<reference ref="904826110"/>
+							<reference ref="696225682"/>
 						</object>
 						<reference key="parent" ref="568260402"/>
 					</object>
@@ -7080,6 +7122,11 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<reference key="object" ref="268828401"/>
 						<reference key="parent" ref="963296321"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1621</int>
+						<reference key="object" ref="696225682"/>
+						<reference key="parent" ref="109475179"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -7299,7 +7346,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>1600.IBPluginDependency</string>
 					<string>1600.ImportedFromIB2</string>
 					<string>1606.IBPluginDependency</string>
+					<string>1613.IBEditorWindowLastContentRect</string>
 					<string>1613.IBPluginDependency</string>
+					<string>1621.IBPluginDependency</string>
+					<string>1621.ImportedFromIB2</string>
 					<string>23.IBPluginDependency</string>
 					<string>23.ImportedFromIB2</string>
 					<string>236.IBPluginDependency</string>
@@ -7884,7 +7934,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1035, 663}, {102, 43}}</string>
+					<string>{{1050, 790}, {196, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -7893,6 +7943,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{871, 810}, {179, 153}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -7900,7 +7951,9 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{760, 836}, {304, 20}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<string>{{775, 963}, {304, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{74, 862}</string>
@@ -8184,7 +8237,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1616</int>
+			<int key="maxID">1624</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -8537,6 +8590,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>current_playlist_table_view</string>
 							<string>format_time</string>
 							<string>main_window</string>
+							<string>mute_menu_item</string>
 							<string>password</string>
 							<string>password_field</string>
 							<string>play_button</string>
@@ -8545,6 +8599,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>play_toggle_button</string>
 							<string>playing_cover_art</string>
 							<string>playing_info</string>
+							<string>playing_queue</string>
 							<string>playing_song</string>
 							<string>playing_song_object</string>
 							<string>playing_song_object_progress</string>
@@ -8560,6 +8615,8 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>playlists_count_label</string>
 							<string>playlists_progress</string>
 							<string>playlists_table_view</string>
+							<string>repeat_all_menu_item</string>
+							<string>repeat_one_menu_item</string>
 							<string>server_info_window</string>
 							<string>server_url</string>
 							<string>server_url_field</string>
@@ -8577,6 +8634,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -8652,6 +8713,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>current_playlist_table_view</string>
 							<string>format_time</string>
 							<string>main_window</string>
+							<string>mute_menu_item</string>
 							<string>password</string>
 							<string>password_field</string>
 							<string>play_button</string>
@@ -8660,6 +8722,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>play_toggle_button</string>
 							<string>playing_cover_art</string>
 							<string>playing_info</string>
+							<string>playing_queue</string>
 							<string>playing_song</string>
 							<string>playing_song_object</string>
 							<string>playing_song_object_progress</string>
@@ -8675,6 +8738,8 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>playlists_count_label</string>
 							<string>playlists_progress</string>
 							<string>playlists_table_view</string>
+							<string>repeat_all_menu_item</string>
+							<string>repeat_one_menu_item</string>
 							<string>server_info_window</string>
 							<string>server_url</string>
 							<string>server_url_field</string>
@@ -8757,6 +8822,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">mute_menu_item</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">password</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -8786,6 +8855,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">playing_info</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">playing_queue</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -8846,6 +8919,14 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">playlists_table_view</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">repeat_all_menu_item</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">repeat_one_menu_item</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">

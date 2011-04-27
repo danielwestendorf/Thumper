@@ -18,12 +18,14 @@ class ThumperDelegate
     attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label
     attr_accessor :playlists_progress, :playlist_songs_progress
 	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info, :stop_button
+    attr_accessor :playing_queue, :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item
     
     def initialize
         @artists = []
         @albums = []
         @songs = []
         @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
+        @playing_queue = Dispatch::Queue.new('com.Thumper.playback')
         @volume = 1.0
         @playlist_songs = []
         @shuffle = false
@@ -75,7 +77,7 @@ class ThumperDelegate
             else
                 url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
                 @playing_song_object.stop if @playing_song_object
-                Dispatch::Queue.new('com.Thumper.playback').sync do 
+                @playing_queue.sync do 
                     @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
                     @playing_song_object_progress.startAnimation(nil)
                 end
@@ -90,6 +92,16 @@ class ThumperDelegate
         end
         
         @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton
+    end
+    
+    def windowShouldClose(notification)
+        @main_window.orderOut(sender)
+        return false
+    end
+    
+    def applicationShouldHandleReopen(app, hasVisibleWindows: windows)
+        @main_window.makeKeyAndOrderFront(nil)
+        return true
     end
     
     def show_server_info_modal
@@ -216,7 +228,7 @@ class ThumperDelegate
                 get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
             end
         end
-        Dispatch::Queue.new('com.Thumper.playback').sync do
+        Dispatch::Queue.new('com.Thumper.db').async do
             DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
         end
     end
@@ -278,8 +290,8 @@ class ThumperDelegate
         if File.exists?(song[:cache_path])
             NSLog "Playing song from cache"
             @playing_song_object_progress.stopAnimation(nil)
-            @playing_song_object.stop if @playing_song_object
-            Dispatch::Queue.new('com.Thumper.playback').sync do 
+            @playing_queue.sync do 
+                @playing_song_object.stop if @playing_song_object
                 @playing_song_object = QTMovie.alloc.initWithFile(song[:cache_path], error:nil)
                 if @current_playlist.length >= @playing_song + 2
                     next_song = @current_playlist[@playing_song + 1]
@@ -292,8 +304,8 @@ class ThumperDelegate
         else
             url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
             NSLog "Streaming song"
-            @playing_song_object.stop if @playing_song_object
-            Dispatch::Queue.new('com.Thumper.playback').sync do 
+            @playing_queue.sync do 
+                @playing_song_object.stop if @playing_song_object
                 @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
                 @playing_song_object_progress.startAnimation(nil)
             end
@@ -415,7 +427,9 @@ class ThumperDelegate
             sender.setState(NSOffState) 
         else 
             @repeat_single = true
+            @repeat_all = false
             sender.setState(NSOnState)
+            @repeat_all_menu_item.setState(NSOffState)
         end
     end
     
@@ -425,7 +439,9 @@ class ThumperDelegate
             sender.setState(NSOffState)
         else
             @repeat_all = true 
+            @repeat_single = false
             sender.setState(NSOnState)
+            @repeat_all_menu_item.setState(NSOffState)
         end
     end
     
@@ -451,6 +467,7 @@ class ThumperDelegate
         @volume > 0.9 ? @volume = 1.0 : @volume += 0.1
         @playing_song_object.setVolume(@volume)
         @volume_slider.setFloatValue(@volume)
+        @mute_menu_item.setState(NSOffState)
     end
     
     def muteVolume(sender)
