@@ -148,7 +148,7 @@ module Subsonic
             end
         end
         @parent.artists_progress.stopAnimation(nil)
-        NSLog "All Artists presisted to the DB"
+        NSLog "All Artists presisted to the DB #{@parent.artists.length}"
 	end
 
     def playlists_response(xml)
@@ -246,6 +246,7 @@ module Subsonic
 	end
 	
 	def albums(id, delegate, method)
+        NSLog "Getting album #{id}"
         request = build_request('/rest/getMusicDirectory', {:id => id})
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
 	end
@@ -282,7 +283,11 @@ module Subsonic
     end
     
     def create_playlist(name, song_ids, delegate, method)
-        request = build_request('/rest/createPlaylist.view', {:name => name, :songId => song_ids})
+        request = build_request('/rest/createPlaylist.view', {})
+        request.HTTPMethod = "POST"
+        body = "name=#{name}"
+        song_ids.each {|id| body << "&songId=#{id}" }
+        request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
     end
     

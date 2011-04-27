@@ -15,9 +15,7 @@ class ThumperSearchDelegate
     def double_click(sender)
         row = @search_table_view.selectedRow
         row = 0 if row.nil?
-        song = @search[row]
-        parent.get_cover_art(song[:coverArt]) unless song[:coverArt].nil? || File.exists?(song[:cover_art])
-        parent.add_to_current_playlist(song)
+        @parent.add_to_current_playlist(@search[row])
     end
     
     def numberOfRowsInTableView(tableView)
@@ -80,6 +78,16 @@ class ThumperSearchDelegate
             end
             reload_search
             @search_progress.stopAnimation(nil)
+            Dispatch::Queue.new('com.Thumper.db').async do
+                @search.each do |s|
+                    return if DB[:songs].filter(:id => s[:id]).all.first 
+                    DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
+                                      :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
+                                      :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
+                                      :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
+                    NSLog "Added songs: #{song[:title]}"
+                end
+            end
         else
             NSLog "#{xml}"
         end

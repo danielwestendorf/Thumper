@@ -31,15 +31,28 @@ class ThumperPlaylistSongsDelegate
     end
     
     def add_playlist_to_current(sender)
-        Dispatch::Queue.new('com.Thumper.playlist_thread').sync do
-            @parent.playlist_songs.each do |song|
-                parent.add_to_current_playlist(song)
+        
+        Dispatch::Queue.new('com.Thumper.playlist_thread').async do
+            parent.playlist_songs.each do |song|
+                parent.current_playlist << song
+                DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
+            end
+            parent.reload_current_playlist
+            if parent.current_playlist.length == 1
+                parent.playing_song = 0
+                parent.play_song
+            elsif parent.playing_song == parent.current_playlist.length - 2
+                next_song = parent.current_playlist[@parent.playing_song + 1]
+                unless File.exists?(next_song[:cache_path])
+                    parent.subsonic.download_media(next_song[:cache_path], next_song[:id], parent.subsonic, :download_media_response)
+                    parent.get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
+                end
             end
         end
     end
     
     def update_songs(sender)
-        parent.get_playlist(parent.playlists[parent.playlists_table_view.selectedRow][:id])
+        parent.get_playlist(parent.playlists[row][:id]) if parent.playlists.length > 0
     end
     
     def add_song_to_current(sender)

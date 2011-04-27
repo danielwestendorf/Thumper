@@ -30,6 +30,44 @@ class ThumperCurrentPlaylistDelegate
     def awakeFromNib
         parent.current_playlist_table_view.doubleAction = 'double_click:'
         parent.current_playlist_table_view.target = self
+        parent.current_playlist_table_view.registerForDraggedTypes(NSArray.arrayWithObjects("Song", nil))
+    end
+    
+    def tableView(aView, validateDrop:info, proposedRow:row, proposedDropOperation:op)
+        if op == NSTableViewDropAbove; return NSDragOperationEvery; else return NSDragOperationNone; end
+    end
+    
+    def tableView(aView, writeRowsWithIndexes:rowIndexes, toPasteboard:pboard)
+        song = parent.current_playlist[rowIndexes.firstIndex].to_yaml
+        pboard.setString(song, forType:"Song")
+        return true
+    end
+    
+    def tableView(aView, acceptDrop:info, row:row, dropOperation:op)
+        pboard = info.draggingPasteboard
+        song = YAML.load(pboard.stringForType("Song"))
+        
+        if parent.current_playlist.include?(song)
+            if song[:id] == parent.current_playlist[parent.playing_song][:id]
+                parent.playing_song = row
+            elsif parent.playing_song >= row
+                parent.playing_song += 1
+            end
+
+            parent.current_playlist.insert(row, parent.current_playlist.delete(song))
+        else
+           parent.current_playlist.insert(row, song) 
+        end
+        parent.reload_current_playlist
+        Dispatch::Queue.new('com.Thumper.db').sync do
+            DB[:playlist_songs].filter(:playlist_id => "666current666").delete
+            DB.transaction do
+                parent.current_playlist.each do |song|
+                    DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
+                end
+            end
+        end
+        return true
     end
 
     def double_click(sender)

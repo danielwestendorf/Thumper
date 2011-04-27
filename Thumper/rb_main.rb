@@ -10,6 +10,7 @@
 # do that here too.
 framework 'Cocoa'
 framework 'QTKit'
+require 'yaml'
 
 applicaitonDirectory = Dir.home << '/Library/Thumper'
 Dir.mkdir(applicaitonDirectory) unless File.exists?(applicaitonDirectory)

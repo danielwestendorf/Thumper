@@ -5,7 +5,6 @@
 #  Created by Daniel Westendorf on 4/2/11.
 #  Copyright 2011 Daniel Westendorf. All rights reserved.
 #
-
 class ThumperDelegate
     attr_accessor :main_window, :status_label, :subsonic, :format_time
     attr_accessor :server_info_window, :server_url_field, :username_field, :password_field
@@ -31,20 +30,38 @@ class ThumperDelegate
         @repeat_single = false
         @repeat_all = false
         @current_playlist = DB[:playlist_songs].join(:songs, :id => :song_id).filter(:playlist_id => '666current666').all
+        @current_playlist.each {|s| s[:id] = s[:song_id]; s.delete(:song_id)}
         @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.2,
                                                         target: self,
                                                         selector: 'update_progress_bar:',
                                                         userInfo: nil,
                                                         repeats: true
-        @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url']
-        @username = NSUserDefaults.standardUserDefaults['thumper.com.username']
-        @password = NSUserDefaults.standardUserDefaults['thumper.com.password']
+        @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url'] unless NSUserDefaults.standardUserDefaults['thumper.com.server_url'].nil?
+        @username = NSUserDefaults.standardUserDefaults['thumper.com.username'] unless NSUserDefaults.standardUserDefaults['thumper.com.username'].nil?
+        @password = NSUserDefaults.standardUserDefaults['thumper.com.password'] unless NSUserDefaults.standardUserDefaults['thumper.com.password'].nil?
+        
         p = []
-        String.new(@password).each_byte{|c| p << sprintf("%02X", c)}
-        @enc_password = 'enc:' + p.join('')
+        String.new(@password).each_byte{|c| p << sprintf("%02X", c)} if @password
+        @enc_password = 'enc:' + p.join('') if @password
+        
+        get_server_ip if @server_url.scan('subsonic.org').length > 0 if @server_url
+        
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playNext:', name:"ThumperNextTrack", object:nil)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playPrevious:', name:"ThumperPreviousTrack", object:nil)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playToggle:', name:"ThumperPlayToggle", object:nil)
+    end
+    
+    def get_server_ip
+        Dispatch::Queue.new('com.Thumper.network').async do
+            subdomain = @server_url.split('.').first.split('/').last
+            NSLog "Subdomain #{subdomain}"
+            url = NSURL.URLWithString("http://subsonic.org/backend/redirect/get.view?redirectFrom=#{subdomain}")
+            request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:60.0)
+            response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil)).split(' ').first
+            response[response.length - 1] = ""
+            NSLog "Response: #{response}"
+            @server_url = response
+        end
     end
     
     def applicationDidFinishLaunching(a_notification)
@@ -63,6 +80,8 @@ class ThumperDelegate
                     @playing_song_object_progress.startAnimation(nil)
                 end
             end
+            NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
+            NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
             set_playing_info
             set_playing_cover_art
             reload_current_playlist
@@ -102,6 +121,7 @@ class ThumperDelegate
         if server_url.empty? || username.empty? || password.empty?
             show_server_info_modal
         else
+            get_server_ip if @server_url.scan('subsonic.org').length > 0
             setup_subsonic_conneciton
         end
     end
@@ -183,7 +203,8 @@ class ThumperDelegate
     end
     
     def add_to_current_playlist(song)
-        current_playlist << song unless current_playlist.include?(song)
+        return if song.nil?
+        current_playlist << song
         reload_current_playlist
         if current_playlist.length == 1
             @playing_song = 0
@@ -201,6 +222,7 @@ class ThumperDelegate
     end
     
     def get_artist_albums(id)
+        return if id.empty?
         @albums_progress.startAnimation(nil)
         @albums = []
         DB[:albums].filter(:artist_id => id).all.each do |album|
@@ -211,6 +233,7 @@ class ThumperDelegate
     end
         
     def get_album_songs(id)
+        return if id.empty?
         @songs_progress.startAnimation(nil)
         @songs = []
         DB[:songs].filter(:album_id => id).all.each do |song|
@@ -224,6 +247,7 @@ class ThumperDelegate
     end
     
     def get_cover_art(id)
+        return if id.empty?
         @subsonic.cover_art(id, @subsonic, :image_response)
     end
     
@@ -415,6 +439,31 @@ class ThumperDelegate
     
     def playPrevious(notificaiton)
         play_previous
+    end
+    
+    def decreaseVolume(sender)
+        @volume < 0.1 ? @volume = 0.0 : @volume -= 0.1
+        @playing_song_object.setVolume(@volume)
+        @volume_slider.setFloatValue(@volume)
+    end
+    
+    def increaseVolume(sender)
+        @volume > 0.9 ? @volume = 1.0 : @volume += 0.1
+        @playing_song_object.setVolume(@volume)
+        @volume_slider.setFloatValue(@volume)
+    end
+    
+    def muteVolume(sender)
+        if @volume > 0.0
+            @mute_volume = @volume
+            @volume = 0.0
+            sender.setState(NSOnState)
+        else
+            @volume = @mute_volume
+            sender.setState(NSOffState)
+        end
+        @playing_song_object.setVolume(@volume)
+        @volume_slider.setFloatValue(@volume)
     end
     
     def shuffle_all(sender)

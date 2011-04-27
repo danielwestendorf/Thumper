@@ -27,7 +27,7 @@ class ThumperArtistIndexDelegate
         parent.albums_table_view.enabled = false
         parent.songs_table_view.enabled = false
         parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id]) if parent.artist_indexes_table_view.selectedRow && parent.artists.length > 0
-        #NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}"
+        NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}, #{parent.artists[parent.artist_indexes_table_view.selectedRow][:id]}"
     end
     
     def textInputOnEnterPressed(sender)
