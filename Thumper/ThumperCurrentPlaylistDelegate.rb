@@ -46,7 +46,9 @@ class ThumperCurrentPlaylistDelegate
     def tableView(aView, acceptDrop:info, row:row, dropOperation:op)
         pboard = info.draggingPasteboard
         song = YAML.load(pboard.stringForType("Song"))
+        row -= 1 if row > parent.current_playlist.find_index(song)
         
+        NSLog "Rearrange #{song[:id]}, new row #{row}"
         if parent.current_playlist.include?(song)
             if song[:id] == parent.current_playlist[parent.playing_song][:id]
                 parent.playing_song = row
@@ -62,8 +64,8 @@ class ThumperCurrentPlaylistDelegate
         Dispatch::Queue.new('com.Thumper.db').sync do
             DB[:playlist_songs].filter(:playlist_id => "666current666").delete
             DB.transaction do
-                parent.current_playlist.each do |song|
-                    DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
+                parent.current_playlist.each do |psong|
+                    DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => psong[:id])
                 end
             end
         end
