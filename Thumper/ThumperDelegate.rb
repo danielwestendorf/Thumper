@@ -18,7 +18,8 @@ class ThumperDelegate
     attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label
     attr_accessor :playlists_progress, :playlist_songs_progress
 	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info, :stop_button
-    attr_accessor :playing_queue, :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item
+    attr_accessor :playing_queue, :db_queue
+    attr_accessor :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item
     
     def initialize
         @artists = []
@@ -26,6 +27,7 @@ class ThumperDelegate
         @songs = []
         @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
         @playing_queue = Dispatch::Queue.new('com.Thumper.playback')
+        @db_queue = Dispatch::Queue.new('com.Thumper.db')
         @volume = 1.0
         @playlist_songs = []
         @shuffle = false
@@ -38,6 +40,7 @@ class ThumperDelegate
                                                         selector: 'update_progress_bar:',
                                                         userInfo: nil,
                                                         repeats: true
+
         @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url'] unless NSUserDefaults.standardUserDefaults['thumper.com.server_url'].nil?
         @username = NSUserDefaults.standardUserDefaults['thumper.com.username'] unless NSUserDefaults.standardUserDefaults['thumper.com.username'].nil?
         @password = NSUserDefaults.standardUserDefaults['thumper.com.password'] unless NSUserDefaults.standardUserDefaults['thumper.com.password'].nil?
@@ -228,7 +231,7 @@ class ThumperDelegate
                 get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
             end
         end
-        Dispatch::Queue.new('com.Thumper.db').async do
+        @db_queue.async do
             DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
         end
     end
@@ -441,8 +444,15 @@ class ThumperDelegate
             @repeat_all = true 
             @repeat_single = false
             sender.setState(NSOnState)
-            @repeat_all_menu_item.setState(NSOffState)
+            @repeat_one_menu_item.setState(NSOffState)
         end
+    end
+    
+    def repeat_off(sender)
+        @repeat_one_menu_item.setState(NSOffState)
+        @repeat_all_menu_item.setState(NSOffState)
+        @repeat_all = false
+        @repeat_single = false
     end
     
     def playNext(notificaiton)

@@ -71,3 +71,14 @@ class PlaylistSong < Sequel::Model
     create_table unless table_exists?
 
 end
+
+class CachedSong < Sequel::Model
+    plugin :schema
+    
+    set_schema do
+        primary_key :id
+        String :song_id, :index => true
+    end
+
+    create_table unless table_exists?
+end

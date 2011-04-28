@@ -20,19 +20,34 @@ class ThumperProgressIndicator < NSView
 	end
 	
     def drawRect(rect)
-		borderWidth = 1
+		borderWidth = 0.8
         # Set the window background to transparent
-        x = bounds.origin.x
-		y = bounds.origin.y
-		width = bounds.size.width
-		height = bounds.size.height 
+        x = bounds.origin.x + 0.8
+		y = bounds.origin.y + 0.8
+		full_width = bounds.size.width
+        width = full_width - 1.6
+		full_height = bounds.size.height
+        height = full_height - 1.6
+        rect = NSRect.new([x,y], [width, height])
+        radius = height/2
 		NSColor.lightGrayColor.set
-		NSRectFill(bounds)
+        path = NSBezierPath.alloc
+        path.setLineWidth(borderWidth)
+        path.appendBezierPathWithRoundedRect(rect, xRadius: radius, yRadius: radius)
+        path.fill
 		NSColor.darkGrayColor.set
-		NSFrameRectWithWidth(bounds, borderWidth)
-		@progressPercent ||= 0.00
-		progressWidth = width * (@progressPercent * 0.01)
+        path.stroke
+        
+        @progressPercent ||= 0.00
+        progressWidth = width * (@progressPercent * 0.01)
 		progressRect = NSRect.new([x,y],[progressWidth, height])
-		NSRectFill(progressRect)
+        fillPath = NSBezierPath.alloc
+        fillPath.appendBezierPathWithRoundedRect(progressRect, xRadius: radius, yRadius: radius)
+        fillPath.fill
+        
+        if progressWidth > height && progressWidth < (width - height) 
+            squareRect = NSRect.new([progressWidth - radius, y], [radius + 0.5, height])
+            NSRectFill(squareRect)
+        end
 	end
 end 

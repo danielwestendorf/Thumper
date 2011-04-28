@@ -16,7 +16,7 @@ class ThumperCurrentPlaylistDelegate
     end
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
-        NSLog "Asked for Current Playlist Row:#{row}, Column:#{column.identifier}"
+        #NSLog "Asked for Current Playlist Row:#{row}, Column:#{column.identifier}"
         if row < parent.current_playlist.length
             if column.identifier == "indicator"
                 return NSImage.imageNamed("Playing") if row == parent.playing_song
@@ -46,28 +46,25 @@ class ThumperCurrentPlaylistDelegate
     def tableView(aView, acceptDrop:info, row:row, dropOperation:op)
         pboard = info.draggingPasteboard
         song = YAML.load(pboard.stringForType("Song"))
-        row -= 1 if row > parent.current_playlist.find_index(song)
+        playing_song = parent.current_playlist[parent.playing_song] if parent.playing_song
+        current_position = parent.current_playlist.find_index(song)
         
-        NSLog "Rearrange #{song[:id]}, new row #{row}"
-        if parent.current_playlist.include?(song)
-            if song[:id] == parent.current_playlist[parent.playing_song][:id]
-                parent.playing_song = row
-            elsif parent.playing_song >= row
-                parent.playing_song += 1
-            end
+        row > current_position ? row -= 1 : row
+        row = 0 if row < 0
+        
+        #NSLog "Current: #{current_position}, New: #{row}"
 
-            parent.current_playlist.insert(row, parent.current_playlist.delete(song))
-        else
-           parent.current_playlist.insert(row, song) 
-        end
+        parent.current_playlist.insert(row, parent.current_playlist.delete(song))
+        parent.current_playlist.delete(nil)
+    
+        parent.playing_song = parent.current_playlist.find_index(playing_song) if parent.playing_song
+        
         parent.reload_current_playlist
-        Dispatch::Queue.new('com.Thumper.db').sync do
+        @parent.db_queue.async do
             DB[:playlist_songs].filter(:playlist_id => "666current666").delete
-            DB.transaction do
                 parent.current_playlist.each do |psong|
                     DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => psong[:id])
                 end
-            end
         end
         return true
     end

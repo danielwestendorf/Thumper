@@ -52,6 +52,7 @@ class ThumperPlaylistSongsDelegate
     end
     
     def update_songs(sender)
+        row = parent.playlists_table_view.selectedRow
         parent.get_playlist(parent.playlists[row][:id]) if parent.playlists.length > 0
     end
     

@@ -21,11 +21,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="1415"/>
+			<integer value="1509"/>
+			<integer value="1456"/>
 			<integer value="581"/>
 			<integer value="1428"/>
-			<integer value="371"/>
-			<integer value="1589"/>
-			<integer value="1456"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -221,6 +221,24 @@
 										<string key="NSTitle">Repeat</string>
 										<object class="NSMutableArray" key="NSMenuItems">
 											<bool key="EncodedWithXMLCoder">YES</bool>
+											<object class="NSMenuItem" id="221577884">
+												<reference key="NSMenu" ref="644604566"/>
+												<string key="NSTitle">Off</string>
+												<string key="NSKeyEquiv"/>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<reference key="NSOnImage" ref="35465992"/>
+											</object>
+											<object class="NSMenuItem" id="159348977">
+												<reference key="NSMenu" ref="644604566"/>
+												<bool key="NSIsDisabled">YES</bool>
+												<bool key="NSIsSeparator">YES</bool>
+												<string key="NSTitle"/>
+												<string key="NSKeyEquiv"/>
+												<int key="NSKeyEquivModMask">1048576</int>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<reference key="NSOnImage" ref="35465992"/>
+												<reference key="NSMixedImage" ref="502551668"/>
+											</object>
 											<object class="NSMenuItem" id="625202149">
 												<reference key="NSMenu" ref="644604566"/>
 												<string key="NSTitle">One</string>
@@ -271,7 +289,7 @@
 											<object class="NSMenuItem" id="47254601">
 												<reference key="NSMenu" ref="829154983"/>
 												<string key="NSTitle">Mute</string>
-												<string key="NSKeyEquiv">m</string>
+												<string key="NSKeyEquiv">M</string>
 												<int key="NSKeyEquivModMask">1048576</int>
 												<int key="NSMnemonicLoc">2147483647</int>
 												<reference key="NSOnImage" ref="35465992"/>
@@ -1074,6 +1092,7 @@
 																					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 																					<reference key="NSTarget" ref="645516471"/>
 																					<string key="NSAction">_doScroller:</string>
+																					<double key="NSCurValue">0.16483516483516483</double>
 																					<double key="NSPercent">0.97894736842105268</double>
 																				</object>
 																				<object class="NSScroller" id="815845239">
@@ -1085,7 +1104,7 @@
 																					<int key="NSsFlags">1</int>
 																					<reference key="NSTarget" ref="645516471"/>
 																					<string key="NSAction">_doScroller:</string>
-																					<double key="NSCurValue">0.28431372549019612</double>
+																					<double key="NSCurValue">0.26666666666666672</double>
 																					<double key="NSPercent">0.99808429118773945</double>
 																				</object>
 																				<object class="NSClipView" id="575525746">
@@ -4915,14 +4934,6 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">repeat_all_menu_item</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="625202149"/>
-					</object>
-					<int key="connectionID">1619</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">repeat_one_menu_item</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="625202149"/>
@@ -4944,6 +4955,22 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<reference key="destination" ref="696225682"/>
 					</object>
 					<int key="connectionID">1624</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">repeat_all_menu_item</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="428889954"/>
+					</object>
+					<int key="connectionID">1625</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">repeat_off:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="221577884"/>
+					</object>
+					<int key="connectionID">1629</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -7069,6 +7096,8 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="428889954"/>
 							<reference ref="625202149"/>
+							<reference ref="159348977"/>
+							<reference ref="221577884"/>
 						</object>
 						<reference key="parent" ref="798882261"/>
 					</object>
@@ -7126,6 +7155,16 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<int key="objectID">1621</int>
 						<reference key="object" ref="696225682"/>
 						<reference key="parent" ref="109475179"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1626</int>
+						<reference key="object" ref="159348977"/>
+						<reference key="parent" ref="644604566"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1627</int>
+						<reference key="object" ref="221577884"/>
+						<reference key="parent" ref="644604566"/>
 					</object>
 				</object>
 			</object>
@@ -7350,6 +7389,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>1613.IBPluginDependency</string>
 					<string>1621.IBPluginDependency</string>
 					<string>1621.ImportedFromIB2</string>
+					<string>1626.IBPluginDependency</string>
+					<string>1626.ImportedFromIB2</string>
+					<string>1627.IBPluginDependency</string>
+					<string>1627.ImportedFromIB2</string>
 					<string>23.IBPluginDependency</string>
 					<string>23.ImportedFromIB2</string>
 					<string>236.IBPluginDependency</string>
@@ -7831,7 +7874,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1035, 703}, {102, 43}}</string>
+					<string>{{1069, 952}, {102, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
@@ -7934,7 +7977,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1050, 790}, {196, 63}}</string>
+					<string>{{1069, 942}, {196, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -7943,7 +7986,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{871, 810}, {179, 153}}</string>
+					<string>{{890, 962}, {179, 153}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -7953,7 +7996,11 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{775, 963}, {304, 20}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<string>{{794, 1115}, {304, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{74, 862}</string>
@@ -8237,7 +8284,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1624</int>
+			<int key="maxID">1629</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -8467,6 +8514,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>play_toggle_button:</string>
 							<string>preferences:</string>
 							<string>repeat_all:</string>
+							<string>repeat_off:</string>
 							<string>repeat_single:</string>
 							<string>shuffle_all:</string>
 							<string>stop_button:</string>
@@ -8475,6 +8523,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -8504,6 +8553,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>play_toggle_button:</string>
 							<string>preferences:</string>
 							<string>repeat_all:</string>
+							<string>repeat_off:</string>
 							<string>repeat_single:</string>
 							<string>shuffle_all:</string>
 							<string>stop_button:</string>
@@ -8549,6 +8599,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">repeat_off:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">repeat_single:</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -8588,6 +8642,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>current_playlist</string>
 							<string>current_playlist_count_label</string>
 							<string>current_playlist_table_view</string>
+							<string>db_queue</string>
 							<string>format_time</string>
 							<string>main_window</string>
 							<string>mute_menu_item</string>
@@ -8691,6 +8746,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -8711,6 +8767,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>current_playlist</string>
 							<string>current_playlist_count_label</string>
 							<string>current_playlist_table_view</string>
+							<string>db_queue</string>
 							<string>format_time</string>
 							<string>main_window</string>
 							<string>mute_menu_item</string>
@@ -8811,6 +8868,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">current_playlist_table_view</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">db_queue</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">

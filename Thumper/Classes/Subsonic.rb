@@ -1,7 +1,7 @@
 require 'base64'
 
 module Subsonic
-    attr_reader :albums, :songs, :artists
+    attr_reader :connectivity
     
 	def initialize(parent, base_url, username, password)
         @parent = parent
@@ -15,8 +15,10 @@ module Subsonic
 		if xml.class == NSXMLDocument
             @parent.status_label.stringValue = "Online" 
             NSLog "Online"
+            @connectivity = true
         else
             @parent.status_label.stringValue = "Offline"
+            connectivity = false
             NSLog "Offline"
 		end
 		xml = nil
@@ -101,7 +103,7 @@ module Subsonic
                                                    :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path]) } 
             end
         else
-            Dispatch::Queue.new('com.Thumper.db').async do
+            @parent.db_queue.async do
                 @songs.each do |s|
                     return if DB[:songs].filter(:id => s[:id]).all.first 
                     DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
@@ -138,8 +140,8 @@ module Subsonic
             DB.transaction do
                 @artists.each {|a| DB[:artists].insert(:name => a[:name], :id => a[:id]) } 
             end
-            else
-            Dispatch::Queue.new('com.Thumper.db').async do
+        else
+            @parent.db_queue.async do
                 @artists.each do |a|
                     return if DB[:artists].filter(:id => a[:id]).all.first 
                     DB[:artists].insert(:id => a[:id], :name => a[:name])
@@ -187,7 +189,7 @@ module Subsonic
             end 
         end
         @parent.playlist_songs = @playlist_songs if @parent.playlists[@parent.playlists_table_view.selectedRow][:id] == playlist_id
-        Dispatch::Queue.new('com.Thumper.db').async do
+        @parent.db_queue.async do
             DB[:playlist_songs].filter(:playlist_id => playlist_id).delete
             @playlist_songs.each do |s|
                 if DB[:songs].filter(:id => s[:id]).all.first.nil?
@@ -234,6 +236,10 @@ module Subsonic
         request = build_request("/rest/ping.view", {})
         NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
 	end
+    
+    def check_connectivity(timer)
+        ping(self, :ping_response)
+    end
 	
 	def getLicense(delegate, method)
         request = build_request('/rest/getLicense.view', {})
