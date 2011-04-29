@@ -20,6 +20,7 @@ class ThumperDelegate
 	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info, :stop_button
     attr_accessor :playing_queue, :db_queue
     attr_accessor :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item
+    attr_accessor :demo_window, :demo_text
     
     def initialize
         @artists = []
@@ -69,7 +70,17 @@ class ThumperDelegate
         end
     end
     
+    def demo_close(sender)
+        exit
+    end
+    
     def applicationDidFinishLaunching(a_notification)
+        expire = DateTime.parse('2011-04-05')
+        if DateTime.now > expire
+            NSLog "Demo period has expired"
+            @demo_text.stringValue = "Thank you for using Thumper, hopefully it was an enjoyable experience. The demo period for Thumper has expired. If you like the app and would like to continue using it, please visit http://www.thumperapp.com"
+            NSApp.beginSheet(demo_window, modalForWindow:main_window, modalDelegate:self, didEndSelector:nil, contextInfo:nil)
+        end
         if @current_playlist.length > 0
             @playing_song = 0
             song = @current_playlist[0]
