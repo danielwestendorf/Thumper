@@ -75,7 +75,7 @@ class ThumperDelegate
     end
     
     def applicationDidFinishLaunching(a_notification)
-        expire = DateTime.parse('2011-04-05')
+        expire = DateTime.parse('2011-05-14')
         if DateTime.now > expire
             NSLog "Demo period has expired"
             @demo_text.stringValue = "Thank you for using Thumper, hopefully it was an enjoyable experience. The demo period for Thumper has expired. If you like the app and would like to continue using it, please visit http://www.thumperapp.com"
