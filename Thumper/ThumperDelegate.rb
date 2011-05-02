@@ -21,6 +21,7 @@ class ThumperDelegate
     attr_accessor :playing_queue, :db_queue
     attr_accessor :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item
     attr_accessor :demo_window, :demo_text
+    attr_accessor :about_window
     
     def initialize
         @artists = []
@@ -72,6 +73,11 @@ class ThumperDelegate
     
     def demo_close(sender)
         exit
+    end
+    
+    def show_about(sender)
+        @about_window.makeKeyAndOrderFront(nil)
+        return true
     end
     
     def applicationDidFinishLaunching(a_notification)
