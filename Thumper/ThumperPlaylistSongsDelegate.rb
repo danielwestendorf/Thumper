@@ -30,25 +30,13 @@ class ThumperPlaylistSongsDelegate
         nil
     end
     
-    def add_playlist_to_current(sender)
-        
-        Dispatch::Queue.new('com.Thumper.playlist_thread').async do
-            parent.playlist_songs.each do |song|
-                parent.current_playlist << song
-                DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
-            end
-            parent.reload_current_playlist
-            if parent.current_playlist.length == 1
-                parent.playing_song = 0
-                parent.play_song
-            elsif parent.playing_song == parent.current_playlist.length - 2
-                next_song = parent.current_playlist[@parent.playing_song + 1]
-                unless File.exists?(next_song[:cache_path])
-                    parent.subsonic.download_media(next_song[:cache_path], next_song[:id], parent.subsonic, :download_media_response)
-                    parent.get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
-                end
-            end
+    def tableView(aView, writeRowsWithIndexes:rowIndexes, toPasteboard:pboard)
+        songs_array = []
+        rowIndexes.each do |row|
+            songs_array << parent.playlist_songs[row]
         end
+        pboard.setString(songs_array.to_yaml, forType:"Songs")
+        return true
     end
     
     def update_songs(sender)
@@ -57,8 +45,17 @@ class ThumperPlaylistSongsDelegate
     end
     
     def add_song_to_current(sender)
-        row = parent.playlist_songs_table_view.selectedRow
-        parent.add_to_current_playlist(parent.playlist_songs[row])
+        rows = parent.playlist_songs_table_view.selectedRowIndexes
+        if rows.count > 0
+            rows.each do |row|
+                parent.add_to_current_playlist(parent.playlist_songs[row], false) 
+            end
+        else
+            parent.playlist_songs.each do |song|
+                parent.add_to_current_playlist(song, false)
+            end
+        end
+        parent.reload_current_playlist
         parent.play_song if parent.current_playlist.length == 1
     end
     

@@ -1,7 +1,7 @@
 require 'uri'
 
 class ThumperSearchDelegate
-    attr_accessor :parent, :search_query, :search_table_view, :search, :search_progress, :search_count_label
+    attr_accessor :parent, :search_query, :search_table_view, :search_progress, :search_count_label
     
     def initialize
         @search = []
@@ -43,16 +43,34 @@ class ThumperSearchDelegate
         end
     end
     
-    def add_selected_to_playlist(sender)
-        row = search_table_view.selectedRow
-        row = 0 if row.nil?
-        parent.add_to_current_playlist(@search[row])
+    def add_selected(sender)
+        rows = search_table_view.selectedRowIndexes
+        if rows.count > 0
+            rows.each do |row|
+                parent.add_to_current_playlist(@search[row], false) 
+            end
+        else
+            @search.each do |song|
+                parent.add_to_current_playlist(song, false)
+            end
+        end
+        parent.reload_current_playlist
+        parent.play_song if parent.current_playlist.length == 1
     end
     
     def reload_search
         @search.count != 1 ? word = " Songs" : word = " Song"
         @search_count_label.stringValue = @search.count.to_s + word
         search_table_view.reloadData
+    end
+    
+    def tableView(aView, writeRowsWithIndexes:rowIndexes, toPasteboard:pboard)
+        songs_array = []
+        rowIndexes.each do |row|
+            songs_array << @search[row]
+        end
+        pboard.setString(songs_array.to_yaml, forType:"Songs")
+        return true
     end
     
     def search_response(xml)
@@ -85,7 +103,7 @@ class ThumperSearchDelegate
                                       :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
                                       :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
                                       :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
-                    NSLog "Added songs: #{song[:title]}"
+                    NSLog "Added songs: #{s[:title]}"
                 end
             end
         else

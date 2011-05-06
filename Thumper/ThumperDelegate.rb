@@ -5,6 +5,19 @@
 #  Created by Daniel Westendorf on 4/2/11.
 #  Copyright 2011 Daniel Westendorf. All rights reserved.
 #
+
+class NSIndexSet
+    def each
+        i = firstIndex
+        while i != NSNotFound
+            yield i
+            i = indexGreaterThanIndex(i)
+        end
+    end
+    
+    include Enumerable
+end
+
 class ThumperDelegate
     attr_accessor :main_window, :status_label, :subsonic, :format_time
     attr_accessor :server_info_window, :server_url_field, :username_field, :password_field
@@ -234,10 +247,10 @@ class ThumperDelegate
         current_playlist_table_view.reloadData
     end
     
-    def add_to_current_playlist(song)
+    def add_to_current_playlist(song, reload = true)
         return if song.nil?
         current_playlist << song
-        reload_current_playlist
+        reload_current_playlist if reload
         if current_playlist.length == 1
             @playing_song = 0
             play_song
@@ -337,8 +350,8 @@ class ThumperDelegate
         set_playing_info
         set_playing_cover_art
         @play_button.setImage(NSImage.imageNamed("Pause"))
-        @current_playlist_table_view.reloadData
         current_playlist_table_view.scrollRowToVisible(@playing_song)
+        current_playlist_table_view.reloadData
         get_cover_art(song[:cover_art].split("/").last.split(".").first)
         @subsonic.scrobble(song[:id], @subsonic, :scrobble_response)
     end

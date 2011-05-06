@@ -30,7 +30,7 @@ class ThumperCurrentPlaylistDelegate
     def awakeFromNib
         parent.current_playlist_table_view.doubleAction = 'double_click:'
         parent.current_playlist_table_view.target = self
-        parent.current_playlist_table_view.registerForDraggedTypes(NSArray.arrayWithObjects("Song", nil))
+        parent.current_playlist_table_view.registerForDraggedTypes(NSArray.arrayWithObjects("Songs", nil))
     end
     
     def tableView(aView, validateDrop:info, proposedRow:row, proposedDropOperation:op)
@@ -38,33 +38,43 @@ class ThumperCurrentPlaylistDelegate
     end
     
     def tableView(aView, writeRowsWithIndexes:rowIndexes, toPasteboard:pboard)
-        song = parent.current_playlist[rowIndexes.firstIndex].to_yaml
-        pboard.setString(song, forType:"Song")
+        songs_array = []
+        rowIndexes.each do |row|
+           songs_array << parent.current_playlist[row]
+        end
+        pboard.setString(songs_array.to_yaml, forType:"Songs")
         return true
     end
     
     def tableView(aView, acceptDrop:info, row:row, dropOperation:op)
         pboard = info.draggingPasteboard
-        song = YAML.load(pboard.stringForType("Song"))
+        songs = YAML.load(pboard.stringForType("Songs"))
         playing_song = parent.current_playlist[parent.playing_song] if parent.playing_song
-        current_position = parent.current_playlist.find_index(song)
+        songs.reverse.each do |song|
+            current_position = parent.current_playlist.find_index(song)
         
-        row > current_position ? row -= 1 : row
-        row = 0 if row < 0
-        
-        #NSLog "Current: #{current_position}, New: #{row}"
+            row = 0 if row < 0
 
-        parent.current_playlist.insert(row, parent.current_playlist.delete(song))
-        parent.current_playlist.delete(nil)
+            #NSLog "Current: #{current_position}, New: #{row} #{song}"
+            
+            if current_position.nil?
+                parent.current_playlist.insert(row, song)
+            else
+                row > current_position ? row -= 1 : row
+                parent.current_playlist.insert(row, parent.current_playlist.delete(song))
+            end
+            parent.current_playlist.delete(nil)
     
-        parent.playing_song = parent.current_playlist.find_index(playing_song) if parent.playing_song
+            parent.playing_song = parent.current_playlist.find_index(playing_song) if parent.playing_song
+        end
         
+        parent.current_playlist_table_view.deselectAll(nil)
         parent.reload_current_playlist
         @parent.db_queue.async do
             DB[:playlist_songs].filter(:playlist_id => "666current666").delete
-                parent.current_playlist.each do |psong|
-                    DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => psong[:id])
-                end
+            parent.current_playlist.each do |psong|
+                DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => psong[:id])
+            end
         end
         return true
     end
@@ -87,13 +97,15 @@ class ThumperCurrentPlaylistDelegate
     end
     
     def remove_selected_from_playlist(sender)
-        selected = parent.current_playlist_table_view.selectedRow
-        if selected > -1
-            song_id = @parent.current_playlist[selected][:id]
-            DB[:playlist_songs].filter(:song_id => song_id).delete
-            @parent.current_playlist.delete_at(selected)
-            @parent.reload_current_playlist
-            @parent.play_song if selected == @parent.playing_song && @parent.current_playlist.length > 0
+        selected = parent.current_playlist_table_view.selectedRowIndexes
+        selected.each do |index|
+            if index > -1
+                song_id = @parent.current_playlist[index][:id]
+                DB[:playlist_songs].filter(:song_id => song_id).delete
+                @parent.current_playlist.delete_at(index)
+                @parent.reload_current_playlist
+                @parent.play_song if selected == @parent.playing_song && @parent.current_playlist.length > 0
+            end
         end
     end
     

@@ -24,6 +24,15 @@ class ThumperSongsDelegate
         parent.songs.count 
     end
     
+    def tableView(aView, writeRowsWithIndexes:rowIndexes, toPasteboard:pboard)
+        songs_array = []
+        rowIndexes.each do |row|
+            songs_array << parent.songs[row]
+        end
+        pboard.setString(songs_array.to_yaml, forType:"Songs")
+        return true
+    end
+    
     def tableView(tableView, objectValueForTableColumn:column, row:row)
         #NSLog "Asked for Song Row:#{row}, Column:#{column.identifier}"
         if row < parent.songs.length
@@ -32,21 +41,21 @@ class ThumperSongsDelegate
         nil
     end
     
-    def add_all_songs_to_current(sender)
-        Dispatch::Queue.new('com.Thumper.playlist_thread').sync do
-            parent.songs.each do |song|
-                parent.add_to_current_playlist(song)
-            end
-        end
-    end
-    
     def update_songs(sender)
         parent.get_album_songs(parent.albums[parent.albums_table_view.selectedRow][:id]) if parent.albums.length > 0
     end
     
     def add_selected_to_playlist(sender)
-        row = parent.songs_table_view.selectedRow
-        row = 0 if row.nil?
-        parent.add_to_current_playlist(parent.songs[row])
+        rows = parent.songs_table_view.selectedRowIndexes
+        if rows.count > 0
+            rows.each do |row|
+                parent.add_to_current_playlist(parent.songs[row], false)
+            end
+        else
+            parent.songs.each do |song|
+               parent.add_to_current_playlist(song, false) 
+            end
+        end
+        parent.reload_current_playlist
     end
 end
