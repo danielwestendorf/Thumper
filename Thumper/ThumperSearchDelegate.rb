@@ -48,7 +48,6 @@ class ThumperSearchDelegate
         if rows.count > 0
             rows.each do |row|
                 song = @parent.search_results[row]
-                NSLog "SONG: #{row}, #{song}, #{@parent.search_results}"
                 @parent.add_to_current_playlist(song, false) 
             end
         else
