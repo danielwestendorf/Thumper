@@ -47,7 +47,9 @@ class ThumperSearchDelegate
         rows = search_table_view.selectedRowIndexes
         if rows.count > 0
             rows.each do |row|
-                parent.add_to_current_playlist(@search[row], false) 
+                song = @parent.search_results[row]
+                NSLog "SONG: #{row}, #{song}, #{@parent.search_results}"
+                @parent.add_to_current_playlist(song, false) 
             end
         else
             @search.each do |song|
@@ -94,6 +96,7 @@ class ThumperSearchDelegate
                     @search << song if song[:isDir] == "false"
                 end 
             end
+            @parent.search_results = @search
             reload_search
             @search_progress.stopAnimation(nil)
             Dispatch::Queue.new('com.Thumper.db').async do

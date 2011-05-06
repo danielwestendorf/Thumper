@@ -35,6 +35,7 @@ class ThumperDelegate
     attr_accessor :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item
     attr_accessor :demo_window, :demo_text
     attr_accessor :about_window
+    attr_accessor :search_results
     
     def initialize
         @artists = []

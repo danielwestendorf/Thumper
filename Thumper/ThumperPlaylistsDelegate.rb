@@ -32,12 +32,19 @@ class ThumperPlaylistsDelegate
     end
     
     def delete_playlist(sender)
+        confirm_delete
+    end
+    
+    def pressed_delete
+        confirm_delete
+    end
+    
+    def confirm_delete
         NSApp.beginSheet(confirmation_window,
                          modalForWindow:parent.main_window,
                          modalDelegate:self,
                          didEndSelector:nil,
                          contextInfo:nil)
-        
     end
     
     def confrimed_delete_playlist(sender)
@@ -63,6 +70,7 @@ class ThumperPlaylistsDelegate
         else
             NSLog "There was an error deleting the playlist from the server #{xml}"
         end
+        parent.playlists_table_view.deselectAll(nil)
     end
     
     

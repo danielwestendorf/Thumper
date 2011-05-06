@@ -97,6 +97,14 @@ class ThumperCurrentPlaylistDelegate
     end
     
     def remove_selected_from_playlist(sender)
+        remove_from_playlist
+    end
+    
+    def pressed_delete
+       remove_from_playlist 
+    end
+    
+    def remove_from_playlist
         selected = parent.current_playlist_table_view.selectedRowIndexes
         selected.each do |index|
             if index > -1
@@ -107,6 +115,7 @@ class ThumperCurrentPlaylistDelegate
                 @parent.play_song if selected == @parent.playing_song && @parent.current_playlist.length > 0
             end
         end
+        parent.current_playlist_table_view.deselectAll(nil)
     end
     
     def save_playlist(sender)
@@ -138,6 +147,33 @@ class ThumperCurrentPlaylistDelegate
     
     def save_playlist_response(xml)
         NSLog "Playlist saved"
+    end
+    
+    def sort_by_year(sender)
+        sort_by_key(:year, :to_i) 
+    end
+    
+    def sort_by_artist(sender)
+        sort_by_key(:artist, :to_s) 
+    end
+    
+    def sort_by_album(sender)
+        sort_by_key(:album, :to_s) 
+    end
+    
+    def sort_by_length(sender)
+        sort_by_key(:duration, :to_s) 
+    end
+    
+    def sorty_by_track(sender)
+        sort_by_key(:track, :to_i) 
+    end
+    
+    def sort_by_key(key, type)
+        playing_song_item = parent.current_playlist[parent.playing_song]
+        parent.current_playlist.sort_by! {|song| song[key].method(type).call() }
+        parent.playing_song = parent.current_playlist.find_index(playing_song_item)
+        parent.reload_current_playlist 
     end
     
 end
