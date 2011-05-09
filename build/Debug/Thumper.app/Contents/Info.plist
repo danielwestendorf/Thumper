@@ -13,7 +13,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Dock</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Thumper</string>
+	<string>com.thumperapp.Thumper</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +27,7 @@
 	<key>CFBundleURLTypes</key>
 	<array/>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>

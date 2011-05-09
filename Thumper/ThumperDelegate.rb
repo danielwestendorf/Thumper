@@ -336,7 +336,7 @@ class ThumperDelegate
                 end
             end
         else
-            url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
+            url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}&maxBitRate=128")
             NSLog "Streaming song"
             @playing_queue.sync do 
                 @playing_song_object.stop if @playing_song_object

@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Thumper Release.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Thumper.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>827CE5CA1347B49D00170589</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8296C90E13775A6500DFAC11</key>
 		<dict>
 			<key>primary</key>
 			<true/>

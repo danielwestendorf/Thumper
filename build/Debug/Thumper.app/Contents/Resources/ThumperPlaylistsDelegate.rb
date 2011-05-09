@@ -6,14 +6,13 @@
 #  Copyright 2011 Daniel Westendorf. All rights reserved.
 #
 class ThumperPlaylistsDelegate
-    attr_accessor :parent
+    attr_accessor :parent, :confirmation_window
     
     def numberOfRowsInTableView(tableView)
         parent.playlists.count 
     end
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
-        #NSLog "Asked for Artist Row:#{row}, Column:#{column.identifier}"
         if row < parent.playlists.length
             return parent.playlists[row][:name] 
         end
@@ -21,10 +20,9 @@ class ThumperPlaylistsDelegate
     end
     
     def tableViewSelectionDidChange(notification)
-        parent.playlist_songs = []
-        parent.playlist_songs_table_view.enabled = false
+        parent.playlist_songs = DB[:playlist_songs].join(:songs, :id => :song_id).filter(:playlist_id => parent.playlists[parent.playlists_table_view.selectedRow][:id]).all
+        parent.reload_playlist_songs
         parent.get_playlist(parent.playlists[parent.playlists_table_view.selectedRow][:id])
-        #NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}"
     end
     
     def update_playlists(sender)
@@ -32,4 +30,48 @@ class ThumperPlaylistsDelegate
         parent.reload_playlist_songs
         parent.get_playlists
     end
+    
+    def delete_playlist(sender)
+        confirm_delete
+    end
+    
+    def pressed_delete
+        confirm_delete
+    end
+    
+    def confirm_delete
+        NSApp.beginSheet(confirmation_window,
+                         modalForWindow:parent.main_window,
+                         modalDelegate:self,
+                         didEndSelector:nil,
+                         contextInfo:nil)
+    end
+    
+    def confrimed_delete_playlist(sender)
+        NSApp.endSheet(confirmation_window)
+        confirmation_window.orderOut(sender)
+        row = parent.playlists_table_view.selectedRow
+        id = parent.playlists[row][:id]
+        parent.subsonic.delete_playlist(id, self, :delete_playlist_response)
+        parent.playlists.delete_at(row)
+        parent.playlist_songs = []
+        parent.reload_playlists
+        parent.reload_playlist_songs 
+    end
+    
+    def canceled_delete_playlist(sender)
+        NSApp.endSheet(confirmation_window)
+        confirmation_window.orderOut(sender)
+    end
+    
+    def delete_playlist_response(xml)
+        if xml.class == NSXMLDocument
+            NSLog "Playlist deleted from the server"
+        else
+            NSLog "There was an error deleting the playlist from the server #{xml}"
+        end
+        parent.playlists_table_view.deselectAll(nil)
+    end
+    
+    
 end

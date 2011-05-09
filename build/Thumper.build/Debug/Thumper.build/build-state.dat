@@ -1,7 +1,7 @@
 TThumper
 v7
 r0
-t324767141.878184
+t326588360.529027
 cCheck dependencies
 cProcessInfoPlistFile /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Info.plist Thumper/Thumper-Info.plist
 cProcessPCH /var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-dsgqlsrenhgszdftovwbqvemmafu/Thumper-Prefix.pch.pth Thumper/Thumper-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
@@ -37,17 +37,21 @@ cCpResource build/Debug/Thumper.app/Contents/Resources/Add.png Thumper/Icons/Add
 cCpResource build/Debug/Thumper.app/Contents/Resources/Playing.png Thumper/Icons/Playing.png
 cCpResource build/Debug/Thumper.app/Contents/Resources/RemoveAll.png Thumper/Icons/RemoveAll.png
 cCpResource build/Debug/Thumper.app/Contents/Resources/Remove.png Thumper/Icons/Remove.png
+cCpResource build/Debug/Thumper.app/Contents/Resources/ThumperSearchDelegate.rb Thumper/ThumperSearchDelegate.rb
+cCpResource build/Debug/Thumper.app/Contents/Resources/Stop.png Thumper/Icons/Stop.png
+cCpResource build/Debug/Thumper.app/Contents/Resources/Logo.png Thumper/Icons/Logo.png
+cCpResource build/Debug/Thumper.app/Contents/Resources/ThumperTable.rb Thumper/ThumperTable.rb
 cPBXCp build/Debug/Thumper.app/Contents/Frameworks/BWToolkitFramework.framework /Users/dwestendorf/Library/BWToolkit/BWToolkitFramework.framework
 
 N/Developer-old/SDKs/MacOSX10.6.sdk
-c000000004A769DAB00000000000000EE
-t1249287595
+c000000004D5A274300000000000000EE
+t1297753923
 s238
 
 N/Developer-old/SDKs/MacOSX10.6.sdk/../../../Library/Frameworks/MacRuby.framework/MacRuby
-c000000004D8A76C30000000000CA2B94
-t1300920003
-s13249428
+c000000004DC4FE5F0000000000CA6D58
+t1304755807
+s13266264
 
 N/Developer-old/SDKs/MacOSX10.6.sdk/Library/Frameworks/MacRuby.framework/Headers/MacRuby.h
 c000000004D8A73F90000000000000106
@@ -100,33 +104,33 @@ t1300920003
 s13249428
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Classes/Subsonic.rb
-c000000004DA9F955000000000000366B
-t1302985045
-s13931
+c000000004DC578CA00000000000045A9
+t1304787146
+s17833
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Database.rb
-c000000004DA7A8B600000000000006BC
-t1302833334
-s1724
+c000000004DBC157B0000000000000677
+t1304171899
+s1655
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Add.png
-c000000004DAA005D000000000000013C
-t1302986845
-s316
+c000000004DBC157B000000000000010B
+t1304171899
+s267
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/AddAll.png
-c000000004DA9FC52000000000000021F
-t1302985810
-s543
+c000000004DBC157B0000000000000196
+t1304171899
+s406
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Dock.icns
-c000000004DA9E00F00000000000100E3
-t1302978575
+c000000004DBC157B00000000000100E3
+t1304171899
 s65763
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Library.png
-c000000004DA7A8B6000000000000010C
-t1302833334
+c000000004DBC157B000000000000010C
+t1304171899
 s268
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Loading.gif
@@ -134,69 +138,79 @@ c000000004DA7A8B60000000000000739
 t1302833334
 s1849
 
+N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Logo.png
+c000000004DBC157B0000000000000667
+t1304171899
+s1639
+
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Next.png
-c000000004DA9D17500000000000003E7
-t1302974837
-s999
+c000000004DBC157B000000000000036A
+t1304171899
+s874
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Pause.png
-c000000004DAA0EB30000000000000323
-t1302990515
-s803
+c000000004DBC157B00000000000002D1
+t1304171899
+s721
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Play.png
-c000000004DAA0EA2000000000000042F
-t1302990498
-s1071
+c000000004DBC157B0000000000000322
+t1304171899
+s802
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/PlayList.png
-c000000004DA7A8B6000000000000012E
-t1302833334
+c000000004DBC157B000000000000012E
+t1304171899
 s302
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Playing.png
-c000000004DAB3E970000000000000130
-t1303068311
+c000000004DBC157B0000000000000130
+t1304171899
 s304
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Previous.png
-c000000004DA9D23C00000000000003E7
-t1302975036
-s999
+c000000004DBC157B0000000000000343
+t1304171899
+s835
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Reload.png
-c000000004DAA02C5000000000000022B
-t1302987461
+c000000004DBC157B000000000000022B
+t1304171899
 s555
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Remove.png
-c000000004DAB409900000000000000DE
-t1303068825
-s222
+c000000004DBC157B00000000000000A4
+t1304171899
+s164
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/RemoveAll.png
-c000000004DA9FFA000000000000001BA
-t1302986656
-s442
+c000000004DBC157B00000000000000DD
+t1304171899
+s221
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Save.png
-c000000004DA7A8B600000000000001D0
-t1302833334
-s464
+c000000004DBC157B000000000000010B
+t1304171899
+s267
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Search.png
-c000000004DA7A8B60000000000000157
-t1302833334
+c000000004DBC157B0000000000000157
+t1304171899
 s343
 
+N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Stop.png
+c000000004DBC157B000000000000027A
+t1304171899
+s634
+
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/X.png
-c000000004DAA00CF00000000000001D5
-t1302986959
-s469
+c000000004DBC157B000000000000019D
+t1304171899
+s413
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/album.jpg
-c000000004DA7A8B60000000000004369
-t1302833334
+c000000004DBC157B0000000000004369
+t1304171899
 s17257
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/PWPolishedSlider.h
@@ -225,77 +239,87 @@ s1871
 i"PWPolishedSliderCell.h"
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/Thumper-Prefix.pch
-c000000004DA7A8B60000000000000091
-t1302833334
+c000000004DBC157C0000000000000091
+t1304171900
 s145
 i<Cocoa/Cocoa.h>
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperAlbumDelegate.rb
-c000000004DAB42E90000000000000573
-t1303069417
+c000000004DBC157C0000000000000573
+t1304171900
 s1395
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperApplicaiton.rb
-c000000004DAA24B400000000000003FA
-t1302996148
-s1018
+c000000004DBC157C00000000000003F6
+t1304171900
+s1014
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperArtistIndexDelegate.rb
-c000000004DAB42F700000000000006EC
-t1303069431
-s1772
+c000000004DBC157C0000000000000731
+t1304171900
+s1841
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperCurrentPlaylistDelegate.rb
-c000000004DAB50FD0000000000000717
-t1303073021
-s1815
+c000000004DC575650000000000001819
+t1304786277
+s6169
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperDelegate.rb
-c000000004DAB50120000000000003775
-t1303072786
-s14197
+c000000004DC575650000000000005BF3
+t1304786277
+s23539
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistSongsDelegate.rb
-c000000004DAB4E7900000000000006B6
-t1303072377
-s1718
+c000000004DC3851E00000000000007AD
+t1304659230
+s1965
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistsDelegate.rb
-c000000004DAB4E770000000000000417
-t1303072375
-s1047
+c000000004DC57565000000000000092E
+t1304786277
+s2350
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperProgressIndicator.rb
-c000000004DA7C5790000000000000455
-t1302840697
-s1109
+c000000004DBC157C00000000000006EE
+t1304171900
+s1774
+
+N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperSearchDelegate.rb
+c000000004DC5756500000000000011A6
+t1304786277
+s4518
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperSongsDelegate.rb
-c000000004DAB4C160000000000000645
-t1303071766
-s1605
+c000000004DC37EB200000000000006E5
+t1304657586
+s1765
+
+N/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperTable.rb
+c000000004DC575650000000000000130
+t1304786277
+s304
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/InfoPlist.strings
-c000000004DA7A8B6000000000000002D
-t1302833334
+c000000004DBC157C000000000000002D
+t1304171900
 s45
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib
-c000000004DAB4F58000000000006D97B
-t1303072600
-s448891
+c000000004DC5756500000000000825DF
+t1304786277
+s533983
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/main.m
-c000000004DA7A8B6000000000000010E
-t1302833334
+c000000004DBC157C000000000000010E
+t1304171900
 s270
 i<Cocoa/Cocoa.h>
 i<MacRuby/MacRuby.h>
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/rb_main.rb
-c000000004DA7A8B6000000000000036D
-t1302833334
-s877
+c000000004DBC157C000000000000037C
+t1304171900
+s892
 
 N/Users/dwestendorf/Desktop/Thumper/Thumper/sliderbutton.png
 c000000004DA7A8B600000000000001C6
@@ -318,151 +342,167 @@ t1302833334
 s931
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app
-t1302834996
+t1304171900
 s102
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Frameworks/BWToolkitFramework.framework
-t1302837034
+t1304171900
 s204
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Info.plist
-t1303074340
-s1655
+t1304895558
+s1668
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/MacOS/Thumper
-t2
-s0
+t1304171900
+s16264
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/PkgInfo
-t1303074340
+t1304895558
 s8
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Add.png
-t1303074341
+t1304171900
 s316
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/AddAll.png
-t1303074341
+t1304171900
 s543
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Database.rb
-t1302837034
+t1304171900
 s1724
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Dock.icns
-t1303074341
+t1304171900
 s65763
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Library.png
-t1302837034
+t1304171900
 s268
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Loading.gif
 t1302837034
 s1849
 
+N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Logo.png
+t1304895559
+s1639
+
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Next.png
-t1303074341
+t1304171900
 s999
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Pause.png
-t1303074341
+t1304171900
 s803
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Play.png
-t1303074341
+t1304171900
 s1071
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/PlayList.png
-t1302837034
+t1304171900
 s302
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Playing.png
-t1303074341
+t1304171900
 s304
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Previous.png
-t1303074341
+t1304171900
 s999
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Reload.png
-t1303074341
+t1304171900
 s555
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Remove.png
-t1303074341
+t1304171900
 s222
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/RemoveAll.png
-t1303074341
+t1304171900
 s442
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Save.png
-t1302837034
+t1304171900
 s464
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Search.png
-t1302837034
+t1304171900
 s343
 
+N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Stop.png
+t1304895559
+s634
+
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/Subsonic.rb
-t1303074341
-s13931
+t1304895559
+s17833
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperAlbumDelegate.rb
-t1303074341
+t1304171900
 s1395
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperApplicaiton.rb
-t1303074341
+t1304171900
 s1018
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperArtistIndexDelegate.rb
-t1303074341
+t1304171900
 s1772
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperCurrentPlaylistDelegate.rb
-t1303074341
-s1815
+t1304895559
+s6169
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperDelegate.rb
-t1303074341
-s14197
+t1304895559
+s23539
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperPlaylistSongsDelegate.rb
-t1303074341
-s1718
+t1304895559
+s1965
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperPlaylistsDelegate.rb
-t1303074341
-s1047
+t1304895559
+s2350
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperProgressIndicator.rb
-t1303074341
+t1304171900
 s1109
 
+N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperSearchDelegate.rb
+t1304895559
+s4518
+
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperSongsDelegate.rb
-t1303074341
-s1605
+t1304895559
+s1765
+
+N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/ThumperTable.rb
+t1304895559
+s304
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/X.png
-t1303074341
+t1304171900
 s469
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/album.jpg
-t1302837034
+t1304171900
 s17257
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/en.lproj/InfoPlist.strings
-t1302837034
+t1304171900
 s92
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/en.lproj/MainMenu.nib
-t1303074341
-s109435
+t1304895560
+s127839
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/rb_main.rb
-t1302837034
+t1304171900
 s877
 
 N/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/sliderbutton.png
@@ -490,8 +530,8 @@ t1302837034
 s18680
 
 N/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/Thumper.LinkFileList
-c000000004DAB56240000000000000068
-t1303074340
+c000000004DBC157C0000000000000068
+t1304171900
 s104
 
 N/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/main.o
@@ -499,8 +539,8 @@ t2
 s0
 
 N/Users/dwestendorf/Library/BWToolkit/BWToolkitFramework.framework
-c000000004DA746BA00000000000000CC
-t1302808250
+c000000004DA63F6E00000000000000CC
+t1302740846
 s204
 
 N/Users/dwestendorf/Library/BWToolkit/BWToolkitFramework.framework/BWToolkitFramework
@@ -908,7 +948,7 @@ t1303138117
 s2600
 
 N/var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-dsgqlsrenhgszdftovwbqvemmafu/Thumper-Prefix.pch.pth
-t1302837033
+t1304895559
 s10930148
 
 N/var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-gfkhrzerjyuwxscppaxzeelbbmcu/Thumper-Prefix.pch.pth
@@ -924,13 +964,16 @@ t1302809337
 s10930148
 
 NThumper/Thumper-Info.plist
-c000000004DAC4F45000000000000050A
-t1303138117
-s1290
+c000000004DC57AC80000000000000517
+t1304787656
+s1303
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies324767140#324767140#0(0"0(0#1#0"7300950084448909312#0"0#
+lSLF07#2@18"Check dependencies326588358#326588358#0(0"0(0#1#0"7300950084448909312#0"0#
+
+CCodeSign /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app
+r0
 
 CCompileC build/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/PWPolishedSlider.o /Users/dwestendorf/Desktop/Thumper/Thumper/PWPolishedSlider.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s324529834.021769
@@ -985,8 +1028,8 @@ xcom.apple.compilers.llvm.clang.1_0.compiler
 lSLF07#2@74"Compile /Users/dwestendorf/personal/Thumper/Thumper/PWPolishedSliderCell.m324503369#324503369#0(0"0(0#0#66"/Users/dwestendorf/personal/Thumper/Thumper/PWPolishedSliderCell.m8620627456#1586"    cd /Users/dwestendorf/personal/Thumper    setenv LANG en_US.US-ASCII    /Developer-old/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -Wshorten-64-to-32 -DDEBUG -isysroot /Developer-old/SDKs/MacOSX10.6.sdk -fasm-blocks -fobjc-gc-only -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-generated-files.hmap -I/Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-own-target-headers.hmap -I/Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-all-target-headers.hmap -iquote /Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-project-headers.hmap -F/Users/dwestendorf/personal/Thumper/build/Debug -F/Users/dwestendorf/personal/Thumper/../../Library/BWToolkit -I/Users/dwestendorf/personal/Thumper/build/Debug/include -I/Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources/x86_64 -I/Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources -include /var/folders/B7/B727yM3jGl0Za9nQpcIWU++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-cdndjebnieltazakulwqlshmsrsv/Thumper-Prefix.pch -c /Users/dwestendorf/personal/Thumper/Thumper/PWPolishedSliderCell.m -o /Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/PWPolishedSliderCell.o0#
 
 CCompileC build/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/main.o /Users/dwestendorf/Desktop/Thumper/Thumper/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s324767140.873958
-e324767141.345784
+s326588359.852071
+e326588359.943008
 r0
 xCompileC
 xbuild/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/main.o
@@ -999,7 +1042,7 @@ o/Users/dwestendorf/Desktop/Thumper/Thumper/main.m:11:9: fatal error: 'MacRuby/M
 o #import <MacRuby/MacRuby.h>
 o         ^
 o1 error generated.
-lSLF07#2@57"Compile /Users/dwestendorf/Desktop/Thumper/Thumper/main.m324767140#324767141#0(163"/Users/dwestendorf/Desktop/Thumper/Thumper/main.m:11:9: fatal error: 'MacRuby/MacRuby.h' file not found #import <MacRuby/MacRuby.h>         ^1 error generated.1(4@34"'MacRuby/MacRuby.h' file not found324767141#0#104#0(6@49"/Users/dwestendorf/Desktop/Thumper/Thumper/main.m324526134#11#9#0#0#18"'*' file not found0(0#0#49"/Users/dwestendorf/Desktop/Thumper/Thumper/main.m8610197696#1542"    cd /Users/dwestendorf/Desktop/Thumper    setenv LANG en_US.US-ASCII    /Developer-old/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -Wshorten-64-to-32 -DDEBUG -isysroot /Developer-old/SDKs/MacOSX10.6.sdk -fasm-blocks -fobjc-gc-only -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-generated-files.hmap -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-own-target-headers.hmap -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-all-target-headers.hmap -iquote /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-project-headers.hmap -F/Users/dwestendorf/Desktop/Thumper/build/Debug -F/Users/dwestendorf/Desktop/Thumper/../../Library/BWToolkit -I/Users/dwestendorf/Desktop/Thumper/build/Debug/include -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources/x86_64 -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources -include /var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-dsgqlsrenhgszdftovwbqvemmafu/Thumper-Prefix.pch -c /Users/dwestendorf/Desktop/Thumper/Thumper/main.m -o /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/main.o1#
+lSLF07#2@57"Compile /Users/dwestendorf/Desktop/Thumper/Thumper/main.m326588359#326588359#0(163"/Users/dwestendorf/Desktop/Thumper/Thumper/main.m:11:9: fatal error: 'MacRuby/MacRuby.h' file not found #import <MacRuby/MacRuby.h>         ^1 error generated.1(4@34"'MacRuby/MacRuby.h' file not found326588359#0#104#0(6@49"/Users/dwestendorf/Desktop/Thumper/Thumper/main.m325864700#11#9#0#0#18"'*' file not found0(0#0#49"/Users/dwestendorf/Desktop/Thumper/Thumper/main.m8609568576#1542"    cd /Users/dwestendorf/Desktop/Thumper    setenv LANG en_US.US-ASCII    /Developer-old/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -Wshorten-64-to-32 -DDEBUG -isysroot /Developer-old/SDKs/MacOSX10.6.sdk -fasm-blocks -fobjc-gc-only -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-generated-files.hmap -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-own-target-headers.hmap -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-all-target-headers.hmap -iquote /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-project-headers.hmap -F/Users/dwestendorf/Desktop/Thumper/build/Debug -F/Users/dwestendorf/Desktop/Thumper/../../Library/BWToolkit -I/Users/dwestendorf/Desktop/Thumper/build/Debug/include -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources/x86_64 -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources -include /var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-dsgqlsrenhgszdftovwbqvemmafu/Thumper-Prefix.pch -c /Users/dwestendorf/Desktop/Thumper/Thumper/main.m -o /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/main.o1#
 
 CCompileC build/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/main.o /Users/dwestendorf/personal/Thumper/Thumper/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s324503369.833065
@@ -1015,28 +1058,17 @@ xcom.apple.compilers.llvm.clang.1_0.compiler
 lSLF07#2@58"Compile /Users/dwestendorf/personal/Thumper/Thumper/main.m324503369#324503369#0(0"0(0#0#50"/Users/dwestendorf/personal/Thumper/Thumper/main.m8594428128#1554"    cd /Users/dwestendorf/personal/Thumper    setenv LANG en_US.US-ASCII    /Developer-old/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -Wshorten-64-to-32 -DDEBUG -isysroot /Developer-old/SDKs/MacOSX10.6.sdk -fasm-blocks -fobjc-gc-only -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-generated-files.hmap -I/Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-own-target-headers.hmap -I/Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-all-target-headers.hmap -iquote /Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-project-headers.hmap -F/Users/dwestendorf/personal/Thumper/build/Debug -F/Users/dwestendorf/personal/Thumper/../../Library/BWToolkit -I/Users/dwestendorf/personal/Thumper/build/Debug/include -I/Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources/x86_64 -I/Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources -include /var/folders/B7/B727yM3jGl0Za9nQpcIWU++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-cdndjebnieltazakulwqlshmsrsv/Thumper-Prefix.pch -c /Users/dwestendorf/personal/Thumper/Thumper/main.m -o /Users/dwestendorf/personal/Thumper/build/Thumper.build/Debug/Thumper.build/Objects-normal/x86_64/main.o0#
 
 CCompileXIB /Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib
-s324767141.345992
-e324767141.877963
+s326588359.943188
+e326588360.528785
 r1
 xCompileXIB
 x/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib
 o/* com.apple.ibtool.document.notices */
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:865: note: This view is clipping its content.
+o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1396: note: This view is clipping its content.
 o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1044: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1332: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:863: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1040: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1269: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1305: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:875: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:929: note: This view is clipping its content.
 o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1042: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:867: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:873: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1337: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1267: note: This view is clipping its content.
-o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1263: note: This view is clipping its content.
-lSLF07#2@40"CompileXIB Thumper/en.lproj/MainMenu.xib324767141#324767141#0(1714"/* com.apple.ibtool.document.notices *//Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:865: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1044: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1332: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:863: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1040: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1269: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1305: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:875: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:929: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1042: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:867: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:873: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1337: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1267: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1263: note: This view is clipping its content.15(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#865#0#865#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#1044#0#1044#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#1332#0#1332#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#863#0#863#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#1040#0#1040#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#1269#0#1269#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#1305#0#1305#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#875#0#875#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#929#0#929#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#1042#0#1042#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#867#0#867#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#873#0#873#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#1337#0#1337#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#1267#0#1267#0#0"0(13@34"This view is clipping its content.324767141#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib324765400#1263#0#1263#0#0"0(0#0#64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib32933018957250608#358"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/en.lproj/MainMenu.nib /Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib --sdk /Developer-old/SDKs/MacOSX10.6.sdk0#
+o/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1040: note: This view is clipping its content.
+lSLF07#2@40"CompileXIB Thumper/en.lproj/MainMenu.xib326588359#326588360#0(488"/* com.apple.ibtool.document.notices *//Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1396: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1044: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1042: note: This view is clipping its content./Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib:1040: note: This view is clipping its content.4(13@34"This view is clipping its content.326588360#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib326479077#1396#0#1396#0#0"0(13@34"This view is clipping its content.326588360#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib326479077#1044#0#1044#0#0"0(13@34"This view is clipping its content.326588360#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib326479077#1042#0#1042#0#0"0(13@34"This view is clipping its content.326588360#18446744073709551615#0#0(6@64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib326479077#1040#0#1040#0#0"0(0#0#64"/Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib32933018957250608#358"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources/en.lproj/MainMenu.nib /Users/dwestendorf/Desktop/Thumper/Thumper/en.lproj/MainMenu.xib --sdk /Developer-old/SDKs/MacOSX10.6.sdk0#
 
 CCompileXIB /Users/dwestendorf/personal/Thumper/Thumper/en.lproj/MainMenu.xib
 s324514357.056829
@@ -1126,6 +1158,15 @@ xCpResource
 xbuild/Debug/Thumper.app/Contents/Resources/Loading.gif
 xThumper/Icons/Loading.gif
 lSLF07#2@30"Copy Thumper/Icons/Loading.gif324529834#324529834#0(0"0(0#0#60"/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Loading.gif8611573440#347"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Loading.gif /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+
+CCpResource build/Debug/Thumper.app/Contents/Resources/Logo.png Thumper/Icons/Logo.png
+s326588359.951076
+e326588359.960831
+r1
+xCpResource
+xbuild/Debug/Thumper.app/Contents/Resources/Logo.png
+xThumper/Icons/Logo.png
+lSLF07#2@27"Copy Thumper/Icons/Logo.png326588359#326588359#0(0"0(0#0#57"/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Logo.png8608919456#344"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Logo.png /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
 CCpResource build/Debug/Thumper.app/Contents/Resources/Next.png Thumper/Icons/Next.png
 s324767141.382553
@@ -1226,14 +1267,23 @@ xbuild/Debug/Thumper.app/Contents/Resources/Search.png
 xThumper/Icons/Search.png
 lSLF07#2@29"Copy Thumper/Icons/Search.png324529834#324529834#0(0"0(0#0#59"/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Search.png8598013216#346"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Search.png /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
+CCpResource build/Debug/Thumper.app/Contents/Resources/Stop.png Thumper/Icons/Stop.png
+s326588359.950699
+e326588359.960737
+r1
+xCpResource
+xbuild/Debug/Thumper.app/Contents/Resources/Stop.png
+xThumper/Icons/Stop.png
+lSLF07#2@27"Copy Thumper/Icons/Stop.png326588359#326588359#0(0"0(0#0#57"/Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Stop.png8609312576#344"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/Icons/Stop.png /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+
 CCpResource build/Debug/Thumper.app/Contents/Resources/Subsonic.rb Thumper/Classes/Subsonic.rb
-s324767141.347007
-e324767141.379049
+s326588359.944191
+e326588359.960230
 r1
 xCpResource
 xbuild/Debug/Thumper.app/Contents/Resources/Subsonic.rb
 xThumper/Classes/Subsonic.rb
-lSLF07#2@32"Copy Thumper/Classes/Subsonic.rb324767141#324767141#0(0"0(0#0#62"/Users/dwestendorf/Desktop/Thumper/Thumper/Classes/Subsonic.rb8611448544#349"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/Classes/Subsonic.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+lSLF07#2@32"Copy Thumper/Classes/Subsonic.rb326588359#326588359#0(0"0(0#0#62"/Users/dwestendorf/Desktop/Thumper/Thumper/Classes/Subsonic.rb8604210624#349"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/Classes/Subsonic.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
 CCpResource build/Debug/Thumper.app/Contents/Resources/ThumperAlbumDelegate.rb Thumper/ThumperAlbumDelegate.rb
 s324767141.348141
@@ -1263,40 +1313,40 @@ xThumper/ThumperArtistIndexDelegate.rb
 lSLF07#2@42"Copy Thumper/ThumperArtistIndexDelegate.rb324767141#324767141#0(0"0(0#0#72"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperArtistIndexDelegate.rb8611475296#359"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperArtistIndexDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
 CCpResource build/Debug/Thumper.app/Contents/Resources/ThumperCurrentPlaylistDelegate.rb Thumper/ThumperCurrentPlaylistDelegate.rb
-s324767141.349484
-e324767141.379726
+s326588359.947350
+e326588359.960399
 r1
 xCpResource
 xbuild/Debug/Thumper.app/Contents/Resources/ThumperCurrentPlaylistDelegate.rb
 xThumper/ThumperCurrentPlaylistDelegate.rb
-lSLF07#2@46"Copy Thumper/ThumperCurrentPlaylistDelegate.rb324767141#324767141#0(0"0(0#0#76"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperCurrentPlaylistDelegate.rb8611568320#363"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperCurrentPlaylistDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+lSLF07#2@46"Copy Thumper/ThumperCurrentPlaylistDelegate.rb326588359#326588359#0(0"0(0#0#76"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperCurrentPlaylistDelegate.rb8594678368#363"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperCurrentPlaylistDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
 CCpResource build/Debug/Thumper.app/Contents/Resources/ThumperDelegate.rb Thumper/ThumperDelegate.rb
-s324767141.346552
-e324767141.375570
+s326588359.943704
+e326588359.959339
 r1
 xCpResource
 xbuild/Debug/Thumper.app/Contents/Resources/ThumperDelegate.rb
 xThumper/ThumperDelegate.rb
-lSLF07#2@31"Copy Thumper/ThumperDelegate.rb324767141#324767141#0(0"0(0#0#61"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperDelegate.rb8611422272#348"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+lSLF07#2@31"Copy Thumper/ThumperDelegate.rb326588359#326588359#0(0"0(0#0#61"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperDelegate.rb8594968096#348"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
 CCpResource build/Debug/Thumper.app/Contents/Resources/ThumperPlaylistSongsDelegate.rb Thumper/ThumperPlaylistSongsDelegate.rb
-s324767141.380570
-e324767141.404451
+s326588359.949349
+e326588359.970260
 r1
 xCpResource
 xbuild/Debug/Thumper.app/Contents/Resources/ThumperPlaylistSongsDelegate.rb
 xThumper/ThumperPlaylistSongsDelegate.rb
-lSLF07#2@44"Copy Thumper/ThumperPlaylistSongsDelegate.rb324767141#324767141#0(0"0(0#0#74"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistSongsDelegate.rb8610746464#361"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistSongsDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+lSLF07#2@44"Copy Thumper/ThumperPlaylistSongsDelegate.rb326588359#326588359#0(0"0(0#0#74"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistSongsDelegate.rb8603956704#361"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistSongsDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
 CCpResource build/Debug/Thumper.app/Contents/Resources/ThumperPlaylistsDelegate.rb Thumper/ThumperPlaylistsDelegate.rb
-s324767141.378316
-e324767141.404268
+s326588359.948729
+e326588359.960496
 r1
 xCpResource
 xbuild/Debug/Thumper.app/Contents/Resources/ThumperPlaylistsDelegate.rb
 xThumper/ThumperPlaylistsDelegate.rb
-lSLF07#2@40"Copy Thumper/ThumperPlaylistsDelegate.rb324767141#324767141#0(0"0(0#0#70"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistsDelegate.rb8612303744#357"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistsDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+lSLF07#2@40"Copy Thumper/ThumperPlaylistsDelegate.rb326588359#326588359#0(0"0(0#0#70"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistsDelegate.rb8607293856#357"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperPlaylistsDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
 CCpResource build/Debug/Thumper.app/Contents/Resources/ThumperProgressIndicator.rb Thumper/ThumperProgressIndicator.rb
 s324767141.381267
@@ -1307,14 +1357,32 @@ xbuild/Debug/Thumper.app/Contents/Resources/ThumperProgressIndicator.rb
 xThumper/ThumperProgressIndicator.rb
 lSLF07#2@40"Copy Thumper/ThumperProgressIndicator.rb324767141#324767141#0(0"0(0#0#70"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperProgressIndicator.rb8592318720#357"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperProgressIndicator.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
+CCpResource build/Debug/Thumper.app/Contents/Resources/ThumperSearchDelegate.rb Thumper/ThumperSearchDelegate.rb
+s326588359.950303
+e326588359.960622
+r1
+xCpResource
+xbuild/Debug/Thumper.app/Contents/Resources/ThumperSearchDelegate.rb
+xThumper/ThumperSearchDelegate.rb
+lSLF07#2@37"Copy Thumper/ThumperSearchDelegate.rb326588359#326588359#0(0"0(0#0#67"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperSearchDelegate.rb8609548704#354"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperSearchDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+
 CCpResource build/Debug/Thumper.app/Contents/Resources/ThumperSongsDelegate.rb Thumper/ThumperSongsDelegate.rb
-s324767141.348814
-e324767141.379564
+s326588359.944918
+e326588359.981217
 r1
 xCpResource
 xbuild/Debug/Thumper.app/Contents/Resources/ThumperSongsDelegate.rb
 xThumper/ThumperSongsDelegate.rb
-lSLF07#2@36"Copy Thumper/ThumperSongsDelegate.rb324767141#324767141#0(0"0(0#0#66"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperSongsDelegate.rb8611532352#353"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperSongsDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+lSLF07#2@36"Copy Thumper/ThumperSongsDelegate.rb326588359#326588360#0(0"0(0#0#66"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperSongsDelegate.rb8609489888#353"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperSongsDelegate.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
+
+CCpResource build/Debug/Thumper.app/Contents/Resources/ThumperTable.rb Thumper/ThumperTable.rb
+s326588359.959459
+e326588359.964060
+r1
+xCpResource
+xbuild/Debug/Thumper.app/Contents/Resources/ThumperTable.rb
+xThumper/ThumperTable.rb
+lSLF07#2@28"Copy Thumper/ThumperTable.rb326588359#326588359#0(0"0(0#0#58"/Users/dwestendorf/Desktop/Thumper/Thumper/ThumperTable.rb8607437440#345"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Desktop/Thumper/Thumper/ThumperTable.rb /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Resources0#
 
 CCpResource build/Debug/Thumper.app/Contents/Resources/X.png Thumper/Icons/X.png
 s324767141.353165
@@ -1402,13 +1470,13 @@ x/Users/dwestendorf/Library/BWToolkit/BWToolkitFramework.framework
 lSLF07#2@70"Copy /Users/dwestendorf/Library/BWToolkit/BWToolkitFramework.framework324529834#324529835#0(0"0(0#0#65"/Users/dwestendorf/Library/BWToolkit/BWToolkitFramework.framework8605951616#353"    cd /Users/dwestendorf/Desktop/Thumper    /Developer-old/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/dwestendorf/Library/BWToolkit/BWToolkitFramework.framework /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Frameworks0#
 
 CProcessInfoPlistFile /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Info.plist Thumper/Thumper-Info.plist
-s324767140.855550
-e324767140.873745
+s326588358.368412
+e326588358.399386
 r1
 xProcessInfoPlistFile
 x/Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Info.plist
 xThumper/Thumper-Info.plist
-lSLF07#2@34"Process Thumper/Thumper-Info.plist324767140#324767140#0(0"0(0#0#61"/Users/dwestendorf/Desktop/Thumper/Thumper/Thumper-Info.plist32651569752113220#306"    cd /Users/dwestendorf/Desktop/Thumper    builtin-infoPlistUtility Thumper/Thumper-Info.plist -genpkginfo /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Info.plist0#
+lSLF07#2@34"Process Thumper/Thumper-Info.plist326588358#326588358#0(0"0(0#0#61"/Users/dwestendorf/Desktop/Thumper/Thumper/Thumper-Info.plist32651569752113220#306"    cd /Users/dwestendorf/Desktop/Thumper    builtin-infoPlistUtility Thumper/Thumper-Info.plist -genpkginfo /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/dwestendorf/Desktop/Thumper/build/Debug/Thumper.app/Contents/Info.plist0#
 
 CProcessInfoPlistFile /Users/dwestendorf/personal/Thumper/build/Debug/Thumper.app/Contents/Info.plist Thumper/Thumper-Info.plist
 s324502136.844521
@@ -1420,8 +1488,8 @@ xThumper/Thumper-Info.plist
 lSLF07#2@34"Process Thumper/Thumper-Info.plist324502136#324502136#0(0"0(0#0#62"/Users/dwestendorf/personal/Thumper/Thumper/Thumper-Info.plist30962724183932976#309"    cd /Users/dwestendorf/personal/Thumper    builtin-infoPlistUtility Thumper/Thumper-Info.plist -genpkginfo /Users/dwestendorf/personal/Thumper/build/Debug/Thumper.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/dwestendorf/personal/Thumper/build/Debug/Thumper.app/Contents/Info.plist0#
 
 CProcessPCH /var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-dsgqlsrenhgszdftovwbqvemmafu/Thumper-Prefix.pch.pth Thumper/Thumper-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s324529830.332260
-e324529834.020718
+s326588358.399499
+e326588359.851980
 r1
 xProcessPCH
 x/var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-dsgqlsrenhgszdftovwbqvemmafu/Thumper-Prefix.pch.pth
@@ -1430,7 +1498,7 @@ xnormal
 xx86_64
 xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF07#2@37"Precompile Thumper/Thumper-Prefix.pch324529830#324529834#0(0"0(0#0#61"/Users/dwestendorf/Desktop/Thumper/Thumper/Thumper-Prefix.pch8598820992#1452"    cd /Users/dwestendorf/Desktop/Thumper    setenv LANG en_US.US-ASCII    /Developer-old/usr/bin/clang -x objective-c-header -arch x86_64 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -Wshorten-64-to-32 -DDEBUG -isysroot /Developer-old/SDKs/MacOSX10.6.sdk -fasm-blocks -fobjc-gc-only -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-generated-files.hmap -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-own-target-headers.hmap -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-all-target-headers.hmap -iquote /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-project-headers.hmap -F/Users/dwestendorf/Desktop/Thumper/build/Debug -F/Users/dwestendorf/Desktop/Thumper/../../Library/BWToolkit -I/Users/dwestendorf/Desktop/Thumper/build/Debug/include -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources/x86_64 -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources -c /Users/dwestendorf/Desktop/Thumper/Thumper/Thumper-Prefix.pch -o /var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-dsgqlsrenhgszdftovwbqvemmafu/Thumper-Prefix.pch.pth0#
+lSLF07#2@37"Precompile Thumper/Thumper-Prefix.pch326588358#326588359#0(0"0(0#0#61"/Users/dwestendorf/Desktop/Thumper/Thumper/Thumper-Prefix.pch8609240320#1452"    cd /Users/dwestendorf/Desktop/Thumper    setenv LANG en_US.US-ASCII    /Developer-old/usr/bin/clang -x objective-c-header -arch x86_64 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -Wshorten-64-to-32 -DDEBUG -isysroot /Developer-old/SDKs/MacOSX10.6.sdk -fasm-blocks -fobjc-gc-only -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-generated-files.hmap -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-own-target-headers.hmap -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-all-target-headers.hmap -iquote /Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/Thumper-project-headers.hmap -F/Users/dwestendorf/Desktop/Thumper/build/Debug -F/Users/dwestendorf/Desktop/Thumper/../../Library/BWToolkit -I/Users/dwestendorf/Desktop/Thumper/build/Debug/include -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources/x86_64 -I/Users/dwestendorf/Desktop/Thumper/build/Thumper.build/Debug/Thumper.build/DerivedSources -c /Users/dwestendorf/Desktop/Thumper/Thumper/Thumper-Prefix.pch -o /var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-dsgqlsrenhgszdftovwbqvemmafu/Thumper-Prefix.pch.pth0#
 
 CProcessPCH /var/folders/At/At3rrNiFFUetsxTVcYRpr++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Thumper-Prefix-gfkhrzerjyuwxscppaxzeelbbmcu/Thumper-Prefix.pch.pth Thumper/Thumper-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s324527796.107964

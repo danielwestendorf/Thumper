@@ -1,6 +1,6 @@
 require 'base64'
 
-module Subsonic
+class Subsonic
     attr_reader :connectivity
     
 	def initialize(parent, base_url, username, password)
@@ -234,7 +234,7 @@ module Subsonic
 	#Actual data request methods
 	def ping(delegate, method)
         request = build_request("/rest/ping.view", {})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
     
     def check_connectivity(timer)
@@ -243,49 +243,49 @@ module Subsonic
 	
 	def getLicense(delegate, method)
         request = build_request('/rest/getLicense.view', {})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
 	
 	def artists(delegate, method)
         request = build_request('/rest/getIndexes.view', {})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
 	
 	def albums(id, delegate, method)
         NSLog "Getting album #{id}"
         request = build_request('/rest/getMusicDirectory', {:id => id})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
 	
 	def songs(id, delegate, method)
         request = build_request('/rest/getMusicDirectory', {:id => id})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
     
     def cover_art(id, delegate, method)
         request = build_request('/rest/getCoverArt.view', {:id => id})
         path = Dir.home + "/Library/Thumper/CoverArt/#{id}.jpg"
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::DownloadResponse.new(path, nil, delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, nil, delegate, method))
     end
     
     def playlists(delegate, method)
         request = build_request('/rest/getPlaylists.view', {})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
     end
     
     def playlist(id, delegate, method)
         request = build_request('/rest/getPlaylist.view', {:id => id})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
     end
     
     def delete_playlist(id, delegate, method)
         request = build_request('/rest/deletePlaylist.view', {:id => id})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
     end
     
     def search(query, delegate, method)
         request = build_request('/rest/search.view', {:any => query, :count => 100})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
     end
     
     def create_playlist(name, song_ids, delegate, method)
@@ -294,19 +294,19 @@ module Subsonic
         body = "name=#{name}"
         song_ids.each {|id| body << "&songId=#{id}" }
         request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
     end
     
     def download_media(path, id, delegate, method)
         NSLog "Attempting to download #{id}"
         request = build_request('/rest/download.view', {:id => id})
-        NSURLConnection.connectionWithRequest(request, delegate:Subsonic::DownloadResponse.new(path, id, delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, id, delegate, method))
     end
     
     def scrobble(id, delegate, method)
         NSLog "Attempting to scrobble now playing"
         scrobble_request = build_request('/rest/scrobble.view', {:id => id})
-        NSURLConnection.connectionWithRequest(scrobble_request, delegate:Subsonic::XMLResponse.new(delegate, method))
+        NSURLConnection.connectionWithRequest(scrobble_request, delegate:XMLResponse.new(delegate, method))
         now_playing_request = build_request('/rest/stream.view', {:id => id})
         @conn = NSURLConnection.connectionWithRequest(now_playing_request, delegate:self)
     end
@@ -318,69 +318,6 @@ module Subsonic
             else
             NSLog "There was an error with the request: #{response.statusCode}"
         end
-    end
-	
-	class XMLResponse
-        
-        def initialize(delegate, method)
-            @delegate = delegate
-            @method = method
-        end
-        
-        def connection(connection, didReceiveResponse:response)
-            @response = response
-            @downloadData = NSMutableData.data
-        end
-        
-        def connection(connection, didReceiveData:data)
-            @downloadData.appendData(data)
-        end
-        
-        def connectionDidFinishLoading(connection)
-            case @response.statusCode
-                when 200...300
-                xml = NSXMLDocument.alloc.initWithData(@downloadData,
-                                                       options:NSXMLDocumentValidate,
-                                                       error:nil)
-                #@responseBody = NSString.alloc.initWithData(@downloadData, encoding:NSUTF8StringEncoding)
-                #NSLog @responseBody
-                if xml
-                    @delegate.method(@method).call(xml)
-                end
-            else
-                NSLog "ERROR! #{@response.statusCode}"
-                @delegate.method(@method).call(@response.statusCode)
-            end
-        end        
-    end
-    
-    class DownloadResponse
-        
-        def initialize(path, id, delegate, method)
-            @delegate = delegate
-            @method = method
-            @path = path
-            @id = id
-        end
-        
-        def connection(connection, didReceiveResponse:response)
-            @response = response
-            @downloadData = NSMutableData.data
-        end
-        
-        def connection(connection, didReceiveData:data)
-            @downloadData.appendData(data)
-        end
-        
-        def connectionDidFinishLoading(connection)
-            case @response.statusCode
-            when 200...300
-                @delegate.method(@method).call(@downloadData, @path, @id)
-            else
-                NSLog "Image response: #{@response.statusCode}"
-            end
-        end
-        
     end
 	
 	private
@@ -398,5 +335,69 @@ module Subsonic
         request.setValue("Basic #{@auth_token}", forHTTPHeaderField:"Authorization")
         return request
 	end
+    
+end
+
+class XMLResponse
+    
+    def initialize(delegate, method)
+        @delegate = delegate
+        @method = method
+    end
+    
+    def connection(connection, didReceiveResponse:response)
+        @response = response
+        @downloadData = NSMutableData.data
+    end
+    
+    def connection(connection, didReceiveData:data)
+        @downloadData.appendData(data)
+    end
+    
+    def connectionDidFinishLoading(connection)
+        case @response.statusCode
+            when 200...300
+            xml = NSXMLDocument.alloc.initWithData(@downloadData,
+                                                   options:NSXMLDocumentValidate,
+                                                   error:nil)
+            #@responseBody = NSString.alloc.initWithData(@downloadData, encoding:NSUTF8StringEncoding)
+            #NSLog @responseBody
+            if xml
+                #NSLog "Methods: #{@delegate.class.class}"
+                @delegate.method(@method).call(xml)
+            end
+            else
+            NSLog "ERROR! #{@response.statusCode}"
+            @delegate.method(@method).call(@response.statusCode)
+        end
+    end        
+end
+
+class DownloadResponse
+    
+    def initialize(path, id, delegate, method)
+        @delegate = delegate
+        @method = method
+        @path = path
+        @id = id
+    end
+    
+    def connection(connection, didReceiveResponse:response)
+        @response = response
+        @downloadData = NSMutableData.data
+    end
+    
+    def connection(connection, didReceiveData:data)
+        @downloadData.appendData(data)
+    end
+    
+    def connectionDidFinishLoading(connection)
+        case @response.statusCode
+            when 200...300
+            @delegate.method(@method).call(@downloadData, @path, @id)
+            else
+            NSLog "Image response: #{@response.statusCode}"
+        end
+    end
     
 end

@@ -49,16 +49,6 @@
 		82F67F29135B78350099A6FC /* Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F67F28135B78350099A6FC /* Remove.png */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		82645E19135C8B4B00B3CDEF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 827CE5B91347B49D00170589 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 827CE5C11347B49D00170589;
-			remoteInfo = Thumper;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		820ED70E135788BA00C0D484 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -238,33 +228,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		827CE5CA1347B49D00170589 /* Deployment */ = {
+		8296C90E13775A6500DFAC11 /* Thumper Release */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--compile --embed --gem sqlite3 --gem sequel";
-			buildConfigurationList = 827CE5E21347B49D00170589 /* Build configuration list for PBXLegacyTarget "Deployment" */;
+			buildArgumentsString = "--compile --gem sqlite3 --gem sequel --embed";
+			buildConfigurationList = 8296C90F13775A6500DFAC11 /* Build configuration list for PBXLegacyTarget "Thumper Release" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/local/bin/macruby_deploy;
 			buildWorkingDirectory = "";
 			dependencies = (
-				82645E1A135C8B4B00B3CDEF /* PBXTargetDependency */,
 			);
-			name = Deployment;
+			name = "Thumper Release";
 			passBuildSettingsInEnvironment = 1;
-			productName = Deployment;
-		};
-		82AE36C9135B8DED007C39A3 /* ThumperDeployment */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 82AE36CC135B8DEE007C39A3 /* Build configuration list for PBXLegacyTarget "ThumperDeployment" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			dependencies = (
-			);
-			name = ThumperDeployment;
-			passBuildSettingsInEnvironment = 1;
-			productName = ThumperDeployment;
+			productName = "Thumper Release";
 		};
 /* End PBXLegacyTarget section */
 
@@ -308,8 +284,7 @@
 			projectRoot = "";
 			targets = (
 				827CE5C11347B49D00170589 /* Thumper */,
-				827CE5CA1347B49D00170589 /* Deployment */,
-				82AE36C9135B8DED007C39A3 /* ThumperDeployment */,
+				8296C90E13775A6500DFAC11 /* Thumper Release */,
 			);
 		};
 /* End PBXProject section */
@@ -370,14 +345,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		82645E1A135C8B4B00B3CDEF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 827CE5C11347B49D00170589 /* Thumper */;
-			targetProxy = 82645E19135C8B4B00B3CDEF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		827CE5CE1347B49D00170589 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -401,7 +368,8 @@
 		827CE5DD1347B49D00170589 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Daniel Westendorf";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -411,8 +379,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -420,13 +389,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Daniel Westendorf";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -472,23 +444,10 @@
 			};
 			name = Release;
 		};
-		827CE5E31347B49D00170589 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		827CE5E41347B49D00170589 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		82AE36CA135B8DED007C39A3 /* Debug */ = {
+		8296C91013775A6500DFAC11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -497,21 +456,20 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Thumper;
 			};
 			name = Debug;
 		};
-		82AE36CB135B8DED007C39A3 /* Release */ = {
+		8296C91113775A6500DFAC11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Thumper;
 			};
 			name = Release;
 		};
@@ -536,20 +494,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		827CE5E21347B49D00170589 /* Build configuration list for PBXLegacyTarget "Deployment" */ = {
+		8296C90F13775A6500DFAC11 /* Build configuration list for PBXLegacyTarget "Thumper Release" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				827CE5E31347B49D00170589 /* Debug */,
-				827CE5E41347B49D00170589 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		82AE36CC135B8DEE007C39A3 /* Build configuration list for PBXLegacyTarget "ThumperDeployment" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				82AE36CA135B8DED007C39A3 /* Debug */,
-				82AE36CB135B8DED007C39A3 /* Release */,
+				8296C91013775A6500DFAC11 /* Debug */,
+				8296C91113775A6500DFAC11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
