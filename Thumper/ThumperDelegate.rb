@@ -73,7 +73,7 @@ class ThumperDelegate
     end
     
     def get_server_ip
-        Dispatch::Queue.new('com.Thumper.network').async do
+       @playing_queue.async do
             subdomain = @server_url.split('.').first.split('/').last
             NSLog "Subdomain #{subdomain}"
             url = NSURL.URLWithString("http://subsonic.org/backend/redirect/get.view?redirectFrom=#{subdomain}")
@@ -95,7 +95,7 @@ class ThumperDelegate
     end
     
     def applicationDidFinishLaunching(a_notification)
-        expire = DateTime.parse('2011-05-14')
+        expire = DateTime.parse('2011-06-14')
         if DateTime.now > expire
             NSLog "Demo period has expired"
             @demo_text.stringValue = "Thank you for using Thumper, hopefully it was an enjoyable experience. The demo period for Thumper has expired. If you like the app and would like to continue using it, please visit http://www.thumperapp.com"
@@ -336,7 +336,7 @@ class ThumperDelegate
                 end
             end
         else
-            url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}&maxBitRate=128")
+            url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
             NSLog "Streaming song"
             @playing_queue.sync do 
                 @playing_song_object.stop if @playing_song_object

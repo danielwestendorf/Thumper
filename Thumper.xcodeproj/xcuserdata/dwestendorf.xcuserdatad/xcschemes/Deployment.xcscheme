@@ -2,7 +2,7 @@
 <Scheme
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "YES"
+      parallelizeBuildables = "NO"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
@@ -13,7 +13,21 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "827CE5CA1347B49D00170589"
+               BlueprintIdentifier = "827CE5C11347B49D00170589"
+               BuildableName = "Thumper.app"
+               BlueprintName = "Thumper"
+               ReferencedContainer = "container:Thumper.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "82FF087213799BB5007DD06A"
                BuildableName = "Deployment"
                BlueprintName = "Deployment"
                ReferencedContainer = "container:Thumper.xcodeproj">

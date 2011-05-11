@@ -228,19 +228,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		8296C90E13775A6500DFAC11 /* Thumper Release */ = {
+		82FF087213799BB5007DD06A /* Deployment */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--compile --gem sqlite3 --gem sequel --embed";
-			buildConfigurationList = 8296C90F13775A6500DFAC11 /* Build configuration list for PBXLegacyTarget "Thumper Release" */;
+			buildArgumentsString = "--embed --compile --gem sqlite3 --gem sequel";
+			buildConfigurationList = 82FF087313799BB5007DD06A /* Build configuration list for PBXLegacyTarget "Deployment" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/local/bin/macruby_deploy;
 			buildWorkingDirectory = "";
 			dependencies = (
 			);
-			name = "Thumper Release";
+			name = Deployment;
 			passBuildSettingsInEnvironment = 1;
-			productName = "Thumper Release";
+			productName = Deployment;
 		};
 /* End PBXLegacyTarget section */
 
@@ -284,7 +284,7 @@
 			projectRoot = "";
 			targets = (
 				827CE5C11347B49D00170589 /* Thumper */,
-				8296C90E13775A6500DFAC11 /* Thumper Release */,
+				82FF087213799BB5007DD06A /* Deployment */,
 			);
 		};
 /* End PBXProject section */
@@ -444,32 +444,35 @@
 			};
 			name = Release;
 		};
-		8296C91013775A6500DFAC11 /* Debug */ = {
+		82FF087413799BB5007DD06A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = Thumper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		8296C91113775A6500DFAC11 /* Release */ = {
+		82FF087513799BB5007DD06A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = Thumper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -494,14 +497,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8296C90F13775A6500DFAC11 /* Build configuration list for PBXLegacyTarget "Thumper Release" */ = {
+		82FF087313799BB5007DD06A /* Build configuration list for PBXLegacyTarget "Deployment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8296C91013775A6500DFAC11 /* Debug */,
-				8296C91113775A6500DFAC11 /* Release */,
+				82FF087413799BB5007DD06A /* Debug */,
+				82FF087513799BB5007DD06A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
