@@ -7,7 +7,7 @@ class Subsonic
         @parent = parent
 		@base_url = base_url
 		@auth_token = Base64.encode64("#{username}:#{password}").strip
-		@extra_params = "&f=xml&v=1.5.0&c=Thumper"
+		@extra_params = "&f=xml&v=1.4.0&c=Thumper"
 	end
 	
 	#response methods

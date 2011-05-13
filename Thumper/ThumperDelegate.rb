@@ -8,10 +8,10 @@
 
 class NSIndexSet
     def each
-        i = firstIndex
+        i = lastIndex
         while i != NSNotFound
             yield i
-            i = indexGreaterThanIndex(i)
+            i = indexLessThanIndex(i)
         end
     end
     
@@ -60,12 +60,13 @@ class ThumperDelegate
         @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url'] unless NSUserDefaults.standardUserDefaults['thumper.com.server_url'].nil?
         @username = NSUserDefaults.standardUserDefaults['thumper.com.username'] unless NSUserDefaults.standardUserDefaults['thumper.com.username'].nil?
         @password = NSUserDefaults.standardUserDefaults['thumper.com.password'] unless NSUserDefaults.standardUserDefaults['thumper.com.password'].nil?
+        @current_server_url = @server_url
         
         p = []
         String.new(@password).each_byte{|c| p << sprintf("%02X", c)} if @password
         @enc_password = 'enc:' + p.join('') if @password
         
-        get_server_ip if @server_url.scan('subsonic.org').length > 0 if @server_url
+        get_server_ip if @current_server_url.scan('subsonic.org').length > 0 if @server_url
         
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playNext:', name:"ThumperNextTrack", object:nil)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playPrevious:', name:"ThumperPreviousTrack", object:nil)
@@ -81,7 +82,7 @@ class ThumperDelegate
             response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil)).split(' ').first
             response[response.length - 1] = ""
             NSLog "Response: #{response}"
-            @server_url = response
+            @current_server_url = response
         end
     end
     
@@ -95,6 +96,9 @@ class ThumperDelegate
     end
     
     def applicationDidFinishLaunching(a_notification)
+        server_url_field.stringValue = @server_url
+        username_field.stringValue = @username
+        password_field.stringValue = @password
         expire = DateTime.parse('2011-06-14')
         if DateTime.now > expire
             NSLog "Demo period has expired"
@@ -105,7 +109,7 @@ class ThumperDelegate
             @playing_song = 0
             song = @current_playlist[0]
             if File.exists?(song[:cache_path])
-                Dispatch::Queue.new('com.Thumper.playback').sync do 
+                @playing_queue.sync do 
                     @playing_song_object = QTMovie.alloc.initWithFile(song[:cache_path], error:nil)
                 end
             else
@@ -135,6 +139,12 @@ class ThumperDelegate
     
     def applicationShouldHandleReopen(app, hasVisibleWindows: windows)
         @main_window.makeKeyAndOrderFront(nil)
+        reload_current_playlist
+        reload_songs
+        reload_artists
+        reload_albums
+        reload_playlist_songs
+        reload_playlists
         return true
     end
     
@@ -152,7 +162,30 @@ class ThumperDelegate
     end
         
     def submit_connection_info(sender)
-        server_url_field.stringValue.scan("http").length > 0 ? @server_url = server_url_field.stringValue : @server_url = "http://" + server_url_field.stringValue
+        server_url_field.stringValue.scan("http").length > 0 ? url = server_url_field.stringValue : url = "http://" + server_url_field.stringValue
+        if url != @server_url
+            @db_queue.sync do
+                DB[:songs].delete
+                DB[:artists].delete
+                DB[:albums].delete
+                DB[:playlist_songs].delete
+                current_playlist = []
+                @playing_song_object = QTMovie.alloc
+                artists = []
+                albums = []
+                songs = []
+                playlists = []
+                playlist_songs = []
+                search_results = []
+                reload_current_playlist
+                reload_albums
+                reload_artists
+                reload_playlists
+                reload_songs
+            end
+        end
+        @server_url = url
+        @current_server_url = url
         @username = username_field.stringValue
         @password = password_field.stringValue
         NSUserDefaults.standardUserDefaults['thumper.com.server_url'] = @server_url
@@ -174,7 +207,7 @@ class ThumperDelegate
     
     def setup_subsonic_conneciton
         NSLog "Connecting to subsonic"
-        @subsonic = Subsonic.new(self, server_url, username, password)
+        @subsonic = Subsonic.new(self, @current_server_url, username, password)
         @subsonic.ping(@subsonic, :ping_response)
         @subsonic.scrobble(@current_playlist[0][:id], @subsonic, :scrobble_response) if @current_playlist.length > 0
         get_artist_indexes

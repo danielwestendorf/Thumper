@@ -108,12 +108,23 @@ class ThumperCurrentPlaylistDelegate
         selected = parent.current_playlist_table_view.selectedRowIndexes
         selected.each do |index|
             if index > -1
+                if index == parent.playing_song
+                    parent.playing_song_object.stop
+                    parent.playing_song_object = QTMovie.alloc
+                    parent.playing_song = nil
+                    parent.set_playing_info
+                    parent.set_playing_cover_art
+                end
                 song_id = @parent.current_playlist[index][:id]
                 DB[:playlist_songs].filter(:song_id => song_id).delete
-                @parent.current_playlist.delete_at(index)
-                @parent.reload_current_playlist
-                @parent.play_song if selected == @parent.playing_song && @parent.current_playlist.length > 0
             end
+        end
+        selected.each do |index|
+           if index > -1
+               @parent.current_playlist.delete_at(index)
+               @parent.reload_current_playlist
+               @parent.play_song if selected == @parent.playing_song && @parent.current_playlist.length > 0
+           end
         end
         parent.current_playlist_table_view.deselectAll(nil)
     end
