@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		820ED6C81357874600C0D484 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ED6C71357874600C0D484 /* BWToolkitFramework.framework */; };
-		820ED6FD135788AA00C0D484 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 820ED6C71357874600C0D484 /* BWToolkitFramework.framework */; };
 		82441781137442DA00B0EF2F /* ThumperTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82441780137442DA00B0EF2F /* ThumperTable.rb */; };
 		826170AE134914EA0026F381 /* ThumperAlbumDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */; };
 		826170B1134922400026F381 /* ThumperSongsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170B0134922400026F381 /* ThumperSongsDelegate.rb */; };
@@ -40,6 +38,8 @@
 		82EF50A513576BA200E0C062 /* ThumperProgressIndicator.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */; };
 		82F67F1D135A15950099A6FC /* Dock.icns in Resources */ = {isa = PBXBuildFile; fileRef = 82F67F1C135A15950099A6FC /* Dock.icns */; };
 		82F67F26135B75BD0099A6FC /* Playing.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F67F23135B75BD0099A6FC /* Playing.png */; };
+		82FE78C2137DD3EB00238800 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82FE78C1137DD3EB00238800 /* BWToolkitFramework.framework */; };
+		82FE78DA137DD54300238800 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82FE78C1137DD3EB00238800 /* BWToolkitFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,14 +49,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				820ED6FD135788AA00C0D484 /* BWToolkitFramework.framework in CopyFiles */,
+				82FE78DA137DD54300238800 /* BWToolkitFramework.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		820ED6C71357874600C0D484 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/dwestendorf/Library/BWToolkit/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
 		82441780137442DA00B0EF2F /* ThumperTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperTable.rb; sourceTree = "<group>"; };
 		826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperAlbumDelegate.rb; sourceTree = "<group>"; };
 		826170B0134922400026F381 /* ThumperSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperSongsDelegate.rb; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperProgressIndicator.rb; sourceTree = "<group>"; };
 		82F67F1C135A15950099A6FC /* Dock.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Dock.icns; path = Icons/Dock.icns; sourceTree = "<group>"; };
 		82F67F23135B75BD0099A6FC /* Playing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Playing.png; path = Icons/Playing.png; sourceTree = "<group>"; };
+		82FE78C1137DD3EB00238800 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWToolkitFramework.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 			files = (
 				827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */,
 				827CE5C91347B49D00170589 /* MacRuby.framework in Frameworks */,
-				820ED6C81357874600C0D484 /* BWToolkitFramework.framework in Frameworks */,
+				82FE78C2137DD3EB00238800 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,9 +146,9 @@
 		827CE5C51347B49D00170589 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				820ED6C71357874600C0D484 /* BWToolkitFramework.framework */,
 				827CE5C61347B49D00170589 /* Cocoa.framework */,
 				827CE5C81347B49D00170589 /* MacRuby.framework */,
+				82FE78C1137DD3EB00238800 /* BWToolkitFramework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -352,7 +352,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -360,16 +360,18 @@
 		827CE5DE1347B49D00170589 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = x86_64;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Daniel Westendorf";
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = macosx;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;
@@ -383,6 +385,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Library/BWToolkit\"",
+					"\"$(SRCROOT)/../../Downloads/BWToolKit_125_without_pAPI\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -406,6 +410,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Library/BWToolkit\"",
+					"\"$(SRCROOT)/../../Downloads/BWToolKit_125_without_pAPI\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;

@@ -100,11 +100,11 @@ class ThumperDelegate
         username_field.stringValue = @username
         password_field.stringValue = @password
         expire = DateTime.parse('2011-06-14')
-        if DateTime.now > expire
-            NSLog "Demo period has expired"
-            @demo_text.stringValue = "Thank you for using Thumper, hopefully it was an enjoyable experience. The demo period for Thumper has expired. If you like the app and would like to continue using it, please visit http://www.thumperapp.com"
-            NSApp.beginSheet(demo_window, modalForWindow:main_window, modalDelegate:self, didEndSelector:nil, contextInfo:nil)
-        end
+        #if DateTime.now > expire
+        #    NSLog "Demo period has expired"
+        #    @demo_text.stringValue = "Thank you for using Thumper, hopefully it was an enjoyable experience. The demo period for Thumper has expired. If you like the app and would like to continue using it, please visit http://www.thumperapp.com"
+        #    NSApp.beginSheet(demo_window, modalForWindow:main_window, modalDelegate:self, didEndSelector:nil, contextInfo:nil)
+        #end
         if @current_playlist.length > 0
             @playing_song = 0
             song = @current_playlist[0]
@@ -209,9 +209,6 @@ class ThumperDelegate
         NSLog "Connecting to subsonic"
         @subsonic = Subsonic.new(self, @current_server_url, username, password)
         @subsonic.ping(@subsonic, :ping_response)
-        @subsonic.scrobble(@current_playlist[0][:id], @subsonic, :scrobble_response) if @current_playlist.length > 0
-        get_artist_indexes
-        get_playlists
     end
     
     def hide_connection_info(sender)

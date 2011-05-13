@@ -12,21 +12,30 @@ class Subsonic
 	
 	#response methods
 	def ping_response(xml)
-		if xml.class == NSXMLDocument
+		if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             @parent.status_label.stringValue = "Online" 
             NSLog "Online"
             @connectivity = true
-        else
-            @parent.status_label.stringValue = "Offline"
+            @parent.get_artist_indexes
+            @parent.get_playlists
+        elsif xml.class == NSXMLDocument
+            @parent.status_label.stringValue = "Offline -- #{xml.nodesForXPath('subsonic-response', error:nil).first.nodesForXPath('error', error:nil).first.attributeForName('message').stringValue}"
             connectivity = false
             NSLog "Offline"
+        elsif xml.class == Fixnum
+            case xml
+                when 401 then @parent.status_label.stringValue = "Offline -- Wrong username or password"
+                when 403 then @parent.status_label.stringValue = "Offline -- Access denied"
+                when 404 then @parent.status_label.stringValue = "Offline -- Resource not found"
+                when 500..600 then @parent.status_label.stringValue = "Offline -- Server error"
+            end
 		end
 		xml = nil
 	end
 	
 	def albums_response(xml)
         @albums = []
-        if xml.class == NSXMLDocument
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             albums = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
             albums.each do |xml_album|
                 attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir"]
@@ -69,7 +78,7 @@ class Subsonic
 	
 	def songs_response(xml)
         @songs = []
-        if xml.class == NSXMLDocument
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
             attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
                             "album", "path", "size"]
@@ -88,14 +97,15 @@ class Subsonic
         else
             NSLog "Invalid response from server"
         end
+        NSLog "Update of ablum songs complete. #{@songs.length} songs"
         xml = nil
-        if @parent.albums[@parent.albums_table_view.selectedRow][:id] == @songs.first[:album_id]
+        if @songs.length > 0 && @parent.albums[@parent.albums_table_view.selectedRow][:id] == @songs.first[:album_id]
             @parent.songs = @songs
             @parent.reload_songs
             @parent.songs_table_view.enabled = true
         end
         NSLog "Persisting songs to the DB"
-        if DB[:songs].filter(:album_id => @songs.first[:album_id]).all.count < 1
+        if @songs.length > 0 && DB[:songs].filter(:album_id => @songs.first[:album_id]).all.count < 1
             DB.transaction do
                 @songs.each {|s| DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
                                                    :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
@@ -120,7 +130,7 @@ class Subsonic
 	
 	def artists_response(xml)
         @artists = []
-		if xml.class == NSXMLDocument
+		if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             indexes = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('indexes', error:nil).first.nodesForXPath('index', error:nil)
             indexes.each do |index|
                 artists = index.nodesForXPath('artist', error:nil)
@@ -155,7 +165,7 @@ class Subsonic
 
     def playlists_response(xml)
         @playlists = []
-        if xml.class == NSXMLDocument
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             playlists = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlists', error:nil).first.nodesForXPath('playlist', error:nil)
             playlists.each do |playlist|
                 @playlists << {:name => playlist.attributeForName("name").stringValue, :id => playlist.attributeForName("id").stringValue}
@@ -169,7 +179,7 @@ class Subsonic
     
     def playlist_response(xml)
         @playlist_songs = []
-        if xml.class == NSXMLDocument
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             playlist_id = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.attributeForName("id").stringValue
             playlist_name = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.attributeForName("name").stringValue
             playlist_songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.nodesForXPath('entry', error:nil)
@@ -331,7 +341,7 @@ class Subsonic
             end
         end
         url = NSURL.URLWithString(@base_url + resource + "?" + options_string.join("&") + @extra_params)
-        request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:60.0)
+        request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:20.0)
         request.setValue("Basic #{@auth_token}", forHTTPHeaderField:"Authorization")
         return request
 	end

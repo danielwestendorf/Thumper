@@ -54,25 +54,29 @@
 		vrLen = 2028;
 		vrLoc = 9082;
 	};
-	825E30BE137757CE00B265AD /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 827CE5D21347B49D00170589 /* main.m */;
-		name = "main.m: 11";
-		rLen = 0;
-		rLoc = 161;
-		rType = 0;
-		vrLen = 270;
-		vrLoc = 0;
-	};
 	827CE5B91347B49D00170589 /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 820ED6A6135780FB00C0D484 /* Thumper */;
-		activeTarget = 827CE5C11347B49D00170589 /* Thumper */;
+		activeTarget = 82FF087213799BB5007DD06A /* Deployment */;
 		codeSenseManager = 820ED6B51357811400C0D484 /* Code sense */;
 		executables = (
 			820ED6A6135780FB00C0D484 /* Thumper */,
 		);
 		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					660,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
@@ -117,20 +121,62 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 326588346;
-			PBXWorkspaceStateSaveDate = 326588346;
+			PBXPerProjectTemplateStateSaveDate = 327012959;
+			PBXWorkspaceStateSaveDate = 327012959;
 		};
 		perUserProjectItems = {
 			820ED7F01357B06B00C0D484 /* PBXTextBookmark */ = 820ED7F01357B06B00C0D484 /* PBXTextBookmark */;
-			825E30BE137757CE00B265AD /* PBXTextBookmark */ = 825E30BE137757CE00B265AD /* PBXTextBookmark */;
-			82A59CA6135C86F10071083C /* PBXTextBookmark */ = 82A59CA6135C86F10071083C /* PBXTextBookmark */;
 			82C2C3711357EEB5004E9E03 /* PBXTextBookmark */ = 82C2C3711357EEB5004E9E03 /* PBXTextBookmark */;
 			82E574061357E6510013F5A4 /* PBXTextBookmark */ = 82E574061357E6510013F5A4 /* PBXTextBookmark */;
 			82E574071357E6510013F5A4 /* PBXTextBookmark */ = 82E574071357E6510013F5A4 /* PBXTextBookmark */;
 			82E574091357E6510013F5A4 /* PlistBookmark */ = 82E574091357E6510013F5A4 /* PlistBookmark */;
+			82FE7681137DD0C100238800 /* PBXTextBookmark */ = 82FE7681137DD0C100238800 /* PBXTextBookmark */;
+			82FE7682137DD0C100238800 /* PBXTextBookmark */ = 82FE7682137DD0C100238800 /* PBXTextBookmark */;
+			82FE7684137DD0C100238800 /* PBXTextBookmark */ = 82FE7684137DD0C100238800 /* PBXTextBookmark */;
+			82FE7686137DD0C100238800 /* PBXTextBookmark */ = 82FE7686137DD0C100238800 /* PBXTextBookmark */;
+			82FE7688137DD0C100238800 /* PBXTextBookmark */ = 82FE7688137DD0C100238800 /* PBXTextBookmark */;
+			82FE768A137DD0C100238800 /* PBXTextBookmark */ = 82FE768A137DD0C100238800 /* PBXTextBookmark */;
+			82FE768C137DD0C100238800 /* PBXTextBookmark */ = 82FE768C137DD0C100238800 /* PBXTextBookmark */;
+			82FE768E137DD0C100238800 /* PBXTextBookmark */ = 82FE768E137DD0C100238800 /* PBXTextBookmark */;
+			82FE7690137DD0C100238800 /* PBXTextBookmark */ = 82FE7690137DD0C100238800 /* PBXTextBookmark */;
+			82FE7692137DD0C100238800 /* PBXTextBookmark */ = 82FE7692137DD0C100238800 /* PBXTextBookmark */;
+			82FE7694137DD0C100238800 /* PBXTextBookmark */ = 82FE7694137DD0C100238800 /* PBXTextBookmark */;
+			82FE7696137DD0C100238800 /* PBXTextBookmark */ = 82FE7696137DD0C100238800 /* PBXTextBookmark */;
+			82FE7698137DD0C100238800 /* PBXTextBookmark */ = 82FE7698137DD0C100238800 /* PBXTextBookmark */;
+			82FE769A137DD0C100238800 /* PBXTextBookmark */ = 82FE769A137DD0C100238800 /* PBXTextBookmark */;
+			82FE769C137DD0C100238800 /* PBXTextBookmark */ = 82FE769C137DD0C100238800 /* PBXTextBookmark */;
+			82FE769E137DD0C100238800 /* PBXTextBookmark */ = 82FE769E137DD0C100238800 /* PBXTextBookmark */;
+			82FE76A0137DD0C100238800 /* PBXTextBookmark */ = 82FE76A0137DD0C100238800 /* PBXTextBookmark */;
+			82FE76A2137DD0C100238800 /* PBXTextBookmark */ = 82FE76A2137DD0C100238800 /* PBXTextBookmark */;
+			82FE76A4137DD0C100238800 /* PBXTextBookmark */ = 82FE76A4137DD0C100238800 /* PBXTextBookmark */;
+			82FE76A6137DD0C100238800 /* PBXTextBookmark */ = 82FE76A6137DD0C100238800 /* PBXTextBookmark */;
+			82FE76A8137DD0C100238800 /* PBXTextBookmark */ = 82FE76A8137DD0C100238800 /* PBXTextBookmark */;
+			82FE76AA137DD0C100238800 /* PBXTextBookmark */ = 82FE76AA137DD0C100238800 /* PBXTextBookmark */;
+			82FE76AC137DD0C100238800 /* PBXTextBookmark */ = 82FE76AC137DD0C100238800 /* PBXTextBookmark */;
+			82FE76AE137DD0C100238800 /* PBXTextBookmark */ = 82FE76AE137DD0C100238800 /* PBXTextBookmark */;
+			82FE76B0137DD0C100238800 /* PBXTextBookmark */ = 82FE76B0137DD0C100238800 /* PBXTextBookmark */;
+			82FE76B2137DD0C100238800 /* PBXTextBookmark */ = 82FE76B2137DD0C100238800 /* PBXTextBookmark */;
+			82FE76B4137DD0C100238800 /* PBXTextBookmark */ = 82FE76B4137DD0C100238800 /* PBXTextBookmark */;
+			82FE76B6137DD0C100238800 /* PBXTextBookmark */ = 82FE76B6137DD0C100238800 /* PBXTextBookmark */;
+			82FE76B8137DD0C100238800 /* PBXTextBookmark */ = 82FE76B8137DD0C100238800 /* PBXTextBookmark */;
+			82FE76BA137DD0C100238800 /* PBXTextBookmark */ = 82FE76BA137DD0C100238800 /* PBXTextBookmark */;
+			82FE76BC137DD0C100238800 /* PBXTextBookmark */ = 82FE76BC137DD0C100238800 /* PBXTextBookmark */;
+			82FE76BE137DD0C100238800 /* PBXTextBookmark */ = 82FE76BE137DD0C100238800 /* PBXTextBookmark */;
+			82FE76C0137DD0C100238800 /* PBXTextBookmark */ = 82FE76C0137DD0C100238800 /* PBXTextBookmark */;
+			82FE76C2137DD0C100238800 /* PBXTextBookmark */ = 82FE76C2137DD0C100238800 /* PBXTextBookmark */;
+			82FE76C4137DD0C100238800 /* PBXTextBookmark */ = 82FE76C4137DD0C100238800 /* PBXTextBookmark */;
+			82FE76C6137DD0C100238800 /* PBXTextBookmark */ = 82FE76C6137DD0C100238800 /* PBXTextBookmark */;
+			82FE76C8137DD0C100238800 /* PBXTextBookmark */ = 82FE76C8137DD0C100238800 /* PBXTextBookmark */;
+			82FE76CA137DD0C100238800 /* PBXTextBookmark */ = 82FE76CA137DD0C100238800 /* PBXTextBookmark */;
+			82FE76CC137DD0C100238800 /* PBXTextBookmark */ = 82FE76CC137DD0C100238800 /* PBXTextBookmark */;
+			82FE76CE137DD0C100238800 /* PBXTextBookmark */ = 82FE76CE137DD0C100238800 /* PBXTextBookmark */;
+			82FE76FA137DD1B000238800 /* PBXTextBookmark */ = 82FE76FA137DD1B000238800 /* PBXTextBookmark */;
+			82FE791D137DD78900238800 /* PBXTextBookmark */ = 82FE791D137DD78900238800 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 820ED6B41357811400C0D484 /* Source Control */;
 		userBuildSettings = {
+			OBJROOT = /Users/dwestendorf/personal/Thumper/build;
+			SYMROOT = /Users/dwestendorf/personal/Thumper/build;
 		};
 	};
 	827CE5C11347B49D00170589 /* Thumper */ = {
@@ -139,14 +185,17 @@
 			820ED6A6135780FB00C0D484 /* Thumper */,
 		);
 	};
-	827CE5CA1347B49D00170589 /* Deployment */ = {
-		activeExec = 0;
+	827CE5CD1347B49D00170589 /* Thumper-Info.plist */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 834}, {750, 558}}";
+		};
 	};
 	827CE5CF1347B49D00170589 /* en */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {950, 452}}";
+			sepNavIntBoundsRect = "{{0, 0}, {691, 430}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 45}";
+			sepNavWindowFrame = "{{15, 855}, {750, 558}}";
 		};
 	};
 	827CE5D11347B49D00170589 /* Thumper-Prefix.pch */ = {
@@ -158,8 +207,8 @@
 	};
 	827CE5D21347B49D00170589 /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {950, 433}}";
-			sepNavSelRange = "{161, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {950, 418}}";
+			sepNavSelRange = "{270, 0}";
 			sepNavVisRange = "{0, 270}";
 		};
 	};
@@ -170,16 +219,6 @@
 			sepNavVisRange = "{9082, 2028}";
 			sepNavWindowFrame = "{{15, 855}, {750, 558}}";
 		};
-	};
-	82A59CA6135C86F10071083C /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 827CE5D21347B49D00170589 /* main.m */;
-		name = "main.m: 11";
-		rLen = 0;
-		rLoc = 161;
-		rType = 0;
-		vrLen = 270;
-		vrLoc = 0;
 	};
 	82C2C3711357EEB5004E9E03 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -229,5 +268,719 @@
 			sepNavVisRange = "{0, 1039}";
 			sepNavWindowFrame = "{{14, 310}, {750, 558}}";
 		};
+	};
+	82FE7681137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 827CE5D21347B49D00170589 /* main.m */;
+		name = "main.m: 17";
+		rLen = 0;
+		rLoc = 270;
+		rType = 0;
+		vrLen = 270;
+		vrLoc = 0;
+	};
+	82FE7682137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE7683137DD0C100238800 /* BWAnchoredButton.h */;
+		name = "BWAnchoredButton.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 375;
+		vrLoc = 0;
+	};
+	82FE7683137DD0C100238800 /* BWAnchoredButton.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWAnchoredButton.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWAnchoredButton.h;
+		sourceTree = "<absolute>";
+	};
+	82FE7684137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE7685137DD0C100238800 /* BWAnchoredButtonBar.h */;
+		name = "BWAnchoredButtonBar.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 672;
+		vrLoc = 0;
+	};
+	82FE7685137DD0C100238800 /* BWAnchoredButtonBar.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWAnchoredButtonBar.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWAnchoredButtonBar.h;
+		sourceTree = "<absolute>";
+	};
+	82FE7686137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE7687137DD0C100238800 /* BWAnchoredButtonCell.h */;
+		name = "BWAnchoredButtonCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 242;
+		vrLoc = 0;
+	};
+	82FE7687137DD0C100238800 /* BWAnchoredButtonCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWAnchoredButtonCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWAnchoredButtonCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE7688137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE7689137DD0C100238800 /* BWAnchoredPopUpButton.h */;
+		name = "BWAnchoredPopUpButton.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 390;
+		vrLoc = 0;
+	};
+	82FE7689137DD0C100238800 /* BWAnchoredPopUpButton.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWAnchoredPopUpButton.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWAnchoredPopUpButton.h;
+		sourceTree = "<absolute>";
+	};
+	82FE768A137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE768B137DD0C100238800 /* BWAnchoredPopUpButtonCell.h */;
+		name = "BWAnchoredPopUpButtonCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 256;
+		vrLoc = 0;
+	};
+	82FE768B137DD0C100238800 /* BWAnchoredPopUpButtonCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWAnchoredPopUpButtonCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWAnchoredPopUpButtonCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE768C137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE768D137DD0C100238800 /* BWGradientBox.h */;
+		name = "BWGradientBox.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 679;
+		vrLoc = 0;
+	};
+	82FE768D137DD0C100238800 /* BWGradientBox.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWGradientBox.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWGradientBox.h;
+		sourceTree = "<absolute>";
+	};
+	82FE768E137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE768F137DD0C100238800 /* BWHyperlinkButton.h */;
+		name = "BWHyperlinkButton.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 302;
+		vrLoc = 0;
+	};
+	82FE768F137DD0C100238800 /* BWHyperlinkButton.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWHyperlinkButton.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWHyperlinkButton.h;
+		sourceTree = "<absolute>";
+	};
+	82FE7690137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE7691137DD0C100238800 /* BWHyperlinkButtonCell.h */;
+		name = "BWHyperlinkButtonCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 242;
+		vrLoc = 0;
+	};
+	82FE7691137DD0C100238800 /* BWHyperlinkButtonCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWHyperlinkButtonCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWHyperlinkButtonCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE7692137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE7693137DD0C100238800 /* BWInsetTextField.h */;
+		name = "BWInsetTextField.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 232;
+		vrLoc = 0;
+	};
+	82FE7693137DD0C100238800 /* BWInsetTextField.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWInsetTextField.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWInsetTextField.h;
+		sourceTree = "<absolute>";
+	};
+	82FE7694137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE7695137DD0C100238800 /* BWSelectableToolbar.h */;
+		name = "BWSelectableToolbar.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1140;
+		vrLoc = 0;
+	};
+	82FE7695137DD0C100238800 /* BWSelectableToolbar.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWSelectableToolbar.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWSelectableToolbar.h;
+		sourceTree = "<absolute>";
+	};
+	82FE7696137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE7697137DD0C100238800 /* BWSheetController.h */;
+		name = "BWSheetController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 963;
+		vrLoc = 0;
+	};
+	82FE7697137DD0C100238800 /* BWSheetController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWSheetController.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWSheetController.h;
+		sourceTree = "<absolute>";
+	};
+	82FE7698137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE7699137DD0C100238800 /* BWSplitView.h */;
+		name = "BWSplitView.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1266;
+		vrLoc = 254;
+	};
+	82FE7699137DD0C100238800 /* BWSplitView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWSplitView.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWSplitView.h;
+		sourceTree = "<absolute>";
+	};
+	82FE769A137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE769B137DD0C100238800 /* BWStyledTextField.h */;
+		name = "BWStyledTextField.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 672;
+		vrLoc = 3;
+	};
+	82FE769B137DD0C100238800 /* BWStyledTextField.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWStyledTextField.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWStyledTextField.h;
+		sourceTree = "<absolute>";
+	};
+	82FE769C137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE769D137DD0C100238800 /* BWStyledTextFieldCell.h */;
+		name = "BWStyledTextFieldCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 569;
+		vrLoc = 0;
+	};
+	82FE769D137DD0C100238800 /* BWStyledTextFieldCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWStyledTextFieldCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWStyledTextFieldCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE769E137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE769F137DD0C100238800 /* BWTexturedSlider.h */;
+		name = "BWTexturedSlider.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 495;
+		vrLoc = 0;
+	};
+	82FE769F137DD0C100238800 /* BWTexturedSlider.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTexturedSlider.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTexturedSlider.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76A0137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76A1137DD0C100238800 /* BWTexturedSliderCell.h */;
+		name = "BWTexturedSliderCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 303;
+		vrLoc = 0;
+	};
+	82FE76A1137DD0C100238800 /* BWTexturedSliderCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTexturedSliderCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTexturedSliderCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76A2137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76A3137DD0C100238800 /* BWToolbarItem.h */;
+		name = "BWToolbarItem.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 256;
+		vrLoc = 0;
+	};
+	82FE76A3137DD0C100238800 /* BWToolbarItem.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWToolbarItem.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWToolbarItem.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76A4137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76A5137DD0C100238800 /* BWToolbarShowColorsItem.h */;
+		name = "BWToolbarShowColorsItem.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 248;
+		vrLoc = 0;
+	};
+	82FE76A5137DD0C100238800 /* BWToolbarShowColorsItem.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWToolbarShowColorsItem.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWToolbarShowColorsItem.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76A6137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76A7137DD0C100238800 /* BWToolbarShowFontsItem.h */;
+		name = "BWToolbarShowFontsItem.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 247;
+		vrLoc = 0;
+	};
+	82FE76A7137DD0C100238800 /* BWToolbarShowFontsItem.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWToolbarShowFontsItem.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWToolbarShowFontsItem.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76A8137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76A9137DD0C100238800 /* BWToolkitFramework.h */;
+		name = "BWToolkitFramework.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1068;
+		vrLoc = 308;
+	};
+	82FE76A9137DD0C100238800 /* BWToolkitFramework.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWToolkitFramework.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWToolkitFramework.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76AA137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76AB137DD0C100238800 /* BWTransparentButton.h */;
+		name = "BWTransparentButton.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 235;
+		vrLoc = 0;
+	};
+	82FE76AB137DD0C100238800 /* BWTransparentButton.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentButton.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentButton.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76AC137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76AD137DD0C100238800 /* BWTransparentButtonCell.h */;
+		name = "BWTransparentButtonCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 279;
+		vrLoc = 0;
+	};
+	82FE76AD137DD0C100238800 /* BWTransparentButtonCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentButtonCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentButtonCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76AE137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76AF137DD0C100238800 /* BWTransparentCheckbox.h */;
+		name = "BWTransparentCheckbox.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 239;
+		vrLoc = 0;
+	};
+	82FE76AF137DD0C100238800 /* BWTransparentCheckbox.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentCheckbox.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentCheckbox.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76B0137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76B1137DD0C100238800 /* BWTransparentCheckboxCell.h */;
+		name = "BWTransparentCheckboxCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 285;
+		vrLoc = 0;
+	};
+	82FE76B1137DD0C100238800 /* BWTransparentCheckboxCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentCheckboxCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentCheckboxCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76B2137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76B3137DD0C100238800 /* BWTransparentPopUpButton.h */;
+		name = "BWTransparentPopUpButton.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 251;
+		vrLoc = 0;
+	};
+	82FE76B3137DD0C100238800 /* BWTransparentPopUpButton.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentPopUpButton.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentPopUpButton.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76B4137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76B5137DD0C100238800 /* BWTransparentPopUpButtonCell.h */;
+		name = "BWTransparentPopUpButtonCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 262;
+		vrLoc = 0;
+	};
+	82FE76B5137DD0C100238800 /* BWTransparentPopUpButtonCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentPopUpButtonCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentPopUpButtonCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76B6137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76B7137DD0C100238800 /* BWTransparentScrollView.h */;
+		name = "BWTransparentScrollView.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 247;
+		vrLoc = 0;
+	};
+	82FE76B7137DD0C100238800 /* BWTransparentScrollView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentScrollView.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentScrollView.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76B8137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76B9137DD0C100238800 /* BWTransparentScroller.h */;
+		name = "BWTransparentScroller.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 258;
+		vrLoc = 0;
+	};
+	82FE76B9137DD0C100238800 /* BWTransparentScroller.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentScroller.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentScroller.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76BA137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76BB137DD0C100238800 /* BWTransparentSlider.h */;
+		name = "BWTransparentSlider.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 235;
+		vrLoc = 0;
+	};
+	82FE76BB137DD0C100238800 /* BWTransparentSlider.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentSlider.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentSlider.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76BC137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76BD137DD0C100238800 /* BWTransparentSliderCell.h */;
+		name = "BWTransparentSliderCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 263;
+		vrLoc = 0;
+	};
+	82FE76BD137DD0C100238800 /* BWTransparentSliderCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentSliderCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentSliderCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76BE137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76BF137DD0C100238800 /* BWTransparentTableView.h */;
+		name = "BWTransparentTableView.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 244;
+		vrLoc = 0;
+	};
+	82FE76BF137DD0C100238800 /* BWTransparentTableView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentTableView.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentTableView.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76C0137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76C1137DD0C100238800 /* BWTransparentTableViewCell.h */;
+		name = "BWTransparentTableViewCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 284;
+		vrLoc = 0;
+	};
+	82FE76C1137DD0C100238800 /* BWTransparentTableViewCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentTableViewCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentTableViewCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76C2137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76C3137DD0C100238800 /* BWTransparentTextFieldCell.h */;
+		name = "BWTransparentTextFieldCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 256;
+		vrLoc = 0;
+	};
+	82FE76C3137DD0C100238800 /* BWTransparentTextFieldCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWTransparentTextFieldCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWTransparentTextFieldCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76C4137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76C5137DD0C100238800 /* BWUnanchoredButton.h */;
+		name = "BWUnanchoredButton.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 258;
+		vrLoc = 0;
+	};
+	82FE76C5137DD0C100238800 /* BWUnanchoredButton.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWUnanchoredButton.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWUnanchoredButton.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76C6137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76C7137DD0C100238800 /* BWUnanchoredButtonCell.h */;
+		name = "BWUnanchoredButtonCell.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 286;
+		vrLoc = 0;
+	};
+	82FE76C7137DD0C100238800 /* BWUnanchoredButtonCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BWUnanchoredButtonCell.h;
+		path = /Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/BWUnanchoredButtonCell.h;
+		sourceTree = "<absolute>";
+	};
+	82FE76C8137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76C9137DD0C100238800 /* NSApplication+BWAdditions.h */;
+		name = "NSApplication+BWAdditions.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 257;
+		vrLoc = 0;
+	};
+	82FE76C9137DD0C100238800 /* NSApplication+BWAdditions.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = "NSApplication+BWAdditions.h";
+		path = "/Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/NSApplication+BWAdditions.h";
+		sourceTree = "<absolute>";
+	};
+	82FE76CA137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76CB137DD0C100238800 /* NSColor+BWAdditions.h */;
+		name = "NSColor+BWAdditions.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 594;
+		vrLoc = 0;
+	};
+	82FE76CB137DD0C100238800 /* NSColor+BWAdditions.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = "NSColor+BWAdditions.h";
+		path = "/Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/NSColor+BWAdditions.h";
+		sourceTree = "<absolute>";
+	};
+	82FE76CC137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76CD137DD0C100238800 /* NSImage+BWAdditions.h */;
+		name = "NSImage+BWAdditions.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 499;
+		vrLoc = 0;
+	};
+	82FE76CD137DD0C100238800 /* NSImage+BWAdditions.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = "NSImage+BWAdditions.h";
+		path = "/Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/NSImage+BWAdditions.h";
+		sourceTree = "<absolute>";
+	};
+	82FE76CE137DD0C100238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76CF137DD0C100238800 /* NSView+BWAdditions.h */;
+		name = "NSView+BWAdditions.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 357;
+		vrLoc = 0;
+	};
+	82FE76CF137DD0C100238800 /* NSView+BWAdditions.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = "NSView+BWAdditions.h";
+		path = "/Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/NSView+BWAdditions.h";
+		sourceTree = "<absolute>";
+	};
+	82FE76FA137DD1B000238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE76FB137DD1B000238800 /* NSWindow+BWAdditions.h */;
+		name = "NSWindow+BWAdditions.h: 17";
+		rLen = 0;
+		rLoc = 311;
+		rType = 0;
+		vrLen = 311;
+		vrLoc = 0;
+	};
+	82FE76FB137DD1B000238800 /* NSWindow+BWAdditions.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = "NSWindow+BWAdditions.h";
+		path = "/Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/NSWindow+BWAdditions.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {950, 412}}";
+			sepNavSelRange = "{311, 0}";
+			sepNavVisRange = "{0, 311}";
+		};
+	};
+	82FE791D137DD78900238800 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 82FE791E137DD78900238800 /* NSWindow+BWAdditions.h */;
+		name = "NSWindow+BWAdditions.h: 17";
+		rLen = 0;
+		rLoc = 311;
+		rType = 0;
+		vrLen = 311;
+		vrLoc = 0;
+	};
+	82FE791E137DD78900238800 /* NSWindow+BWAdditions.h */ = {
+		isa = PBXFileReference;
+		name = "NSWindow+BWAdditions.h";
+		path = "/Users/dwestendorf/Downloads/BWToolKit_125_without_pAPI/BWToolkitFramework.framework/Headers/NSWindow+BWAdditions.h";
+		sourceTree = "<absolute>";
+	};
+	82FF087213799BB5007DD06A /* Deployment */ = {
+		activeExec = 0;
 	};
 }
