@@ -26,7 +26,7 @@ class ThumperArtistIndexDelegate
         parent.songs = []
         parent.albums_table_view.enabled = false
         parent.songs_table_view.enabled = false
-        parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id]) if parent.artist_indexes_table_view.selectedRow && parent.artists.length > 0
+        parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id]) if parent.artist_indexes_table_view.selectedRow && parent.artists.length > 0 && parent.artist_indexes_table_view.selectedRow > -1
         NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}, #{parent.artists[parent.artist_indexes_table_view.selectedRow][:id]}"
     end
     

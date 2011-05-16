@@ -140,10 +140,7 @@ class ThumperDelegate
     def applicationShouldHandleReopen(app, hasVisibleWindows: windows)
         @main_window.makeKeyAndOrderFront(nil)
         reload_current_playlist
-        reload_songs
         reload_artists
-        reload_albums
-        reload_playlist_songs
         reload_playlists
         return true
     end
@@ -241,6 +238,7 @@ class ThumperDelegate
         @artists.count != 1 ? word = " Artists" : word = " Artist"
         @artist_count_label.stringValue = @artists.count.to_s + word
         artist_indexes_table_view.reloadData
+        artist_indexes_table_view.deselectAll(nil)
         reload_albums
     end
     
@@ -249,6 +247,7 @@ class ThumperDelegate
         @album_count_label.stringValue = @albums.count.to_s + word
         @albums_table_view.reloadData
         @albums_table_view.enabled = true
+        @albums_table_view.deselectAll(nil)
         reload_songs
     end
     
@@ -256,18 +255,21 @@ class ThumperDelegate
         @songs.count != 1 ? word = " Songs" : word = " Song"
         @songs_count_label.stringValue = @songs.count.to_s + word
         @songs_table_view.reloadData
+        @songs_table_view.deselectAll(nil)
         @songs_table_view.enabled = true
     end
     
     def reload_playlists
         @playlists.length != 1? word = " Playlists" : word = " Playlist" 
         @playlists_count_label.stringValue = @playlists.length.to_s + word
+        @playlists_table_view.deselectAll(nil)
         @playlists_table_view.reloadData
     end
     
     def reload_playlist_songs
         @playlist_songs.length != 1? word = " Songs" : word = " Song" 
         @playlist_songs_count_label.stringValue = @playlist_songs.length.to_s + word
+        @playlist_songs_table_view.deselectAll(nil)
         @playlist_songs_table_view.reloadData
         @playlist_songs_table_view.enabled = true
     end
