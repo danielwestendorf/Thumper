@@ -21,14 +21,14 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1456"/>
-			<integer value="372"/>
-			<integer value="1642"/>
-			<integer value="581"/>
-			<integer value="1826"/>
+			<integer value="795"/>
 			<integer value="1668"/>
 			<integer value="1630"/>
 			<integer value="1428"/>
+			<integer value="1456"/>
+			<integer value="1826"/>
+			<integer value="1642"/>
+			<integer value="581"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4053,7 +4053,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="491149895">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">7C2DCBE5-CDF5-4A84-8D0A-D5B1B3DA7B99</characters>
+									<characters key="NS.bytes">EFCC909C-2B22-4C86-8AE0-CAB4B7FF12C0</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Cache</string>
 								<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4076,7 +4076,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="721798759">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">07E9EC78-134B-4ED2-BD00-D04B69E3E5D5</characters>
+									<characters key="NS.bytes">B7CBED17-C9CF-406F-87C7-19ECFB1A7BF3</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Subsonic</string>
 								<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -4243,7 +4243,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="752993988">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">4563E998-D700-4662-BAAF-DCCB02356148</characters>
+										<characters key="NS.bytes">083FD895-7070-4E1F-B825-7AC3633188C4</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Cache</string>
 									<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4263,7 +4263,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="33496469">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">6919F590-E0B5-4B44-A0D7-B8248B61463D</characters>
+										<characters key="NS.bytes">6FA9A88F-62EE-4C67-8D61-1B0D8AA01DF4</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Subsonic</string>
 									<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -6149,6 +6149,30 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<reference key="destination" ref="423962958"/>
 					</object>
 					<int key="connectionID">1859</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegator</string>
+						<reference key="source" ref="496952475"/>
+						<reference key="destination" ref="35733524"/>
+					</object>
+					<int key="connectionID">1866</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegator</string>
+						<reference key="source" ref="677296753"/>
+						<reference key="destination" ref="330452284"/>
+					</object>
+					<int key="connectionID">1867</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegator</string>
+						<reference key="source" ref="304243154"/>
+						<reference key="destination" ref="68233573"/>
+					</object>
+					<int key="connectionID">1868</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -8898,6 +8922,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>1342.IBViewBoundsToFrameTransform</string>
 					<string>1343.IBPluginDependency</string>
 					<string>1344.IBPluginDependency</string>
+					<string>1345.CustomClassName</string>
 					<string>1345.IBPluginDependency</string>
 					<string>1347.IBPluginDependency</string>
 					<string>1348.IBPluginDependency</string>
@@ -9274,6 +9299,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>682.IBPluginDependency</string>
 					<string>683.IBPluginDependency</string>
 					<string>685.IBPluginDependency</string>
+					<string>686.CustomClassName</string>
 					<string>686.IBPluginDependency</string>
 					<string>687.IBPluginDependency</string>
 					<string>688.IBPluginDependency</string>
@@ -9356,6 +9382,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>941.IBViewBoundsToFrameTransform</string>
 					<string>942.IBPluginDependency</string>
 					<string>944.IBPluginDependency</string>
+					<string>945.CustomClassName</string>
 					<string>945.IBPluginDependency</string>
 					<string>946.IBPluginDependency</string>
 					<string>947.IBPluginDependency</string>
@@ -9474,6 +9501,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>ThumperTable</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -10036,6 +10064,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>ThumperTable</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -10173,6 +10202,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>ThumperTable</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -10234,7 +10264,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1865</int>
+			<int key="maxID">1868</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

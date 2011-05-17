@@ -36,6 +36,10 @@ class ThumperPlaylistsDelegate
         confirm_delete
     end
     
+    def select_all
+        return nil
+    end
+    
     def pressed_delete
         confirm_delete
     end

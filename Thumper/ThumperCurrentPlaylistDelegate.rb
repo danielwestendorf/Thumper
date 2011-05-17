@@ -160,6 +160,12 @@ class ThumperCurrentPlaylistDelegate
         NSLog "Playlist saved"
     end
     
+    def select_all
+        range = NSMakeRange(0, parent.current_playlist.length)
+        indexes = NSIndexSet.alloc.initWithIndexesInRange(range)
+        parent.current_playlist_table_view.selectRowIndexes(indexes, byExtendingSelection:true)
+    end
+    
     def sort_by_year(sender)
         sort_by_key(:year, :to_i) 
     end

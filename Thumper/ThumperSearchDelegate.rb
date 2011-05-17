@@ -70,8 +70,18 @@ class ThumperSearchDelegate
         rowIndexes.each do |row|
             songs_array << @search[row]
         end
-        pboard.setString(songs_array.to_yaml, forType:"Songs")
+        pboard.setString(songs_array.reverse.to_yaml, forType:"Songs")
         return true
+    end
+    
+    def select_all
+        range = NSMakeRange(0, parent.search_results.length)
+        indexes = NSIndexSet.alloc.initWithIndexesInRange(range)
+        parent.search_table_view.selectRowIndexes(indexes, byExtendingSelection:true)
+    end
+    
+    def pressed_delete
+        return nil
     end
     
     def search_response(xml)
@@ -105,7 +115,7 @@ class ThumperSearchDelegate
                                       :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
                                       :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
                                       :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
-                    NSLog "Added songs: #{s[:title]}"
+                    NSLog "Persisted songs: #{s[:title]}"
                 end
             end
         else

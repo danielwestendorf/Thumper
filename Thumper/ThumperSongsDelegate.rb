@@ -29,7 +29,7 @@ class ThumperSongsDelegate
         rowIndexes.each do |row|
             songs_array << parent.songs[row]
         end
-        pboard.setString(songs_array.to_yaml, forType:"Songs")
+        pboard.setString(songs_array.reverse.to_yaml, forType:"Songs")
         return true
     end
     
@@ -41,6 +41,16 @@ class ThumperSongsDelegate
         nil
     end
     
+    def select_all
+        range = NSMakeRange(0, parent.songs.length)
+        indexes = NSIndexSet.alloc.initWithIndexesInRange(range)
+        parent.songs_table_view.selectRowIndexes(indexes, byExtendingSelection:true)
+    end
+    
+    def pressed_delete
+        return nil
+    end
+    
     def update_songs(sender)
         parent.get_album_songs(parent.albums[parent.albums_table_view.selectedRow][:id]) if parent.albums.length > 0
     end
@@ -48,7 +58,7 @@ class ThumperSongsDelegate
     def add_selected_to_playlist(sender)
         rows = parent.songs_table_view.selectedRowIndexes
         if rows.count > 0
-            rows.each do |row|
+            rows.reverse.each do |row|
                 parent.add_to_current_playlist(parent.songs[row], false)
             end
         else
