@@ -21,14 +21,14 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="581"/>
-			<integer value="1630"/>
-			<integer value="1456"/>
 			<integer value="1428"/>
 			<integer value="1668"/>
-			<integer value="1826"/>
-			<integer value="795"/>
+			<integer value="1630"/>
 			<integer value="1642"/>
+			<integer value="795"/>
+			<integer value="1456"/>
+			<integer value="1826"/>
+			<integer value="581"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3822,7 +3822,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 			<object class="NSWindowTemplate" id="699215506">
 				<int key="NSWindowStyleMask">3</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{220, 1061}, {475, 172}}</string>
+				<string key="NSWindowRect">{{220, 1037}, {470, 196}}</string>
 				<int key="NSWTFlags">1685585920</int>
 				<string key="NSWindowTitle">About Thumper</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -3848,7 +3848,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 									<string>NeXT TIFF v4.0 pasteboard type</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{20, 72}, {80, 80}}</string>
+							<string key="NSFrame">{{20, 96}, {80, 80}}</string>
 							<reference key="NSSuperview" ref="943024229"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="742149875">
@@ -3868,7 +3868,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSTextField" id="773744208">
 							<reference key="NSNextResponder" ref="943024229"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{105, 135}, {348, 17}}</string>
+							<string key="NSFrame">{{105, 159}, {348, 17}}</string>
 							<reference key="NSSuperview" ref="943024229"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="1053778599">
@@ -3884,7 +3884,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSTextField" id="949611173">
 							<reference key="NSNextResponder" ref="943024229"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{105, 110}, {348, 17}}</string>
+							<string key="NSFrame">{{105, 134}, {348, 17}}</string>
 							<reference key="NSSuperview" ref="943024229"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="660093086">
@@ -3900,7 +3900,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSTextField" id="670262986">
 							<reference key="NSNextResponder" ref="943024229"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{105, 85}, {148, 17}}</string>
+							<string key="NSFrame">{{105, 109}, {148, 17}}</string>
 							<reference key="NSSuperview" ref="943024229"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="741318771">
@@ -3916,7 +3916,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSTextField" id="801602156">
 							<reference key="NSNextResponder" ref="943024229"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{-3, 45}, {481, 17}}</string>
+							<string key="NSFrame">{{-3, 69}, {481, 17}}</string>
 							<reference key="NSSuperview" ref="943024229"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="343636422">
@@ -3932,7 +3932,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSTextField" id="44004916">
 							<reference key="NSNextResponder" ref="943024229"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{108, 20}, {62, 17}}</string>
+							<string key="NSFrame">{{108, 44}, {62, 17}}</string>
 							<reference key="NSSuperview" ref="943024229"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="961498423">
@@ -3948,7 +3948,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="BWHyperlinkButton" id="164631329">
 							<reference key="NSNextResponder" ref="943024229"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{252, 82}, {198, 23}}</string>
+							<string key="NSFrame">{{252, 106}, {198, 23}}</string>
 							<reference key="NSSuperview" ref="943024229"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWHyperlinkButtonCell" key="NSCell" id="237704222">
@@ -3971,7 +3971,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="BWHyperlinkButton" id="913089548">
 							<reference key="NSNextResponder" ref="943024229"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{175, 17}, {207, 23}}</string>
+							<string key="NSFrame">{{175, 41}, {207, 23}}</string>
 							<reference key="NSSuperview" ref="943024229"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWHyperlinkButtonCell" key="NSCell" id="303238661">
@@ -3991,8 +3991,24 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<string key="BWHBUrlString">http://www.thumperapp.com</string>
 						</object>
+						<object class="NSTextField" id="202715444">
+							<reference key="NSNextResponder" ref="943024229"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{17, 20}, {436, 17}}</string>
+							<reference key="NSSuperview" ref="943024229"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="206959277">
+								<int key="NSCellFlags">70385217</int>
+								<int key="NSCellFlags2">138413056</int>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="349965944"/>
+								<reference key="NSControlView" ref="202715444"/>
+								<reference key="NSBackgroundColor" ref="752777830"/>
+								<reference key="NSTextColor" ref="146750716"/>
+							</object>
+						</object>
 					</object>
-					<string key="NSFrameSize">{475, 172}</string>
+					<string key="NSFrameSize">{470, 196}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
@@ -4053,7 +4069,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="491149895">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">0DE822C3-5B90-4F91-B2E0-4AAF05E82D0E</characters>
+									<characters key="NS.bytes">18857FC3-ACA0-42B1-BC84-BF3D0EB63FDB</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Cache</string>
 								<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4076,7 +4092,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="721798759">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">B97CB260-02E0-47D9-AF47-67293AC33A9C</characters>
+									<characters key="NS.bytes">553A883E-8B01-4A2D-8AB6-12E7696D5C89</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Subsonic</string>
 								<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -4243,7 +4259,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="752993988">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">E275E84A-E0D3-4FAC-AD3A-2BF0EF77CCD9</characters>
+										<characters key="NS.bytes">39C48608-67B6-4A7C-8FD1-0AC97E2DD060</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Cache</string>
 									<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4263,7 +4279,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="33496469">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">BECCC0A9-A54C-49FE-977F-94A9282C48AE</characters>
+										<characters key="NS.bytes">263181DB-3185-4FAA-9494-0A40F6FD3C8D</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Subsonic</string>
 									<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -6174,6 +6190,14 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					</object>
 					<int key="connectionID">1868</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">app_version</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="202715444"/>
+					</object>
+					<int key="connectionID">1871</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -7978,6 +8002,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<reference ref="801602156"/>
 							<reference ref="44004916"/>
 							<reference ref="913089548"/>
+							<reference ref="202715444"/>
 						</object>
 						<reference key="parent" ref="699215506"/>
 					</object>
@@ -8877,6 +8902,20 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<reference key="object" ref="303238661"/>
 						<reference key="parent" ref="913089548"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1869</int>
+						<reference key="object" ref="202715444"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="206959277"/>
+						</object>
+						<reference key="parent" ref="943024229"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1870</int>
+						<reference key="object" ref="206959277"/>
+						<reference key="parent" ref="202715444"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -9235,6 +9274,9 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>1864.IBPluginDependency</string>
 					<string>1864.IBViewBoundsToFrameTransform</string>
 					<string>1865.IBPluginDependency</string>
+					<string>1869.IBPluginDependency</string>
+					<string>1869.IBViewBoundsToFrameTransform</string>
+					<string>1870.IBPluginDependency</string>
 					<string>23.IBPluginDependency</string>
 					<string>23.ImportedFromIB2</string>
 					<string>236.IBPluginDependency</string>
@@ -9696,9 +9738,9 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>{{1025, 217}, {475, 172}}</string>
+					<string>{{1025, 193}, {470, 196}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1025, 217}, {475, 172}}</string>
+					<string>{{1025, 193}, {470, 196}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -9712,17 +9754,17 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABC0gAAwq4AAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABC0gAAwvgAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABC/AAAwnAAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAADBsAAAwsYAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABC0gAAwgwAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABC2AAAwmwAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -10001,6 +10043,11 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					</object>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDTgAAwgwAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -10264,10 +10311,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1868</int>
+			<int key="maxID">1871</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
+			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
 					<string key="className">ThumperAlbumDelegate</string>
@@ -10295,8 +10342,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperAlbumDelegate.rb</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperAlbumDelegate.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10367,8 +10414,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperArtistIndexDelegate.rb</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperArtistIndexDelegate.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10509,8 +10556,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperCurrentPlaylistDelegate.rb</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperCurrentPlaylistDelegate.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10664,6 +10711,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>albums_progress</string>
 							<string>albums_table_view</string>
 							<string>all_artists</string>
+							<string>app_version</string>
 							<string>artist_count_label</string>
 							<string>artist_indexes_table_view</string>
 							<string>artist_reload_button</string>
@@ -10675,6 +10723,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>db_queue</string>
 							<string>demo_text</string>
 							<string>demo_window</string>
+							<string>downloading_song</string>
 							<string>format_time</string>
 							<string>main_window</string>
 							<string>mute_menu_item</string>
@@ -10784,6 +10833,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -10797,6 +10848,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>albums_progress</string>
 							<string>albums_table_view</string>
 							<string>all_artists</string>
+							<string>app_version</string>
 							<string>artist_count_label</string>
 							<string>artist_indexes_table_view</string>
 							<string>artist_reload_button</string>
@@ -10808,6 +10860,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>db_queue</string>
 							<string>demo_text</string>
 							<string>demo_window</string>
+							<string>downloading_song</string>
 							<string>format_time</string>
 							<string>main_window</string>
 							<string>mute_menu_item</string>
@@ -10884,6 +10937,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">app_version</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">artist_count_label</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -10925,6 +10982,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">demo_window</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">downloading_song</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -11106,8 +11167,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperDelegate.rb</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperDelegate.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -11164,8 +11225,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperPlaylistSongsDelegate.rb</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperPlaylistSongsDelegate.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -11250,8 +11311,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperPlaylistsDelegate.rb</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperPlaylistsDelegate.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -11290,8 +11351,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperProgressIndicator.rb</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperProgressIndicator.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -11390,8 +11451,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperSearchDelegate.rb</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperSearchDelegate.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -11448,8 +11509,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperSongsDelegate.rb</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperSongsDelegate.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -11467,104 +11528,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Thumper/ThumperTable.rb</string>
-					</object>
-				</object>
-			</object>
-			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBPartialClassDescription">
-					<string key="className">BWAnchoredButton</string>
-					<string key="superclassName">NSButton</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/BWAnchoredButton.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">BWAnchoredButtonBar</string>
-					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/BWAnchoredButtonBar.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">BWAnchoredButtonCell</string>
-					<string key="superclassName">NSButtonCell</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/BWAnchoredButtonCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">BWHyperlinkButton</string>
-					<string key="superclassName">NSButton</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/BWHyperlinkButton.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">BWHyperlinkButtonCell</string>
-					<string key="superclassName">NSButtonCell</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/BWHyperlinkButtonCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">BWSelectableToolbar</string>
-					<string key="superclassName">NSToolbar</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/BWSelectableToolbar.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">BWTexturedSlider</string>
-					<string key="superclassName">NSSlider</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/BWTexturedSlider.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">BWTexturedSliderCell</string>
-					<string key="superclassName">NSSliderCell</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/BWTexturedSliderCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">BWToolbarItem</string>
-					<string key="superclassName">NSToolbarItem</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/BWToolbarItem.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSApplication</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/NSApplication+BWAdditions.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/NSView+BWAdditions.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSWindow</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BWToolkitFramework.framework/Headers/NSWindow+BWAdditions.h</string>
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../ThumperTable.rb</string>
 					</object>
 				</object>
 			</object>

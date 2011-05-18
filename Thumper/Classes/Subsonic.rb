@@ -308,9 +308,10 @@ class Subsonic
     end
     
     def download_media(path, id, delegate, method)
+        @parent.downloading_song.cancel if @parent.downloading_song
         NSLog "Attempting to download #{id}"
         request = build_request('/rest/download.view', {:id => id})
-        NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, id, delegate, method))
+        @parent.downloading_song = NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, id, delegate, method))
     end
     
     def scrobble(id, delegate, method)

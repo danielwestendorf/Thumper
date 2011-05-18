@@ -157,10 +157,13 @@ class ThumperCurrentPlaylistDelegate
     end
     
     def save_playlist_response(xml)
+        g = Growl.new("Thumper", ["notification"])
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             NSLog "Playlist saved successfully"
+            g.notify("notification", "Playlist Saved", "The playlist was saved to the Subsonic Server") 
         else
             NSLog "Error saving playlist #{xml}"
+            g.notify("notification", "Error Saving Playlist", "The playlist was not saved to the Subsonic Server")
         end
     end
     

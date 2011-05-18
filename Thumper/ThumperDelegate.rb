@@ -18,6 +18,7 @@ class NSIndexSet
     include Enumerable
 end
 
+
 class ThumperDelegate
     attr_accessor :main_window, :status_label, :subsonic, :format_time
     attr_accessor :server_info_window, :server_url_field, :username_field, :password_field
@@ -36,9 +37,10 @@ class ThumperDelegate
     attr_accessor :demo_window, :demo_text
     attr_accessor :about_window
     attr_accessor :search_results
+    attr_accessor :downloading_song
+    attr_accessor :app_version
     
     def initialize
-        @song_growler = Growler.new('Thumper', 'notification')
         @artists = []
         @albums = []
         @songs = []
@@ -100,6 +102,8 @@ class ThumperDelegate
         server_url_field.stringValue = @server_url
         username_field.stringValue = @username
         password_field.stringValue = @password
+        
+        @app_version.stringValue = "Version: #{NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleVersion)}"
         
         #expire = DateTime.parse('2011-06-14')
         #if DateTime.now > expire
@@ -355,6 +359,7 @@ class ThumperDelegate
         @playing_song = 0 if @playing_song.nil? 
         song = @current_playlist[@playing_song]
         NSLog "#{song}"
+        growl_song
         if File.exists?(song[:cache_path])
             NSLog "Playing song from cache"
             @playing_song_object_progress.stopAnimation(nil)
@@ -362,11 +367,7 @@ class ThumperDelegate
                 @playing_song_object.stop if @playing_song_object
                 @playing_song_object = QTMovie.alloc.initWithFile(song[:cache_path], error:nil)
                 if @current_playlist.length >= @playing_song + 2
-                    next_song = @current_playlist[@playing_song + 1]
-                    unless File.exists?(next_song[:cache_path])
-                        @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)
-                        get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
-                    end
+                    download_next
                 end
             end
         else
@@ -374,10 +375,12 @@ class ThumperDelegate
             NSLog "Streaming song"
             @playing_queue.sync do 
                 @playing_song_object.stop if @playing_song_object
+                @downloading_song.cancel if @downloading_song
                 @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
                 @playing_song_object_progress.startAnimation(nil)
             end
         end
+        
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
         @playing_song_object.setVolume(@volume)
@@ -416,6 +419,17 @@ class ThumperDelegate
         else
             @playing_cover_art.setImage(NSImage.imageNamed("album"))
         end
+    end
+    
+    def growl_song
+        song_attributes = current_playlist[playing_song]
+        if File.exists?(song_attributes[:cover_art])
+            image = NSImage.alloc.initWithContentsOfFile(song_attributes[:cover_art])
+            else
+            image = NSImage.imageNamed("album")
+        end
+        g = Growl.new("Thumper", ["notification"], image)
+        g.notify("notification", "#{song_attributes[:title]}", "Artist: #{song_attributes[:artist]}\nAlbum: #{song_attributes[:album]}\nLength: #{song_attributes[:duration]}") 
     end
     
     def play_toggle_button(sender)
@@ -592,15 +606,23 @@ class ThumperDelegate
             end
             result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:nil) unless File.exists?(path)
             if @current_playlist.length >= @playing_song + 2
-                next_song = @current_playlist[@playing_song + 1]
-                @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response)
-                get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
+                download_next
             end
 		elsif @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 20000
-            #song_attributes = current_playlist[playing_song]
-            #@song_growler.notify('notification', "Now Playing: #{song_attributes[:title]}", "Artist: #{song_attributes[:artist]}\nAlbum: #{song_attributes[:album]}")
 			#ready to play
             set_playing_cover_art
+        end
+    end
+    
+    def download_next
+        next_song = @current_playlist[@playing_song + 1]
+        if !File.exists?(next_song[:cache_path])
+            g = Growl.new("Thumper", ["notification"])
+            g.notify("notification", "Downloading next song...", "Attempting to download the next song in the current playlist.", {:NotificationPriority => -1})
+            @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response) 
+        end
+        if !File.exists?(next_song[:cover_art])
+            get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
         end
     end
     
