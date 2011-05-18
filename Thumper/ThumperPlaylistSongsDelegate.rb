@@ -56,10 +56,12 @@ class ThumperPlaylistSongsDelegate
     
     def add_song_to_current(sender)
         rows = parent.playlist_songs_table_view.selectedRowIndexes
+        row_collection = []
         if rows.count > 0
-            rows.reverse.each do |row|
-                parent.add_to_current_playlist(parent.playlist_songs[row], false) 
+            rows.each do |row|
+                row_collection << row
             end
+            row_collection.reverse.each {|r| parent.add_to_current_playlist(parent.playlist_songs[r], false) }
         else
             parent.playlist_songs.each do |song|
                 parent.add_to_current_playlist(song, false)

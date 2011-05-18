@@ -157,7 +157,11 @@ class ThumperCurrentPlaylistDelegate
     end
     
     def save_playlist_response(xml)
-        NSLog "Playlist saved"
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
+            NSLog "Playlist saved successfully"
+        else
+            NSLog "Error saving playlist #{xml}"
+        end
     end
     
     def select_all

@@ -21,14 +21,14 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="795"/>
-			<integer value="1668"/>
-			<integer value="1630"/>
-			<integer value="1428"/>
-			<integer value="1456"/>
-			<integer value="1826"/>
-			<integer value="1642"/>
 			<integer value="581"/>
+			<integer value="1630"/>
+			<integer value="1456"/>
+			<integer value="1428"/>
+			<integer value="1668"/>
+			<integer value="1826"/>
+			<integer value="795"/>
+			<integer value="1642"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2954,7 +2954,7 @@
 																				<reference key="NSBackgroundColor" ref="893087359"/>
 																				<reference key="NSGridColor" ref="272653562"/>
 																				<double key="NSRowHeight">17</double>
-																				<int key="NSTvFlags">314605568</int>
+																				<int key="NSTvFlags">448823296</int>
 																				<reference key="NSDelegate"/>
 																				<reference key="NSDataSource"/>
 																				<int key="NSColumnAutoresizingStyle">1</int>
@@ -4053,7 +4053,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="491149895">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">EFCC909C-2B22-4C86-8AE0-CAB4B7FF12C0</characters>
+									<characters key="NS.bytes">0DE822C3-5B90-4F91-B2E0-4AAF05E82D0E</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Cache</string>
 								<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4076,7 +4076,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="721798759">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">B7CBED17-C9CF-406F-87C7-19ECFB1A7BF3</characters>
+									<characters key="NS.bytes">B97CB260-02E0-47D9-AF47-67293AC33A9C</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Subsonic</string>
 								<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -4243,7 +4243,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="752993988">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">083FD895-7070-4E1F-B825-7AC3633188C4</characters>
+										<characters key="NS.bytes">E275E84A-E0D3-4FAC-AD3A-2BF0EF77CCD9</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Cache</string>
 									<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4263,7 +4263,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="33496469">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">6FA9A88F-62EE-4C67-8D61-1B0D8AA01DF4</characters>
+										<characters key="NS.bytes">BECCC0A9-A54C-49FE-977F-94A9282C48AE</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Subsonic</string>
 									<string key="NSToolbarItemPaletteLabel">Subsonic</string>

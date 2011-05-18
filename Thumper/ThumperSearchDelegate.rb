@@ -45,11 +45,12 @@ class ThumperSearchDelegate
     
     def add_selected(sender)
         rows = search_table_view.selectedRowIndexes
+        row_collection = []
         if rows.count > 0
             rows.each do |row|
-                song = @parent.search_results[row]
-                @parent.add_to_current_playlist(song, false) 
+                row_collection << row
             end
+            row_collection.reverse.each {|r| @parent.add_to_current_playlist(@parent.search_results[r], false)  }
         else
             @search.each do |song|
                 parent.add_to_current_playlist(song, false)
@@ -77,7 +78,7 @@ class ThumperSearchDelegate
     def select_all
         range = NSMakeRange(0, parent.search_results.length)
         indexes = NSIndexSet.alloc.initWithIndexesInRange(range)
-        parent.search_table_view.selectRowIndexes(indexes, byExtendingSelection:true)
+        @search_table_view.selectRowIndexes(indexes, byExtendingSelection:true)
     end
     
     def pressed_delete
