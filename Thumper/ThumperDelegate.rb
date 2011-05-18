@@ -38,6 +38,7 @@ class ThumperDelegate
     attr_accessor :search_results
     
     def initialize
+        @song_growler = Growler.new('Thumper', 'notification')
         @artists = []
         @albums = []
         @songs = []
@@ -99,7 +100,8 @@ class ThumperDelegate
         server_url_field.stringValue = @server_url
         username_field.stringValue = @username
         password_field.stringValue = @password
-        expire = DateTime.parse('2011-06-14')
+        
+        #expire = DateTime.parse('2011-06-14')
         #if DateTime.now > expire
         #    NSLog "Demo period has expired"
         #    @demo_text.stringValue = "Thank you for using Thumper, hopefully it was an enjoyable experience. The demo period for Thumper has expired. If you like the app and would like to continue using it, please visit http://www.thumperapp.com"
@@ -595,6 +597,8 @@ class ThumperDelegate
                 get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
             end
 		elsif @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 20000
+            #song_attributes = current_playlist[playing_song]
+            #@song_growler.notify('notification', "Now Playing: #{song_attributes[:title]}", "Artist: #{song_attributes[:artist]}\nAlbum: #{song_attributes[:album]}")
 			#ready to play
             set_playing_cover_art
         end

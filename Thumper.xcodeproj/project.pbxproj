@@ -56,6 +56,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8217F2A7138455B700DE456C /* Growl.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Growl.rb; sourceTree = "<group>"; };
 		82441780137442DA00B0EF2F /* ThumperTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperTable.rb; sourceTree = "<group>"; };
 		826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperAlbumDelegate.rb; sourceTree = "<group>"; };
 		826170B0134922400026F381 /* ThumperSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperSongsDelegate.rb; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
+				8217F2A7138455B700DE456C /* Growl.rb */,
 				82441780137442DA00B0EF2F /* ThumperTable.rb */,
 				82645E21135CE8CF00B3CDEF /* ThumperSearchDelegate.rb */,
 				82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */,
