@@ -20,6 +20,8 @@ class ThumperAlbumDelegate
                 image = parent.albums[row].valueForKey(column.identifier.to_sym)
                 return NSImage.alloc.initWithContentsOfFile(image) if File.exists?(image)
                 return NSImage.imageNamed("album") 
+            elsif column.identifier.to_s == "action"
+                
             end
             return parent.albums[row].valueForKey(column.identifier.to_sym)
         end
@@ -36,5 +38,12 @@ class ThumperAlbumDelegate
     
     def update_albums(sender)
         parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id])
+    end
+    
+    def add_album_to_playlist(sender)
+        parent.songs.each do |song|
+            NSLog "#{song}"
+            parent.add_to_current_playlist(song, true)
+        end
     end
 end

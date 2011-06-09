@@ -33,12 +33,13 @@ class ThumperDelegate
     attr_accessor :playlists_progress, :playlist_songs_progress
 	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info, :stop_button
     attr_accessor :playing_queue, :db_queue
-    attr_accessor :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item
+    attr_accessor :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item, :shuffle_menu_item
     attr_accessor :demo_window, :demo_text
     attr_accessor :about_window
     attr_accessor :search_results
     attr_accessor :downloading_song
     attr_accessor :app_version
+    attr_accessor :shuffle_button, :repeat_all_button
     
     def initialize
         @artists = []
@@ -378,6 +379,7 @@ class ThumperDelegate
                 @downloading_song.cancel if @downloading_song
                 @playing_song_object = QTMovie.alloc.initWithURL(url, error:nil)
                 @playing_song_object_progress.startAnimation(nil)
+                @playing_song_object_progress.setHidden(false)
             end
         end
         
@@ -512,24 +514,29 @@ class ThumperDelegate
             @repeat_all = false
             sender.setState(NSOnState)
             @repeat_all_menu_item.setState(NSOffState)
+            @repeat_all_button.setState(NSOffState)
         end
     end
     
     def repeat_all(sender)
         if @repeat_all == true 
             @repeat_all = false
-            sender.setState(NSOffState)
+            @repeat_all_menu_item.setState(NSOffState)
+            @repeat_all_button.setState(NSOffState)
         else
             @repeat_all = true 
             @repeat_single = false
             sender.setState(NSOnState)
             @repeat_one_menu_item.setState(NSOffState)
+            @repeat_all_menu_item.setState(NSOnState)
+            @repeat_all_button.setState(NSOnState)
         end
     end
     
     def repeat_off(sender)
         @repeat_one_menu_item.setState(NSOffState)
         @repeat_all_menu_item.setState(NSOffState)
+        @repeat_all_button.setState(NSOffState)
         @repeat_all = false
         @repeat_single = false
     end
@@ -575,10 +582,12 @@ class ThumperDelegate
     def shuffle_all(sender)
         if @shuffle == true
             @shuffle = false
-            sender.setState(NSOffState)
+            @shuffle_button.setState(NSOffState)
+            @shuffle_menu_item.setState(NSOffState)
         else
             @shuffle = true
-            sender.setState(NSOnState)
+            @shuffle_button.setState(NSOnState)
+            @shuffle_menu_item.setState(NSOnState)
         end
     end
     
@@ -592,6 +601,7 @@ class ThumperDelegate
     def loadStateChanged(notification)
         if @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 100000
             @playing_song_object_progress.stopAnimation(nil)
+            @playing_song_object_progress.setHidden(true)
             path = @current_playlist[@playing_song][:cache_path]
             path_step = "/"
             split_path = path.split('/')

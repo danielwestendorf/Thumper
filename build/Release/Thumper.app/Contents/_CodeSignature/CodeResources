@@ -4,13 +4,17 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Resources/Database.rb</key>
+		<key>Resources/Database.rbo</key>
 		<data>
-		Z3TXhwp5FMdVVI6N/CTIuYTP+Rg=
+		pfJL5lg5EHqajYsjCczwShkGIKo=
 		</data>
 		<key>Resources/Dock.icns</key>
 		<data>
-		imu4YvidoIc+IA6gtxlXCTy9UBc=
+		5ROezR/3j+jra1qmQJ6JvEcDwOM=
+		</data>
+		<key>Resources/Growl.rbo</key>
+		<data>
+		ZJVIrEqVu6BQQD98zGuCvWDmWL0=
 		</data>
 		<key>Resources/Library.png</key>
 		<data>
@@ -52,53 +56,53 @@
 		<data>
 		bJeJ7q+5NwIxhEAdavFU/wWx6J8=
 		</data>
-		<key>Resources/Subsonic.rb</key>
+		<key>Resources/Subsonic.rbo</key>
 		<data>
-		/j23pvBXaefWlVpM2MW3Xt3A0D8=
+		bh/z5kbri4369wmU8XZSriCQdLQ=
 		</data>
-		<key>Resources/ThumperAlbumDelegate.rb</key>
+		<key>Resources/ThumperAlbumDelegate.rbo</key>
 		<data>
-		v+r3UMfSSE8bFRekwdBEFtogjAg=
+		QKSyV3rwMh4w7KtpCalXcbDWkiY=
 		</data>
-		<key>Resources/ThumperApplicaiton.rb</key>
+		<key>Resources/ThumperApplicaiton.rbo</key>
 		<data>
-		ItwaYKonMRJBTEaKtJeshLX3tNs=
+		kO0jAsdHTRczi7nf5HL7O3YCbMY=
 		</data>
-		<key>Resources/ThumperArtistIndexDelegate.rb</key>
+		<key>Resources/ThumperArtistIndexDelegate.rbo</key>
 		<data>
-		XH8d5A4tc6C3NfDuiWyIpED2KAQ=
+		MSpSlgAcQHVjgp7/qENfv/POrRo=
 		</data>
-		<key>Resources/ThumperCurrentPlaylistDelegate.rb</key>
+		<key>Resources/ThumperCurrentPlaylistDelegate.rbo</key>
 		<data>
-		EHk3lCJcOAPM4ZQoqzbjSqnz7+w=
+		Dd+CSqlgXPcelbvLgA1bmsYXyOc=
 		</data>
-		<key>Resources/ThumperDelegate.rb</key>
+		<key>Resources/ThumperDelegate.rbo</key>
 		<data>
-		9LabAqJdqEquRTP3sjoMAO6GOh0=
+		l3mWSry7uW46sHUwCmjzrf8XBhE=
 		</data>
-		<key>Resources/ThumperPlaylistSongsDelegate.rb</key>
+		<key>Resources/ThumperPlaylistSongsDelegate.rbo</key>
 		<data>
-		QGizVk2za4f7FyDd7HigauBQ02U=
+		FzTaj6cOza6NBoy/eoAj6tW6sUo=
 		</data>
-		<key>Resources/ThumperPlaylistsDelegate.rb</key>
+		<key>Resources/ThumperPlaylistsDelegate.rbo</key>
 		<data>
-		hZJKcPtOVTvmHNjso/ucs9RGP+s=
+		VMRMhRBNv3rChXjC7tK//pT9S5M=
 		</data>
-		<key>Resources/ThumperProgressIndicator.rb</key>
+		<key>Resources/ThumperProgressIndicator.rbo</key>
 		<data>
-		5NrsEursY1E8Si2dV+Fx21NMHMQ=
+		q0JISNqefxce+e+ItcRR9iVOJ84=
 		</data>
-		<key>Resources/ThumperSearchDelegate.rb</key>
+		<key>Resources/ThumperSearchDelegate.rbo</key>
 		<data>
-		rmVPpqlR2Y6N0Pxoiraeod6POdQ=
+		26Braxa5sjKV12y9U2dx3ESjYm0=
 		</data>
-		<key>Resources/ThumperSongsDelegate.rb</key>
+		<key>Resources/ThumperSongsDelegate.rbo</key>
 		<data>
-		9vBb9ZCiYcQ5nJWiQqZfhMNHw6U=
+		KXfANdJhsbVhO7JsZ2bwkR9KAwM=
 		</data>
-		<key>Resources/ThumperTable.rb</key>
+		<key>Resources/ThumperTable.rbo</key>
 		<data>
-		7RvyoRm16Q6VCEaWKJ4YPXAfO1E=
+		cbvEtkAYF8dn6ZuUIya0MUK7BQA=
 		</data>
 		<key>Resources/album.jpg</key>
 		<data>
@@ -108,7 +112,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			menkgzdGJlKzENWxKLMFxqqe2QU=
+			MiLKDDnrUKr4EmuvhS5VQwxHGK8=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -117,7 +121,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			xZgBHTOoIVgG40vPMELLx6vKOag=
+			jITF8tnT8UCdx6R83iWqQY7XEVc=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -144,6 +148,13 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^_MASReceipt/</key>
+		<dict>
+			<key>omit</key>
+			<true/>
+			<key>weight</key>
+			<real>1000</real>
 		</dict>
 		<key>^version.plist$</key>
 		<true/>
