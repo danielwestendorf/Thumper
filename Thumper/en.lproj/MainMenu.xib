@@ -21,14 +21,14 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1793"/>
+			<integer value="372"/>
 			<integer value="1456"/>
+			<integer value="1826"/>
 			<integer value="1428"/>
 			<integer value="1630"/>
-			<integer value="1668"/>
-			<integer value="1642"/>
 			<integer value="581"/>
-			<integer value="1826"/>
+			<integer value="1642"/>
+			<integer value="1668"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3359,7 +3359,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<object class="NSButtonCell" key="NSCell" id="29507276">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134479872</int>
-								<string key="NSContents">Repeat All</string>
+								<string key="NSContents">Repeat</string>
 								<reference key="NSSupport" ref="22"/>
 								<reference key="NSControlView" ref="940948848"/>
 								<int key="NSButtonFlags">914637055</int>
@@ -4134,7 +4134,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="491149895">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">05C25954-2F1F-4F38-9B5F-9AD5F663A492</characters>
+									<characters key="NS.bytes">611403CE-A32D-4A59-B5CD-A4E97A294783</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Cache</string>
 								<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4157,7 +4157,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="721798759">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">D79189D4-96B8-41AC-9096-44343F9D8042</characters>
+									<characters key="NS.bytes">B9C7E71B-5DC9-4733-A0D3-50E2120CF2A2</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Subsonic</string>
 								<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -4324,7 +4324,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="116370702">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">21ADC09B-3FAE-4197-9EFB-849705CC4DA4</characters>
+										<characters key="NS.bytes">DBA7DBFA-C6B7-4599-968C-BCFE482FA810</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Cache</string>
 									<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4344,7 +4344,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="435006508">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">E471B7EF-60BE-44F7-A4B7-55EDB13E5C4A</characters>
+										<characters key="NS.bytes">2E926160-6C52-4738-9119-11260B8E88F5</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Subsonic</string>
 									<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -6272,14 +6272,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<int key="connectionID">1884</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">repeat_all:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="29507276"/>
-					</object>
-					<int key="connectionID">1885</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">shuffle_menu_item</string>
 						<reference key="source" ref="976324537"/>
@@ -6296,20 +6288,28 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<int key="connectionID">1887</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">repeat_all_button</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="940948848"/>
-					</object>
-					<int key="connectionID">1888</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">add_album_to_playlist:</string>
 						<reference key="source" ref="189880514"/>
 						<reference key="destination" ref="73458020"/>
 					</object>
 					<int key="connectionID">1889</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">repeat_button</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="940948848"/>
+					</object>
+					<int key="connectionID">1891</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">repeat_button_action:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="940948848"/>
+					</object>
+					<int key="connectionID">1892</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -10523,7 +10523,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1889</int>
+			<int key="maxID">1892</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -10810,6 +10810,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>play_toggle_button:</string>
 							<string>preferences:</string>
 							<string>repeat_all:</string>
+							<string>repeat_button_action:</string>
 							<string>repeat_off:</string>
 							<string>repeat_single:</string>
 							<string>show_about:</string>
@@ -10820,6 +10821,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -10853,6 +10855,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>play_toggle_button:</string>
 							<string>preferences:</string>
 							<string>repeat_all:</string>
+							<string>repeat_button_action:</string>
 							<string>repeat_off:</string>
 							<string>repeat_single:</string>
 							<string>show_about:</string>
@@ -10901,6 +10904,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">repeat_all:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">repeat_button_action:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -10984,8 +10991,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>playlists_count_label</string>
 							<string>playlists_progress</string>
 							<string>playlists_table_view</string>
-							<string>repeat_all_button</string>
 							<string>repeat_all_menu_item</string>
+							<string>repeat_button</string>
 							<string>repeat_one_menu_item</string>
 							<string>search_results</string>
 							<string>server_info_window</string>
@@ -11127,8 +11134,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>playlists_count_label</string>
 							<string>playlists_progress</string>
 							<string>playlists_table_view</string>
-							<string>repeat_all_button</string>
 							<string>repeat_all_menu_item</string>
+							<string>repeat_button</string>
 							<string>repeat_one_menu_item</string>
 							<string>search_results</string>
 							<string>server_info_window</string>
@@ -11339,11 +11346,11 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">repeat_all_button</string>
+								<string key="name">repeat_all_menu_item</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">repeat_all_menu_item</string>
+								<string key="name">repeat_button</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">

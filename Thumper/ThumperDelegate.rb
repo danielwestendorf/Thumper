@@ -39,7 +39,7 @@ class ThumperDelegate
     attr_accessor :search_results
     attr_accessor :downloading_song
     attr_accessor :app_version
-    attr_accessor :shuffle_button, :repeat_all_button
+    attr_accessor :shuffle_button, :repeat_button
     
     def initialize
         @artists = []
@@ -518,11 +518,42 @@ class ThumperDelegate
         end
     end
     
+    def repeat_button_action(sender)
+        if @repeat_single == true
+            #toggle to repeat all
+            NSLog "Repeat all on"
+            @repeat_single = false
+            @repeat_all = true
+            @repeat_one_menu_item.setState(NSOffState)
+            @repeat_button.setTitle("Repeat All")
+            @repeat_all_menu_item.setState(NSOnState)
+            sender.setState(NSOnState)
+        elsif @repeat_all == true
+            #turn all repeat off
+            NSLog "Repeat off"
+            @repeat_single = false
+            @repeat_all = false
+            @repeat_one_menu_item.setState(NSOffState)
+            @repeat_all_menu_item.setState(NSOffState)
+            @repeat_button.setTitle("Repeat")
+            sender.setState(NSOffState)
+        else
+            #turn on repeat single
+            NSLog "Repeat on"
+            @repeat_single = true
+            @repeat_all = false
+            @repeat_one_menu_item.setState(NSOnState)
+            @repeat_button.setTitle("Repeat")
+            @repeat_all_menu_item.setState(NSOffState)
+            sender.setState(NSOnState)
+        end
+    end
+    
     def repeat_all(sender)
         if @repeat_all == true 
             @repeat_all = false
             @repeat_all_menu_item.setState(NSOffState)
-            @repeat_all_button.setState(NSOffState)
+            @repeat_button.setState(NSOffState)
         else
             @repeat_all = true 
             @repeat_single = false
@@ -536,7 +567,8 @@ class ThumperDelegate
     def repeat_off(sender)
         @repeat_one_menu_item.setState(NSOffState)
         @repeat_all_menu_item.setState(NSOffState)
-        @repeat_all_button.setState(NSOffState)
+        @repeat_button.setState(NSOffState)
+        @repeat_button.setTitle("Repeat")
         @repeat_all = false
         @repeat_single = false
     end
