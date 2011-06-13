@@ -121,6 +121,7 @@ class ThumperCurrentPlaylistDelegate
         end
         selected.each do |index|
            if index > -1
+               @parent.playing_song -= 1 if index < @parent.playing_song
                @parent.current_playlist.delete_at(index)
                @parent.reload_current_playlist
                @parent.play_song if selected == @parent.playing_song && @parent.current_playlist.length > 0

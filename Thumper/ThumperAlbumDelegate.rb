@@ -18,6 +18,7 @@ class ThumperAlbumDelegate
         if row < parent.albums.length
             if column.identifier.to_s == "cover_art"
                 image = parent.albums[row].valueForKey(column.identifier.to_sym)
+                @parent.get_cover_art(@parent.albums[row][:coverArt]) unless @parent.albums[row][:coverArt].nil? || File.exists?(@parent.albums[row][:cover_art]) 
                 return NSImage.alloc.initWithContentsOfFile(image) if File.exists?(image)
                 return NSImage.imageNamed("album") 
             elsif column.identifier.to_s == "action"
@@ -36,14 +37,11 @@ class ThumperAlbumDelegate
         #NSLog "Selected Artist #{parent.albums_table_view.selectedRow}"
     end
     
-    def update_albums(sender)
-        parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id])
-    end
-    
     def add_album_to_playlist(sender)
         parent.songs.each do |song|
             NSLog "#{song}"
             parent.add_to_current_playlist(song, true)
+            sleep 0.001
         end
     end
 end

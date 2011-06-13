@@ -40,12 +40,17 @@ class ThumperDelegate
     attr_accessor :downloading_song
     attr_accessor :app_version
     attr_accessor :shuffle_button, :repeat_button
+    attr_accessor :quick_playlists, :quick_playlists_table_view
+    attr_accessor :smart_playlists, :smart_playlists_table_view, :smart_playlist_add_button, :smart_playlist_remove_button, :smart_playlists_label
     
     def initialize
+        @quick_playlists = [["Random", "random"], ["Newest", "newest"], ["Highest Rated", "highest"], ["Most Frequent", "frequent"], ["Recently Played", "recent"]]
         @artists = []
         @albums = []
         @songs = []
         @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
+        @smart_playlists = DB[:smart_playlists].all.collect {|p|  p }
+        NSLog "Smart Playlists #{smart_playlists}"
         @playing_queue = Dispatch::Queue.new('com.Thumper.playback')
         @db_queue = Dispatch::Queue.new('com.Thumper.db')
         @volume = 1.0
@@ -258,6 +263,14 @@ class ThumperDelegate
         reload_songs
     end
     
+    def update_albums(sender)
+        get_artist_albums(artists[artist_indexes_table_view.selectedRow][:id])
+    end
+    
+    def update_qp_albums(sender)
+        get_quick_playlist(quick_playlists[quick_playlists_table_view.selectedRow][1]) 
+    end
+    
     def reload_songs
         @songs.count != 1 ? word = " Songs" : word = " Song"
         @songs_count_label.stringValue = @songs.count.to_s + word
@@ -294,6 +307,9 @@ class ThumperDelegate
         if current_playlist.length == 1
             @playing_song = 0
             play_song
+            elsif @playing_song_object.rate == 0.0 && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 20000
+            @playing_song = current_playlist.length - 1
+            play_song
         elsif @playing_song == current_playlist.length - 2
             next_song = @current_playlist[@playing_song + 1]
             unless File.exists?(next_song[:cache_path])
@@ -301,6 +317,7 @@ class ThumperDelegate
                 get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
             end
         end
+        NSLog "#{@playing_song_object.rate}"
         @db_queue.async do
             DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
         end
@@ -315,6 +332,14 @@ class ThumperDelegate
         end
         reload_albums
         @subsonic.albums(id, @subsonic, :albums_response)
+    end
+    
+    def get_quick_playlist(type)
+        return if type.empty?
+        @albums_progress.startAnimation(nil)
+        @albums = []
+        reload_albums
+        @subsonic.quick_playlists(type, @subsonic, :qp_response)
     end
         
     def get_album_songs(id)

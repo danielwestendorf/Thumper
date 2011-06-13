@@ -72,6 +72,21 @@ class PlaylistSong < Sequel::Model
 
 end
 
+class SmartPlaylist < Sequel::Model
+    plugin :schema
+    
+    set_schema do
+        primary_key :id
+        String :name
+        Integer :size
+        String :genre
+        String :fromYear
+        String :toYear
+    end
+
+create_table unless table_exists?
+end
+
 class CachedSong < Sequel::Model
     plugin :schema
     

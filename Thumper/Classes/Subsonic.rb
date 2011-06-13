@@ -11,7 +11,7 @@ class Subsonic
 	end
 	
 	#response methods
-	def ping_response(xml)
+	def ping_response(xml, options)
 		if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             @parent.status_label.stringValue = "Online" 
             NSLog "Online"
@@ -32,8 +32,34 @@ class Subsonic
 		end
 		xml = nil
 	end
+    
+    def qp_response(xml, options)
+        @albums = []
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
+            albums = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('albumList', error:nil).first.nodesForXPath('album', error:nil)
+            albums.each do |xml_album|
+                attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir"]
+                album = {}
+                attributeNames.each do |name|
+                    album[name.to_sym] = xml_album.attributeForName(name).stringValue unless xml_album.attributeForName(name).nil? 
+                end
+                album[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{album[:coverArt]}.jpg"
+                album[:artist_id] = album[:parent]
+                @albums << album if album[:isDir] == "true"
+            end
+            else
+            NSLog "Invalid response from server"
+        end
+        xml = nil
+        NSLog "Update of artist albums complete. #{@albums.length} albums"
+        if @parent.quick_playlists[@parent.quick_playlists_table_view.selectedRow][1] == options[:type]
+            @parent.albums = @albums
+            @parent.reload_albums
+        end
+        @parent.albums_progress.stopAnimation(nil)
+    end
 	
-	def albums_response(xml)
+	def albums_response(xml, options)
         @albums = []
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             albums = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
@@ -46,7 +72,6 @@ class Subsonic
                 album[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{album[:coverArt]}.jpg"
                 album[:artist_id] = album[:parent]
                 @albums << album if album[:isDir] == "true"
-                @parent.get_cover_art(album[:coverArt]) unless album[:coverArt].nil? || File.exists?(album[:cover_art]) 
             end
         else
             NSLog "Invalid response from server"
@@ -76,7 +101,7 @@ class Subsonic
         @parent.get_album_songs(@albums.first[:id]) if @albums.length == 1
 	end
 	
-	def songs_response(xml)
+	def songs_response(xml, options)
         @songs = []
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
@@ -128,7 +153,7 @@ class Subsonic
         NSLog "All songs presisted to the DB"
 	end
 	
-	def artists_response(xml)
+	def artists_response(xml, options)
         @artists = []
 		if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             indexes = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('indexes', error:nil).first.nodesForXPath('index', error:nil)
@@ -163,7 +188,7 @@ class Subsonic
         NSLog "All Artists presisted to the DB #{@parent.artists.length}"
 	end
 
-    def playlists_response(xml)
+    def playlists_response(xml, options)
         @playlists = []
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             playlists = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlists', error:nil).first.nodesForXPath('playlist', error:nil)
@@ -177,7 +202,7 @@ class Subsonic
         @parent.playlists_progress.stopAnimation(nil)
     end
     
-    def playlist_response(xml)
+    def playlist_response(xml, options)
         @playlist_songs = []
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             playlist_id = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.attributeForName("id").stringValue
@@ -237,7 +262,7 @@ class Subsonic
         NSLog "Saved downloaded file to #{path}"
     end
 	
-    def scrobble_response(xml)
+    def scrobble_response(xml, options)
         NSLog "Successfully scrobbled song" if xml.class == NSXMLDocument 
     end
 	
@@ -260,6 +285,11 @@ class Subsonic
         request = build_request('/rest/getIndexes.view', {})
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
+    
+    def quick_playlists(type, delegate, method)
+        request = build_request("/rest/getAlbumList.view",  {:type => type, :size => "50"})
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method, {:type => type}))
+    end
 	
 	def albums(id, delegate, method)
         NSLog "Getting album #{id}"
@@ -351,9 +381,10 @@ end
 
 class XMLResponse
     
-    def initialize(delegate, method)
+    def initialize(delegate, method, options={})
         @delegate = delegate
         @method = method
+        @options = options
     end
     
     def connection(connection, didReceiveResponse:response)
@@ -375,7 +406,7 @@ class XMLResponse
             #NSLog @responseBody
             if xml
                 #NSLog "Methods: #{@delegate.class.class}"
-                @delegate.method(@method).call(xml)
+                @delegate.method(@method).call(xml, @options)
             end
             else
             NSLog "ERROR! #{@response.statusCode}"

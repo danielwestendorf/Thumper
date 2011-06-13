@@ -22,12 +22,18 @@ class ThumperArtistIndexDelegate
     end
     
     def tableViewSelectionDidChange(notification)
-        parent.albums = []
-        parent.songs = []
-        parent.albums_table_view.enabled = false
-        parent.songs_table_view.enabled = false
-        parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id]) if parent.artist_indexes_table_view.selectedRow && parent.artists.length > 0 && parent.artist_indexes_table_view.selectedRow > -1
-        NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}, #{parent.artists[parent.artist_indexes_table_view.selectedRow][:id]}"
+        if parent.artist_indexes_table_view.selectedRow > -1
+            parent.quick_playlists_table_view.deselectAll(nil) 
+            parent.album_reload_button.setAction("update_albums:")
+            parent.albums = []
+            parent.songs = []
+            parent.albums_table_view.enabled = false
+            parent.songs_table_view.enabled = false
+            parent.reload_albums
+            parent.reload_songs
+            parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id])
+            NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}, #{parent.artists[parent.artist_indexes_table_view.selectedRow][:id]}"
+        end
     end
     
     def textInputOnEnterPressed(sender)
