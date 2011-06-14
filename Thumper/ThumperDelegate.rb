@@ -30,7 +30,7 @@ class ThumperDelegate
     attr_accessor :playing_song_object, :playing_song, :playing_song_object_progress
     attr_accessor :artist_reload_button, :album_reload_button, :song_reload_button
     attr_accessor :playlists, :playlists_table_view, :playlist_songs, :playlist_songs_table_view, :playlists_count_label, :playlist_songs_count_label
-    attr_accessor :playlists_progress, :playlist_songs_progress
+    attr_accessor :playlists_progress, :playlist_songs_progress, :playlist_songs_reload_button
 	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info, :stop_button
     attr_accessor :playing_queue, :db_queue
     attr_accessor :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item, :shuffle_menu_item
@@ -40,17 +40,18 @@ class ThumperDelegate
     attr_accessor :downloading_song
     attr_accessor :app_version
     attr_accessor :shuffle_button, :repeat_button
-    attr_accessor :quick_playlists, :quick_playlists_table_view
+    attr_accessor :quick_playlists, :quick_playlists_table_view, :qp_offset
     attr_accessor :smart_playlists, :smart_playlists_table_view, :smart_playlist_add_button, :smart_playlist_remove_button, :smart_playlists_label
+    attr_accessor :new_sp_window, :sp_name, :sp_genre, :sp_fromYear, :sp_toYear, :sp_size, :new_sp_save, :new_sp_cancel
     
     def initialize
         @quick_playlists = [["Random", "random"], ["Newest", "newest"], ["Highest Rated", "highest"], ["Most Frequent", "frequent"], ["Recently Played", "recent"]]
         @artists = []
         @albums = []
         @songs = []
+        @qp_offset = 0
         @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
         @smart_playlists = DB[:smart_playlists].all.collect {|p|  p }
-        NSLog "Smart Playlists #{smart_playlists}"
         @playing_queue = Dispatch::Queue.new('com.Thumper.playback')
         @db_queue = Dispatch::Queue.new('com.Thumper.db')
         @volume = 1.0
@@ -268,7 +269,9 @@ class ThumperDelegate
     end
     
     def update_qp_albums(sender)
-        get_quick_playlist(quick_playlists[quick_playlists_table_view.selectedRow][1]) 
+        @qp_offset = 0
+        @albums_table_view.scrollRowToVisible(0)
+        get_quick_playlist({:type => quick_playlists[quick_playlists_table_view.selectedRow][1]}) 
     end
     
     def reload_songs
@@ -307,7 +310,7 @@ class ThumperDelegate
         if current_playlist.length == 1
             @playing_song = 0
             play_song
-            elsif @playing_song_object.rate == 0.0 && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) == 20000
+        elsif @playing_song_object.rate == 0.0 && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) >= 2000
             @playing_song = current_playlist.length - 1
             play_song
         elsif @playing_song == current_playlist.length - 2
@@ -317,7 +320,6 @@ class ThumperDelegate
                 get_cover_art(next_song[:cover_art].split("/").last.split(".").first)
             end
         end
-        NSLog "#{@playing_song_object.rate}"
         @db_queue.async do
             DB[:playlist_songs].insert(:name => "Current", :playlist_id => "666current666", :song_id => song[:id])
         end
@@ -326,6 +328,7 @@ class ThumperDelegate
     def get_artist_albums(id)
         return if id.empty?
         @albums_progress.startAnimation(nil)
+        @albums_progress.setHidden(false)
         @albums = []
         DB[:albums].filter(:artist_id => id).all.each do |album|
             @albums << {:id => album[:id], :title => album[:title], :cover_art => album[:cover_art], :artist_id => album[:artist_id]} 
@@ -334,12 +337,16 @@ class ThumperDelegate
         @subsonic.albums(id, @subsonic, :albums_response)
     end
     
-    def get_quick_playlist(type)
-        return if type.empty?
+    def get_quick_playlist(options)
+        return unless options[:type]
         @albums_progress.startAnimation(nil)
-        @albums = []
-        reload_albums
-        @subsonic.quick_playlists(type, @subsonic, :qp_response)
+        @albums_progress.setHidden(false)
+        @subsonic.quick_playlists(options, @subsonic, :qp_response)
+    end
+    
+    def get_smart_playlist(options)
+        @playlist_songs_progress.startAnimation(nil)
+        @subsonic.smart_playlist(options, @subsonic, :smart_playlist_response)
     end
         
     def get_album_songs(id)

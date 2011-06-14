@@ -34,7 +34,7 @@ class Subsonic
 	end
     
     def qp_response(xml, options)
-        @albums = []
+        @qp_albums = []
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             albums = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('albumList', error:nil).first.nodesForXPath('album', error:nil)
             albums.each do |xml_album|
@@ -45,18 +45,18 @@ class Subsonic
                 end
                 album[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{album[:coverArt]}.jpg"
                 album[:artist_id] = album[:parent]
-                @albums << album if album[:isDir] == "true"
+                @qp_albums << album if album[:isDir] == "true"
             end
             else
             NSLog "Invalid response from server"
         end
         xml = nil
-        NSLog "Update of artist albums complete. #{@albums.length} albums"
+        NSLog "Update of QP albums complete. #{@qp_albums.length} albums"
         if @parent.quick_playlists[@parent.quick_playlists_table_view.selectedRow][1] == options[:type]
-            @parent.albums = @albums
+            options[:append] == true ? @parent.albums += @qp_albums : @parent.albums = @qp_albums
             @parent.reload_albums
         end
-        @parent.albums_progress.stopAnimation(nil)
+        @parent.albums_progress.setHidden(true)
     end
 	
 	def albums_response(xml, options)
@@ -240,6 +240,39 @@ class Subsonic
         @parent.playlist_songs_progress.stopAnimation(nil)
     end
     
+    def smart_playlist_response(xml, options)
+        @playlist_songs = []
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
+            playlist_songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('randomSongs', error:nil).first.nodesForXPath('song', error:nil)
+            attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
+            "album", "path", "size"]
+            playlist_songs.each do |xml_song|
+                song = {}
+                attributeNames.each do |name|
+                    song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
+                end
+                song[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
+                song[:album_id] = song[:parent]
+                song[:bitrate] = song[:bitRate]
+                song[:duration] = @parent.format_time(song[:duration].to_i)
+                song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
+                @playlist_songs << song if song[:isDir] == "false"
+            end 
+        end
+        @parent.playlist_songs = @playlist_songs
+        @parent.reload_playlist_songs
+        @parent.playlist_songs_progress.stopAnimation(nil)
+        @parent.db_queue.async do
+            @playlist_songs.each do |s|
+                return if DB[:songs].filter(:id => s[:id]).all.first
+                DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
+                                      :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
+                                      :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
+                                      :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
+            end
+        end
+    end
+    
     def image_response(data, path, id)
         response = data.writeToFile(path, atomically:true)
         @parent.albums_table_view.reloadData
@@ -286,9 +319,10 @@ class Subsonic
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
     
-    def quick_playlists(type, delegate, method)
-        request = build_request("/rest/getAlbumList.view",  {:type => type, :size => "50"})
-        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method, {:type => type}))
+    def quick_playlists(options, delegate, method)
+        options[:size] = 50 
+        request = build_request("/rest/getAlbumList.view",  options)
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method, options))
     end
 	
 	def albums(id, delegate, method)
@@ -316,6 +350,11 @@ class Subsonic
     def playlist(id, delegate, method)
         request = build_request('/rest/getPlaylist.view', {:id => id})
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
+    end
+    
+    def smart_playlist(options, delegate, method)
+        request = build_request('/rest/getRandomSongs.view', options)
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method, options))
     end
     
     def delete_playlist(id, delegate, method)

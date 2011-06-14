@@ -78,7 +78,7 @@ class SmartPlaylist < Sequel::Model
     set_schema do
         primary_key :id
         String :name
-        Integer :size
+        String :size
         String :genre
         String :fromYear
         String :toYear

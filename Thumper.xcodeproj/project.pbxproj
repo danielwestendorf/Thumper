@@ -34,6 +34,7 @@
 		82B7E412135234EC0064907A /* album.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82B7E411135234EC0064907A /* album.jpg */; };
 		82C0648A136C525300A6F2C6 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C06489136C525300A6F2C6 /* Logo.png */; };
 		82CD71F8135F6BDA008B6F80 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CD71F7135F6BDA008B6F80 /* Stop.png */; };
+		82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82D6360B13A7D0A1002452C6 /* SimpleModal.rb */; };
 		82EA85A3134FA87200C38A05 /* ThumperApplicaiton.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */; };
 		82EA85A6134FB0B300C38A05 /* Database.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A5134FB0B300C38A05 /* Database.rb */; };
 		82EF50A513576BA200E0C062 /* ThumperProgressIndicator.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */; };
@@ -89,6 +90,7 @@
 		82B7E411135234EC0064907A /* album.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = album.jpg; path = Icons/album.jpg; sourceTree = "<group>"; };
 		82C06489136C525300A6F2C6 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Icons/Logo.png; sourceTree = "<group>"; };
 		82CD71F7135F6BDA008B6F80 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = Icons/Stop.png; sourceTree = "<group>"; };
+		82D6360B13A7D0A1002452C6 /* SimpleModal.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SimpleModal.rb; sourceTree = "<group>"; };
 		82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperApplicaiton.rb; sourceTree = "<group>"; };
 		82EA85A5134FB0B300C38A05 /* Database.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Database.rb; sourceTree = "<group>"; };
 		82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperProgressIndicator.rb; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
+				82D6360B13A7D0A1002452C6 /* SimpleModal.rb */,
 				82EFCC9913A6C39B0046D08F /* ThumperSmartPlaylistDelegate.rb */,
 				8208997513846CF00056FD3D /* Growl.rb */,
 				82EFCC9713A663980046D08F /* ThumperQuickPlaylistDelegate.rb */,
@@ -313,6 +316,7 @@
 				82441781137442DA00B0EF2F /* ThumperTable.rb in Resources */,
 				82EFCC9813A663980046D08F /* ThumperQuickPlaylistDelegate.rb in Resources */,
 				82EFCC9A13A6C39B0046D08F /* ThumperSmartPlaylistDelegate.rb in Resources */,
+				82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,8 @@ class ThumperPlaylistsDelegate
     def tableViewSelectionDidChange(notification)
         return if parent.playlists_table_view.selectedRow < 0
         parent.playlist_songs = DB[:playlist_songs].join(:songs, :id => :song_id).filter(:playlist_id => parent.playlists[parent.playlists_table_view.selectedRow][:id]).all
+        parent.playlist_songs_reload_button.setTarget(self)
+        parent.playlist_songs_reload_button.setAction("update_playlists:")
         parent.reload_playlist_songs
         parent.get_playlist(parent.playlists[parent.playlists_table_view.selectedRow][:id])
     end

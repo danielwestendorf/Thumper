@@ -15,6 +15,10 @@ class ThumperAlbumDelegate
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
         #NSLog "Asked for Album Row:#{row}, Column:#{column.identifier}"
+        if parent.quick_playlists_table_view.selectedRow > -1 && row.to_f / parent.albums.length.to_f > 0.8 && parent.albums.length > 0 && parent.albums.length > parent.qp_offset#fetch the next bunch of rows
+            @parent.qp_offset += 50
+            parent.get_quick_playlist({:type => parent.quick_playlists[parent.quick_playlists_table_view.selectedRow][1], :append => true, :offset => @parent.qp_offset}) 
+        end
         if row < parent.albums.length
             if column.identifier.to_s == "cover_art"
                 image = parent.albums[row].valueForKey(column.identifier.to_sym)
