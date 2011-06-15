@@ -21,15 +21,15 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1667"/>
-			<integer value="1826"/>
-			<integer value="1642"/>
 			<integer value="1946"/>
-			<integer value="1428"/>
-			<integer value="1462"/>
-			<integer value="591"/>
 			<integer value="1631"/>
+			<integer value="1462"/>
+			<integer value="1428"/>
 			<integer value="1781"/>
+			<integer value="1471"/>
+			<integer value="591"/>
+			<integer value="1667"/>
+			<integer value="1642"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -405,6 +405,14 @@
 							<string key="NSTitle">Window</string>
 							<object class="NSMutableArray" key="NSMenuItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMenuItem" id="62720626">
+									<reference key="NSMenu" ref="109475179"/>
+									<string key="NSTitle">Show Now Playing...</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
 								<object class="NSMenuItem" id="649454794">
 									<reference key="NSMenu" ref="109475179"/>
 									<string key="NSTitle">Close Window</string>
@@ -4296,9 +4304,9 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 			<object class="NSWindowTemplate" id="838816057">
 				<int key="NSWindowStyleMask">1</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{340, 469}, {399, 168}}</string>
+				<string key="NSWindowRect">{{340, 501}, {399, 136}}</string>
 				<int key="NSWTFlags">611844096</int>
-				<string key="NSWindowTitle">Demo Window</string>
+				<string key="NSWindowTitle">New Version Available</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -4310,7 +4318,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSTextField" id="269281153">
 							<reference key="NSNextResponder" ref="346058579"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 48}, {370, 100}}</string>
+							<string key="NSFrame">{{17, 50}, {370, 66}}</string>
 							<reference key="NSSuperview" ref="346058579"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="409347712">
@@ -4326,48 +4334,45 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSButton" id="86280478">
 							<reference key="NSNextResponder" ref="346058579"/>
 							<int key="NSvFlags">256</int>
-							<string key="NSFrame">{{253, 12}, {137, 32}}</string>
+							<string key="NSFrame">{{284, 18}, {95, 25}}</string>
 							<reference key="NSSuperview" ref="346058579"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="390021674">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">Quit Application</string>
+								<string key="NSContents">Update!</string>
 								<reference key="NSSupport" ref="349965944"/>
 								<reference key="NSControlView" ref="86280478"/>
-								<int key="NSButtonFlags">-2033303297</int>
-								<int key="NSButtonFlags2">1</int>
+								<int key="NSButtonFlags">-2038021889</int>
+								<int key="NSButtonFlags2">35</int>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
 						</object>
-						<object class="BWHyperlinkButton" id="429290218">
+						<object class="NSButton" id="1029274222">
 							<reference key="NSNextResponder" ref="346058579"/>
-							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{20, 19}, {201, 23}}</string>
+							<int key="NSvFlags">256</int>
+							<string key="NSFrame">{{181, 18}, {95, 25}}</string>
 							<reference key="NSSuperview" ref="346058579"/>
 							<bool key="NSEnabled">YES</bool>
-							<object class="BWHyperlinkButtonCell" key="NSCell" id="605691862">
+							<object class="NSButtonCell" key="NSCell" id="735950432">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">http://www.thumperapp.com</string>
+								<string key="NSContents">Not now...</string>
 								<reference key="NSSupport" ref="349965944"/>
-								<reference key="NSControlView" ref="429290218"/>
-								<string key="NSAction">openURLInBrowser:</string>
-								<reference key="NSTarget" ref="429290218"/>
-								<int key="NSButtonFlags">-2033434369</int>
-								<int key="NSButtonFlags2">162</int>
+								<reference key="NSControlView" ref="1029274222"/>
+								<int key="NSButtonFlags">-2038021889</int>
+								<int key="NSButtonFlags2">35</int>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
-								<int key="NSPeriodicDelay">400</int>
-								<int key="NSPeriodicInterval">75</int>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
 							</object>
-							<string key="BWHBUrlString">http://www.thumperapp.com</string>
 						</object>
 					</object>
-					<string key="NSFrameSize">{399, 168}</string>
+					<string key="NSFrameSize">{399, 136}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
@@ -4623,7 +4628,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="491149895">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">83A19C0E-7B7A-43D4-A94B-DB6AEDA3458A</characters>
+									<characters key="NS.bytes">8BDC92A8-EECE-4CED-A0AD-25E34CFDF02A</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Cache</string>
 								<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4646,7 +4651,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="721798759">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">6E7A762A-CB95-475D-8358-EC9D671483F7</characters>
+									<characters key="NS.bytes">A9C9ED4C-2003-4D6D-8E44-B0EB6C9DF64F</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Subsonic</string>
 								<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -4813,7 +4818,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="406455093">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">C6B4CE63-3747-490C-B0DA-9F3D08BD6EBF</characters>
+										<characters key="NS.bytes">221EAD4B-6E40-45B4-A8F0-43C8B1C92EFE</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Cache</string>
 									<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4833,7 +4838,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="133875353">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">0C1A0830-85BD-4E0F-AE6A-2EE08D9A46C7</characters>
+										<characters key="NS.bytes">A729E458-68B3-4C5C-BDDA-F09F851C00E6</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Subsonic</string>
 									<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -5522,6 +5527,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 				<string key="NSWindowTitle">Smart Playlist</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
+				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="106010190">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -6789,22 +6795,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<int key="connectionID">1629</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">demo_window</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="838816057"/>
-					</object>
-					<int key="connectionID">1634</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">demo_text</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="269281153"/>
-					</object>
-					<int key="connectionID">1635</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">demo_close:</string>
 						<reference key="source" ref="976324537"/>
@@ -7267,6 +7257,54 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<reference key="destination" ref="952494152"/>
 					</object>
 					<int key="connectionID">2015</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">demo_close:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="1029274222"/>
+					</object>
+					<int key="connectionID">2018</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">t_update_button</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="86280478"/>
+					</object>
+					<int key="connectionID">2019</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">t_update_cancel_button</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="1029274222"/>
+					</object>
+					<int key="connectionID">2020</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">t_update_window</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="838816057"/>
+					</object>
+					<int key="connectionID">2021</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">t_update_text</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="269281153"/>
+					</object>
+					<int key="connectionID">2022</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">show_all_now_playing:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="62720626"/>
+					</object>
+					<int key="connectionID">2027</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -8643,6 +8681,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<reference ref="4805288"/>
 							<reference ref="904826110"/>
 							<reference ref="696225682"/>
+							<reference ref="62720626"/>
 						</object>
 						<reference key="parent" ref="568260402"/>
 					</object>
@@ -8958,8 +8997,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="269281153"/>
-							<reference ref="429290218"/>
 							<reference ref="86280478"/>
+							<reference ref="1029274222"/>
 						</object>
 						<reference key="parent" ref="838816057"/>
 					</object>
@@ -8991,20 +9030,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<int key="objectID">1637</int>
 						<reference key="object" ref="390021674"/>
 						<reference key="parent" ref="86280478"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1639</int>
-						<reference key="object" ref="429290218"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="605691862"/>
-						</object>
-						<reference key="parent" ref="346058579"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1640</int>
-						<reference key="object" ref="605691862"/>
-						<reference key="parent" ref="429290218"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1641</int>
@@ -10438,6 +10463,25 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Year</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2016</int>
+						<reference key="object" ref="1029274222"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="735950432"/>
+						</object>
+						<reference key="parent" ref="346058579"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2017</int>
+						<reference key="object" ref="735950432"/>
+						<reference key="parent" ref="1029274222"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2026</int>
+						<reference key="object" ref="62720626"/>
+						<reference key="parent" ref="109475179"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -10633,8 +10677,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>1636.IBPluginDependency</string>
 					<string>1636.IBViewBoundsToFrameTransform</string>
 					<string>1637.IBPluginDependency</string>
-					<string>1639.IBPluginDependency</string>
-					<string>1640.IBPluginDependency</string>
 					<string>1641.IBEditorWindowLastContentRect</string>
 					<string>1641.IBPluginDependency</string>
 					<string>1641.IBWindowTemplateEditedContentRect</string>
@@ -10900,6 +10942,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>2013.IBNumberFormatterBehaviorMetadataKey</string>
 					<string>2013.IBNumberFormatterLocalizesFormatMetadataKey</string>
 					<string>2013.IBPluginDependency</string>
+					<string>2016.IBPluginDependency</string>
+					<string>2016.IBViewBoundsToFrameTransform</string>
+					<string>2017.IBPluginDependency</string>
+					<string>2026.IBPluginDependency</string>
 					<string>23.IBPluginDependency</string>
 					<string>23.ImportedFromIB2</string>
 					<string>236.IBPluginDependency</string>
@@ -11273,7 +11319,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{1033, 743}, {194, 93}}</string>
+					<string>{{1508, 516}, {214, 113}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{525, 802}, {197, 73}}</string>
@@ -11349,20 +11395,18 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{297, 333}, {399, 168}}</string>
+					<string>{{730, 741}, {399, 136}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{297, 333}, {399, 168}}</string>
+					<string>{{730, 741}, {399, 136}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDNQAAwigAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDjgAAwiQAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
 					<string>{{1025, 193}, {470, 196}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{1025, 193}, {470, 196}}</string>
@@ -11902,12 +11946,18 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<integer value="1"/>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDNQAAwpIAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{2009, 107}, {370, 20}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<string>{{1270, 629}, {370, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{74, 862}</string>
@@ -11929,7 +11979,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{772, 683}, {229, 153}}</string>
+					<string>{{1282, 476}, {229, 153}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{23, 794}, {245, 183}}</string>
@@ -12171,7 +12221,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2015</int>
+			<int key="maxID">2027</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -12441,6 +12491,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>repeat_off:</string>
 							<string>repeat_single:</string>
 							<string>show_about:</string>
+							<string>show_all_now_playing:</string>
 							<string>shuffle_all:</string>
 							<string>stop_button:</string>
 							<string>submit_connection_info:</string>
@@ -12450,6 +12501,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -12490,6 +12542,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>repeat_off:</string>
 							<string>repeat_single:</string>
 							<string>show_about:</string>
+							<string>show_all_now_playing:</string>
 							<string>shuffle_all:</string>
 							<string>stop_button:</string>
 							<string>submit_connection_info:</string>
@@ -12556,6 +12609,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">show_all_now_playing:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">shuffle_all:</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -12602,8 +12659,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>current_playlist_count_label</string>
 							<string>current_playlist_table_view</string>
 							<string>db_queue</string>
-							<string>demo_text</string>
-							<string>demo_window</string>
 							<string>downloading_song</string>
 							<string>format_time</string>
 							<string>main_window</string>
@@ -12611,6 +12666,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>new_sp_cancel</string>
 							<string>new_sp_save</string>
 							<string>new_sp_window</string>
+							<string>now_playing</string>
 							<string>password</string>
 							<string>password_field</string>
 							<string>play_button</string>
@@ -12666,12 +12722,19 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>status_label</string>
 							<string>stop_button</string>
 							<string>subsonic</string>
+							<string>t_update_button</string>
+							<string>t_update_cancel_button</string>
+							<string>t_update_text</string>
+							<string>t_update_window</string>
 							<string>username</string>
 							<string>username_field</string>
 							<string>volume_slider</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -12779,8 +12842,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>current_playlist_count_label</string>
 							<string>current_playlist_table_view</string>
 							<string>db_queue</string>
-							<string>demo_text</string>
-							<string>demo_window</string>
 							<string>downloading_song</string>
 							<string>format_time</string>
 							<string>main_window</string>
@@ -12788,6 +12849,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>new_sp_cancel</string>
 							<string>new_sp_save</string>
 							<string>new_sp_window</string>
+							<string>now_playing</string>
 							<string>password</string>
 							<string>password_field</string>
 							<string>play_button</string>
@@ -12843,6 +12905,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<string>status_label</string>
 							<string>stop_button</string>
 							<string>subsonic</string>
+							<string>t_update_button</string>
+							<string>t_update_cancel_button</string>
+							<string>t_update_text</string>
+							<string>t_update_window</string>
 							<string>username</string>
 							<string>username_field</string>
 							<string>volume_slider</string>
@@ -12918,14 +12984,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">demo_text</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">demo_window</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">downloading_song</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -12951,6 +13009,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">new_sp_window</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">now_playing</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -13171,6 +13233,22 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">subsonic</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">t_update_button</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">t_update_cancel_button</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">t_update_text</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">t_update_window</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">

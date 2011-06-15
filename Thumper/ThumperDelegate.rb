@@ -34,7 +34,6 @@ class ThumperDelegate
 	attr_accessor :playing_song_progress_view, :play_toggle_button, :play_previous_button, :play_next_button, :playing_cover_art, :playing_time_elapsed, :playing_time_remaining, :play_button, :volume_slider, :playing_title, :playing_info, :stop_button
     attr_accessor :playing_queue, :db_queue
     attr_accessor :mute_menu_item, :repeat_all_menu_item, :repeat_one_menu_item, :shuffle_menu_item
-    attr_accessor :demo_window, :demo_text
     attr_accessor :about_window
     attr_accessor :search_results
     attr_accessor :downloading_song
@@ -43,12 +42,15 @@ class ThumperDelegate
     attr_accessor :quick_playlists, :quick_playlists_table_view, :qp_offset
     attr_accessor :smart_playlists, :smart_playlists_table_view, :smart_playlist_add_button, :smart_playlist_remove_button, :smart_playlists_label
     attr_accessor :new_sp_window, :sp_name, :sp_genre, :sp_fromYear, :sp_toYear, :sp_size, :new_sp_save, :new_sp_cancel
+    attr_accessor :t_update_window, :t_update_text, :t_update_button, :t_update_cancel_button
+    attr_accessor :now_playing
     
     def initialize
         @quick_playlists = [["Random", "random"], ["Newest", "newest"], ["Highest Rated", "highest"], ["Most Frequent", "frequent"], ["Recently Played", "recent"]]
         @artists = []
         @albums = []
         @songs = []
+        @now_playing = []
         @qp_offset = 0
         @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
         @smart_playlists = DB[:smart_playlists].all.collect {|p|  p }
@@ -61,11 +63,6 @@ class ThumperDelegate
         @repeat_all = false
         @current_playlist = DB[:playlist_songs].join(:songs, :id => :song_id).filter(:playlist_id => '666current666').all
         @current_playlist.each {|s| s[:id] = s[:song_id]; s.delete(:song_id)}
-        @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.2,
-                                                        target: self,
-                                                        selector: 'update_progress_bar:',
-                                                        userInfo: nil,
-                                                        repeats: true
 
         @server_url = NSUserDefaults.standardUserDefaults['thumper.com.server_url'] unless NSUserDefaults.standardUserDefaults['thumper.com.server_url'].nil?
         @username = NSUserDefaults.standardUserDefaults['thumper.com.username'] unless NSUserDefaults.standardUserDefaults['thumper.com.username'].nil?
@@ -81,18 +78,32 @@ class ThumperDelegate
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playNext:', name:"ThumperNextTrack", object:nil)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playPrevious:', name:"ThumperPreviousTrack", object:nil)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playToggle:', name:"ThumperPlayToggle", object:nil)
+        
+        @now_playing_timer = NSTimer.scheduledTimerWithTimeInterval 5,
+            target: self,
+            selector: 'get_now_playing:',
+            userInfo: nil,
+            repeats: true
+    end
+    
+    def get_now_playing(timer)
+        @subsonic.get_now_playing(@subsonic, :now_playing_response)
+    end
+    
+    def show_all_now_playing(sender)
+        @subsonic.show_all_now_playing
     end
     
     def get_server_ip
        @playing_queue.async do
             subdomain = @server_url.split('.').first.split('/').last
-            NSLog "Subdomain #{subdomain}"
+           #NSLog "Subdomain #{subdomain}"
             url = NSURL.URLWithString("http://subsonic.org/backend/redirect/get.view?redirectFrom=#{subdomain}")
             request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:60.0)
             response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil)).split(' ').first
             response[response.length - 1] = ""
-            NSLog "Response: #{response}"
-            @current_server_url = response
+           # NSLog "Response: #{response}"
+           @current_server_url = response
         end
     end
     
@@ -133,6 +144,7 @@ class ThumperDelegate
                     @playing_song_object_progress.startAnimation(nil)
                 end
             end
+            start_timer
             NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
             NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
             set_playing_info
@@ -143,15 +155,33 @@ class ThumperDelegate
         end
         
         @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton
+        check_for_update
     end
     
-    def windowShouldClose(notification)
-        @main_window.orderOut(sender)
-        return false
+    def check_for_update
+        @playing_queue.async do
+            current_version = NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleVersion).to_s
+            url = NSURL.URLWithString("http://www.thumperapp.com/current_version")
+            request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:5.0)
+            response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil))
+            if current_version != response
+                @t_update_text.stringValue = "There is a newer version of Thumper available.\n\nCurrent Version: #{current_version}\nAvailable Version: #{response}"
+                update_modal = SimpleModal.new(self, @main_window, @t_update_window)
+                update_modal.add_outlet(@t_update_button) do
+                    url = NSURL.URLWithString "macappstore://itunes.apple.com/us/app/thumper/id436422990?mt=12ls=1ign-msr=http%3A%2F%2Fwww.thumperapp.com%2F"
+                    NSWorkspace.sharedWorkspace.openURL(url)
+                end
+                update_modal.add_outlet(@t_update_cancel_button) do
+                    nil
+                end
+                update_modal.show
+            end
+        end
+        
     end
     
     def applicationShouldHandleReopen(app, hasVisibleWindows: windows)
-        @main_window.makeKeyAndOrderFront(nil)
+        @main_window.makeKeyAndOrderFront(nil)        
         reload_current_playlist
         reload_artists
         reload_playlists
@@ -414,10 +444,10 @@ class ThumperDelegate
                 @playing_song_object_progress.setHidden(false)
             end
         end
-        
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
         @playing_song_object.setVolume(@volume)
+        start_timer if @progress_timer.nil?
         @playing_song_object.autoplay
         set_playing_info
         set_playing_cover_art
@@ -470,14 +500,28 @@ class ThumperDelegate
         play_toggle 
     end
     
+    def start_timer
+        @progress_timer = NSTimer.scheduledTimerWithTimeInterval 0.2,
+                            target: self,
+                            selector: 'update_progress_bar:',
+                            userInfo: nil,
+                            repeats: true
+    end
+    
+    def cancel_timer
+        @progress_timer = nil
+    end
+    
     def play_toggle 
         if @current_playlist.length > 0
             if @playing_song_object.rate != 0
                 @playing_song_object.stop
                 @play_button.setImage(NSImage.imageNamed("Play"))
+                cancel_timer
             else
                 @playing_song_object.play 
                 @play_button.setImage(NSImage.imageNamed("Pause"))
+                start_timer
             end
         end
     end
@@ -505,6 +549,7 @@ class ThumperDelegate
             @play_button.setImage(NSImage.imageNamed("Play"))
             @playing_song_object.stop 
             @playing_song_object.setCurrentTime(QTTime.new(0,1,false))
+            cancel_timer
         end
     end
     
@@ -592,7 +637,7 @@ class ThumperDelegate
             sender.setState(NSOnState)
             @repeat_one_menu_item.setState(NSOffState)
             @repeat_all_menu_item.setState(NSOnState)
-            @repeat_all_button.setState(NSOnState)
+            @repeat_button.setState(NSOnState)
         end
     end
     
@@ -659,7 +704,6 @@ class ThumperDelegate
 		@playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
         update_progress_bar(@progress_timer)
         @play_button.setImage(NSImage.imageNamed("Play"))
-        play_next unless @current_playlist[@playing_song + 1].nil? && @repeat_all == false && @shuffle == false && @repeat_single == false
     end
     
     def loadStateChanged(notification)
@@ -709,6 +753,7 @@ class ThumperDelegate
                 @playing_time_remaining.stringValue = "-#{format_time((duration - time).to_i)}"
                 @playing_song_progress_view.progressPercent = time/duration * 100.00
                 @playing_song_progress_view.display 
+                play_next if time == duration && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) >= 20000
             end
         end
     end

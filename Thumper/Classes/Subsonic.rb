@@ -1,4 +1,5 @@
 require 'base64'
+require 'time'
 
 class Subsonic
     attr_reader :connectivity
@@ -88,7 +89,7 @@ class Subsonic
                 @albums.each {|a| DB[:albums].insert(:title => a[:title], :id => a[:id], :cover_art => a[:cover_art], :artist_id => a[:artist_id]) } 
             end
         else
-            Dispatch::Queue.new('com.qweef.db').async do
+            @parent.db_queue.async do
                 @albums.each do |a|
                     return if DB[:albums].filter(:id => a[:id]).all.first 
                     DB[:albums].insert(:title => a[:title], :id => a[:id], :cover_art => a[:cover_art], :artist_id => a[:artist_id])
@@ -273,6 +274,56 @@ class Subsonic
         end
     end
     
+    def now_playing_response(xml, options)
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
+            now_playing_songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('nowPlaying', error:nil).first.nodesForXPath('entry', error:nil)
+            attributeNames = ["title", "artist", "username", "album", "coverArt", "playerName", "minutesAgo"]
+            now_playing_songs.each do |xml_song|
+                song = {}
+                attributeNames.each do |name|
+                    song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
+                end
+                song[:added_time] = Time.now
+                found = false
+                @parent.now_playing.each do |np|
+                    if np[:username] == song[:username] && song[:playerName] == song[:playerName] && np[:title] == song[:title] && np[:artist] == song[:artist]
+                        index = @parent.now_playing.find_index(np)
+                        @parent.now_playing[index] =  song
+                        found = true
+                    elsif np[:username] == song[:username] && np[:playerName] == song[:playerName] && np[:title] != song[:title] && np[:artist] != song[:artist]
+                        @parent.now_playing.delete(np)
+                    end
+                    @parent.now_playing.delete(np) if np[:added_time] < (Time.now - 3600)
+                end
+                if found == false
+                    @parent.now_playing << song
+                    growl_now_playing(song) unless [song[:playerName], song[:username]] == ["Thumper", @parent.username] 
+                end
+            end 
+        end
+    end
+    
+    def show_all_now_playing
+        @parent.now_playing.sort! {|a, b| a[:minutesAgo].to_i <=> b[:minutesAgo].to_i}
+        @parent.now_playing.each {|song| growl_now_playing(song)} 
+    end
+        
+    def growl_now_playing(song)
+        @parent.db_queue.sync do
+            path = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
+            if !File.exists?(path)
+                request = build_request("/rest/getCoverArt.view", {:id => song[:coverArt]})
+                data = NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil)
+                data.writeToFile(path, atomically:true)
+            end
+            
+            img = NSImage.alloc.initWithContentsOfFile(path)
+            
+            g = Growl.new("Thumper", ["notification"], img)
+            g.notify("notification", "#{song[:username]} is listening to...", "Title: #{song[:title]}\nArtist: #{song[:artist]}\nAlbum: #{song[:album]}\nVia: #{song[:playerName].nil? ? 'Web Interface' : song[:playerName]} #{song[:minutesAgo] == '0' ? 'Just now' : song[:minutesAgo] + ' Miniutes ago'}") 
+        end
+    end
+    
     def image_response(data, path, id)
         response = data.writeToFile(path, atomically:true)
         @parent.albums_table_view.reloadData
@@ -297,6 +348,7 @@ class Subsonic
 	
     def scrobble_response(xml, options)
         NSLog "Successfully scrobbled song" if xml.class == NSXMLDocument 
+        @parent.subsonic.get_now_playing(@parent.subsonic, :now_playing_response)
     end
 	
 	#Actual data request methods
@@ -389,6 +441,11 @@ class Subsonic
         NSURLConnection.connectionWithRequest(scrobble_request, delegate:XMLResponse.new(delegate, method))
         now_playing_request = build_request('/rest/stream.view', {:id => id})
         @conn = NSURLConnection.connectionWithRequest(now_playing_request, delegate:self)
+    end
+    
+    def get_now_playing(delegate, method)
+        request = build_request("/rest/getNowPlaying.view", {})
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
     end
     
     def connection(connection, didReceiveResponse:response)

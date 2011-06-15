@@ -45,9 +45,6 @@ class ThumperProgressIndicator < NSView
         fillPath.appendBezierPathWithRoundedRect(progressRect, xRadius: radius, yRadius: radius)
         fillPath.fill
         
-        if progressWidth > height && progressWidth < (width - height) 
-            squareRect = NSRect.new([progressWidth - radius, y], [radius + 0.5, height])
-            NSRectFill(squareRect)
-        end
+        
 	end
 end 
