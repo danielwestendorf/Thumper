@@ -2,10 +2,7 @@ framework 'Cocoa'
 framework 'Foundation'
 
 class Growl
-    GROWL_IS_READY = "Lend Me Some Sugar; I Am Your Neighbor!"
-    GROWL_NOTIFICATION_CLICKED = "GrowlClicked!"
-    GROWL_NOTIFICATION_TIMED_OUT = "GrowlTimedOut!"
-    GROWL_KEY_CLICKED_CONTEXT = "ClickedContext"
+
     
     def initialize(app, notifications, icon = nil)
         @application_name = app
@@ -32,9 +29,6 @@ class Growl
     end
     
     def send_registration!
-        #add_observer 'onReady:', GROWL_IS_READY, false
-        #add_observer 'onClicked:', GROWL_NOTIFICATION_CLICKED, true
-        #add_observer 'onTimeout:', GROWL_NOTIFICATION_TIMED_OUT, true
         
         dict = {
             :ApplicationName => @application_name,

@@ -123,12 +123,6 @@ class ThumperDelegate
         
         @app_version.stringValue = "Version: #{NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleVersion)}"
         
-        #expire = DateTime.parse('2011-06-14')
-        #if DateTime.now > expire
-        #    NSLog "Demo period has expired"
-        #    @demo_text.stringValue = "Thank you for using Thumper, hopefully it was an enjoyable experience. The demo period for Thumper has expired. If you like the app and would like to continue using it, please visit http://www.thumperapp.com"
-        #    NSApp.beginSheet(demo_window, modalForWindow:main_window, modalDelegate:self, didEndSelector:nil, contextInfo:nil)
-        #end
         if @current_playlist.length > 0
             @playing_song = 0
             song = @current_playlist[0]
@@ -144,7 +138,7 @@ class ThumperDelegate
                     @playing_song_object_progress.startAnimation(nil)
                 end
             end
-            start_timer
+            start_timer unless @playing_song_object.nil?
             NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
             NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
             set_playing_info
@@ -246,7 +240,7 @@ class ThumperDelegate
     end
     
     def setup_subsonic_conneciton
-        NSLog "Connecting to subsonic"
+        #NSLog "Connecting to subsonic"
         @subsonic = Subsonic.new(self, @current_server_url, username, password)
         @subsonic.ping(@subsonic, :ping_response)
     end
@@ -421,10 +415,10 @@ class ThumperDelegate
     def play_song
         @playing_song = 0 if @playing_song.nil? 
         song = @current_playlist[@playing_song]
-        NSLog "#{song}"
+        #NSLog "#{song}"
         growl_song
         if File.exists?(song[:cache_path])
-            NSLog "Playing song from cache"
+            #NSLog "Playing song from cache"
             @playing_song_object_progress.stopAnimation(nil)
             @playing_queue.sync do 
                 @playing_song_object.stop if @playing_song_object
@@ -435,7 +429,7 @@ class ThumperDelegate
             end
         else
             url = NSURL.alloc.initWithString("#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}")
-            NSLog "Streaming song"
+            #NSLog "Streaming song"
             @playing_queue.sync do 
                 @playing_song_object.stop if @playing_song_object
                 @downloading_song.cancel if @downloading_song
@@ -509,7 +503,9 @@ class ThumperDelegate
     end
     
     def cancel_timer
+        @progress_timer.invalidate if @progress_timer
         @progress_timer = nil
+        #NSLog "canceled Timer"
     end
     
     def play_toggle 
@@ -598,7 +594,7 @@ class ThumperDelegate
     def repeat_button_action(sender)
         if @repeat_single == true
             #toggle to repeat all
-            NSLog "Repeat all on"
+            #NSLog "Repeat all on"
             @repeat_single = false
             @repeat_all = true
             @repeat_one_menu_item.setState(NSOffState)
@@ -607,7 +603,7 @@ class ThumperDelegate
             sender.setState(NSOnState)
         elsif @repeat_all == true
             #turn all repeat off
-            NSLog "Repeat off"
+            #NSLog "Repeat off"
             @repeat_single = false
             @repeat_all = false
             @repeat_one_menu_item.setState(NSOffState)
@@ -616,7 +612,7 @@ class ThumperDelegate
             sender.setState(NSOffState)
         else
             #turn on repeat single
-            NSLog "Repeat on"
+            #NSLog "Repeat on"
             @repeat_single = true
             @repeat_all = false
             @repeat_one_menu_item.setState(NSOnState)
@@ -701,9 +697,7 @@ class ThumperDelegate
     end
     
     def songEnded(notification)
-		@playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
-        update_progress_bar(@progress_timer)
-        @play_button.setImage(NSImage.imageNamed("Play"))
+		
     end
     
     def loadStateChanged(notification)
@@ -753,7 +747,12 @@ class ThumperDelegate
                 @playing_time_remaining.stringValue = "-#{format_time((duration - time).to_i)}"
                 @playing_song_progress_view.progressPercent = time/duration * 100.00
                 @playing_song_progress_view.display 
-                play_next if time == duration && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) >= 20000
+                if time == duration && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) >= 20000
+                    @playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
+                    update_progress_bar(@progress_timer)
+                    @play_button.setImage(NSImage.imageNamed("Play"))
+                    play_next unless @current_playlist.length <= @playing_song + 1 && @shuffle == false && @repeat == false && @repeat_all == false
+                end
             end
         end
     end

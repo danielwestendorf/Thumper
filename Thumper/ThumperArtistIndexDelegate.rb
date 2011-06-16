@@ -32,12 +32,12 @@ class ThumperArtistIndexDelegate
             parent.reload_albums
             parent.reload_songs
             parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id])
-            NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}, #{parent.artists[parent.artist_indexes_table_view.selectedRow][:id]}"
+            #NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}, #{parent.artists[parent.artist_indexes_table_view.selectedRow][:id]}"
         end
     end
     
     def textInputOnEnterPressed(sender)
-        NSLog "Filtering artists by #{filter_input.stringValue}"
+        #NSLog "Filtering artists by #{filter_input.stringValue}"
         filter = filter_input.stringValue.downcase.strip
         unless filter.empty?
             new_artists = []

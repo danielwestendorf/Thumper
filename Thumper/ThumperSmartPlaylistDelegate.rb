@@ -39,7 +39,7 @@ class ThumperSmartPlaylistDelegate
             end
             
             parent.get_smart_playlist(hash) 
-            NSLog "Selected SP #{parent.smart_playlists_table_view.selectedRow}, #{parent.smart_playlists[parent.quick_playlists_table_view.selectedRow][:name]}"
+            #NSLog "Selected SP #{parent.smart_playlists_table_view.selectedRow}, #{parent.smart_playlists[parent.quick_playlists_table_view.selectedRow][:name]}"
         end
     end
     

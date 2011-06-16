@@ -43,7 +43,6 @@ class ThumperAlbumDelegate
     
     def add_album_to_playlist(sender)
         parent.songs.each do |song|
-            NSLog "#{song}"
             parent.add_to_current_playlist(song, true)
             sleep 0.001
         end

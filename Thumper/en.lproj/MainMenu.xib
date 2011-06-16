@@ -23,13 +23,13 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1946"/>
 			<integer value="1631"/>
-			<integer value="1462"/>
+			<integer value="1667"/>
+			<integer value="1471"/>
+			<integer value="582"/>
+			<integer value="1642"/>
+			<integer value="1456"/>
 			<integer value="1428"/>
 			<integer value="1781"/>
-			<integer value="1471"/>
-			<integer value="591"/>
-			<integer value="1667"/>
-			<integer value="1642"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4346,7 +4346,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								<int key="NSButtonFlags">-2038021889</int>
 								<int key="NSButtonFlags2">35</int>
 								<string key="NSAlternateContents"/>
-								<string key="NSKeyEquivalent"/>
+								<string type="base64-UTF8" key="NSKeyEquivalent">DQ</string>
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
@@ -4366,7 +4366,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								<int key="NSButtonFlags">-2038021889</int>
 								<int key="NSButtonFlags2">35</int>
 								<string key="NSAlternateContents"/>
-								<string key="NSKeyEquivalent"/>
+								<string type="base64-UTF8" key="NSKeyEquivalent">Gw</string>
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
@@ -4628,7 +4628,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="491149895">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">8BDC92A8-EECE-4CED-A0AD-25E34CFDF02A</characters>
+									<characters key="NS.bytes">8E8AD90A-E210-4FE7-943D-3236B6C0E612</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Cache</string>
 								<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4651,7 +4651,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="721798759">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">A9C9ED4C-2003-4D6D-8E44-B0EB6C9DF64F</characters>
+									<characters key="NS.bytes">F8F7B4AA-7A04-464D-8CB3-98EC4873CD03</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Subsonic</string>
 								<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -4818,7 +4818,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="406455093">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">221EAD4B-6E40-45B4-A8F0-43C8B1C92EFE</characters>
+										<characters key="NS.bytes">EA77C91B-3568-4CBF-A155-D2FE5B853040</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Cache</string>
 									<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4838,7 +4838,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="133875353">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">A729E458-68B3-4C5C-BDDA-F09F851C00E6</characters>
+										<characters key="NS.bytes">FFFB7EDA-B7CC-4F6D-9C04-AAB95F317B33</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Subsonic</string>
 									<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -5774,7 +5774,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 								<int key="NSButtonFlags">-2038152961</int>
 								<int key="NSButtonFlags2">163</int>
 								<string key="NSAlternateContents"/>
-								<string key="NSKeyEquivalent"/>
+								<string type="base64-UTF8" key="NSKeyEquivalent">DQ</string>
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
 							</object>
@@ -5794,7 +5794,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 								<int key="NSButtonFlags">-2038152961</int>
 								<int key="NSButtonFlags2">163</int>
 								<string key="NSAlternateContents"/>
-								<string key="NSKeyEquivalent"/>
+								<string type="base64-UTF8" key="NSKeyEquivalent">Gw</string>
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
 							</object>
@@ -7305,6 +7305,126 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<reference key="destination" ref="62720626"/>
 					</object>
 					<int key="connectionID">2027</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="214110514"/>
+						<reference key="destination" ref="609135279"/>
+					</object>
+					<int key="connectionID">2028</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="609135279"/>
+						<reference key="destination" ref="156084892"/>
+					</object>
+					<int key="connectionID">2029</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="156084892"/>
+						<reference key="destination" ref="88985327"/>
+					</object>
+					<int key="connectionID">2030</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="88985327"/>
+						<reference key="destination" ref="376751414"/>
+					</object>
+					<int key="connectionID">2031</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="160135490"/>
+						<reference key="destination" ref="1058892707"/>
+					</object>
+					<int key="connectionID">2040</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="889348625"/>
+						<reference key="destination" ref="677296753"/>
+					</object>
+					<int key="connectionID">2041</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="1020115822"/>
+						<reference key="destination" ref="505343565"/>
+					</object>
+					<int key="connectionID">2042</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="505343565"/>
+						<reference key="destination" ref="109656817"/>
+					</object>
+					<int key="connectionID">2043</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="109656817"/>
+						<reference key="destination" ref="31665887"/>
+					</object>
+					<int key="connectionID">2044</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="269281153"/>
+						<reference key="destination" ref="86280478"/>
+					</object>
+					<int key="connectionID">2045</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="86280478"/>
+						<reference key="destination" ref="1029274222"/>
+					</object>
+					<int key="connectionID">2046</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="1029274222"/>
+						<reference key="destination" ref="269281153"/>
+					</object>
+					<int key="connectionID">2047</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="376751414"/>
+						<reference key="destination" ref="72646722"/>
+					</object>
+					<int key="connectionID">2052</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="72646722"/>
+						<reference key="destination" ref="787510711"/>
+					</object>
+					<int key="connectionID">2053</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="787510711"/>
+						<reference key="destination" ref="214110514"/>
+					</object>
+					<int key="connectionID">2054</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -8997,8 +9117,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="269281153"/>
-							<reference ref="86280478"/>
 							<reference ref="1029274222"/>
+							<reference ref="86280478"/>
 						</object>
 						<reference key="parent" ref="838816057"/>
 					</object>
@@ -11268,9 +11388,9 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform"/>
-					<string>{{1118, 493}, {300, 100}}</string>
+					<string>{{1109, 716}, {300, 100}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1118, 493}, {300, 100}}</string>
+					<string>{{1109, 716}, {300, 100}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -11297,9 +11417,9 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{960, 754}, {300, 123}}</string>
+					<string>{{1435, 959}, {300, 123}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{960, 754}, {300, 123}}</string>
+					<string>{{1435, 959}, {300, 123}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -11904,7 +12024,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDhIAAwp4AAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDjwAAwp4AAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -11962,10 +12082,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<integer value="1"/>
 					<string>{74, 862}</string>
 					<string>{{6, 978}, {478, 20}}</string>
-					<string>{{545, 52}, {1024, 600}}</string>
+					<string>{{104, 59}, {1024, 600}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{545, 52}, {1024, 600}}</string>
+					<string>{{104, 59}, {1024, 600}}</string>
 					<integer value="1"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<boolean value="YES"/>
@@ -11985,9 +12105,9 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>{{23, 794}, {245, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{1335, 698}, {300, 170}}</string>
+					<string>{{1725, 1087}, {300, 170}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1335, 698}, {300, 170}}</string>
+					<string>{{1725, 1087}, {300, 170}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -12221,7 +12341,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2027</int>
+			<int key="maxID">2054</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">

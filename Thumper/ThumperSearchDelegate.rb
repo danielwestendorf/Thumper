@@ -13,13 +13,12 @@ class ThumperSearchDelegate
     end
     
     def double_click(sender)
-        row = @search_table_view.selectedRow
-        row = 0 if row.nil?
-        @parent.add_to_current_playlist(@search[row])
+        row = parent.search_table_view.selectedRow
+        parent.add_to_current_playlist(@parent.search_results[row])
     end
     
     def numberOfRowsInTableView(tableView)
-        @search.count
+        @parent.search_results.count
     end
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
@@ -32,7 +31,7 @@ class ThumperSearchDelegate
     
     def textInputOnEnterPressed(sender)
         reload_search
-        NSLog "searching for by #{search_query.stringValue}"
+        #NSLog "searching for by #{search_query.stringValue}"
         query = URI.escape(search_query.stringValue.downcase.strip)
         @search_progress.stopAnimation(nil)
         unless query.length < 3
@@ -85,7 +84,7 @@ class ThumperSearchDelegate
         return nil
     end
     
-    def search_response(xml)
+    def search_response(xml, options)
         NSLog "got a response"
         if xml.class == NSXMLDocument
             songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('searchResult', error:nil).first.nodesForXPath('match', error:nil)
@@ -109,14 +108,15 @@ class ThumperSearchDelegate
             @parent.search_results = @search
             reload_search
             @search_progress.stopAnimation(nil)
-            Dispatch::Queue.new('com.Thumper.db').async do
-                @search.each do |s|
-                    return if DB[:songs].filter(:id => s[:id]).all.first 
-                    DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
-                                      :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
-                                      :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
-                                      :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
-                    NSLog "Persisted songs: #{s[:title]}"
+            
+            @parent.db_queue.sync do
+                @search.each do |song|
+                    unless DB[:songs].filter(:id => song[:id]).all.first 
+                        DB[:songs].insert(:id => song[:id], :title => song[:title], :artist => song[:artist], :duration => song[:duration], 
+                                      :bitrate => song[:bitrate], :track => song[:track], :year => song[:year], :genre => song[:genre],
+                                      :size => song[:size], :suffix => song[:suffix], :album => song[:album], :album_id => song[:album_id],
+                                      :cover_art => song[:cover_art], :path => song[:path], :cache_path => song[:cache_path])
+                    end
                 end
             end
         else

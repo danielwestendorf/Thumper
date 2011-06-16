@@ -94,6 +94,7 @@ class ThumperCurrentPlaylistDelegate
         @parent.set_playing_info
         @parent.set_playing_cover_art
         @parent.playing_song_object_progress.stopAnimation(nil)
+        @parent.parent.cancel_timer
     end
     
     def remove_selected_from_playlist(sender)
@@ -109,10 +110,11 @@ class ThumperCurrentPlaylistDelegate
         selected.each do |index|
             if index > -1
                 if index == parent.playing_song
-                    parent.playing_song_object.stop
-                    parent.playing_song_object = QTMovie.alloc
-                    parent.playing_song = nil
-                    parent.set_playing_info
+                    @parent.cancel_timer
+                    @parent.playing_song_object.stop
+                    @parent.playing_song_object = QTMovie.alloc
+                    @parent.playing_song = nil
+                    @parent.set_playing_info
                     parent.set_playing_cover_art
                 end
                 song_id = @parent.current_playlist[index][:id]
@@ -121,17 +123,18 @@ class ThumperCurrentPlaylistDelegate
         end
         selected.each do |index|
            if index > -1
-               @parent.playing_song -= 1 if index < @parent.playing_song
+               @parent.playing_song -= 1 if index && @parent.playing_song && index < @parent.playing_song
                @parent.current_playlist.delete_at(index)
                @parent.reload_current_playlist
                @parent.play_song if selected == @parent.playing_song && @parent.current_playlist.length > 0
            end
         end
-        parent.current_playlist_table_view.deselectAll(nil)
+        @parent.current_playlist_table_view.deselectAll(nil)
+        @parent.cancel_timer if @parent.current_playlist.length < 1
     end
     
     def save_playlist(sender)
-        NSLog "Saving Playlist"
+        #NSLog "Saving Playlist"
         if parent.current_playlist.length > 0
             names = parent.playlists.collect {|p| p[:name]}
             playlist_name.addItemsWithObjectValues(names)
@@ -160,10 +163,10 @@ class ThumperCurrentPlaylistDelegate
     def save_playlist_response(xml)
         g = Growl.new("Thumper", ["notification"])
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
-            NSLog "Playlist saved successfully"
+            #NSLog "Playlist saved successfully"
             g.notify("notification", "Playlist Saved", "The playlist was saved to the Subsonic Server") 
         else
-            NSLog "Error saving playlist #{xml}"
+            #NSLog "Error saving playlist #{xml}"
             g.notify("notification", "Error Saving Playlist", "The playlist was not saved to the Subsonic Server")
         end
     end

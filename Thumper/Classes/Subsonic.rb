@@ -52,7 +52,7 @@ class Subsonic
             NSLog "Invalid response from server"
         end
         xml = nil
-        NSLog "Update of QP albums complete. #{@qp_albums.length} albums"
+        #NSLog "Update of QP albums complete. #{@qp_albums.length} albums"
         if @parent.quick_playlists[@parent.quick_playlists_table_view.selectedRow][1] == options[:type]
             options[:append] == true ? @parent.albums += @qp_albums : @parent.albums = @qp_albums
             @parent.reload_albums
@@ -62,6 +62,7 @@ class Subsonic
 	
 	def albums_response(xml, options)
         @albums = []
+        @songs = []
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             albums = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
             albums.each do |xml_album|
@@ -70,20 +71,28 @@ class Subsonic
                 attributeNames.each do |name|
                     album[name.to_sym] = xml_album.attributeForName(name).stringValue unless xml_album.attributeForName(name).nil? 
                 end
+                #NSLog "Album CA #{album[:coverArt]}"
                 album[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{album[:coverArt]}.jpg"
                 album[:artist_id] = album[:parent]
                 @albums << album if album[:isDir] == "true"
+                
+                if album[:isDir] == "false"
+                    song = parse_song(xml_album)
+                    @songs << song
+                end
             end
         else
             NSLog "Invalid response from server"
         end
         xml = nil
-        NSLog "Update of artist albums complete. #{@albums.length} albums"
+        #NSLog "Update of artist albums complete. #{@albums.length} albums"
         if @parent.artists[@parent.artist_indexes_table_view.selectedRow][:id] == @albums.first[:artist_id]
             @parent.albums = @albums
+            @parent.songs = @songs
             @parent.reload_albums
+            @parent.reload_songs
         end
-        NSLog "Persisting albums to the DB"
+        #NSLog "Persisting albums to the DB"
         if DB[:albums].filter(:artist_id => @albums.first[:artist_id]).all.count < 1
             DB.transaction do
                 @albums.each {|a| DB[:albums].insert(:title => a[:title], :id => a[:id], :cover_art => a[:cover_art], :artist_id => a[:artist_id]) } 
@@ -97,61 +106,32 @@ class Subsonic
                 end
             end
         end
-        NSLog "All Albums presisted to the DB"
+        # NSLog "All Albums presisted to the DB"
         @parent.albums_progress.stopAnimation(nil)
-        @parent.get_album_songs(@albums.first[:id]) if @albums.length == 1
+        @parent.get_album_songs(@albums.first[:id]) if @albums.length == 1 && @songs.length < 1
 	end
 	
 	def songs_response(xml, options)
         @songs = []
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
-            attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
-                            "album", "path", "size"]
+            
             songs.each do |xml_song|
-                song = {}
-                attributeNames.each do |name|
-                    song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
-                end
-                song[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
-                song[:album_id] = song[:parent]
-                song[:bitrate] = song[:bitRate]
-                song[:duration] = @parent.format_time(song[:duration].to_i)
-                song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
+                song = parse_song(xml_song)
                 @songs << song if song[:isDir] == "false"
             end
         else
             NSLog "Invalid response from server"
         end
-        NSLog "Update of ablum songs complete. #{@songs.length} songs"
+        #NSLog "Update of ablum songs complete. #{@songs.length} songs"
         xml = nil
         if @songs.length > 0 && @parent.albums[@parent.albums_table_view.selectedRow][:id] == @songs.first[:album_id]
             @parent.songs = @songs
             @parent.reload_songs
             @parent.songs_table_view.enabled = true
         end
-        NSLog "Persisting songs to the DB"
-        if @songs.length > 0 && DB[:songs].filter(:album_id => @songs.first[:album_id]).all.count < 1
-            DB.transaction do
-                @songs.each {|s| DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
-                                                   :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
-                                                   :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
-                                                   :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path]) } 
-            end
-        else
-            @parent.db_queue.async do
-                @songs.each do |s|
-                    return if DB[:songs].filter(:id => s[:id]).all.first 
-                    DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
-                                       :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
-                                       :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
-                                       :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
-                    NSLog "Added songs: #{song[:title]}"
-                end
-            end
-        end
         @parent.songs_progress.stopAnimation(nil)
-        NSLog "All songs presisted to the DB"
+        #NSLog "All songs presisted to the DB"
 	end
 	
 	def artists_response(xml, options)
@@ -171,7 +151,7 @@ class Subsonic
         @parent.artists.count != 1 ? word = " Artists" : word = " Artist"
         @parent.artist_count_label.stringValue = @artists.count.to_s + word
         @parent.artist_indexes_table_view.reloadData
-        NSLog "Persisting Aritsts to the DB"
+        #NSLog "Persisting Aritsts to the DB"
         if DB[:artists].all.count < 1
             DB.transaction do
                 @artists.each {|a| DB[:artists].insert(:name => a[:name], :id => a[:id]) } 
@@ -181,12 +161,12 @@ class Subsonic
                 @artists.each do |a|
                     return if DB[:artists].filter(:id => a[:id]).all.first 
                     DB[:artists].insert(:id => a[:id], :name => a[:name])
-                    NSLog "Added Artist: #{a[:name]}"
+                    #NSLog "Added Artist: #{a[:name]}"
                 end
             end
         end
         @parent.artists_progress.stopAnimation(nil)
-        NSLog "All Artists presisted to the DB #{@parent.artists.length}"
+        #NSLog "All Artists presisted to the DB #{@parent.artists.length}"
 	end
 
     def playlists_response(xml, options)
@@ -197,7 +177,7 @@ class Subsonic
                 @playlists << {:name => playlist.attributeForName("name").stringValue, :id => playlist.attributeForName("id").stringValue}
             end
         end
-        NSLog "Got playlists from server"
+        #NSLog "Got playlists from server"
         @parent.playlists = @playlists
         @parent.reload_playlists
         @parent.playlists_progress.stopAnimation(nil)
@@ -209,18 +189,8 @@ class Subsonic
             playlist_id = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.attributeForName("id").stringValue
             playlist_name = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.attributeForName("name").stringValue
             playlist_songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('playlist', error:nil).first.nodesForXPath('entry', error:nil)
-            attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
-            "album", "path", "size"]
             playlist_songs.each do |xml_song|
-                song = {}
-                attributeNames.each do |name|
-                    song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
-                end
-                song[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
-                song[:album_id] = song[:parent]
-                song[:bitrate] = song[:bitRate]
-                song[:duration] = @parent.format_time(song[:duration].to_i)
-                song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
+                song = parse_song(xml_song)
                 @playlist_songs << song if song[:isDir] == "false"
             end 
         end
@@ -228,12 +198,6 @@ class Subsonic
         @parent.db_queue.async do
             DB[:playlist_songs].filter(:playlist_id => playlist_id).delete
             @playlist_songs.each do |s|
-                if DB[:songs].filter(:id => s[:id]).all.first.nil?
-                    DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
-                                  :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
-                                  :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
-                                  :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
-                end
                 DB[:playlist_songs].insert(:playlist_id => playlist_id, :name => playlist_name, :song_id => s[:id])
             end
         end
@@ -245,33 +209,15 @@ class Subsonic
         @playlist_songs = []
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             playlist_songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('randomSongs', error:nil).first.nodesForXPath('song', error:nil)
-            attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
-            "album", "path", "size"]
+            
             playlist_songs.each do |xml_song|
-                song = {}
-                attributeNames.each do |name|
-                    song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
-                end
-                song[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
-                song[:album_id] = song[:parent]
-                song[:bitrate] = song[:bitRate]
-                song[:duration] = @parent.format_time(song[:duration].to_i)
-                song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
+                song = parse_song(xml_song)
                 @playlist_songs << song if song[:isDir] == "false"
             end 
         end
         @parent.playlist_songs = @playlist_songs
         @parent.reload_playlist_songs
         @parent.playlist_songs_progress.stopAnimation(nil)
-        @parent.db_queue.async do
-            @playlist_songs.each do |s|
-                return if DB[:songs].filter(:id => s[:id]).all.first
-                DB[:songs].insert(:id => s[:id], :title => s[:title], :artist => s[:artist], :duration => s[:duration], 
-                                      :bitrate => s[:bitrate], :track => s[:track], :year => s[:year], :genre => s[:genre],
-                                      :size => s[:size], :suffix => s[:suffix], :album => s[:album], :album_id => s[:album_id],
-                                      :cover_art => s[:cover_art], :path => s[:path], :cache_path => s[:cache_path])
-            end
-        end
     end
     
     def now_playing_response(xml, options)
@@ -320,7 +266,14 @@ class Subsonic
             img = NSImage.alloc.initWithContentsOfFile(path)
             
             g = Growl.new("Thumper", ["notification"], img)
-            g.notify("notification", "#{song[:username]} is listening to...", "Title: #{song[:title]}\nArtist: #{song[:artist]}\nAlbum: #{song[:album]}\nVia: #{song[:playerName].nil? ? 'Web Interface' : song[:playerName]} #{song[:minutesAgo] == '0' ? 'Just now' : song[:minutesAgo] + ' Miniutes ago'}") 
+            if song[:minutesAgo] == '0' 
+                time_ago = 'Just now'
+            elsif song[:minutesAgo] == '1' 
+                time_ago = song[:minutesAgo] + ' Miniute ago'
+            else
+                time_ago = song[:minutesAgo] + ' Miniutes ago'
+            end
+            g.notify("notification", "#{song[:username]} is listening to...", "Title: #{song[:title]}\nArtist: #{song[:artist]}\nAlbum: #{song[:album]}\nClient: #{song[:playerName].nil? ? 'Web Interface' : song[:playerName]} #{time_ago}") 
         end
     end
     
@@ -347,7 +300,7 @@ class Subsonic
     end
 	
     def scrobble_response(xml, options)
-        NSLog "Successfully scrobbled song" if xml.class == NSXMLDocument 
+        #NSLog "Successfully scrobbled song" if xml.class == NSXMLDocument 
         @parent.subsonic.get_now_playing(@parent.subsonic, :now_playing_response)
     end
 	
@@ -378,7 +331,7 @@ class Subsonic
     end
 	
 	def albums(id, delegate, method)
-        NSLog "Getting album #{id}"
+        #NSLog "Getting album #{id}"
         request = build_request('/rest/getMusicDirectory', {:id => id})
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
@@ -430,13 +383,13 @@ class Subsonic
     
     def download_media(path, id, delegate, method)
         @parent.downloading_song.cancel if @parent.downloading_song
-        NSLog "Attempting to download #{id}"
+        #NSLog "Attempting to download #{id}"
         request = build_request('/rest/download.view', {:id => id})
         @parent.downloading_song = NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, id, delegate, method))
     end
     
     def scrobble(id, delegate, method)
-        NSLog "Attempting to scrobble now playing"
+        #NSLog "Attempting to scrobble now playing"
         scrobble_request = build_request('/rest/scrobble.view', {:id => id})
         NSURLConnection.connectionWithRequest(scrobble_request, delegate:XMLResponse.new(delegate, method))
         now_playing_request = build_request('/rest/stream.view', {:id => id})
@@ -451,13 +404,38 @@ class Subsonic
     def connection(connection, didReceiveResponse:response)
         if response.statusCode == 200..300
             @conn.cancel
-            NSLog "Canceled KilledResposne"
-            else
-            NSLog "There was an error with the request: #{response.statusCode}"
+            #NSLog "Canceled KilledResposne"
+        else
+            #NSLog "There was an error with the request: #{response.statusCode}"
         end
     end
 	
 	private
+    
+    def parse_song(xml_song)
+        attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
+        "album", "path", "size"]
+        song = {}
+        attributeNames.each do |name|
+            song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
+        end
+        song[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{song[:coverArt]}.jpg"
+        song[:album_id] = song[:parent]
+        song[:bitrate] = song[:bitRate]
+        song[:duration] = @parent.format_time(song[:duration].to_i)
+        song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
+        
+        @parent.db_queue.sync do
+            unless DB[:songs].filter(:id => song[:id]).all.first 
+                DB[:songs].insert(:id => song[:id], :title => song[:title], :artist => song[:artist], :duration => song[:duration], 
+                                  :bitrate => song[:bitrate], :track => song[:track], :year => song[:year], :genre => song[:genre],
+                                  :size => song[:size], :suffix => song[:suffix], :album => song[:album], :album_id => song[:album_id],
+                                  :cover_art => song[:cover_art], :path => song[:path], :cache_path => song[:cache_path])
+            end 
+        end
+        
+        return song
+    end
 	
 	def build_request(resource, options)
         options_string = options.collect do |key, value| 
@@ -494,7 +472,7 @@ class XMLResponse
     
     def connectionDidFinishLoading(connection)
         case @response.statusCode
-            when 200...300
+        when 200...300
             xml = NSXMLDocument.alloc.initWithData(@downloadData,
                                                    options:NSXMLDocumentValidate,
                                                    error:nil)
@@ -504,7 +482,7 @@ class XMLResponse
                 #NSLog "Methods: #{@delegate.class.class}"
                 @delegate.method(@method).call(xml, @options)
             end
-            else
+        else
             NSLog "ERROR! #{@response.statusCode}"
             @delegate.method(@method).call(@response.statusCode)
         end
@@ -533,7 +511,7 @@ class DownloadResponse
         case @response.statusCode
             when 200...300
             @delegate.method(@method).call(@downloadData, @path, @id)
-            else
+        else
             NSLog "Image response: #{@response.statusCode}"
         end
     end
