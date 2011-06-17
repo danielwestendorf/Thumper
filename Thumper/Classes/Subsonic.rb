@@ -86,14 +86,22 @@ class Subsonic
         end
         xml = nil
         #NSLog "Update of artist albums complete. #{@albums.length} albums"
-        if @parent.artists[@parent.artist_indexes_table_view.selectedRow][:id] == @albums.first[:artist_id]
+        if @albums.length > 0
+            artist_id = @albums.first[:artist_id]
+        elsif 
+            artist_id = @songs.first[:parent]
+        else
+            artist_id = nil
+        end
+        
+        if @parent.artists[@parent.artist_indexes_table_view.selectedRow][:id] == artist_id
             @parent.albums = @albums
             @parent.songs = @songs
             @parent.reload_albums
             @parent.reload_songs
         end
         #NSLog "Persisting albums to the DB"
-        if DB[:albums].filter(:artist_id => @albums.first[:artist_id]).all.count < 1
+        if @albums.length > 0 && DB[:albums].filter(:artist_id => @albums.first[:artist_id]).all.count < 1
             DB.transaction do
                 @albums.each {|a| DB[:albums].insert(:title => a[:title], :id => a[:id], :cover_art => a[:cover_art], :artist_id => a[:artist_id]) } 
             end
