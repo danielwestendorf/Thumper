@@ -13,8 +13,8 @@ class ThumperSearchDelegate
     end
     
     def double_click(sender)
-        row = parent.search_table_view.selectedRow
-        parent.add_to_current_playlist(@parent.search_results[row])
+        row = @search_table_view.selectedRow
+        @parent.add_to_current_playlist(@parent.search_results[row])
     end
     
     def numberOfRowsInTableView(tableView)

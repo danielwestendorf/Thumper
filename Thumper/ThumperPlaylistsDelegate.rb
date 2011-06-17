@@ -71,7 +71,7 @@ class ThumperPlaylistsDelegate
         confirmation_window.orderOut(sender)
     end
     
-    def delete_playlist_response(xml)
+    def delete_playlist_response(xml, options)
         g = Growl.new("Thumper", ["notification"])
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             #NSLog "Playlist deleted from the server"

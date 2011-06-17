@@ -46,30 +46,33 @@ class ThumperSmartPlaylistDelegate
     def add_smart_playlist(sender)
         genres = DB[:songs].group(:genre).all.collect {|p| p[:genre] }
         parent.sp_genre.addItemsWithObjectValues(genres)
-        sp_modal = SimpleModal.new(@parent, @parent.main_window, @parent.new_sp_window)
+        sp_modal = SimpleModal.new(@parent.main_window, @parent.new_sp_window)
         sp_modal.show
         sp_modal.add_outlet(parent.new_sp_cancel) do
-            sp_modal.close(sender)
+            nil
         end
         
-        sp_modal.add_outlet(parent.new_sp_save) do
+        sp_modal.add_outlet(parent.new_sp_save, true) do
             playlist = {:name => parent.sp_name.stringValue, :size => parent.sp_size.stringValue, :genre => parent.sp_genre.stringValue, :fromYear => parent.sp_fromYear.stringValue, :toYear => parent.sp_toYear.stringValue}
             parent.smart_playlists << playlist
-            DB[:smart_playlists].insert(playlist)
-            sp_modal.close(sender)
-            parent.smart_playlists_table_view.reloadData
-            g = Growl.new("Thumper", ["notification"])
-            g.notify("notification", "Smart Playlist Saved", "The Smart Playlist #{playlist[:name]} was created")
+            @parent.db_queue.sync do
+                DB[:smart_playlists].insert(playlist)
+                parent.smart_playlists_table_view.reloadData
+                g = Growl.new("Thumper", ["notification"])
+                g.notify("notification", "Smart Playlist Saved", "The Smart Playlist #{playlist[:name]} was created")
+            end
         end
     end
     
     def delete_smart_playlist(sender)
         row = parent.smart_playlists_table_view.selectedRow
         playlist_hash = parent.smart_playlists[row]
-        DB[:smart_playlists].filter(:id => playlist_hash[:id]).delete
+        @parent.db_queue.sync do
+            DB[:smart_playlists].filter(:id => playlist_hash[:id]).delete
+            g = Growl.new("Thumper", ["notification"])
+            g.notify("notification", "Smart Playlist Deleted", "The Smart Playlist #{playlist_hash[:name]} was deleted")
+        end
         parent.smart_playlists.delete_at(row)
         parent.smart_playlists_table_view.reloadData
-        g = Growl.new("Thumper", ["notification"])
-        g.notify("notification", "Smart Playlist Deleted", "The Smart Playlist #{playlist_hash[:name]} was deleted")
     end
 end

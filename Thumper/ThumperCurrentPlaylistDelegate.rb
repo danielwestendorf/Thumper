@@ -94,7 +94,7 @@ class ThumperCurrentPlaylistDelegate
         @parent.set_playing_info
         @parent.set_playing_cover_art
         @parent.playing_song_object_progress.stopAnimation(nil)
-        @parent.parent.cancel_timer
+        @parent.cancel_timer
     end
     
     def remove_selected_from_playlist(sender)
@@ -160,11 +160,12 @@ class ThumperCurrentPlaylistDelegate
         save_window.orderOut(sender)
     end
     
-    def save_playlist_response(xml)
+    def save_playlist_response(xml, options)
         g = Growl.new("Thumper", ["notification"])
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             #NSLog "Playlist saved successfully"
             g.notify("notification", "Playlist Saved", "The playlist was saved to the Subsonic Server") 
+            @parent.get_playlists
         else
             #NSLog "Error saving playlist #{xml}"
             g.notify("notification", "Error Saving Playlist", "The playlist was not saved to the Subsonic Server")

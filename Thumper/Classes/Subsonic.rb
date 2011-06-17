@@ -54,8 +54,11 @@ class Subsonic
         xml = nil
         #NSLog "Update of QP albums complete. #{@qp_albums.length} albums"
         if @parent.quick_playlists[@parent.quick_playlists_table_view.selectedRow][1] == options[:type]
+            selected = @parent.albums_table_view.selectedRow
             options[:append] == true ? @parent.albums += @qp_albums : @parent.albums = @qp_albums
             @parent.reload_albums
+            
+            @parent.albums_table_view.selectRowIndexes(NSIndexSet.alloc.initWithIndex(selected), byExtendingSelection:false) if selected > -1
         end
         @parent.albums_progress.setHidden(true)
     end
@@ -304,7 +307,7 @@ class Subsonic
             path_step << '/'
         end
         response = data.writeToFile(path, atomically:true)
-        NSLog "Saved downloaded file to #{path}"
+        #NSLog "Saved downloaded file to #{path}"
     end
 	
     def scrobble_response(xml, options)
@@ -421,6 +424,7 @@ class Subsonic
 	private
     
     def parse_song(xml_song)
+        return if xml_song.nil?
         attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
         "album", "path", "size"]
         song = {}
@@ -431,7 +435,7 @@ class Subsonic
         song[:album_id] = song[:parent]
         song[:bitrate] = song[:bitRate]
         song[:duration] = @parent.format_time(song[:duration].to_i)
-        song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path]
+        song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path] unless song[:isDir] == "true"
         
         @parent.db_queue.sync do
             unless DB[:songs].filter(:id => song[:id]).all.first 

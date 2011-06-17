@@ -51,6 +51,7 @@ class ThumperDelegate
         @albums = []
         @songs = []
         @now_playing = []
+        @search_results = []
         @qp_offset = 0
         @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
         @smart_playlists = DB[:smart_playlists].all.collect {|p|  p }
@@ -160,7 +161,7 @@ class ThumperDelegate
             response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil))
             if current_version != response
                 @t_update_text.stringValue = "There is a newer version of Thumper available.\n\nCurrent Version: #{current_version}\nAvailable Version: #{response}"
-                update_modal = SimpleModal.new(self, @main_window, @t_update_window)
+                update_modal = SimpleModal.new(@main_window, @t_update_window)
                 update_modal.add_outlet(@t_update_button) do
                     url = NSURL.URLWithString "macappstore://itunes.apple.com/us/app/thumper/id436422990?mt=12ls=1ign-msr=http%3A%2F%2Fwww.thumperapp.com%2F"
                     NSWorkspace.sharedWorkspace.openURL(url)
@@ -558,11 +559,11 @@ class ThumperDelegate
         if @repeat_single == true
             @playing_song_object.setCurrentTime(QTTime.new(0,1,false))
             play_song
-            NSLog "Repeat Single"
+            #NSLog "Repeat Single"
         elsif @repeat_all == true && @playing_song == @current_playlist.length - 1
             @playing_song = 0
             play_song
-            NSLog "Repeat all"
+            #NSLog "Repeat all"
         elsif @shuffle == true
             unless @current_playlist.length == 1
                 current = @playing_song
@@ -571,7 +572,7 @@ class ThumperDelegate
                 end while @playing_song == current
             end
             play_song
-            NSLog "Shuffle"
+            #NSLog "Shuffle"
         elsif !@playing_song.nil? && !@current_playlist[@playing_song + 1].nil?
             @playing_song += 1
             play_song
@@ -582,12 +583,15 @@ class ThumperDelegate
         if @repeat_single == true
             @repeat_single = false 
             sender.setState(NSOffState) 
+            @repeat_button.setState(NSOffState)
+            @repeat_button.setTitle("Repeat")
         else 
             @repeat_single = true
             @repeat_all = false
             sender.setState(NSOnState)
             @repeat_all_menu_item.setState(NSOffState)
-            @repeat_all_button.setState(NSOffState)
+            @repeat_button.setState(NSOnState)
+            @repeat_button.setTitle("Repeat")
         end
     end
     
@@ -627,6 +631,7 @@ class ThumperDelegate
             @repeat_all = false
             @repeat_all_menu_item.setState(NSOffState)
             @repeat_button.setState(NSOffState)
+            @repeat_button.setTitle("Repeat")
         else
             @repeat_all = true 
             @repeat_single = false
@@ -634,6 +639,7 @@ class ThumperDelegate
             @repeat_one_menu_item.setState(NSOffState)
             @repeat_all_menu_item.setState(NSOnState)
             @repeat_button.setState(NSOnState)
+            @repeat_button.setTitle("Repeat All")
         end
     end
     
@@ -749,9 +755,10 @@ class ThumperDelegate
                 @playing_song_progress_view.display 
                 if time == duration && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) >= 20000
                     @playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
+                    @playing_song_object.stop
                     update_progress_bar(@progress_timer)
                     @play_button.setImage(NSImage.imageNamed("Play"))
-                    play_next unless @current_playlist.length <= @playing_song + 1 && @shuffle == false && @repeat == false && @repeat_all == false
+                    play_next if @current_playlist.length < @playing_song + 1 || @shuffle == true || @repeat_single == true || @repeat_all == true
                 end
             end
         end

@@ -2,7 +2,7 @@ class SimpleModal
     
     attr_accessor :window, :modal, :parent, :outlets
 
-    def initialize(parent, window, modal)
+    def initialize(window, modal)
         @window = window
         @modal = modal
         @outlets = []
@@ -16,8 +16,8 @@ class SimpleModal
             contextInfo:nil)
     end
     
-    def add_outlet(sending_object, &block)
-        @outlets << ModalOutlet.new(self, sending_object, &block)
+    def add_outlet(sending_object, exit_on_finish=true,  &block)
+        @outlets << ModalOutlet.new(self, sending_object, exit_on_finish, &block)
     end
         
     def close(sender)
@@ -29,7 +29,7 @@ end
 
 class ModalOutlet
 
-    def initialize(simple_modal, sending_object, exit_on_finish = true, &block)
+    def initialize(simple_modal, sending_object, exit_on_finish, &block)
         @sending_object = sending_object
         @sending_object.setTarget(self)
         @sending_object.setAction("fire:")

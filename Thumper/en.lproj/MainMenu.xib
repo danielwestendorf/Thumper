@@ -21,15 +21,15 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1946"/>
-			<integer value="1631"/>
+			<integer value="581"/>
+			<integer value="1427"/>
 			<integer value="1667"/>
-			<integer value="1471"/>
-			<integer value="582"/>
 			<integer value="1642"/>
-			<integer value="1456"/>
-			<integer value="1428"/>
-			<integer value="1781"/>
+			<integer value="1945"/>
+			<integer value="1455"/>
+			<integer value="1630"/>
+			<integer value="1922"/>
+			<integer value="1817"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -176,6 +176,13 @@
 							<string key="NSTitle">Playlist</string>
 							<object class="NSMutableArray" key="NSMenuItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMenuItem" id="672920855">
+									<reference key="NSMenu" ref="970888275"/>
+									<string key="NSTitle">New Smart Playlist...</string>
+									<string key="NSKeyEquiv">n</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+								</object>
 								<object class="NSMenuItem" id="190944916">
 									<reference key="NSMenu" ref="970888275"/>
 									<string key="NSTitle">Save Playlist...</string>
@@ -4628,7 +4635,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="491149895">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">8E8AD90A-E210-4FE7-943D-3236B6C0E612</characters>
+									<characters key="NS.bytes">A5AC1317-3B1E-47CC-AC19-92E410F31BE5</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Cache</string>
 								<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4651,7 +4658,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<object class="BWToolbarItem" id="721798759">
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
-									<characters key="NS.bytes">F8F7B4AA-7A04-464D-8CB3-98EC4873CD03</characters>
+									<characters key="NS.bytes">FB154E37-39FA-45E7-8AD8-4F571897CE40</characters>
 								</object>
 								<string key="NSToolbarItemLabel">Subsonic</string>
 								<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -4818,7 +4825,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="406455093">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">EA77C91B-3568-4CBF-A155-D2FE5B853040</characters>
+										<characters key="NS.bytes">3279F9E1-64A9-4146-9C3F-EBA352354D8E</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Cache</string>
 									<string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -4838,7 +4845,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<object class="BWToolbarItem" id="133875353">
 									<object class="NSMutableString" key="NSToolbarItemIdentifier">
-										<characters key="NS.bytes">FFFB7EDA-B7CC-4F6D-9C04-AAB95F317B33</characters>
+										<characters key="NS.bytes">2FD00A15-5AAA-4511-B2D4-2066C36B3C74</characters>
 									</object>
 									<string key="NSToolbarItemLabel">Subsonic</string>
 									<string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -5520,7 +5527,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 			</object>
 			<object class="NSWindowTemplate" id="756338282">
-				<int key="NSWindowStyleMask">15</int>
+				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{340, 461}, {347, 176}}</string>
 				<int key="NSWTFlags">611844096</int>
@@ -7425,6 +7432,14 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<reference key="destination" ref="214110514"/>
 					</object>
 					<int key="connectionID">2054</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">add_smart_playlist:</string>
+						<reference key="source" ref="123987232"/>
+						<reference key="destination" ref="672920855"/>
+					</object>
+					<int key="connectionID">2057</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -9878,6 +9893,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<reference ref="190944916"/>
 							<reference ref="1065684528"/>
 							<reference ref="618133095"/>
+							<reference ref="672920855"/>
 						</object>
 						<reference key="parent" ref="662464202"/>
 					</object>
@@ -10301,7 +10317,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 							<reference ref="653101225"/>
 						</object>
 						<reference key="parent" ref="519038814"/>
-						<string key="objectName">Delete Smart Playlist</string>
+						<string key="objectName">Add Smart Playlist</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1928</int>
@@ -10601,6 +10617,11 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<int key="objectID">2026</int>
 						<reference key="object" ref="62720626"/>
 						<reference key="parent" ref="109475179"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2055</int>
+						<reference key="object" ref="672920855"/>
+						<reference key="parent" ref="970888275"/>
 					</object>
 				</object>
 			</object>
@@ -11066,6 +11087,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>2016.IBViewBoundsToFrameTransform</string>
 					<string>2017.IBPluginDependency</string>
 					<string>2026.IBPluginDependency</string>
+					<string>2055.IBPluginDependency</string>
+					<string>2055.ImportedFromIB2</string>
 					<string>23.IBPluginDependency</string>
 					<string>23.ImportedFromIB2</string>
 					<string>236.IBPluginDependency</string>
@@ -11507,7 +11530,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{957, 683}, {179, 153}}</string>
+					<string>{{1432, 476}, {179, 153}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -11802,7 +11825,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{2105, 44}, {178, 63}}</string>
+					<string>{{1366, 546}, {220, 83}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -11909,7 +11932,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="917854983"/>
-							<string key="toolTip">Delete Smart Playlist</string>
+							<string key="toolTip">Add Smart Playlist</string>
 						</object>
 					</object>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -12077,22 +12100,24 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
 					<string>{{1270, 629}, {370, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{74, 862}</string>
 					<string>{{6, 978}, {478, 20}}</string>
-					<string>{{104, 59}, {1024, 600}}</string>
+					<string>{{329, 59}, {1024, 600}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{104, 59}, {1024, 600}}</string>
+					<string>{{329, 59}, {1024, 600}}</string>
 					<integer value="1"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<boolean value="YES"/>
 					<string>{800, 600}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{725, 289}, {246, 23}}</string>
+					<string>{{1579, 606}, {168, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -12341,7 +12366,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2054</int>
+			<int key="maxID">2057</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
