@@ -155,11 +155,11 @@ class ThumperDelegate
     
     def check_for_update
         @playing_queue.async do
-            current_version = NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleVersion).to_s
+            current_version = NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleVersion).to_f
             url = NSURL.URLWithString("http://www.thumperapp.com/current_version")
             request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:5.0)
-            response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil))
-            if current_version != response
+            response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil)).to_f
+            if current_version < response
                 @t_update_text.stringValue = "There is a newer version of Thumper available.\n\nCurrent Version: #{current_version}\nAvailable Version: #{response}"
                 update_modal = SimpleModal.new(@main_window, @t_update_window)
                 update_modal.add_outlet(@t_update_button) do
@@ -758,7 +758,7 @@ class ThumperDelegate
                     @playing_song_object.stop
                     update_progress_bar(@progress_timer)
                     @play_button.setImage(NSImage.imageNamed("Play"))
-                    play_next if @current_playlist.length < @playing_song + 1 || @shuffle == true || @repeat_single == true || @repeat_all == true
+                    play_next if @current_playlist.length > @playing_song + 1 || @shuffle == true || @repeat_single == true || @repeat_all == true
                 end
             end
         end
