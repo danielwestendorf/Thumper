@@ -198,26 +198,30 @@ class ThumperDelegate
         
     def submit_connection_info(sender)
         server_url_field.stringValue.scan("http").length > 0 ? url = server_url_field.stringValue : url = "http://" + server_url_field.stringValue
-        if url != @server_url
-            @db_queue.sync do
-                DB[:songs].delete
-                DB[:artists].delete
-                DB[:albums].delete
-                DB[:playlist_songs].delete
-                current_playlist = []
-                @playing_song_object = QTMovie.alloc
-                artists = []
-                albums = []
-                songs = []
-                playlists = []
-                playlist_songs = []
-                search_results = []
-                reload_current_playlist
-                reload_albums
-                reload_artists
-                reload_playlists
-                reload_songs
-            end
+        @db_queue.sync do
+            DB[:songs].delete
+            DB[:artists].delete
+            DB[:albums].delete
+            DB[:playlist_songs].delete
+            DB[:smart_playlists].delete
+            @current_playlist = []
+            @playing_song_object = QTMovie.alloc
+            @playing_song = nil
+            @artists = []
+            @albums = []
+            @songs = []
+            @playlists = []
+            @playlist_songs = []
+            @search_results = []
+            reload_current_playlist
+            reload_albums
+            reload_artists
+            reload_playlists
+            reload_songs
+            @playing_title.stringValue = ""
+            @playing_info.stringValue =  ""
+            @playing_song_object_progress.setHidden(true)
+            set_playing_cover_art
         end
         @server_url = url
         @current_server_url = url
@@ -753,7 +757,7 @@ class ThumperDelegate
                 @playing_time_remaining.stringValue = "-#{format_time((duration - time).to_i)}"
                 @playing_song_progress_view.progressPercent = time/duration * 100.00
                 @playing_song_progress_view.display 
-                if time == duration && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) >= 20000
+                if time == duration && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) && @playing_song_object.attributeForKey(QTMovieLoadStateAttribute) >= 20000
                     @playing_song_object.setCurrentTime(QTTime.new(0, 1, false))
                     @playing_song_object.stop
                     update_progress_bar(@progress_timer)

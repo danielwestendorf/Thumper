@@ -355,7 +355,7 @@ class Subsonic
     def cover_art(id, delegate, method)
         request = build_request('/rest/getCoverArt.view', {:id => id})
         path = Dir.home + "/Library/Thumper/CoverArt/#{id}.jpg"
-        NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, nil, delegate, method))
+        NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, id, delegate, method))
     end
     
     def playlists(delegate, method)

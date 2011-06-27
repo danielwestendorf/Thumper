@@ -31,6 +31,7 @@ class ThumperSmartPlaylistDelegate
             parent.playlist_songs_reload_button.setTarget(self)
             parent.playlist_songs_reload_button.setAction("reload_sp:")
             parent.playlist_songs = []
+            parent.playlists_table_view.deselectAll(nil)
             parent.reload_playlist_songs
             raw_hash = parent.smart_playlists[row]
             hash = {}

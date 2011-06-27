@@ -85,7 +85,7 @@ class ThumperSearchDelegate
     end
     
     def search_response(xml, options)
-        NSLog "got a response"
+        #NSLog "got a response"
         if xml.class == NSXMLDocument
             songs = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('searchResult', error:nil).first.nodesForXPath('match', error:nil)
             attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
@@ -120,7 +120,7 @@ class ThumperSearchDelegate
                 end
             end
         else
-            NSLog "#{xml}"
+            NSLog "Error with search!"
         end
     end
     
