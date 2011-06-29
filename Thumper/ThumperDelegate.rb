@@ -213,6 +213,7 @@ class ThumperDelegate
             @playlists = []
             @playlist_songs = []
             @search_results = []
+            @now_playing = []
             reload_current_playlist
             reload_albums
             reload_artists

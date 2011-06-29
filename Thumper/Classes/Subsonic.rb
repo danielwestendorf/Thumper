@@ -79,6 +79,10 @@ class Subsonic
                 album[:artist_id] = album[:parent]
                 @albums << album if album[:isDir] == "true"
                 
+                unless File.exists?(album[:cover_art])
+                    @parent.get_cover_art(album[:coverArt])
+                end
+                
                 if album[:isDir] == "false"
                     song = parse_song(xml_album)
                     @songs << song
@@ -113,7 +117,7 @@ class Subsonic
                 @albums.each do |a|
                     return if DB[:albums].filter(:id => a[:id]).all.first 
                     DB[:albums].insert(:title => a[:title], :id => a[:id], :cover_art => a[:cover_art], :artist_id => a[:artist_id])
-                    NSLog "Added Album: #{a[:title]}"
+                    #NSLog "Added Album: #{a[:title]}"
                 end
             end
         end
