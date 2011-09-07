@@ -90,6 +90,7 @@ class ThumperCurrentPlaylistDelegate
         @parent.playing_song_object.stop
         @parent.playing_song = nil
         @parent.playing_song_object = QTMovie.alloc
+        @parent.update_progress_bar(nil)
         @parent.reload_current_playlist
         @parent.set_playing_info
         @parent.set_playing_cover_art

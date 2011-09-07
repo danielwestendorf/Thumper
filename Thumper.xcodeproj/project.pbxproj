@@ -31,10 +31,14 @@
 		82965E3B1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */; };
 		82B2FFB01354E698000DBA78 /* ThumperPlaylistsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82B2FFAF1354E698000DBA78 /* ThumperPlaylistsDelegate.rb */; };
 		82B2FFB31354F4A0000DBA78 /* ThumperPlaylistSongsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82B2FFB21354F4A0000DBA78 /* ThumperPlaylistSongsDelegate.rb */; };
+		82B71E7113E750130079C730 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B71E7013E750130079C730 /* IOKit.framework */; };
 		82B7E412135234EC0064907A /* album.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82B7E411135234EC0064907A /* album.jpg */; };
 		82C0648A136C525300A6F2C6 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C06489136C525300A6F2C6 /* Logo.png */; };
 		82CD71F8135F6BDA008B6F80 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CD71F7135F6BDA008B6F80 /* Stop.png */; };
 		82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82D6360B13A7D0A1002452C6 /* SimpleModal.rb */; };
+		82E0747F13F046DE00D674E3 /* ThumperRemoteListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */; };
+		82E0748213F0470300D674E3 /* HIDRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0748113F0470300D674E3 /* HIDRemote.m */; };
+		82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E0748313F0491800D674E3 /* Carbon.framework */; };
 		82EA85A3134FA87200C38A05 /* ThumperApplicaiton.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */; };
 		82EA85A6134FB0B300C38A05 /* Database.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A5134FB0B300C38A05 /* Database.rb */; };
 		82EF50A513576BA200E0C062 /* ThumperProgressIndicator.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */; };
@@ -87,10 +91,16 @@
 		82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperArtistIndexDelegate.rb; sourceTree = "<group>"; };
 		82B2FFAF1354E698000DBA78 /* ThumperPlaylistsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperPlaylistsDelegate.rb; sourceTree = "<group>"; };
 		82B2FFB21354F4A0000DBA78 /* ThumperPlaylistSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperPlaylistSongsDelegate.rb; sourceTree = "<group>"; };
+		82B71E7013E750130079C730 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		82B7E411135234EC0064907A /* album.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = album.jpg; path = Icons/album.jpg; sourceTree = "<group>"; };
 		82C06489136C525300A6F2C6 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Icons/Logo.png; sourceTree = "<group>"; };
 		82CD71F7135F6BDA008B6F80 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = Icons/Stop.png; sourceTree = "<group>"; };
 		82D6360B13A7D0A1002452C6 /* SimpleModal.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SimpleModal.rb; sourceTree = "<group>"; };
+		82E0747D13F046DE00D674E3 /* ThumperRemoteListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumperRemoteListener.h; sourceTree = "<group>"; };
+		82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumperRemoteListener.m; sourceTree = "<group>"; };
+		82E0748013F0470300D674E3 /* HIDRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HIDRemote.h; path = Classes/HIDRemote.h; sourceTree = "<group>"; };
+		82E0748113F0470300D674E3 /* HIDRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HIDRemote.m; path = Classes/HIDRemote.m; sourceTree = "<group>"; };
+		82E0748313F0491800D674E3 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperApplicaiton.rb; sourceTree = "<group>"; };
 		82EA85A5134FB0B300C38A05 /* Database.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Database.rb; sourceTree = "<group>"; };
 		82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperProgressIndicator.rb; sourceTree = "<group>"; };
@@ -106,6 +116,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */,
+				82B71E7113E750130079C730 /* IOKit.framework in Frameworks */,
 				827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */,
 				827CE5C91347B49D00170589 /* MacRuby.framework in Frameworks */,
 				82FE78C2137DD3EB00238800 /* BWToolkitFramework.framework in Frameworks */,
@@ -137,6 +149,7 @@
 		827CE5B71347B49D00170589 = {
 			isa = PBXGroup;
 			children = (
+				82E0748313F0491800D674E3 /* Carbon.framework */,
 				827CE5CB1347B49D00170589 /* Thumper */,
 				827CE5C51347B49D00170589 /* Frameworks */,
 				827CE5C31347B49D00170589 /* Products */,
@@ -154,6 +167,7 @@
 		827CE5C51347B49D00170589 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82B71E7013E750130079C730 /* IOKit.framework */,
 				827CE5C61347B49D00170589 /* Cocoa.framework */,
 				827CE5C81347B49D00170589 /* MacRuby.framework */,
 				82FE78C1137DD3EB00238800 /* BWToolkitFramework.framework */,
@@ -164,6 +178,8 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
+				82E0748013F0470300D674E3 /* HIDRemote.h */,
+				82E0748113F0470300D674E3 /* HIDRemote.m */,
 				82D6360B13A7D0A1002452C6 /* SimpleModal.rb */,
 				82EFCC9913A6C39B0046D08F /* ThumperSmartPlaylistDelegate.rb */,
 				8208997513846CF00056FD3D /* Growl.rb */,
@@ -184,6 +200,8 @@
 				827CE5D41347B49D00170589 /* Resources */,
 				827CE5D81347B49D00170589 /* Other Sources */,
 				827CE5CC1347B49D00170589 /* Supporting Files */,
+				82E0747D13F046DE00D674E3 /* ThumperRemoteListener.h */,
+				82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */,
 			);
 			path = Thumper;
 			sourceTree = "<group>";
@@ -221,7 +239,7 @@
 /* Begin PBXLegacyTarget section */
 		82FF087213799BB5007DD06A /* Deployment */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--embed --compile --gem sqlite3 --gem sequel";
+			buildArgumentsString = "--embed --gem sqlite3 --gem sequel";
 			buildConfigurationList = 82FF087313799BB5007DD06A /* Build configuration list for PBXLegacyTarget "Deployment" */;
 			buildPhases = (
 			);
@@ -328,6 +346,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				827CE5D31347B49D00170589 /* main.m in Sources */,
+				82E0747F13F046DE00D674E3 /* ThumperRemoteListener.m in Sources */,
+				82E0748213F0470300D674E3 /* HIDRemote.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +386,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx10.6;
 				VALID_ARCHS = x86_64;
@@ -385,7 +405,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.6;
 				VALID_ARCHS = x86_64;
@@ -410,6 +430,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Thumper/Thumper-Prefix.pch";
 				INFOPLIST_FILE = "Thumper/Thumper-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -434,6 +455,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Thumper/Thumper-Prefix.pch";
 				INFOPLIST_FILE = "Thumper/Thumper-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -22,7 +22,7 @@ class Subsonic
         elsif xml.class == NSXMLDocument
             @parent.status_label.stringValue = "Offline -- #{xml.nodesForXPath('subsonic-response', error:nil).first.nodesForXPath('error', error:nil).first.attributeForName('message').stringValue}"
             connectivity = false
-            NSLog "Offline"
+            NSLog "Offline #{@base_url}"
         elsif xml.class == Fixnum
             case xml
                 when 401 then @parent.status_label.stringValue = "Offline -- Wrong username or password"
@@ -45,6 +45,7 @@ class Subsonic
                     album[name.to_sym] = xml_album.attributeForName(name).stringValue unless xml_album.attributeForName(name).nil? 
                 end
                 album[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{album[:coverArt]}.jpg"
+                cover_art(album[:coverArt], self, :image_response)
                 album[:artist_id] = album[:parent]
                 @qp_albums << album if album[:isDir] == "true"
             end
@@ -92,21 +93,21 @@ class Subsonic
             NSLog "Invalid response from server"
         end
         xml = nil
-        #NSLog "Update of artist albums complete. #{@albums.length} albums"
+        NSLog "Update of artist albums complete. #{@albums.length} albums #{@albums}"
         if @albums.length > 0
             artist_id = @albums.first[:artist_id]
-        elsif 
+        elsif @songs.length > 0
             artist_id = @songs.first[:parent]
         else
             artist_id = nil
         end
         
-        if @parent.artists[@parent.artist_indexes_table_view.selectedRow][:id] == artist_id
+        #if @parent.artists[@parent.artist_indexes_table_view.selectedRow][:id] == artist_id
             @parent.albums = @albums
             @parent.songs = @songs
             @parent.reload_albums
             @parent.reload_songs
-        end
+        #end
         #NSLog "Persisting albums to the DB"
         if @albums.length > 0 && DB[:albums].filter(:artist_id => @albums.first[:artist_id]).all.count < 1
             DB.transaction do
@@ -123,7 +124,13 @@ class Subsonic
         end
         # NSLog "All Albums presisted to the DB"
         @parent.albums_progress.stopAnimation(nil)
-        @parent.get_album_songs(@albums.first[:id]) if @albums.length == 1 && @songs.length < 1
+        if @albums.length == 1 && @songs.length < 1
+            @parent.get_album_songs(@albums.first[:id]) 
+            range = NSMakeRange(0, 1)
+            indexes = NSIndexSet.alloc.initWithIndexesInRange(range)
+            @parent.albums_table_view.selectRowIndexes(indexes, byExtendingSelection:true)
+            @parent.main_window.makeFirstResponder(@parent.albums_table_view)
+        end
 	end
 	
 	def songs_response(xml, options)
@@ -140,7 +147,7 @@ class Subsonic
         end
         #NSLog "Update of ablum songs complete. #{@songs.length} songs"
         xml = nil
-        if @songs.length > 0 && @parent.albums[@parent.albums_table_view.selectedRow][:id] == @songs.first[:album_id]
+        if @songs.length > 0 && @parent.albums.length > 0 && @parent.albums[@parent.albums_table_view.selectedRow][:id] == @songs.first[:album_id]
             @parent.songs = @songs
             @parent.reload_songs
             @parent.songs_table_view.enabled = true
@@ -293,6 +300,7 @@ class Subsonic
     end
     
     def image_response(data, path, id)
+        #puts "got album #{id}, #{path}"
         response = data.writeToFile(path, atomically:true)
         @parent.albums_table_view.reloadData
         @parent.set_playing_cover_art
@@ -346,20 +354,20 @@ class Subsonic
     end
 	
 	def albums(id, delegate, method)
-        #NSLog "Getting album #{id}"
-        request = build_request('/rest/getMusicDirectory', {:id => id})
+        NSLog "Getting album #{id}"
+        request = build_request('/rest/getMusicDirectory.view', {:id => id})
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
 	
 	def songs(id, delegate, method)
-        request = build_request('/rest/getMusicDirectory', {:id => id})
+        request = build_request('/rest/getMusicDirectory.view', {:id => id})
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
     
     def cover_art(id, delegate, method)
         request = build_request('/rest/getCoverArt.view', {:id => id})
         path = Dir.home + "/Library/Thumper/CoverArt/#{id}.jpg"
-        NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, id, delegate, method))
+        connection = NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, id, delegate, method))
     end
     
     def playlists(delegate, method)
@@ -462,7 +470,7 @@ class Subsonic
             end
         end
         url = NSURL.URLWithString(@base_url + resource + "?" + options_string.join("&") + @extra_params)
-        request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:20.0)
+        request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData, timeoutInterval:20.0)
         request.setValue("Basic #{@auth_token}", forHTTPHeaderField:"Authorization")
         return request
 	end
@@ -488,19 +496,20 @@ class XMLResponse
     
     def connectionDidFinishLoading(connection)
         case @response.statusCode
-        when 200...300
+            when 200...300
             xml = NSXMLDocument.alloc.initWithData(@downloadData,
                                                    options:NSXMLDocumentValidate,
                                                    error:nil)
-            #@responseBody = NSString.alloc.initWithData(@downloadData, encoding:NSUTF8StringEncoding)
+            #NSLog NSString.alloc.initWithData(@downloadData, encoding:NSUTF8StringEncoding)
             #NSLog @responseBody
             if xml
                 #NSLog "Methods: #{@delegate.class.class}"
                 @delegate.method(@method).call(xml, @options)
             end
         else
-            NSLog "ERROR! #{@response.statusCode}"
-            @delegate.method(@method).call(@response.statusCode)
+            NSLog "ERROR! #{@response.statusCode}, #{@options}"
+            NSLog NSString.alloc.initWithData(@downloadData, encoding:NSUTF8StringEncoding)
+            @delegate.method(@method).call(@response.statusCode, nil)
         end
     end        
 end

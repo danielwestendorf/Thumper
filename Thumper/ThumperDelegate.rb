@@ -74,17 +74,21 @@ class ThumperDelegate
         String.new(@password).each_byte{|c| p << sprintf("%02X", c)} if @password
         @enc_password = 'enc:' + p.join('') if @password
         
-        get_server_ip if @current_server_url.scan('subsonic.org').length > 0 if @server_url
-        
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playNext:', name:"ThumperNextTrack", object:nil)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playPrevious:', name:"ThumperPreviousTrack", object:nil)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'playToggle:', name:"ThumperPlayToggle", object:nil)
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'volumeUp:', name:"ThumperVolumeUp", object:nil)
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'volumeDown:', name:"ThumperVolumeDown", object:nil)
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'windowFront:', name:"ThumperWindowFront", object:nil)
         
         @now_playing_timer = NSTimer.scheduledTimerWithTimeInterval 5,
             target: self,
             selector: 'get_now_playing:',
             userInfo: nil,
             repeats: true
+        
+        #setup remote
+        ThumperRemoteListener.alloc.init
     end
     
     def get_now_playing(timer)
@@ -96,14 +100,14 @@ class ThumperDelegate
     end
     
     def get_server_ip
-       @playing_queue.async do
+       @playing_queue.sync do
             subdomain = @server_url.split('.').first.split('/').last
            #NSLog "Subdomain #{subdomain}"
             url = NSURL.URLWithString("http://subsonic.org/backend/redirect/get.view?redirectFrom=#{subdomain}")
             request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:60.0)
             response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil)).split(' ').first
             response[response.length - 1] = ""
-           # NSLog "Response: #{response}"
+            NSLog "Connecting to Subsonic Server via #{response}"
            @current_server_url = response
         end
     end
@@ -118,11 +122,12 @@ class ThumperDelegate
     end
     
     def applicationDidFinishLaunching(a_notification)
+                
         server_url_field.stringValue = @server_url
         username_field.stringValue = @username
         password_field.stringValue = @password
         
-        @app_version.stringValue = "Version: #{NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleVersion)}"
+        @app_version.stringValue = "Version: #{NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleShortVersionString)}"
         
         if @current_playlist.length > 0
             @playing_song = 0
@@ -155,12 +160,22 @@ class ThumperDelegate
     
     def check_for_update
         @playing_queue.async do
-            current_version = NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleVersion).to_f
+            current_version = NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleShortVersionString).split(".")
             url = NSURL.URLWithString("http://www.thumperapp.com/current_version")
             request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringCacheData, timeoutInterval:5.0)
-            response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil)).to_f
-            if current_version < response
-                @t_update_text.stringValue = "There is a newer version of Thumper available.\n\nCurrent Version: #{current_version}\nAvailable Version: #{response}"
+            response = String.new(NSURLConnection.sendSynchronousRequest(request, returningResponse:nil, error:nil))
+            latest_version = response.split(".")
+            up_to_date = true
+            3.times do |i|
+                if current_version[i].to_i < latest_version[i].to_i
+                    up_to_date = false
+                    break
+                elsif current_version[i].to_i > latest_version[i].to_i
+                    break
+                end
+            end
+            if !up_to_date
+                @t_update_text.stringValue = "There is a newer version of Thumper available.\n\nCurrent Version: #{current_version.join('.')}\nAvailable Version: #{response}"
                 update_modal = SimpleModal.new(@main_window, @t_update_window)
                 update_modal.add_outlet(@t_update_button) do
                     url = NSURL.URLWithString "macappstore://itunes.apple.com/us/app/thumper/id436422990?mt=12ls=1ign-msr=http%3A%2F%2Fwww.thumperapp.com%2F"
@@ -177,11 +192,9 @@ class ThumperDelegate
     
     def applicationShouldHandleReopen(app, hasVisibleWindows: windows)
         @main_window.makeKeyAndOrderFront(nil)        
-        reload_current_playlist
-        reload_artists
-        reload_playlists
         return true
     end
+    
     
     def show_server_info_modal
         @status_label.stringValue = "Offline"
@@ -246,6 +259,7 @@ class ThumperDelegate
     end
     
     def setup_subsonic_conneciton
+        get_server_ip if @server_url && @current_server_url.scan('subsonic.org').length > 0
         #NSLog "Connecting to subsonic"
         @subsonic = Subsonic.new(self, @current_server_url, username, password)
         @subsonic.ping(@subsonic, :ping_response)
@@ -280,8 +294,9 @@ class ThumperDelegate
     def reload_artists
         @artists.count != 1 ? word = " Artists" : word = " Artist"
         @artist_count_label.stringValue = @artists.count.to_s + word
-        artist_indexes_table_view.reloadData
-        artist_indexes_table_view.deselectAll(nil)
+        @artist_indexes_table_view.reloadData
+        @artist_indexes_table_view.deselectAll(nil)
+        @artist_indexes_table_view.scrollRowToVisible(0)
         reload_albums
     end
     
@@ -291,6 +306,7 @@ class ThumperDelegate
         @albums_table_view.reloadData
         @albums_table_view.enabled = true
         @albums_table_view.deselectAll(nil)
+        @albums_table_view.scrollRowToVisible(0)
         reload_songs
     end
     
@@ -310,6 +326,7 @@ class ThumperDelegate
         @songs_table_view.reloadData
         @songs_table_view.deselectAll(nil)
         @songs_table_view.enabled = true
+        @songs_table_view.scrollRowToVisible(0)
     end
     
     def reload_playlists
@@ -317,6 +334,7 @@ class ThumperDelegate
         @playlists_count_label.stringValue = @playlists.length.to_s + word
         @playlists_table_view.deselectAll(nil)
         @playlists_table_view.reloadData
+        @playlists_table_view.scrollRowToVisible(0)
     end
     
     def reload_playlist_songs
@@ -325,12 +343,15 @@ class ThumperDelegate
         @playlist_songs_table_view.deselectAll(nil)
         @playlist_songs_table_view.reloadData
         @playlist_songs_table_view.enabled = true
+        @playlist_songs_table_view.scrollRowToVisible(0)
     end
     
     def reload_current_playlist
         current_playlist.count != 1 ? word = " Songs" : word = " Song"
         current_playlist_count_label.stringValue = current_playlist.count.to_s + word
         current_playlist_table_view.reloadData
+        @playing_song ? scroll_to = @playing_song : scroll_to = 0
+        current_playlist_table_view.scrollRowToVisible(scroll_to)
     end
     
     def add_to_current_playlist(song, reload = true)
@@ -393,9 +414,9 @@ class ThumperDelegate
         @subsonic.songs(id, @subsonic, :songs_response)
     end
     
-    def get_cover_art(id)
-        return if id.empty?
-        @subsonic.cover_art(id, @subsonic, :image_response)
+    def get_cover_art(cover_art_id)
+        return if cover_art_id.nil? || cover_art_id.empty?
+        @subsonic.cover_art(cover_art_id, @subsonic, :image_response)
     end
     
     def format_time (timeElapsed)
@@ -421,7 +442,7 @@ class ThumperDelegate
     def play_song
         @playing_song = 0 if @playing_song.nil? 
         song = @current_playlist[@playing_song]
-        #NSLog "#{song}"
+        NSLog "#{song}"
         growl_song
         if File.exists?(song[:cache_path])
             #NSLog "Playing song from cache"
@@ -533,7 +554,9 @@ class ThumperDelegate
     end
     
     def play_previous
-        if @playing_song != 0 && !@playing_song.nil? && @current_playlist.length > 1
+        if @playing_song_object.rate != 0 && (@playing_song_object.currentTime.timeValue/@playing_song_object.currentTime.timeScale.to_f).to_i > 3
+            @playing_song_object.setCurrentTime(QTTime.new(0,1,false))
+        elsif @playing_song != 0 && !@playing_song.nil? && @current_playlist.length > 1
             @playing_song -= 1
             play_song
         elsif @current_playlist.length > 1 && !@playing_song.nil?
@@ -669,6 +692,20 @@ class ThumperDelegate
         play_previous
     end
     
+    def volumeUp(notification)
+        increaseVolume(nil)
+    end
+    
+    def volumeDown(notificaiton)
+        decreaseVolume(nil)
+    end
+    
+    def windowFront(notification)
+        NSRunningApplication.runningApplicationsWithBundleIdentifier("com.thumperapp.Thumper").lastObject.activateWithOptions(NSApplicationActivateAllWindows)
+        NSApp.activateIgnoringOtherApps(true)
+        @main_window.makeKeyAndOrderFront(@main_window)
+    end
+    
     def decreaseVolume(sender)
         @volume < 0.1 ? @volume = 0.0 : @volume -= 0.1
         @playing_song_object.setVolume(@volume)
@@ -765,6 +802,9 @@ class ThumperDelegate
                     @play_button.setImage(NSImage.imageNamed("Play"))
                     play_next if @current_playlist.length > @playing_song + 1 || @shuffle == true || @repeat_single == true || @repeat_all == true
                 end
+            else
+                @playing_time_elapsed.stringValue = ""
+                @playing_time_remaining.stringValue = ""
             end
         end
     end

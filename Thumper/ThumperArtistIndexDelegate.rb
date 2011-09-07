@@ -22,6 +22,7 @@ class ThumperArtistIndexDelegate
     end
     
     def tableViewSelectionDidChange(notification)
+        NSLog "Artist Selection did change!"
         if parent.artist_indexes_table_view.selectedRow > -1
             parent.quick_playlists_table_view.deselectAll(nil) 
             parent.album_reload_button.setAction("update_albums:")
@@ -32,7 +33,8 @@ class ThumperArtistIndexDelegate
             parent.reload_albums
             parent.reload_songs
             parent.get_artist_albums(parent.artists[parent.artist_indexes_table_view.selectedRow][:id])
-            #NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}, #{parent.artists[parent.artist_indexes_table_view.selectedRow][:id]}"
+            
+            NSLog "Selected Artist #{parent.artist_indexes_table_view.selectedRow}, #{parent.artists[parent.artist_indexes_table_view.selectedRow][:id]}"
         end
     end
     

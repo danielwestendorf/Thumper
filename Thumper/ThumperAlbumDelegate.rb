@@ -16,8 +16,7 @@ class ThumperAlbumDelegate
     def tableView(tableView, objectValueForTableColumn:column, row:row)
         #NSLog "Asked for Album Row:#{row}, Column:#{column.identifier}"
         if parent.quick_playlists_table_view.selectedRow > -1 && row.to_f / parent.albums.length.to_f > 0.8 && parent.albums.length > 0 && parent.albums.length > parent.qp_offset#fetch the next bunch of rows
-            @parent.qp_offset += 50
-            parent.get_quick_playlist({:type => parent.quick_playlists[parent.quick_playlists_table_view.selectedRow][1], :append => true, :offset => @parent.qp_offset}) 
+            #get_more
         end
         if row < parent.albums.length
             if column.identifier.to_s == "cover_art"
@@ -34,17 +33,25 @@ class ThumperAlbumDelegate
     end
     
     def tableViewSelectionDidChange(notification)
+        #NSLog "Album selection did change!"
         parent.songs = []
         parent.songs_table_view.enabled = false
         parent.songs_table_view.reloadData
         parent.get_album_songs(parent.albums[parent.albums_table_view.selectedRow][:id]) if parent.albums.length > 0
-        #NSLog "Selected Artist #{parent.albums_table_view.selectedRow}"
+        #NSLog "Selected Album #{parent.albums[parent.albums_table_view.selectedRow]}"
     end
     
     def add_album_to_playlist(sender)
-        parent.songs.each do |song|
-            parent.add_to_current_playlist(song, true)
-            sleep 0.001
+        @parent.db_queue.sync do
+            parent.songs.each do |song|
+                parent.add_to_current_playlist(song, true)
+            end
         end
+    end
+    
+    def get_more
+        @parent.qp_offset += 50
+        NSLog "Getting more!"
+        parent.get_quick_playlist({:type => parent.quick_playlists[parent.quick_playlists_table_view.selectedRow][1], :append => true, :offset => @parent.qp_offset}) 
     end
 end
