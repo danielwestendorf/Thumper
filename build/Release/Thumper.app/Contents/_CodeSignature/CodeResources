@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Database.rbo</key>
 		<data>
-		pfJL5lg5EHqajYsjCczwShkGIKo=
+		p01qo9VWxfB4jsojCWuu8YFIGtM=
 		</data>
 		<key>Resources/Dock.icns</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Resources/Growl.rbo</key>
 		<data>
-		ZJVIrEqVu6BQQD98zGuCvWDmWL0=
+		OquK75DyLJfFNMX73WNzOUrqtcQ=
 		</data>
 		<key>Resources/Library.png</key>
 		<data>
@@ -52,57 +52,69 @@
 		<data>
 		u28S6XrTyUxdm7QAFSdQPNZDJYM=
 		</data>
+		<key>Resources/SimpleModal.rbo</key>
+		<data>
+		sgm5vgpumatFB/zkrTyqv04kGBo=
+		</data>
 		<key>Resources/Stop.png</key>
 		<data>
 		bJeJ7q+5NwIxhEAdavFU/wWx6J8=
 		</data>
 		<key>Resources/Subsonic.rbo</key>
 		<data>
-		bh/z5kbri4369wmU8XZSriCQdLQ=
+		kghpX+y2bdU9g5r2u39AKREhKBs=
 		</data>
 		<key>Resources/ThumperAlbumDelegate.rbo</key>
 		<data>
-		QKSyV3rwMh4w7KtpCalXcbDWkiY=
+		uPPNz+jy+/wxe0Lr/9j7x3YV2oo=
 		</data>
 		<key>Resources/ThumperApplicaiton.rbo</key>
 		<data>
-		kO0jAsdHTRczi7nf5HL7O3YCbMY=
+		hIqJjkh153S6KNtaOtgTP+UKxSw=
 		</data>
 		<key>Resources/ThumperArtistIndexDelegate.rbo</key>
 		<data>
-		MSpSlgAcQHVjgp7/qENfv/POrRo=
+		VdMgVusg9oTHZiFg47lSq7211DY=
 		</data>
 		<key>Resources/ThumperCurrentPlaylistDelegate.rbo</key>
 		<data>
-		Dd+CSqlgXPcelbvLgA1bmsYXyOc=
+		7VBXhxEee52XHdjmH4JbXMmuvnU=
 		</data>
 		<key>Resources/ThumperDelegate.rbo</key>
 		<data>
-		l3mWSry7uW46sHUwCmjzrf8XBhE=
+		lLGkUAuzfeDFnTPq1c9Fc8hzd9k=
 		</data>
 		<key>Resources/ThumperPlaylistSongsDelegate.rbo</key>
 		<data>
-		FzTaj6cOza6NBoy/eoAj6tW6sUo=
+		y1YLMblsOeZWrwTs2OazipGZI1U=
 		</data>
 		<key>Resources/ThumperPlaylistsDelegate.rbo</key>
 		<data>
-		VMRMhRBNv3rChXjC7tK//pT9S5M=
+		klZxfu128wu5fPeuUldZurINdTw=
 		</data>
 		<key>Resources/ThumperProgressIndicator.rbo</key>
 		<data>
-		q0JISNqefxce+e+ItcRR9iVOJ84=
+		HlXMz0Ys4msWTnlcg3GnLztjRVE=
+		</data>
+		<key>Resources/ThumperQuickPlaylistDelegate.rbo</key>
+		<data>
+		lESpwn3el2GZDfhWBCg8kSLYdRk=
 		</data>
 		<key>Resources/ThumperSearchDelegate.rbo</key>
 		<data>
-		26Braxa5sjKV12y9U2dx3ESjYm0=
+		EBECyJgP7uNCKa6HGd+Ovou9kEs=
+		</data>
+		<key>Resources/ThumperSmartPlaylistDelegate.rbo</key>
+		<data>
+		7I+XiEYNsqXxJdigxaRd4r0vKKg=
 		</data>
 		<key>Resources/ThumperSongsDelegate.rbo</key>
 		<data>
-		KXfANdJhsbVhO7JsZ2bwkR9KAwM=
+		A0Ym/QvEPFe0IKw4tigsvFLiUlU=
 		</data>
 		<key>Resources/ThumperTable.rbo</key>
 		<data>
-		cbvEtkAYF8dn6ZuUIya0MUK7BQA=
+		SMa7NW+76EyEhKInv0mUWCy/6JY=
 		</data>
 		<key>Resources/album.jpg</key>
 		<data>
@@ -121,7 +133,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			jITF8tnT8UCdx6R83iWqQY7XEVc=
+			uxiu+dRNSFJr7iAJlhjL2iBzaqw=
 			</data>
 			<key>optional</key>
 			<true/>
