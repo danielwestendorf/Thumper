@@ -51,7 +51,7 @@ class ThumperAlbumDelegate
     
     def get_more
         @parent.qp_offset += 50
-        NSLog "Getting more!"
+        #NSLog "Getting more!"
         parent.get_quick_playlist({:type => parent.quick_playlists[parent.quick_playlists_table_view.selectedRow][1], :append => true, :offset => @parent.qp_offset}) 
     end
 end

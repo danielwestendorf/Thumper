@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8208997613846DDD0056FD3D /* Growl.rb in Resources */ = {isa = PBXBuildFile; fileRef = 8208997513846CF00056FD3D /* Growl.rb */; };
 		82441781137442DA00B0EF2F /* ThumperTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82441780137442DA00B0EF2F /* ThumperTable.rb */; };
+		8249080414929CE5009024AF /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8249080314929CE5009024AF /* MacRuby.framework */; };
+		8249080514929D53009024AF /* MRNotifier.rb in Resources */ = {isa = PBXBuildFile; fileRef = 8249080214929AA0009024AF /* MRNotifier.rb */; };
 		826170AE134914EA0026F381 /* ThumperAlbumDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */; };
 		826170B1134922400026F381 /* ThumperSongsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170B0134922400026F381 /* ThumperSongsDelegate.rb */; };
 		826170B3134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */; };
@@ -17,7 +18,6 @@
 		826170CD134C351A0026F381 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 826170CB134C351A0026F381 /* Search.png */; };
 		82645E22135CE8CF00B3CDEF /* ThumperSearchDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82645E21135CE8CF00B3CDEF /* ThumperSearchDelegate.rb */; };
 		827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827CE5C61347B49D00170589 /* Cocoa.framework */; };
-		827CE5C91347B49D00170589 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827CE5C81347B49D00170589 /* MacRuby.framework */; };
 		827CE5D01347B49D00170589 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5CE1347B49D00170589 /* InfoPlist.strings */; };
 		827CE5D31347B49D00170589 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 827CE5D21347B49D00170589 /* main.m */; };
 		827CE5D71347B49D00170589 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5D51347B49D00170589 /* MainMenu.xib */; };
@@ -64,8 +64,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8208997513846CF00056FD3D /* Growl.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = Growl.rb; path = Classes/Growl.rb; sourceTree = "<group>"; };
 		82441780137442DA00B0EF2F /* ThumperTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperTable.rb; sourceTree = "<group>"; };
+		8249080214929AA0009024AF /* MRNotifier.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MRNotifier.rb; sourceTree = "<group>"; };
+		8249080314929CE5009024AF /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperAlbumDelegate.rb; sourceTree = "<group>"; };
 		826170B0134922400026F381 /* ThumperSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperSongsDelegate.rb; sourceTree = "<group>"; };
 		826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperCurrentPlaylistDelegate.rb; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		82645E21135CE8CF00B3CDEF /* ThumperSearchDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperSearchDelegate.rb; sourceTree = "<group>"; };
 		827CE5C21347B49D00170589 /* Thumper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thumper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		827CE5C61347B49D00170589 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		827CE5C81347B49D00170589 /* MacRuby.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = MacRuby.framework; path = ../../../Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		827CE5CD1347B49D00170589 /* Thumper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Thumper-Info.plist"; sourceTree = "<group>"; };
 		827CE5CF1347B49D00170589 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		827CE5D11347B49D00170589 /* Thumper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thumper-Prefix.pch"; sourceTree = "<group>"; };
@@ -116,10 +116,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8249080414929CE5009024AF /* MacRuby.framework in Frameworks */,
 				82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */,
 				82B71E7113E750130079C730 /* IOKit.framework in Frameworks */,
 				827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */,
-				827CE5C91347B49D00170589 /* MacRuby.framework in Frameworks */,
 				82FE78C2137DD3EB00238800 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +149,7 @@
 		827CE5B71347B49D00170589 = {
 			isa = PBXGroup;
 			children = (
+				8249080314929CE5009024AF /* MacRuby.framework */,
 				82E0748313F0491800D674E3 /* Carbon.framework */,
 				827CE5CB1347B49D00170589 /* Thumper */,
 				827CE5C51347B49D00170589 /* Frameworks */,
@@ -169,7 +170,6 @@
 			children = (
 				82B71E7013E750130079C730 /* IOKit.framework */,
 				827CE5C61347B49D00170589 /* Cocoa.framework */,
-				827CE5C81347B49D00170589 /* MacRuby.framework */,
 				82FE78C1137DD3EB00238800 /* BWToolkitFramework.framework */,
 			);
 			name = Frameworks;
@@ -178,11 +178,11 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
+				8249080214929AA0009024AF /* MRNotifier.rb */,
 				82E0748013F0470300D674E3 /* HIDRemote.h */,
 				82E0748113F0470300D674E3 /* HIDRemote.m */,
 				82D6360B13A7D0A1002452C6 /* SimpleModal.rb */,
 				82EFCC9913A6C39B0046D08F /* ThumperSmartPlaylistDelegate.rb */,
-				8208997513846CF00056FD3D /* Growl.rb */,
 				82EFCC9713A663980046D08F /* ThumperQuickPlaylistDelegate.rb */,
 				82441780137442DA00B0EF2F /* ThumperTable.rb */,
 				82645E21135CE8CF00B3CDEF /* ThumperSearchDelegate.rb */,
@@ -239,7 +239,7 @@
 /* Begin PBXLegacyTarget section */
 		82FF087213799BB5007DD06A /* Deployment */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--embed --gem sqlite3 --gem sequel";
+			buildArgumentsString = "--compile --embed --gem sqlite3 --gem sequel";
 			buildConfigurationList = 82FF087313799BB5007DD06A /* Build configuration list for PBXLegacyTarget "Deployment" */;
 			buildPhases = (
 			);
@@ -278,6 +278,7 @@
 		827CE5B91347B49D00170589 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0410;
 				ORGANIZATIONNAME = "Daniel Westendorf";
 			};
 			buildConfigurationList = 827CE5BC1347B49D00170589 /* Build configuration list for PBXProject "Thumper" */;
@@ -303,7 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8208997613846DDD0056FD3D /* Growl.rb in Resources */,
+				8249080514929D53009024AF /* MRNotifier.rb in Resources */,
 				827CE5D01347B49D00170589 /* InfoPlist.strings in Resources */,
 				827CE5D71347B49D00170589 /* MainMenu.xib in Resources */,
 				827CE5DA1347B49D00170589 /* rb_main.rb in Resources */,
@@ -388,7 +389,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -407,7 +408,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;

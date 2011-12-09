@@ -5,6 +5,7 @@ class Subsonic
     attr_reader :connectivity
     
 	def initialize(parent, base_url, username, password)
+        @username = username
         @parent = parent
 		@base_url = base_url
 		@auth_token = Base64.encode64("#{username}:#{password}").strip
@@ -19,6 +20,7 @@ class Subsonic
             @connectivity = true
             @parent.get_artist_indexes
             @parent.get_playlists
+            self.getUser
         elsif xml.class == NSXMLDocument
             @parent.status_label.stringValue = "Offline -- #{xml.nodesForXPath('subsonic-response', error:nil).first.nodesForXPath('error', error:nil).first.attributeForName('message').stringValue}"
             connectivity = false
@@ -93,7 +95,7 @@ class Subsonic
             NSLog "Invalid response from server"
         end
         xml = nil
-        NSLog "Update of artist albums complete. #{@albums.length} albums #{@albums}"
+        #NSLog "Update of artist albums complete. #{@albums.length} albums #{@albums}"
         if @albums.length > 0
             artist_id = @albums.first[:artist_id]
         elsif @songs.length > 0
@@ -287,7 +289,7 @@ class Subsonic
             
             img = NSImage.alloc.initWithContentsOfFile(path)
             
-            g = Growl.new("Thumper", ["notification"], img)
+            #g = Growl.new("Thumper", ["notification"], img)
             if song[:minutesAgo] == '0' 
                 time_ago = 'Just now'
             elsif song[:minutesAgo] == '1' 
@@ -295,7 +297,8 @@ class Subsonic
             else
                 time_ago = song[:minutesAgo] + ' Miniutes ago'
             end
-            g.notify("notification", "#{song[:username]} is listening to...", "Title: #{song[:title]}\nArtist: #{song[:artist]}\nAlbum: #{song[:album]}\nClient: #{song[:playerName].nil? ? 'Web Interface' : song[:playerName]} #{time_ago}") 
+            @parent.notification_queue.add_notification({:title => "#{song[:username]} is listening to...", :message => "Title: #{song[:title]}\nArtist: #{song[:artist]}\nAlbum: #{song[:album]}\nClient: #{song[:playerName].nil? ? 'Web Interface' : song[:playerName]} #{time_ago}", :image => img})
+            #g.notify("notification", "#{song[:username]} is listening to...", "Title: #{song[:title]}\nArtist: #{song[:artist]}\nAlbum: #{song[:album]}\nClient: #{song[:playerName].nil? ? 'Web Interface' : song[:playerName]} #{time_ago}") 
         end
     end
     
@@ -341,6 +344,23 @@ class Subsonic
         request = build_request('/rest/getLicense.view', {})
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
+    
+    def getUser
+        request = build_request('/rest/getUser.view', {:username => @username} ) 
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(self, :getUserResponse))
+    end
+    
+    def getUserResponse(xml, options)
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
+            user = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('user', error:nil).first
+            #user.attributeForName("scrobblingEnabled").stringValue == "true" ? @parent.scrobbling_enabled = true : @parent.scrobbling_enabled = false
+            user.attributeForName("downloadRole").stringValue == "true" ? @parent.downloading_enabled = true : @parent.downloading_enabled = false
+            user.attributeForName("shareRole").stringValue == "true" ? @parent.sharing_enabled = true : @parent.sharing_enabled = false
+            NSLog "Sharing is not enabled for #{@username}" unless @parent.sharing_enabled
+            NSLog "Downloading is not enabled for #{@username}" unless @parent.downloading_enabled
+            #NSLog "Scrobbling is not enabled for #{@username}" unless @parent.scrobbling_enabled
+        end
+    end
 	
 	def artists(delegate, method)
         request = build_request('/rest/getIndexes.view', {})
@@ -354,7 +374,7 @@ class Subsonic
     end
 	
 	def albums(id, delegate, method)
-        NSLog "Getting album #{id}"
+        #NSLog "Getting album #{id}"
         request = build_request('/rest/getMusicDirectory.view', {:id => id})
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
