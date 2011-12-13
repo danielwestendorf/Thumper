@@ -278,7 +278,7 @@
 		827CE5B91347B49D00170589 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Daniel Westendorf";
 			};
 			buildConfigurationList = 827CE5BC1347B49D00170589 /* Build configuration list for PBXProject "Thumper" */;

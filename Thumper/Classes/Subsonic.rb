@@ -355,10 +355,16 @@ class Subsonic
             user = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('user', error:nil).first
             #user.attributeForName("scrobblingEnabled").stringValue == "true" ? @parent.scrobbling_enabled = true : @parent.scrobbling_enabled = false
             user.attributeForName("downloadRole").stringValue == "true" ? @parent.downloading_enabled = true : @parent.downloading_enabled = false
-            user.attributeForName("shareRole").stringValue == "true" ? @parent.sharing_enabled = true : @parent.sharing_enabled = false
+            user.attributeForName("shareRole") && user.attributeForName("shareRole").stringValue == "true" ? @parent.sharing_enabled = true : @parent.sharing_enabled = false
             NSLog "Sharing is not enabled for #{@username}" unless @parent.sharing_enabled
             NSLog "Downloading is not enabled for #{@username}" unless @parent.downloading_enabled
             #NSLog "Scrobbling is not enabled for #{@username}" unless @parent.scrobbling_enabled
+            
+            if xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:version).stringValue.to_f < 1.7
+                NSLog "Transcoding not supported, upgrade your Subsonic instance to at least 4.6. Current API Version: #{xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:version).stringValue.to_f}"
+                @parent.bitrate = 0
+                @parent.bitrate_field.setEnabled(false)
+            end
         end
     end
 	
