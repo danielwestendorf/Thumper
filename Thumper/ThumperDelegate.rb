@@ -790,7 +790,8 @@ class ThumperDelegate
     
     def download_next
         next_song = @current_playlist[@playing_song + 1]
-        if !File.exists?(next_song[:cache_path])
+        #NSLog "#{next_song[:suffix]}"
+        if !File.exists?(next_song[:cache_path]) && !["flac", "flv"].include?(next_song[:suffix])
             @notificaiton_queue.add_notification({:title => "Downloading next song....", :message => "Attempting to download the next song in the current playlist.", :image => NSApp.applicationIconImage}) if @downloading_enabled
             #g = Growl.new("Thumper", ["notification"])
             #g.notify("notification", "Downloading next song...", "Attempting to download the next song in the current playlist.", {:NotificationPriority => -1}) 
