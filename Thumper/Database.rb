@@ -29,8 +29,10 @@ class Album < Sequel::Model
         String :artist
         String :cover_art
         String :artist_id, :index => true
+        String :rating
     end
 
+    drop_table if table_exists? && !self.columns.include?(:rating) 
     create_table unless table_exists?
 
 end
@@ -52,9 +54,10 @@ class Song < Sequel::Model
         String :cover_art
         String :path
         String :cache_path
+        String :rating
         String :album_id, :index => true
     end
-
+    drop_table if table_exists? && !self.columns.include?(:rating) 
     create_table unless table_exists?
 end
 

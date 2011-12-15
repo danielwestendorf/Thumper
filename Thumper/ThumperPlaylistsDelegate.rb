@@ -6,7 +6,12 @@
 #  Copyright 2011 Daniel Westendorf. All rights reserved.
 #
 class ThumperPlaylistsDelegate
-    attr_accessor :parent, :confirmation_window
+    attr_accessor :parent, :confirmation_window, :share_enabled, :rate_enabled
+    
+    def initialize
+        @share_enabled = false
+        @rate_enabled = false
+    end
     
     def numberOfRowsInTableView(tableView)
         parent.playlists.count 

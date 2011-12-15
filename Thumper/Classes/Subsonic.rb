@@ -9,7 +9,7 @@ class Subsonic
         @parent = parent
 		@base_url = base_url
 		@auth_token = Base64.encode64("#{username}:#{password}").strip
-		@extra_params = "&f=xml&v=1.4.0&c=Thumper"
+		@extra_params = "&f=xml&v=1.7.0&c=Thumper"
 	end
 	
 	#response methods
@@ -72,7 +72,7 @@ class Subsonic
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             albums = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('directory', error:nil).first.nodesForXPath('child', error:nil)
             albums.each do |xml_album|
-                attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir"]
+                attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "userRating"]
                 album = {}
                 attributeNames.each do |name|
                     album[name.to_sym] = xml_album.attributeForName(name).stringValue unless xml_album.attributeForName(name).nil? 
@@ -80,6 +80,14 @@ class Subsonic
                 #NSLog "Album CA #{album[:coverArt]}"
                 album[:cover_art] = Dir.home + "/Library/Thumper/CoverArt/#{album[:coverArt]}.jpg"
                 album[:artist_id] = album[:parent]
+                if album[:userRating]
+                    album[:rating] = album[:userRating]
+                else
+                    album[:rating] = "Unrated"
+                end
+                
+                #NSLog "Album rating: #{album[:rating]}"
+
                 @albums << album if album[:isDir] == "true"
                 
                 unless File.exists?(album[:cover_art])
@@ -113,7 +121,7 @@ class Subsonic
         #NSLog "Persisting albums to the DB"
         if @albums.length > 0 && DB[:albums].filter(:artist_id => @albums.first[:artist_id]).all.count < 1
             DB.transaction do
-                @albums.each {|a| DB[:albums].insert(:title => a[:title], :id => a[:id], :cover_art => a[:cover_art], :artist_id => a[:artist_id]) } 
+                @albums.each {|a| DB[:albums].insert(:title => a[:title], :id => a[:id], :cover_art => a[:cover_art], :artist_id => a[:artist_id], :rating => a[:rating]) } 
             end
         else
             @parent.db_queue.async do
@@ -329,6 +337,23 @@ class Subsonic
         #NSLog "Successfully scrobbled song" if xml.class == NSXMLDocument 
         @parent.subsonic.get_now_playing(@parent.subsonic, :now_playing_response)
     end
+    
+    def share_response(xml, options)
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
+            share = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('shares', error:nil).first.nodesForXPath('share', error:nil).first
+            unless share.attributeForName("url").nil?
+                url = share.attributeForName("url").stringValue
+                @parent.share_link_text_field.stringValue = url
+                modal = SimpleModal.new(@parent.main_window, @parent.share_link_window)
+                modal.add_outlet(@parent.share_link_close_button) do
+                    pb = NSPasteboard.generalPasteboard
+                    pb.declareTypes([NSStringPboardType], owner:nil)
+                    pb.setString(url, forType:NSStringPboardType)
+                end
+                modal.show
+            end
+        end
+    end
 	
 	#Actual data request methods
 	def ping(delegate, method)
@@ -445,6 +470,20 @@ class Subsonic
         @conn = NSURLConnection.connectionWithRequest(now_playing_request, delegate:self)
     end
     
+    def share(object, delegate, method)
+        #NSLog "Attempting to scrobble now playing"
+        share_request = build_request('/rest/createShare.view', {:id => object[:id], :expires => (Time.now + object[:expiration]).to_i * 1000 })
+        NSURLConnection.connectionWithRequest(share_request, delegate:XMLResponse.new(delegate, method))
+    end
+    
+    def rate(object)
+        rate_request = build_request('/rest/setRating.view', {:id => object[:id], :rating => object[:rating].to_i})
+        NSURLConnection.connectionWithRequest(rate_request, delegate:XMLResponse.new(self, :doNothing))
+    end
+    
+    def doNothing(xml, options)
+    end
+    
     def get_now_playing(delegate, method)
         request = build_request("/rest/getNowPlaying.view", {})
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
@@ -464,7 +503,7 @@ class Subsonic
     def parse_song(xml_song)
         return if xml_song.nil?
         attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
-        "album", "path", "size"]
+        "album", "path", "size", "userRating"]
         song = {}
         attributeNames.each do |name|
             song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
@@ -474,13 +513,24 @@ class Subsonic
         song[:bitrate] = song[:bitRate]
         song[:duration] = @parent.format_time(song[:duration].to_i)
         song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path] unless song[:isDir] == "true"
+        #xml_song.attributes.each {|attr| p attr.name}
+        if xml_song.attributeForName("userRating").nil?
+            song[:rating] = "Unrated"
+        else
+            song[:rating] = xml_song.attributeForName("userRating").stringValue
+        end
         
         @parent.db_queue.sync do
             unless DB[:songs].filter(:id => song[:id]).all.first 
                 DB[:songs].insert(:id => song[:id], :title => song[:title], :artist => song[:artist], :duration => song[:duration], 
                                   :bitrate => song[:bitrate], :track => song[:track], :year => song[:year], :genre => song[:genre],
                                   :size => song[:size], :suffix => song[:suffix], :album => song[:album], :album_id => song[:album_id],
-                                  :cover_art => song[:cover_art], :path => song[:path], :cache_path => song[:cache_path])
+                                  :cover_art => song[:cover_art], :path => song[:path], :cache_path => song[:cache_path], :rating => song[:rating])
+            else
+                DB[:songs].filter(:id => song[:id]).all.first.update(:title => song[:title], :artist => song[:artist], :duration => song[:duration], 
+                                  :bitrate => song[:bitrate], :track => song[:track], :year => song[:year], :genre => song[:genre],
+                                  :size => song[:size], :suffix => song[:suffix], :album => song[:album], :album_id => song[:album_id],
+                                  :cover_art => song[:cover_art], :path => song[:path], :cache_path => song[:cache_path], :rating => song[:rating])
             end 
         end
         

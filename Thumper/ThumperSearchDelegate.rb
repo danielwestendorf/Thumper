@@ -1,7 +1,16 @@
 require 'uri'
 
 class ThumperSearchDelegate
-    attr_accessor :parent, :search_query, :search_table_view, :search_progress, :search_count_label
+    attr_accessor :parent, :search_query, :search_table_view, :search_progress, :search_count_label, :share_enabled, :rate_enabled
+    
+    def initialize
+        @share_enabled = true
+        @rate_enabled = true
+    end
+    
+    def represented_objects
+        parent.search_results 
+    end
     
     def initialize
         @search = []

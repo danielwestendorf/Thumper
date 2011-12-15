@@ -7,10 +7,24 @@
 #
 
 class ThumperAlbumDelegate
-    attr_accessor :parent
+    attr_accessor :parent, :share_enabled, :rate_enabled
+    
+    def initialize
+        @share_enabled = true
+        @rate_enabled = true
+    end
+    
+    def represented_objects
+       parent.albums 
+    end
     
     def numberOfRowsInTableView(tableView)
         parent.albums.count 
+    end
+    
+    def tableView(tableView, setObjectValue:object, forTableColumn:column, row:row)
+        @parent.albums[row][:rating] = object
+        @parent.subsonic.rate(@parent.albums[row])
     end
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
@@ -24,8 +38,8 @@ class ThumperAlbumDelegate
                 @parent.get_cover_art(@parent.albums[row][:coverArt]) unless @parent.albums[row][:coverArt].nil? || File.exists?(@parent.albums[row][:cover_art]) 
                 return NSImage.alloc.initWithContentsOfFile(image) if File.exists?(image)
                 return NSImage.imageNamed("album") 
-            elsif column.identifier.to_s == "action"
-                
+            elsif column.identifier.to_s == "rating"
+                return @parent.albums[row][:rating].to_i
             end
             return parent.albums[row].valueForKey(column.identifier.to_sym)
         end

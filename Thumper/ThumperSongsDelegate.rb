@@ -8,11 +8,17 @@
 
 
 class ThumperSongsDelegate
-    attr_accessor :parent
+    attr_accessor :parent, :share_enabled, :rate_enabled
     
     def awakeFromNib
         parent.songs_table_view.doubleAction = 'double_click:'
         parent.songs_table_view.target = self
+        @share_enabled = true
+        @rate_enabled = true
+    end
+    
+    def represented_objects
+        parent.songs 
     end
     
     def double_click(sender)
@@ -22,6 +28,11 @@ class ThumperSongsDelegate
     
     def numberOfRowsInTableView(tableView)
         parent.songs.count 
+    end
+    
+    def tableView(tableView, setObjectValue:object, forTableColumn:column, row:row)
+        @parent.songs[row][:rating] = object
+        @parent.subsonic.rate(@parent.songs[row])
     end
     
     def tableView(aView, writeRowsWithIndexes:rowIndexes, toPasteboard:pboard)
@@ -36,7 +47,11 @@ class ThumperSongsDelegate
     def tableView(tableView, objectValueForTableColumn:column, row:row)
         #NSLog "Asked for Song Row:#{row}, Column:#{column.identifier}"
         if row < parent.songs.length
-            return parent.songs[row].valueForKey(column.identifier.to_sym)
+            if column.identifier.to_s == "rating"
+                return @parent.songs[row][:rating].to_i 
+            else
+                return parent.songs[row].valueForKey(column.identifier.to_sym)
+            end
         end
         nil
     end

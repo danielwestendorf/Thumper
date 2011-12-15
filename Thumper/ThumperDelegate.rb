@@ -45,7 +45,8 @@ class ThumperDelegate
     attr_accessor :t_update_window, :t_update_text, :t_update_button, :t_update_cancel_button
     attr_accessor :now_playing
     attr_accessor :downloading_enabled, :sharing_enabled
-    attr_accessor :notificaiton_queue
+    attr_accessor :notification_queue
+    attr_accessor :share_link_window, :share_link_close_button, :share_link_text_field
     
     def initialize
         @quick_playlists = [["Random", "random"], ["Newest", "newest"], ["Highest Rated", "highest"], ["Most Frequent", "frequent"], ["Recently Played", "recent"]]
@@ -64,7 +65,7 @@ class ThumperDelegate
         @shuffle = false
         @repeat_single = false
         @repeat_all = false
-        @notificaiton_queue = MRNotifier.new({:height => 80})
+        @notification_queue = MRNotifier.new({:height => 100})
         @current_playlist = DB[:playlist_songs].join(:songs, :id => :song_id).filter(:playlist_id => '666current666').all
         @current_playlist.each {|s| s[:id] = s[:song_id]; s.delete(:song_id)}
 
@@ -93,11 +94,11 @@ class ThumperDelegate
             repeats: true
         
         #setup remote
-        ThumperRemoteListener.alloc.init
+        #ThumperRemoteListener.alloc.init
     end
     
     def get_now_playing(timer)
-        @subsonic.get_now_playing(@subsonic, :now_playing_response)
+        @subsonic.get_now_playing(@subsonic, :now_playing_response) if @subsonic
     end
     
     def show_all_now_playing(sender)
@@ -128,10 +129,10 @@ class ThumperDelegate
     
     def applicationDidFinishLaunching(a_notification)
                 
-        server_url_field.stringValue = @server_url
-        username_field.stringValue = @username
-        password_field.stringValue = @password
-        @bitrate == 0 ? bitrate_field.stringValue = "Unlimited" : @bitrate
+        server_url_field.stringValue = @server_url if @server_url
+        username_field.stringValue = @username if @username
+        password_field.stringValue = @password if @password
+        @bitrate && @bitrate == 0 ? bitrate_field.stringValue = "Unlimited" : @bitrate
         
         @app_version.stringValue = "Version: #{NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleShortVersionString)}"
         
@@ -144,7 +145,7 @@ class ThumperDelegate
                 end
             else
                 url_string = "#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}&format=mp3"
-                url_string << "&maxBitRate=#{@bitrate}" if @bitrate && @bitrate != 0
+                url_string << "&maxBitRate=#{@bitrate}" if @bitrate && @bitrate != 0 && @bitrate != ""
                 url = NSURL.alloc.initWithString(url_string)
                 @playing_song_object.stop if @playing_song_object
                 @playing_queue.sync do 
@@ -159,10 +160,12 @@ class ThumperDelegate
             set_playing_cover_art
             reload_current_playlist
         else
+            
             @playing_song_object = QTMovie.alloc
         end
-        
+
         @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton
+       
         check_for_update
     end
     
@@ -260,7 +263,7 @@ class ThumperDelegate
         NSUserDefaults.standardUserDefaults.synchronize
         NSApp.endSheet(server_info_window)
         server_info_window.orderOut(sender)
-        if server_url.empty? || username.empty? || password.empty?
+        if @server_url.empty? || @username.empty? || @password.empty?
             show_server_info_modal
         else
             get_server_ip if @server_url.scan('subsonic.org').length > 0
@@ -405,6 +408,15 @@ class ThumperDelegate
         @subsonic.quick_playlists(options, @subsonic, :qp_response)
     end
     
+    def share_item(sender)
+        #Request the share 
+        @subsonic.share(sender.representedObject, @subsonic, :share_response)
+    end
+    
+    def rate_item(sender)
+        @subsonic.rate(sender.representedObject)
+    end
+    
     def get_smart_playlist(options)
         @playlist_songs_progress.startAnimation(nil)
         @subsonic.smart_playlist(options, @subsonic, :smart_playlist_response)
@@ -466,7 +478,7 @@ class ThumperDelegate
             end
         else
             url_string = "#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}&format=mp3"
-            url_string << "&maxBitRate=#{@bitrate}" if @bitrate && @bitrate != 0
+            url_string << "&maxBitRate=#{@bitrate}" if @bitrate && @bitrate != 0 && @bitrate != ""
             url = NSURL.alloc.initWithString(url_string)
             #NSLog "Streaming song"
             @playing_queue.sync do 
@@ -526,7 +538,7 @@ class ThumperDelegate
             else
             image = NSImage.imageNamed("album")
         end
-        @notificaiton_queue.add_notification({:title => "Thumper", :image => image, :message => "Song: #{song_attributes[:title]}\nArtist: #{song_attributes[:artist]}\nAlbum: #{song_attributes[:album]}\nLength: #{song_attributes[:duration]}"})
+        @notification_queue.add_notification({:title => "Thumper", :image => image, :message => "Song: #{song_attributes[:title]}\nArtist: #{song_attributes[:artist]}\nAlbum: #{song_attributes[:album]}\nLength: #{song_attributes[:duration]}"})
         #g = Growl.new("Thumper", ["notification"], image)
         #g.notify("notification", "#{song_attributes[:title]}", "Artist: #{song_attributes[:artist]}\nAlbum: #{song_attributes[:album]}\nLength: #{song_attributes[:duration]}") 
     end
@@ -792,7 +804,7 @@ class ThumperDelegate
         next_song = @current_playlist[@playing_song + 1]
         #NSLog "#{next_song[:suffix]}"
         if !File.exists?(next_song[:cache_path]) && !["flac", "flv"].include?(next_song[:suffix])
-            @notificaiton_queue.add_notification({:title => "Downloading next song....", :message => "Attempting to download the next song in the current playlist.", :image => NSApp.applicationIconImage}) if @downloading_enabled
+            @notification_queue.add_notification({:title => "Downloading next song....", :message => "Attempting to download the next song in the current playlist.", :image => NSApp.applicationIconImage}) if @downloading_enabled
             #g = Growl.new("Thumper", ["notification"])
             #g.notify("notification", "Downloading next song...", "Attempting to download the next song in the current playlist.", {:NotificationPriority => -1}) 
             @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response) if @downloading_enabled

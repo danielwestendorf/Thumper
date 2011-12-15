@@ -6,7 +6,16 @@
 #  Copyright 2011 Daniel Westendorf. All rights reserved.
 #
 class ThumperPlaylistSongsDelegate
-    attr_accessor :parent
+    attr_accessor :parent, :share_enabled, :rate_enabled
+    
+    def initialize
+        @share_enabled = true
+        @rate_enabled = true
+    end
+    
+    def represented_objects
+        parent.playlist_songs 
+    end
     
     def awakeFromNib
         parent.playlist_songs_table_view.doubleAction = 'double_click:'

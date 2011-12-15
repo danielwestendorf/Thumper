@@ -9,7 +9,16 @@
 
 class ThumperCurrentPlaylistDelegate
 
-    attr_accessor :parent, :save_window, :playlist_name
+    attr_accessor :parent, :save_window, :playlist_name, :share_enabled, :rate_enabled
+    
+    def initialize
+        @share_enabled = true 
+        @rate_enabled = true
+    end
+    
+    def represented_objects
+        parent.current_playlist 
+    end
     
     def numberOfRowsInTableView(tableView)
         parent.current_playlist.count 

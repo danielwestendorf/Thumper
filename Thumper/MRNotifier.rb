@@ -46,7 +46,7 @@ class MRNotifier
             panel.contentView.subviews[0].setFrame([total_frame.origin.x + 5, total_frame.size.height - 60, 50, 50])
             else
             total_frame = panel.contentView.frame
-            text_frame = NSRect.new([total_frame.origin.x + 5, total_frame.origin.y - 5], [total_frame.size.width - 10, total_frame.size.height - 10])
+            text_frame = NSRect.new([total_frame.origin.x + 10, total_frame.origin.y - 10], [total_frame.size.width - 20, total_frame.size.height - 20])
         end
         panel.setTitle(options[:title])
         

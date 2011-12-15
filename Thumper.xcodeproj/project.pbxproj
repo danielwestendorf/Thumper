@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		82441781137442DA00B0EF2F /* ThumperTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82441780137442DA00B0EF2F /* ThumperTable.rb */; };
-		8249080414929CE5009024AF /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8249080314929CE5009024AF /* MacRuby.framework */; };
 		8249080514929D53009024AF /* MRNotifier.rb in Resources */ = {isa = PBXBuildFile; fileRef = 8249080214929AA0009024AF /* MRNotifier.rb */; };
 		826170AE134914EA0026F381 /* ThumperAlbumDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */; };
 		826170B1134922400026F381 /* ThumperSongsDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170B0134922400026F381 /* ThumperSongsDelegate.rb */; };
@@ -36,6 +35,7 @@
 		82C0648A136C525300A6F2C6 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C06489136C525300A6F2C6 /* Logo.png */; };
 		82CD71F8135F6BDA008B6F80 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CD71F7135F6BDA008B6F80 /* Stop.png */; };
 		82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82D6360B13A7D0A1002452C6 /* SimpleModal.rb */; };
+		82E048FF14996C01004F9507 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E048FE14996C01004F9507 /* MacRuby.framework */; };
 		82E0747F13F046DE00D674E3 /* ThumperRemoteListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */; };
 		82E0748213F0470300D674E3 /* HIDRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0748113F0470300D674E3 /* HIDRemote.m */; };
 		82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E0748313F0491800D674E3 /* Carbon.framework */; };
@@ -66,7 +66,6 @@
 /* Begin PBXFileReference section */
 		82441780137442DA00B0EF2F /* ThumperTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperTable.rb; sourceTree = "<group>"; };
 		8249080214929AA0009024AF /* MRNotifier.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MRNotifier.rb; sourceTree = "<group>"; };
-		8249080314929CE5009024AF /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperAlbumDelegate.rb; sourceTree = "<group>"; };
 		826170B0134922400026F381 /* ThumperSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperSongsDelegate.rb; sourceTree = "<group>"; };
 		826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperCurrentPlaylistDelegate.rb; sourceTree = "<group>"; };
@@ -96,6 +95,8 @@
 		82C06489136C525300A6F2C6 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Icons/Logo.png; sourceTree = "<group>"; };
 		82CD71F7135F6BDA008B6F80 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = Icons/Stop.png; sourceTree = "<group>"; };
 		82D6360B13A7D0A1002452C6 /* SimpleModal.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SimpleModal.rb; sourceTree = "<group>"; };
+		82E048FD14996AB0004F9507 /* Thumper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Thumper.entitlements; sourceTree = "<group>"; };
+		82E048FE14996C01004F9507 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		82E0747D13F046DE00D674E3 /* ThumperRemoteListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumperRemoteListener.h; sourceTree = "<group>"; };
 		82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumperRemoteListener.m; sourceTree = "<group>"; };
 		82E0748013F0470300D674E3 /* HIDRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HIDRemote.h; path = Classes/HIDRemote.h; sourceTree = "<group>"; };
@@ -116,7 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8249080414929CE5009024AF /* MacRuby.framework in Frameworks */,
+				82E048FF14996C01004F9507 /* MacRuby.framework in Frameworks */,
 				82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */,
 				82B71E7113E750130079C730 /* IOKit.framework in Frameworks */,
 				827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */,
@@ -149,7 +150,6 @@
 		827CE5B71347B49D00170589 = {
 			isa = PBXGroup;
 			children = (
-				8249080314929CE5009024AF /* MacRuby.framework */,
 				82E0748313F0491800D674E3 /* Carbon.framework */,
 				827CE5CB1347B49D00170589 /* Thumper */,
 				827CE5C51347B49D00170589 /* Frameworks */,
@@ -168,6 +168,7 @@
 		827CE5C51347B49D00170589 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82E048FE14996C01004F9507 /* MacRuby.framework */,
 				82B71E7013E750130079C730 /* IOKit.framework */,
 				827CE5C61347B49D00170589 /* Cocoa.framework */,
 				82FE78C1137DD3EB00238800 /* BWToolkitFramework.framework */,
@@ -178,6 +179,7 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
+				82E048FD14996AB0004F9507 /* Thumper.entitlements */,
 				8249080214929AA0009024AF /* MRNotifier.rb */,
 				82E0748013F0470300D674E3 /* HIDRemote.h */,
 				82E0748113F0470300D674E3 /* HIDRemote.m */,
@@ -387,7 +389,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
@@ -406,7 +408,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
@@ -418,6 +420,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Thumper/Thumper.entitlements;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,6 +446,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Thumper/Thumper.entitlements;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
