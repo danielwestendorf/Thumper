@@ -44,7 +44,7 @@ class ThumperDelegate
     attr_accessor :new_sp_window, :sp_name, :sp_genre, :sp_fromYear, :sp_toYear, :sp_size, :new_sp_save, :new_sp_cancel
     attr_accessor :t_update_window, :t_update_text, :t_update_button, :t_update_cancel_button
     attr_accessor :now_playing
-    attr_accessor :downloading_enabled, :sharing_enabled
+    attr_accessor :downloading_enabled, :sharing_enabled, :rating_enabled
     attr_accessor :notification_queue
     attr_accessor :share_link_window, :share_link_close_button, :share_link_text_field
     

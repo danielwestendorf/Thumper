@@ -9,7 +9,7 @@ class ThumperCMTable < NSTableView
             if self.delegate.represented_objects.length > 0
                 menu = NSMenu.alloc.initWithTitle("Thumper")
                 object = self.delegate.represented_objects[row]
-                if  self.delegate.share_enabled
+                if  self.delegate.share_enabled && self.delegate.parent.sharing_enabled
                     share_menu = NSMenuItem.alloc.init
                     share_menu.setTitle("Share")
                     share_sub_menu = NSMenu.alloc.init
@@ -29,7 +29,7 @@ class ThumperCMTable < NSTableView
                     share_menu.setSubmenu(share_sub_menu)
                     menu.addItem(share_menu)
                 end
-                if self.delegate.rate_enabled
+                if self.delegate.rate_enabled && self.delegate.parent.rating_enabled
                     rate_menu = NSMenuItem.alloc.init
                     rate_menu.setTitle("Rate")
                     rate_sub_menu = NSMenu.alloc.init

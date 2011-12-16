@@ -381,8 +381,11 @@ class Subsonic
             #user.attributeForName("scrobblingEnabled").stringValue == "true" ? @parent.scrobbling_enabled = true : @parent.scrobbling_enabled = false
             user.attributeForName("downloadRole").stringValue == "true" ? @parent.downloading_enabled = true : @parent.downloading_enabled = false
             user.attributeForName("shareRole") && user.attributeForName("shareRole").stringValue == "true" ? @parent.sharing_enabled = true : @parent.sharing_enabled = false
+            user.attributeForName("commentRole") && user.attributeForName("commentRole").stringValue == "true" ? @parent.rating_enabled = true : @parent.rating_enabled = false
             NSLog "Sharing is not enabled for #{@username}" unless @parent.sharing_enabled
             NSLog "Downloading is not enabled for #{@username}" unless @parent.downloading_enabled
+            NSLog "Rating and Commenting is not enabled for #{@username}" unless @parent.rating_enabled
+            
             #NSLog "Scrobbling is not enabled for #{@username}" unless @parent.scrobbling_enabled
             
             if xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:version).stringValue.to_f < 1.7
@@ -478,10 +481,11 @@ class Subsonic
     
     def rate(object)
         rate_request = build_request('/rest/setRating.view', {:id => object[:id], :rating => object[:rating].to_i})
-        NSURLConnection.connectionWithRequest(rate_request, delegate:XMLResponse.new(self, :doNothing))
+        NSURLConnection.connectionWithRequest(rate_request, delegate:XMLResponse.new(self, :rating_response, object))
     end
     
-    def doNothing(xml, options)
+    def rating_response(xml, object)
+        
     end
     
     def get_now_playing(delegate, method)

@@ -31,8 +31,12 @@ class ThumperSongsDelegate
     end
     
     def tableView(tableView, setObjectValue:object, forTableColumn:column, row:row)
-        @parent.songs[row][:rating] = object
-        @parent.subsonic.rate(@parent.songs[row])
+        if @parent.rating_enabled
+            @parent.songs[row][:rating] = object
+            @parent.subsonic.rate(@parent.songs[row])
+        else
+            NSLog "Cannot save rating change, Rating and Commenting is not enabled for user #{@parent.username}"
+        end
     end
     
     def tableView(aView, writeRowsWithIndexes:rowIndexes, toPasteboard:pboard)

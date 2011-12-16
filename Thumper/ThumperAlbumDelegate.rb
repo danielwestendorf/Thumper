@@ -23,8 +23,12 @@ class ThumperAlbumDelegate
     end
     
     def tableView(tableView, setObjectValue:object, forTableColumn:column, row:row)
-        @parent.albums[row][:rating] = object
-        @parent.subsonic.rate(@parent.albums[row])
+        if  @parent.rating_enabled
+            @parent.albums[row][:rating] = object
+            @parent.subsonic.rate(@parent.albums[row]) 
+        else
+            NSLog "Cannot save rating change, Rating and Commenting is not enabled for user #{@parent.username}"
+        end
     end
     
     def tableView(tableView, objectValueForTableColumn:column, row:row)
