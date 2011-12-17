@@ -422,6 +422,63 @@ class ThumperDelegate
         @subsonic.smart_playlist(options, @subsonic, :smart_playlist_response)
     end
         
+    def applicationDockMenu(sender)
+        dock_menu = NSMenu.alloc.initWithTitle("Thumper")
+        if @playing_song_object && @playing_song
+            now_playing_item = NSMenuItem.alloc.init
+            now_playing_item.setTitle("Now Playing:")
+            now_playing_item.setEnabled(true)
+            dock_menu.addItem(now_playing_item)
+            
+            title_item = NSMenuItem.alloc.init
+            title_item.setTitle(@current_playlist[@playing_song][:title] + " - #{@current_playlist[@playing_song][:duration]}")
+            title_item.setIndentationLevel(1)
+            title_item.setEnabled(true)
+            dock_menu.addItem(title_item)
+
+            artist_item = NSMenuItem.alloc.init
+            artist_item.setTitle(@current_playlist[@playing_song][:artist])
+            artist_item.setIndentationLevel(1)
+            artist_item.setEnabled(true)
+            dock_menu.addItem(artist_item)
+            
+            dock_menu.addItem(NSMenuItem.separatorItem)
+        end
+        
+        if @current_playlist.length > 0
+            play_toggle = NSMenuItem.alloc.init
+            play_toggle.setTarget(self)
+            play_toggle.setAction("play_toggle_button:")
+            if @playing_song_object.rate != 0
+                play_toggle.setTitle("Pause")
+            else
+                play_toggle.setTitle("Play")
+            end
+            dock_menu.addItem(play_toggle)
+            
+            stop_item = NSMenuItem.alloc.init
+            stop_item.setTarget(self)
+            stop_item.setAction("stop_button:")
+            stop_item.setTitle("Stop")
+            dock_menu.addItem(stop_item)
+
+            play_next = NSMenuItem.alloc.init
+            play_next.setTarget(self)
+            play_next.setAction("play_next_button:")
+            play_next.setTitle("Next")
+            dock_menu.addItem(play_next)
+            
+            play_previous = NSMenuItem.alloc.init
+            play_previous.setTarget(self)
+            play_previous.setAction("play_previous_button:")
+            play_previous.setTitle("Previous")
+            dock_menu.addItem(play_previous)
+        end
+
+
+        return dock_menu
+    end
+    
     def get_album_songs(id)
         return if id.empty?
         @songs_progress.startAnimation(nil)
@@ -804,7 +861,7 @@ class ThumperDelegate
         next_song = @current_playlist[@playing_song + 1]
         #NSLog "#{next_song[:suffix]}"
         if !File.exists?(next_song[:cache_path]) && !["flac", "flv"].include?(next_song[:suffix])
-            @notification_queue.add_notification({:title => "Downloading next song....", :message => "Attempting to download the next song in the current playlist.", :image => NSApp.applicationIconImage}) if @downloading_enabled
+            @notification_queue.add_notification({:title => "Downloading next song....", :message => "Attempting to download the next song in the current playlist.", :image => NSImage.imageNamed("LogoWhite")}) if @downloading_enabled
             #g = Growl.new("Thumper", ["notification"])
             #g.notify("notification", "Downloading next song...", "Attempting to download the next song in the current playlist.", {:NotificationPriority => -1}) 
             @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response) if @downloading_enabled
