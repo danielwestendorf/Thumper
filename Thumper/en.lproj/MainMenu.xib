@@ -21,15 +21,15 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
-      <integer value="1631"/>
-      <integer value="686"/>
-      <integer value="582"/>
-      <integer value="1642"/>
-      <integer value="2067"/>
       <integer value="1667"/>
-      <integer value="1455"/>
-      <integer value="1428"/>
       <integer value="1946"/>
+      <integer value="1642"/>
+      <integer value="582"/>
+      <integer value="1428"/>
+      <integer value="1455"/>
+      <integer value="2067"/>
+      <integer value="1631"/>
+      <integer value="1538"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -678,10 +678,6 @@
                               <string key="NSClassName">NSImage</string>
                               <string key="NSResourceName">Stop</string>
                             </object>
-                            <object class="NSCustomResource" key="NSAlternateImage">
-                              <string key="NSClassName">NSImage</string>
-                              <string key="NSResourceName">Stop_alt</string>
-                            </object>
                             <string key="NSAlternateContents"/>
                             <string key="NSKeyEquivalent"/>
                             <int key="NSPeriodicDelay">400</int>
@@ -739,10 +735,6 @@
                               <string key="NSClassName">NSImage</string>
                               <string key="NSResourceName">Next</string>
                             </object>
-                            <object class="NSCustomResource" key="NSAlternateImage">
-                              <string key="NSClassName">NSImage</string>
-                              <string key="NSResourceName">Next_alt</string>
-                            </object>
                             <string key="NSAlternateContents"/>
                             <string key="NSKeyEquivalent"></string>
                             <int key="NSPeriodicDelay">400</int>
@@ -768,10 +760,6 @@
                               <string key="NSClassName">NSImage</string>
                               <string key="NSResourceName">Previous</string>
                             </object>
-                            <object class="NSCustomResource" key="NSAlternateImage">
-                              <string key="NSClassName">NSImage</string>
-                              <string key="NSResourceName">Previous_alt</string>
-                            </object>
                             <string key="NSAlternateContents"/>
                             <string key="NSKeyEquivalent"></string>
                             <int key="NSPeriodicDelay">400</int>
@@ -796,10 +784,6 @@
                             <object class="NSCustomResource" key="NSNormalImage">
                               <string key="NSClassName">NSImage</string>
                               <string key="NSResourceName">Play</string>
-                            </object>
-                            <object class="NSCustomResource" key="NSAlternateImage">
-                              <string key="NSClassName">NSImage</string>
-                              <string key="NSResourceName">Play_alt</string>
                             </object>
                             <string key="NSAlternateContents"/>
                             <string type="base64-UTF8" key="NSKeyEquivalent">IA</string>
@@ -1067,7 +1051,7 @@
                                                     <int key="NSCellFlags2">33554432</int>
                                                     <reference key="NSSupport" ref="349965944"/>
                                                     <int key="NSAlign">0</int>
-                                                    <int key="NSScale">0</int>
+                                                    <int key="NSScale">2</int>
                                                     <int key="NSStyle">0</int>
                                                     <bool key="NSAnimates">NO</bool>
                                                   </object>
@@ -5011,7 +4995,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
               </object>
               <object class="BWToolbarItem" id="491149895">
                 <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                  <characters key="NS.bytes">B16638F5-0ED2-45BF-983A-AFE4492C1F6D</characters>
+                  <characters key="NS.bytes">909260A8-7BC0-4AAB-9636-07EA545E6B10</characters>
                 </object>
                 <string key="NSToolbarItemLabel">Cache</string>
                 <string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -5034,7 +5018,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
               </object>
               <object class="BWToolbarItem" id="721798759">
                 <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                  <characters key="NS.bytes">94720BE4-42FE-41A0-AC91-7892DED74490</characters>
+                  <characters key="NS.bytes">1EA9F0A0-3DAC-4DED-9A1E-CAF3B33A7C31</characters>
                 </object>
                 <string key="NSToolbarItemLabel">Subsonic</string>
                 <string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -5170,7 +5154,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
                 </object>
                 <object class="BWToolbarItem" id="136917394">
                   <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                    <characters key="NS.bytes">B3D8AB94-C465-4249-9433-3B5CCDD6F3B8</characters>
+                    <characters key="NS.bytes">E22FCFCD-EBF8-48E6-9CA4-F9E5EB787F9A</characters>
                   </object>
                   <string key="NSToolbarItemLabel">Cache</string>
                   <string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -5190,7 +5174,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
                 </object>
                 <object class="BWToolbarItem" id="385880920">
                   <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                    <characters key="NS.bytes">97792A0C-C666-4FC2-A560-1791F0CA1E4C</characters>
+                    <characters key="NS.bytes">514479C2-8EF2-4E24-9544-35628850F807</characters>
                   </object>
                   <string key="NSToolbarItemLabel">Subsonic</string>
                   <string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -9458,7 +9442,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             <object class="NSMutableArray" key="children">
               <bool key="EncodedWithXMLCoder">YES</bool>
               <reference ref="900561434"/>
-              <reference ref="682726372"/>
               <reference ref="600412942"/>
               <reference ref="654234071"/>
               <reference ref="550976773"/>
@@ -9468,6 +9451,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               <reference ref="398463761"/>
               <reference ref="1012248689"/>
               <reference ref="596318728"/>
+              <reference ref="682726372"/>
             </object>
             <reference key="parent" ref="1041332667"/>
             <string key="objectName">Player Controls</string>
@@ -9700,15 +9684,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             <reference key="parent" ref="520106763"/>
           </object>
           <object class="IBObjectRecord">
-            <int key="objectID">1040</int>
-            <reference key="object" ref="682726372"/>
-            <object class="NSMutableArray" key="children">
-              <bool key="EncodedWithXMLCoder">YES</bool>
-              <reference ref="996085721"/>
-            </object>
-            <reference key="parent" ref="520106763"/>
-          </object>
-          <object class="IBObjectRecord">
             <int key="objectID">1023</int>
             <reference key="object" ref="600412942"/>
             <reference key="parent" ref="520106763"/>
@@ -9789,11 +9764,6 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             <int key="objectID">1006</int>
             <reference key="object" ref="736295259"/>
             <reference key="parent" ref="654234071"/>
-          </object>
-          <object class="IBObjectRecord">
-            <int key="objectID">1041</int>
-            <reference key="object" ref="996085721"/>
-            <reference key="parent" ref="682726372"/>
           </object>
           <object class="IBObjectRecord">
             <int key="objectID">1043</int>
@@ -11244,6 +11214,20 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             <int key="objectID">2157</int>
             <reference key="object" ref="455386557"/>
             <reference key="parent" ref="911068465"/>
+          </object>
+          <object class="IBObjectRecord">
+            <int key="objectID">1040</int>
+            <reference key="object" ref="682726372"/>
+            <object class="NSMutableArray" key="children">
+              <bool key="EncodedWithXMLCoder">YES</bool>
+              <reference ref="996085721"/>
+            </object>
+            <reference key="parent" ref="520106763"/>
+          </object>
+          <object class="IBObjectRecord">
+            <int key="objectID">1041</int>
+            <reference key="object" ref="996085721"/>
+            <reference key="parent" ref="682726372"/>
           </object>
         </object>
       </object>
@@ -14789,15 +14773,11 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
         <string>NSRemoveTemplate</string>
         <string>NSStopProgressTemplate</string>
         <string>Next</string>
-        <string>Next_alt</string>
         <string>Play</string>
         <string>PlayList</string>
-        <string>Play_alt</string>
         <string>Previous</string>
-        <string>Previous_alt</string>
         <string>Search</string>
         <string>Stop</string>
-        <string>Stop_alt</string>
         <string>album</string>
       </object>
       <object class="NSMutableArray" key="dict.values">
@@ -14814,15 +14794,11 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
         <string>{8, 8}</string>
         <string>{11, 11}</string>
         <string>{43, 43}</string>
-        <string>{128, 128}</string>
         <string>{43, 43}</string>
         <string>{12, 12}</string>
-        <string>{128, 128}</string>
         <string>{43, 43}</string>
-        <string>{128, 128}</string>
         <string>{12, 12}</string>
         <string>{43, 43}</string>
-        <string>{128, 128}</string>
         <string>{500, 500}</string>
       </object>
     </object>

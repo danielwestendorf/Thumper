@@ -37,11 +37,6 @@
 		82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82D6360B13A7D0A1002452C6 /* SimpleModal.rb */; };
 		82E048FF14996C01004F9507 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E048FE14996C01004F9507 /* MacRuby.framework */; };
 		82E0490D149BDE81004F9507 /* LogoWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E0490C149BDD1A004F9507 /* LogoWhite.png */; };
-		82E0490E149BDE81004F9507 /* Next_alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E04905149BA93C004F9507 /* Next_alt.png */; };
-		82E0490F149BDE81004F9507 /* Pause_alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E04906149BA93C004F9507 /* Pause_alt.png */; };
-		82E04910149BDE81004F9507 /* Play_alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E04907149BA93C004F9507 /* Play_alt.png */; };
-		82E04911149BDE81004F9507 /* Previous_alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E04908149BA93C004F9507 /* Previous_alt.png */; };
-		82E04912149BDE81004F9507 /* Stop_alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E04909149BA93D004F9507 /* Stop_alt.png */; };
 		82E0747F13F046DE00D674E3 /* ThumperRemoteListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */; };
 		82E0748213F0470300D674E3 /* HIDRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0748113F0470300D674E3 /* HIDRemote.m */; };
 		82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E0748313F0491800D674E3 /* Carbon.framework */; };
@@ -103,11 +98,6 @@
 		82D6360B13A7D0A1002452C6 /* SimpleModal.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SimpleModal.rb; sourceTree = "<group>"; };
 		82E048FD14996AB0004F9507 /* Thumper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Thumper.entitlements; sourceTree = "<group>"; };
 		82E048FE14996C01004F9507 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
-		82E04905149BA93C004F9507 /* Next_alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next_alt.png; path = Icons/Next_alt.png; sourceTree = "<group>"; };
-		82E04906149BA93C004F9507 /* Pause_alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause_alt.png; path = Icons/Pause_alt.png; sourceTree = "<group>"; };
-		82E04907149BA93C004F9507 /* Play_alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play_alt.png; path = Icons/Play_alt.png; sourceTree = "<group>"; };
-		82E04908149BA93C004F9507 /* Previous_alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous_alt.png; path = Icons/Previous_alt.png; sourceTree = "<group>"; };
-		82E04909149BA93D004F9507 /* Stop_alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop_alt.png; path = Icons/Stop_alt.png; sourceTree = "<group>"; };
 		82E0490C149BDD1A004F9507 /* LogoWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoWhite.png; path = Icons/LogoWhite.png; sourceTree = "<group>"; };
 		82E0747D13F046DE00D674E3 /* ThumperRemoteListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumperRemoteListener.h; sourceTree = "<group>"; };
 		82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumperRemoteListener.m; sourceTree = "<group>"; };
@@ -144,11 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				82E0490C149BDD1A004F9507 /* LogoWhite.png */,
-				82E04905149BA93C004F9507 /* Next_alt.png */,
-				82E04906149BA93C004F9507 /* Pause_alt.png */,
-				82E04907149BA93C004F9507 /* Play_alt.png */,
-				82E04908149BA93C004F9507 /* Previous_alt.png */,
-				82E04909149BA93D004F9507 /* Stop_alt.png */,
 				82C06489136C525300A6F2C6 /* Logo.png */,
 				82CD71F7135F6BDA008B6F80 /* Stop.png */,
 				82F67F23135B75BD0099A6FC /* Playing.png */,
@@ -325,11 +310,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				82E0490D149BDE81004F9507 /* LogoWhite.png in Resources */,
-				82E0490E149BDE81004F9507 /* Next_alt.png in Resources */,
-				82E0490F149BDE81004F9507 /* Pause_alt.png in Resources */,
-				82E04910149BDE81004F9507 /* Play_alt.png in Resources */,
-				82E04911149BDE81004F9507 /* Previous_alt.png in Resources */,
-				82E04912149BDE81004F9507 /* Stop_alt.png in Resources */,
 				8249080514929D53009024AF /* MRNotifier.rb in Resources */,
 				827CE5D01347B49D00170589 /* InfoPlist.strings in Resources */,
 				827CE5D71347B49D00170589 /* MainMenu.xib in Resources */,
