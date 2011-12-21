@@ -28,12 +28,17 @@ class MRNotifier
         default_options = {:title => '', :ttl => 10, :message => ''}
         options = default_options.merge(passed_options)
         
-        rect = self.get_rect
+        screen = NSScreen.screens[0]
+        
+        rect = self.get_rect(screen.visibleFrame)
+        puts rect.origin.x
+        puts rect.origin.y
         
         panel = NSPanel.alloc.initWithContentRect(rect,
                                                   styleMask:NSTitledWindowMask | NSClosableWindowMask | NSUtilityWindowMask |NSHUDWindowMask,
                                                   backing:NSBackingStoreBuffered,
-                                                  defer:false)
+                                                  defer:false,
+                                                  screen: screen)
         
         #set the content
         if options[:image]
@@ -68,14 +73,18 @@ class MRNotifier
         NSTimer.scheduledTimerWithTimeInterval(options[:ttl], target: self, selector:"remove_panel:", userInfo:panel, repeats:false)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'notification_closed:', name:NSWindowWillCloseNotification, object: panel)
         panel.display
+        NSLog "Actual X: #{panel.frame.origin.x}"
+        NSLog "Actual Y: #{panel.frame.origin.y}"
     end
     
     def notification_closed(notification)
         @panels.delete(notification.object)    
     end
     
-    def get_rect
-        screen = NSScreen.screens[0].visibleFrame
+    def get_rect(screen)
+        NSLog "Width: #{screen.size.width}"
+        NSLog "Height: #{screen.size.height}"
+
         
         base_x = screen.size.width - @width - @spacing
         base_y = screen.size.height - @height
@@ -88,14 +97,14 @@ class MRNotifier
             while origins.include?([x,y])
                 if ((y - @height - @spacing * 2) > screen.origin.y)
                     y -= (@height + @spacing * 2)
-                    else
+                else
                     y = base_y
                     x -= (@width + @spacing)
                 end
             end
         end
-        
-        return [x, y, @width, @height]
+        NSLog "#{[x, y, @width, @height]}"
+        return NSRect.new([x, y], [@width, @height])
         
     end
     
