@@ -48,6 +48,9 @@ class ThumperDelegate
     attr_accessor :notification_queue
     attr_accessor :share_link_window, :share_link_close_button, :share_link_text_field
     attr_accessor :notification_view
+    attr_accessor :current_music_folder
+    attr_accessor :music_folders
+    attr_accessor :main_menu
     
     def initialize
         @quick_playlists = [["Random", "random"], ["Newest", "newest"], ["Highest Rated", "highest"], ["Most Frequent", "frequent"], ["Recently Played", "recent"]]
@@ -56,6 +59,8 @@ class ThumperDelegate
         @songs = []
         @now_playing = []
         @search_results = []
+        @music_folders = []
+        @current_music_folder = nil
         @qp_offset = 0
         @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
         @smart_playlists = DB[:smart_playlists].all.collect {|p|  p }
@@ -104,6 +109,39 @@ class ThumperDelegate
     
     def show_all_now_playing(sender)
         @subsonic.show_all_now_playing
+    end
+    
+    def build_music_folder_menu
+        folder_menu = @main_menu.itemWithTitle("Music Folders")#find the folder if it is already there
+        
+        if @music_folders.length > 1
+            folder_menu = NSMenuItem.alloc.initWithTitle("Music Folders", action:nil, keyEquivalent:"") unless folder_menu
+            folder_sub = NSMenu.alloc.initWithTitle("Music Folders")
+            @music_folders.each do |folder|
+                item = NSMenuItem.alloc.initWithTitle(folder[:name], action:"folder_selected:", keyEquivalent:"")
+                item.setRepresentedObject(folder)
+                @current_music_folder == folder[:id] ? item.setState(NSOnState) : item.setState(NSOffState)
+                folder_sub.addItem(item) 
+            end
+            
+            folder_sub.addItem(NSMenuItem.separatorItem)
+            all = NSMenuItem.alloc.initWithTitle("All Folders", action:"folder_selected:", keyEquivalent:"")
+            @current_music_folder == nil ? all.setState(NSOnState) : all.setState(NSOffState)
+            folder_sub.addItem(all)
+            
+            folder_menu.setSubmenu(folder_sub)
+            @main_menu.insertItem(folder_menu, atIndex:2) unless @main_menu.itemWithTitle("Music Folders")
+        end
+        #@current_music_folder = 1
+        #get_artist_indexes
+    end
+    
+    def folder_selected(sender)
+        folder = sender.representedObject
+        folder.nil? ? @current_music_folder = nil : @current_music_folder = folder[:id]
+        
+        build_music_folder_menu
+        get_artist_indexes
     end
     
     def get_server_ip
@@ -599,6 +637,10 @@ class ThumperDelegate
         NSAnimationContext.currentContext.setDuration(0.5)
         @notification_view.animator.setFrameSize([0,22])
         NSAnimationContext.endGrouping
+        if @playing_song
+            song = @current_playlist[@playing_song]
+            @notification_view.setString("#{song[:title]} by #{song[:artist]}")
+        end
     end
     
     def set_playing_info
@@ -908,7 +950,8 @@ class ThumperDelegate
         next_song = @current_playlist[@playing_song + 1]
         #NSLog "#{next_song[:suffix]}"
         if !File.exists?(next_song[:cache_path]) && !["flac", "flv"].include?(next_song[:suffix])
-            @notification_queue.add_notification({:title => "Downloading next song....", :message => "Attempting to download the next song in the current playlist.", :image => NSImage.imageNamed("LogoWhite")}) if @downloading_enabled
+            change_notification_text("Attempting to download the next song, #{next_song[:title]} by #{next_song[:artist]}")
+            #@notification_queue.add_notification({:title => "Downloading next song....", :message => "Attempting to download the next song in the current playlist.", :image => NSImage.imageNamed("LogoWhite")}) if @downloading_enabled
             #g = Growl.new("Thumper", ["notification"])
             #g.notify("notification", "Downloading next song...", "Attempting to download the next song in the current playlist.", {:NotificationPriority => -1}) 
             @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response) if @downloading_enabled

@@ -21,15 +21,15 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
+      <integer value="1631"/>
       <integer value="1667"/>
-      <integer value="1946"/>
-      <integer value="1642"/>
-      <integer value="582"/>
       <integer value="1428"/>
       <integer value="1455"/>
-      <integer value="2067"/>
-      <integer value="1631"/>
       <integer value="1538"/>
+      <integer value="1642"/>
+      <integer value="582"/>
+      <integer value="1946"/>
+      <integer value="2067"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -4995,7 +4995,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
               </object>
               <object class="BWToolbarItem" id="491149895">
                 <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                  <characters key="NS.bytes">909260A8-7BC0-4AAB-9636-07EA545E6B10</characters>
+                  <characters key="NS.bytes">15B73505-81E8-448F-AFA7-1E7B2D786458</characters>
                 </object>
                 <string key="NSToolbarItemLabel">Cache</string>
                 <string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -5018,7 +5018,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
               </object>
               <object class="BWToolbarItem" id="721798759">
                 <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                  <characters key="NS.bytes">1EA9F0A0-3DAC-4DED-9A1E-CAF3B33A7C31</characters>
+                  <characters key="NS.bytes">42B9FA3C-4088-4193-ADCA-ACAE9C05CA86</characters>
                 </object>
                 <string key="NSToolbarItemLabel">Subsonic</string>
                 <string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -5154,7 +5154,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
                 </object>
                 <object class="BWToolbarItem" id="136917394">
                   <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                    <characters key="NS.bytes">E22FCFCD-EBF8-48E6-9CA4-F9E5EB787F9A</characters>
+                    <characters key="NS.bytes">A3730B2B-B4D6-4C44-82E0-AFDD115CE66C</characters>
                   </object>
                   <string key="NSToolbarItemLabel">Cache</string>
                   <string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -5174,7 +5174,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
                 </object>
                 <object class="BWToolbarItem" id="385880920">
                   <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                    <characters key="NS.bytes">514479C2-8EF2-4E24-9544-35628850F807</characters>
+                    <characters key="NS.bytes">E058F259-BCB1-4003-9A40-5DAF2E43226D</characters>
                   </object>
                   <string key="NSToolbarItemLabel">Subsonic</string>
                   <string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -7834,6 +7834,14 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             <reference key="destination" ref="787994340"/>
           </object>
           <int key="connectionID">2141</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBOutletConnection" key="connection">
+            <string key="label">main_menu</string>
+            <reference key="source" ref="976324537"/>
+            <reference key="destination" ref="649796088"/>
+          </object>
+          <int key="connectionID">2158</int>
         </object>
       </object>
       <object class="IBMutableOrderedSet" key="objectRecords">
@@ -12781,10 +12789,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
           <integer value="1"/>
           <string>{74, 862}</string>
           <string>{{6, 978}, {478, 20}}</string>
-          <string>{{1009, 359}, {1024, 600}}</string>
+          <string>{{1228, 338}, {1024, 600}}</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <boolean value="YES"/>
-          <string>{{1009, 359}, {1024, 600}}</string>
+          <string>{{1228, 338}, {1024, 600}}</string>
           <integer value="1"/>
           <string>{{33, 99}, {480, 360}}</string>
           <boolean value="YES"/>
@@ -13040,7 +13048,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
         </object>
       </object>
       <nil key="sourceID"/>
-      <int key="maxID">2157</int>
+      <int key="maxID">2158</int>
     </object>
     <object class="IBClassDescriber" key="IBDocument.Classes">
       <object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -13049,35 +13057,14 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
           <string key="className">ThumperAlbumDelegate</string>
           <string key="superclassName">NSObject</string>
           <object class="NSMutableDictionary" key="actions">
-            <bool key="EncodedWithXMLCoder">YES</bool>
-            <object class="NSArray" key="dict.sortedKeys">
-              <bool key="EncodedWithXMLCoder">YES</bool>
-              <string>add_album_to_playlist:</string>
-              <string>update_rating:</string>
-            </object>
-            <object class="NSMutableArray" key="dict.values">
-              <bool key="EncodedWithXMLCoder">YES</bool>
-              <string>id</string>
-              <string>id</string>
-            </object>
+            <string key="NS.key.0">add_album_to_playlist:</string>
+            <string key="NS.object.0">id</string>
           </object>
           <object class="NSMutableDictionary" key="actionInfosByName">
-            <bool key="EncodedWithXMLCoder">YES</bool>
-            <object class="NSArray" key="dict.sortedKeys">
-              <bool key="EncodedWithXMLCoder">YES</bool>
-              <string>add_album_to_playlist:</string>
-              <string>update_rating:</string>
-            </object>
-            <object class="NSMutableArray" key="dict.values">
-              <bool key="EncodedWithXMLCoder">YES</bool>
-              <object class="IBActionInfo">
-                <string key="name">add_album_to_playlist:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">update_rating:</string>
-                <string key="candidateClassName">id</string>
-              </object>
+            <string key="NS.key.0">add_album_to_playlist:</string>
+            <object class="IBActionInfo" key="NS.object.0">
+              <string key="name">add_album_to_playlist:</string>
+              <string key="candidateClassName">id</string>
             </object>
           </object>
           <object class="NSMutableDictionary" key="outlets">
@@ -13367,6 +13354,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             <bool key="EncodedWithXMLCoder">YES</bool>
             <object class="NSArray" key="dict.sortedKeys">
               <bool key="EncodedWithXMLCoder">YES</bool>
+              <string>applicationDockMenu:</string>
               <string>decreaseVolume:</string>
               <string>demo_close:</string>
               <string>hide_connection_info:</string>
@@ -13376,6 +13364,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               <string>play_previous_button:</string>
               <string>play_toggle_button:</string>
               <string>preferences:</string>
+              <string>rate_item:</string>
               <string>repeat_all:</string>
               <string>repeat_button_action:</string>
               <string>repeat_off:</string>
@@ -13392,6 +13381,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
+              <string>id</string>
+              <string>id</string>
               <string>id</string>
               <string>id</string>
               <string>id</string>
@@ -13420,6 +13411,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             <bool key="EncodedWithXMLCoder">YES</bool>
             <object class="NSArray" key="dict.sortedKeys">
               <bool key="EncodedWithXMLCoder">YES</bool>
+              <string>applicationDockMenu:</string>
               <string>decreaseVolume:</string>
               <string>demo_close:</string>
               <string>hide_connection_info:</string>
@@ -13429,6 +13421,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               <string>play_previous_button:</string>
               <string>play_toggle_button:</string>
               <string>preferences:</string>
+              <string>rate_item:</string>
               <string>repeat_all:</string>
               <string>repeat_button_action:</string>
               <string>repeat_off:</string>
@@ -13445,6 +13438,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
+              <object class="IBActionInfo">
+                <string key="name">applicationDockMenu:</string>
+                <string key="candidateClassName">id</string>
+              </object>
               <object class="IBActionInfo">
                 <string key="name">decreaseVolume:</string>
                 <string key="candidateClassName">id</string>
@@ -13479,6 +13476,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               </object>
               <object class="IBActionInfo">
                 <string key="name">preferences:</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBActionInfo">
+                <string key="name">rate_item:</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBActionInfo">
@@ -13554,6 +13555,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               <string>artists_progress</string>
               <string>bitrate</string>
               <string>bitrate_field</string>
+              <string>current_music_folder</string>
               <string>current_playlist</string>
               <string>current_playlist_count_label</string>
               <string>current_playlist_table_view</string>
@@ -13561,12 +13563,15 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               <string>downloading_enabled</string>
               <string>downloading_song</string>
               <string>format_time</string>
+              <string>main_menu</string>
               <string>main_window</string>
+              <string>music_folders</string>
               <string>mute_menu_item</string>
               <string>new_sp_cancel</string>
               <string>new_sp_save</string>
               <string>new_sp_window</string>
               <string>notification_queue</string>
+              <string>notification_view</string>
               <string>now_playing</string>
               <string>password</string>
               <string>password_field</string>
@@ -13596,6 +13601,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               <string>qp_offset</string>
               <string>quick_playlists</string>
               <string>quick_playlists_table_view</string>
+              <string>rating_enabled</string>
               <string>repeat_all_menu_item</string>
               <string>repeat_button</string>
               <string>repeat_one_menu_item</string>
@@ -13637,6 +13643,11 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
+              <string>id</string>
+              <string>id</string>
+              <string>id</string>
+              <string>id</string>
+              <string>id</string>
               <string>id</string>
               <string>id</string>
               <string>id</string>
@@ -13753,6 +13764,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               <string>artists_progress</string>
               <string>bitrate</string>
               <string>bitrate_field</string>
+              <string>current_music_folder</string>
               <string>current_playlist</string>
               <string>current_playlist_count_label</string>
               <string>current_playlist_table_view</string>
@@ -13760,12 +13772,15 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               <string>downloading_enabled</string>
               <string>downloading_song</string>
               <string>format_time</string>
+              <string>main_menu</string>
               <string>main_window</string>
+              <string>music_folders</string>
               <string>mute_menu_item</string>
               <string>new_sp_cancel</string>
               <string>new_sp_save</string>
               <string>new_sp_window</string>
               <string>notification_queue</string>
+              <string>notification_view</string>
               <string>now_playing</string>
               <string>password</string>
               <string>password_field</string>
@@ -13795,6 +13810,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               <string>qp_offset</string>
               <string>quick_playlists</string>
               <string>quick_playlists_table_view</string>
+              <string>rating_enabled</string>
               <string>repeat_all_menu_item</string>
               <string>repeat_button</string>
               <string>repeat_one_menu_item</string>
@@ -13897,6 +13913,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">
+                <string key="name">current_music_folder</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBToOneOutletInfo">
                 <string key="name">current_playlist</string>
                 <string key="candidateClassName">id</string>
               </object>
@@ -13925,7 +13945,15 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">
+                <string key="name">main_menu</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBToOneOutletInfo">
                 <string key="name">main_window</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBToOneOutletInfo">
+                <string key="name">music_folders</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">
@@ -13946,6 +13974,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               </object>
               <object class="IBToOneOutletInfo">
                 <string key="name">notification_queue</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBToOneOutletInfo">
+                <string key="name">notification_view</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">
@@ -14062,6 +14094,10 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
               </object>
               <object class="IBToOneOutletInfo">
                 <string key="name">quick_playlists_table_view</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBToOneOutletInfo">
+                <string key="name">rating_enabled</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">

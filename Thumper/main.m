@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 #import <MacRuby/MacRuby.h>
-#import "ThumperRemoteListener.h"
 #import "FBScrollingTextView.h"
 
 int main(int argc, char *argv[])

@@ -176,13 +176,15 @@ class ThumperCurrentPlaylistDelegate
         #g = Growl.new("Thumper", ["notification"])
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             #NSLog "Playlist saved successfully"
-            @parent.notification_queue.add_notification({:title => "Playlist Saved", :message => "The playlist was saved to the Subsonic Server", :image => NSImage.imageNamed("LogoWhite")})
+            #@parent.notification_queue.add_notification({:title => "Playlist Saved", :message => "The playlist was saved to the Subsonic Server", :image => NSImage.imageNamed("LogoWhite")})
+            @parent.change_notification_text("The playlist was saved to the Subsonic Server")
             #g.notify("notification", "Playlist Saved", "The playlist was saved to the Subsonic Server") 
             @parent.get_playlists
         else
             #NSLog "Error saving playlist #{xml}"
             #g.notify("notification", "Error Saving Playlist", "The playlist was not saved to the Subsonic Server")
-            @parent.notification_queue.add_notification({:title => "Error Saving Playist", :message => "There was an error saving the playlist to the server", :image => NSImage.imageNamed("LogoWhite")})
+            @parent.change_notification_text("Error. The playlist was not saved to the Subsonic Server")
+            #@parent.notification_queue.add_notification({:title => "Error Saving Playist", :message => "There was an error saving the playlist to the server", :image => NSImage.imageNamed("LogoWhite")})
         end
     end
     

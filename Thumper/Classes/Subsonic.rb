@@ -21,6 +21,7 @@ class Subsonic
             @parent.get_artist_indexes
             @parent.get_playlists
             self.getUser
+            self.getMusicFolders
         elsif xml.class == NSXMLDocument
             @parent.status_label.stringValue = "Offline -- #{xml.nodesForXPath('subsonic-response', error:nil).first.nodesForXPath('error', error:nil).first.attributeForName('message').stringValue}"
             connectivity = false
@@ -305,7 +306,8 @@ class Subsonic
             else
                 time_ago = song[:minutesAgo] + ' Miniutes ago'
             end
-            @parent.notification_queue.add_notification({:title => "#{song[:username]} is listening to...", :message => "Title: #{song[:title]}\nArtist: #{song[:artist]}\nAlbum: #{song[:album]}\nClient: #{song[:playerName].nil? ? 'Web Interface' : song[:playerName]} #{time_ago}", :image => img})
+            @parent.change_notification_text("#{song[:username]} is listening to #{song[:title]} by #{song[:artist]}")
+            #@parent.notification_queue.add_notification({:title => "#{song[:username]} is listening to...", :message => "Title: #{song[:title]}\nArtist: #{song[:artist]}\nAlbum: #{song[:album]}\nClient: #{song[:playerName].nil? ? 'Web Interface' : song[:playerName]} #{time_ago}", :image => img})
             #g.notify("notification", "#{song[:username]} is listening to...", "Title: #{song[:title]}\nArtist: #{song[:artist]}\nAlbum: #{song[:album]}\nClient: #{song[:playerName].nil? ? 'Web Interface' : song[:playerName]} #{time_ago}") 
         end
     end
@@ -395,9 +397,27 @@ class Subsonic
             end
         end
     end
+    
+    def getMusicFolders
+        request = build_request('/rest/getMusicFolders.view', {}) 
+        NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(self, :getMusicFoldersResponse))
+    end
+    
+    def getMusicFoldersResponse(xml, options)
+        if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
+            folders = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('musicFolders', error:nil).first.nodesForXPath('musicFolder', error:nil)
+            @parent.music_folders = []
+            folders.each do |folder|
+                @parent.music_folders << {:id => folder.attributeForName("id").stringValue, :name => folder.attributeForName("name").stringValue}
+            end
+            @parent.build_music_folder_menu
+        end
+    end
 	
 	def artists(delegate, method)
-        request = build_request('/rest/getIndexes.view', {})
+        options = {}
+        options["musicFolderId"] = @parent.current_music_folder if @parent.current_music_folder
+        request = build_request('/rest/getIndexes.view', options)
         NSURLConnection.connectionWithRequest(request, delegate:XMLResponse.new(delegate, method))
 	end
     

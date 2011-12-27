@@ -40,8 +40,6 @@
 		82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82D6360B13A7D0A1002452C6 /* SimpleModal.rb */; };
 		82E048FF14996C01004F9507 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E048FE14996C01004F9507 /* MacRuby.framework */; };
 		82E0490D149BDE81004F9507 /* LogoWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E0490C149BDD1A004F9507 /* LogoWhite.png */; };
-		82E0747F13F046DE00D674E3 /* ThumperRemoteListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */; };
-		82E0748213F0470300D674E3 /* HIDRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0748113F0470300D674E3 /* HIDRemote.m */; };
 		82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E0748313F0491800D674E3 /* Carbon.framework */; };
 		82EA85A3134FA87200C38A05 /* ThumperApplicaiton.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */; };
 		82EA85A6134FB0B300C38A05 /* Database.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A5134FB0B300C38A05 /* Database.rb */; };
@@ -106,10 +104,6 @@
 		82E048FD14996AB0004F9507 /* Thumper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Thumper.entitlements; sourceTree = "<group>"; };
 		82E048FE14996C01004F9507 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		82E0490C149BDD1A004F9507 /* LogoWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoWhite.png; path = Icons/LogoWhite.png; sourceTree = "<group>"; };
-		82E0747D13F046DE00D674E3 /* ThumperRemoteListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumperRemoteListener.h; sourceTree = "<group>"; };
-		82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumperRemoteListener.m; sourceTree = "<group>"; };
-		82E0748013F0470300D674E3 /* HIDRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HIDRemote.h; path = Classes/HIDRemote.h; sourceTree = "<group>"; };
-		82E0748113F0470300D674E3 /* HIDRemote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HIDRemote.m; path = Classes/HIDRemote.m; sourceTree = "<group>"; };
 		82E0748313F0491800D674E3 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperApplicaiton.rb; sourceTree = "<group>"; };
 		82EA85A5134FB0B300C38A05 /* Database.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Database.rb; sourceTree = "<group>"; };
@@ -192,8 +186,6 @@
 			children = (
 				82E048FD14996AB0004F9507 /* Thumper.entitlements */,
 				8249080214929AA0009024AF /* MRNotifier.rb */,
-				82E0748013F0470300D674E3 /* HIDRemote.h */,
-				82E0748113F0470300D674E3 /* HIDRemote.m */,
 				82D6360B13A7D0A1002452C6 /* SimpleModal.rb */,
 				82EFCC9913A6C39B0046D08F /* ThumperSmartPlaylistDelegate.rb */,
 				82EFCC9713A663980046D08F /* ThumperQuickPlaylistDelegate.rb */,
@@ -214,8 +206,6 @@
 				827CE5D41347B49D00170589 /* Resources */,
 				827CE5D81347B49D00170589 /* Other Sources */,
 				827CE5CC1347B49D00170589 /* Supporting Files */,
-				82E0747D13F046DE00D674E3 /* ThumperRemoteListener.h */,
-				82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */,
 				8289379A14A4E3A700B20D65 /* FBScrollingTextView.h */,
 				8289379B14A4E3A700B20D65 /* FBScrollingTextView.m */,
 			);
@@ -366,8 +356,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				827CE5D31347B49D00170589 /* main.m in Sources */,
-				82E0747F13F046DE00D674E3 /* ThumperRemoteListener.m in Sources */,
-				82E0748213F0470300D674E3 /* HIDRemote.m in Sources */,
 				8289379C14A4E3A700B20D65 /* FBScrollingTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
