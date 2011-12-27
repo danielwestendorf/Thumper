@@ -31,8 +31,6 @@ class MRNotifier
         screen = NSScreen.screens[0]
         
         rect = self.get_rect(screen.visibleFrame)
-        puts rect.origin.x
-        puts rect.origin.y
         
         panel = NSPanel.alloc.initWithContentRect(rect,
                                                   styleMask:NSTitledWindowMask | NSClosableWindowMask | NSUtilityWindowMask |NSHUDWindowMask,
@@ -49,7 +47,7 @@ class MRNotifier
             
             panel.contentView.addSubview(img_view)
             panel.contentView.subviews[0].setFrame([total_frame.origin.x + 5, total_frame.size.height - 60, 50, 50])
-            else
+        else
             total_frame = panel.contentView.frame
             text_frame = NSRect.new([total_frame.origin.x, total_frame.origin.y], [total_frame.size.width, total_frame.size.height])
         end
@@ -73,8 +71,8 @@ class MRNotifier
         NSTimer.scheduledTimerWithTimeInterval(options[:ttl], target: self, selector:"remove_panel:", userInfo:panel, repeats:false)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'notification_closed:', name:NSWindowWillCloseNotification, object: panel)
         panel.display
-        NSLog "Actual X: #{panel.frame.origin.x}"
-        NSLog "Actual Y: #{panel.frame.origin.y}"
+        #NSLog "Actual X: #{panel.frame.origin.x}"
+        #NSLog "Actual Y: #{panel.frame.origin.y}"
     end
     
     def notification_closed(notification)
@@ -82,8 +80,8 @@ class MRNotifier
     end
     
     def get_rect(screen)
-        NSLog "Width: #{screen.size.width}"
-        NSLog "Height: #{screen.size.height}"
+        #NSLog "Width: #{screen.size.width}"
+        #NSLog "Height: #{screen.size.height}"
 
         
         base_x = screen.size.width - @width - @spacing
@@ -103,7 +101,7 @@ class MRNotifier
                 end
             end
         end
-        NSLog "#{[x, y, @width, @height]}"
+        #NSLog "#{[x, y, @width, @height]}"
         return NSRect.new([x, y], [@width, @height])
         
     end

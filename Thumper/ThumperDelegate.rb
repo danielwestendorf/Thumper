@@ -47,6 +47,7 @@ class ThumperDelegate
     attr_accessor :downloading_enabled, :sharing_enabled, :rating_enabled
     attr_accessor :notification_queue
     attr_accessor :share_link_window, :share_link_close_button, :share_link_text_field
+    attr_accessor :notification_view
     
     def initialize
         @quick_playlists = [["Random", "random"], ["Newest", "newest"], ["Highest Rated", "highest"], ["Most Frequent", "frequent"], ["Recently Played", "recent"]]
@@ -128,6 +129,15 @@ class ThumperDelegate
     end
     
     def applicationDidFinishLaunching(a_notification)
+        @status_item = NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
+        @notification_view = FBScrollingTextView.alloc.initWithFrame(NSRect.new([0,0], [0,22]))
+        @status_item.setView(@notification_view)
+        @icon_item = NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
+        icon_image = NSImage.imageNamed('MenuIcon')
+        icon_image.setSize([15,15])
+        image_view = ThumperCustomImageView.alloc.init.setImage(icon_image)
+        @icon_item.setView(image_view)
+        @icon_item.setLength(22)
                 
         server_url_field.stringValue = @server_url if @server_url
         username_field.stringValue = @username if @username
@@ -166,6 +176,7 @@ class ThumperDelegate
 
         @username.nil? || @password.nil? || @server_url.nil? ? show_server_info_modal : setup_subsonic_conneciton
        
+        NSNotificationCenter.defaultCenter.addObserver(self, selector:'rateDidChange:', name:QTMovieRateDidChangeNotification, object:nil)
         check_for_update
     end
     
@@ -522,7 +533,7 @@ class ThumperDelegate
         @playing_song = 0 if @playing_song.nil? 
         song = @current_playlist[@playing_song]
         #NSLog "#{song}"
-        growl_song
+        #growl_song
         if File.exists?(song[:cache_path])
             #NSLog "Playing song from cache"
             @playing_song_object_progress.stopAnimation(nil)
@@ -559,6 +570,35 @@ class ThumperDelegate
         current_playlist_table_view.reloadData
         get_cover_art(song[:cover_art].split("/").last.split(".").first)
         @subsonic.scrobble(song[:id], @subsonic, :scrobble_response)
+    end
+    
+    def change_notification_text(new_text)
+        @notification_view.setString(new_text)
+        @notification_timer.invalidate if @notification_timer
+        NSAnimationContext.beginGrouping
+        NSAnimationContext.currentContext.setDuration(0.5)
+        show_notification_view
+        NSAnimationContext.endGrouping
+    end
+    
+    def show_notification_view
+        if @notification_view.string
+            @notification_view.setString(@notification_view.string)
+            @notification_view.animator.setFrameSize([100,22])
+            @notification_timer = NSTimer.scheduledTimerWithTimeInterval 10.0,
+                target: self,
+                selector: 'hide_notification_view:',
+                userInfo: nil,
+                repeats: false
+        end
+    end
+    
+    def hide_notification_view(timer)
+        @notification_timer = nil
+        NSAnimationContext.beginGrouping
+        NSAnimationContext.currentContext.setDuration(0.5)
+        @notification_view.animator.setFrameSize([0,22])
+        NSAnimationContext.endGrouping
     end
     
     def set_playing_info
@@ -829,6 +869,13 @@ class ThumperDelegate
     
     def songEnded(notification)
 		
+    end
+    
+    def rateDidChange(notification)
+        if @playing_song_object && @playing_song_object.rate != 0
+            song = @current_playlist[@playing_song]            
+            change_notification_text("#{song[:title]} by #{song[:artist]}")
+        end
     end
     
     def loadStateChanged(notification)

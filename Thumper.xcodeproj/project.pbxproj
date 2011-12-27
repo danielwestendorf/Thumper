@@ -23,6 +23,9 @@
 		827CE5DA1347B49D00170589 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5D91347B49D00170589 /* rb_main.rb */; };
 		827CE5DC1347B49D00170589 /* ThumperDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5DB1347B49D00170589 /* ThumperDelegate.rb */; };
 		827CE5E61347B4D200170589 /* Subsonic.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5E51347B4D200170589 /* Subsonic.rb */; };
+		8289379C14A4E3A700B20D65 /* FBScrollingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8289379B14A4E3A700B20D65 /* FBScrollingTextView.m */; };
+		8289379E14A4F30D00B20D65 /* MenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8289379D14A4F30C00B20D65 /* MenuIcon.png */; };
+		828937A014A5066C00B20D65 /* ThumperCustomImageView.rb in Resources */ = {isa = PBXBuildFile; fileRef = 8289379F14A5066C00B20D65 /* ThumperCustomImageView.rb */; };
 		828D56E41358BA9C0072A9EC /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D56E31358BA9C0072A9EC /* Play.png */; };
 		828D56E61358BD0A0072A9EC /* Next.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D56E51358BD0A0072A9EC /* Next.png */; };
 		828D56E81358BDBA0072A9EC /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D56E71358BDBA0072A9EC /* Previous.png */; };
@@ -84,6 +87,10 @@
 		827CE5D91347B49D00170589 /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		827CE5DB1347B49D00170589 /* ThumperDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = ThumperDelegate.rb; sourceTree = "<group>"; };
 		827CE5E51347B4D200170589 /* Subsonic.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = Subsonic.rb; path = Classes/Subsonic.rb; sourceTree = "<group>"; };
+		8289379A14A4E3A700B20D65 /* FBScrollingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBScrollingTextView.h; sourceTree = "<group>"; };
+		8289379B14A4E3A700B20D65 /* FBScrollingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBScrollingTextView.m; sourceTree = "<group>"; };
+		8289379D14A4F30C00B20D65 /* MenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuIcon.png; path = Icons/MenuIcon.png; sourceTree = "<group>"; };
+		8289379F14A5066C00B20D65 /* ThumperCustomImageView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperCustomImageView.rb; sourceTree = "<group>"; };
 		828D56E31358BA9C0072A9EC /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play.png; path = Icons/Play.png; sourceTree = "<group>"; };
 		828D56E51358BD0A0072A9EC /* Next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next.png; path = Icons/Next.png; sourceTree = "<group>"; };
 		828D56E71358BDBA0072A9EC /* Previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous.png; path = Icons/Previous.png; sourceTree = "<group>"; };
@@ -133,6 +140,7 @@
 		826170C4134C30470026F381 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				8289379D14A4F30C00B20D65 /* MenuIcon.png */,
 				82E0490C149BDD1A004F9507 /* LogoWhite.png */,
 				82C06489136C525300A6F2C6 /* Logo.png */,
 				82CD71F7135F6BDA008B6F80 /* Stop.png */,
@@ -202,11 +210,14 @@
 				827CE5E51347B4D200170589 /* Subsonic.rb */,
 				82965E3A1348EFD6005C99FB /* ThumperArtistIndexDelegate.rb */,
 				827CE5DB1347B49D00170589 /* ThumperDelegate.rb */,
+				8289379F14A5066C00B20D65 /* ThumperCustomImageView.rb */,
 				827CE5D41347B49D00170589 /* Resources */,
 				827CE5D81347B49D00170589 /* Other Sources */,
 				827CE5CC1347B49D00170589 /* Supporting Files */,
 				82E0747D13F046DE00D674E3 /* ThumperRemoteListener.h */,
 				82E0747E13F046DE00D674E3 /* ThumperRemoteListener.m */,
+				8289379A14A4E3A700B20D65 /* FBScrollingTextView.h */,
+				8289379B14A4E3A700B20D65 /* FBScrollingTextView.m */,
 			);
 			path = Thumper;
 			sourceTree = "<group>";
@@ -342,6 +353,8 @@
 				82EFCC9813A663980046D08F /* ThumperQuickPlaylistDelegate.rb in Resources */,
 				82EFCC9A13A6C39B0046D08F /* ThumperSmartPlaylistDelegate.rb in Resources */,
 				82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */,
+				8289379E14A4F30D00B20D65 /* MenuIcon.png in Resources */,
+				828937A014A5066C00B20D65 /* ThumperCustomImageView.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +368,7 @@
 				827CE5D31347B49D00170589 /* main.m in Sources */,
 				82E0747F13F046DE00D674E3 /* ThumperRemoteListener.m in Sources */,
 				82E0748213F0470300D674E3 /* HIDRemote.m in Sources */,
+				8289379C14A4E3A700B20D65 /* FBScrollingTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

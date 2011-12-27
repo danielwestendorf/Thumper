@@ -105,6 +105,8 @@ class ThumperCurrentPlaylistDelegate
         @parent.set_playing_cover_art
         @parent.playing_song_object_progress.stopAnimation(nil)
         @parent.cancel_timer
+        @parent.hide_notification_view(nil)
+        @parent.change_notification_text(nil)
     end
     
     def remove_selected_from_playlist(sender)
