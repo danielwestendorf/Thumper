@@ -332,7 +332,7 @@ class Subsonic
             path_step << '/'
         end
         response = data.writeToFile(path, atomically:true)
-        NSLog "Saved downloaded file to #{path}"
+        #NSLog "Saved downloaded file to #{path}"
     end
 	
     def scrobble_response(xml, options)

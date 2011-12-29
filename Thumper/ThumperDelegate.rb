@@ -193,7 +193,7 @@ class ThumperDelegate
                     @playing_song_object = QTMovie.alloc.initWithFile(song[:cache_path], error:nil)
                 end
             else
-                url_string = "#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}&format=mp3"
+                url_string = "#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.7.0&c=Thumper&f=xml&id=#{song[:id]}&format=mp3"
                 url_string << "&maxBitRate=#{@bitrate}" if @bitrate && @bitrate != 0 && @bitrate != ""
                 url = NSURL.alloc.initWithString(url_string)
                 @playing_song_object.stop if @playing_song_object
@@ -978,13 +978,12 @@ class ThumperDelegate
                 end
                 path_step << '/'
             end
-            p "saving file #{path}"
             #data = @playing_song_object.movieFormatRepresentation
             error = Pointer.new_with_type("@")
             result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:error) unless File.exists?(path)
             if error[0]
-                p error[0].localizedDescription
-                p error[0].code
+                NSLog error[0].localizedDescription
+                NSLog error[0].code
             end
             
             if @current_playlist.length >= @playing_song + 2
