@@ -60,6 +60,7 @@ class ThumperDelegate
         @now_playing = []
         @search_results = []
         @music_folders = []
+        @movie_panels = []
         @current_music_folder = nil
         @qp_offset = 0
         @playlists = DB[:playlist_songs].group(:name).all.collect {|p| {:id => p[:playlist_id], :name => p[:name]} }
@@ -610,6 +611,41 @@ class ThumperDelegate
         @subsonic.scrobble(song[:id], @subsonic, :scrobble_response)
     end
     
+    def display_movie
+        @playing_song_object.attachToCurrentThread
+        @movie_panel.close if @movie_panel
+        size = @playing_song_object.attributeForKey(QTMovieNaturalSizeAttribute).sizeValue
+        rect = NSRect.new([50, 50], [size.width, size.height])
+        
+        unless @movie_panel
+            @movie_panel = NSPanel.alloc.initWithContentRect(rect,
+                                                            styleMask:NSTitledWindowMask | NSClosableWindowMask | NSUtilityWindowMask |  NSResizableWindowMask | NSHUDWindowMask,
+                                                            backing:NSBackingStoreBuffered,
+                                                            defer:false,
+                                                            screen: nil)
+            @movie_panel.setHidesOnDeactivate(false)
+            @movie_panel.setReleasedWhenClosed(false)
+            @movie_panel.orderFrontRegardless
+            @movie_panel.center
+            #@movie_panel.setMovable(true)
+            @movie_panel.contentView.setAutoresizesSubviews(true)
+        end
+        
+        @movie_panel.setAspectRatio(size)
+        @movie_panel.setTitle(@current_playlist[@playing_song][:title])
+        @movie_panel.setContentSize(size)
+        p @current_playlist[@playing_song][:id]
+        
+        movie_view = ThumperMovie.alloc.initWithFrame(NSRect.new([0,0], [size.width, size.height]))
+        movie_view.setAutoresizingMask(NSViewWidthSizable | NSViewHeightSizable)
+        movie_view.setMovie(@playing_song_object)
+        movie_view.setControllerVisible(false)
+        
+        @movie_panel.setContentView(movie_view)
+        @movie_panel.makeKeyAndOrderFront(nil)
+        @movie_panel.display
+    end
+    
     def change_notification_text(new_text)
         @notification_view.setString(new_text)
         @notification_timer.invalidate if @notification_timer
@@ -916,7 +952,13 @@ class ThumperDelegate
     def rateDidChange(notification)
         if @playing_song_object && @playing_song_object.rate != 0
             song = @current_playlist[@playing_song]            
-            change_notification_text("#{song[:title]} by #{song[:artist]}")
+            if song[:isVideo] == "true"
+                change_notification_text("You're watching #{song[:title]}")
+                display_movie
+            else
+                @movie_panel.close if @movie_panel
+                change_notification_text("#{song[:title]} by #{song[:artist]}")
+            end
         end
     end
     
@@ -936,7 +978,15 @@ class ThumperDelegate
                 end
                 path_step << '/'
             end
-            result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:nil) unless File.exists?(path)
+            p "saving file #{path}"
+            #data = @playing_song_object.movieFormatRepresentation
+            error = Pointer.new_with_type("@")
+            result = @playing_song_object.writeToFile(path, withAttributes:{QTMovieFlatten => true, QTMovieExport => true}, error:error) unless File.exists?(path)
+            if error[0]
+                p error[0].localizedDescription
+                p error[0].code
+            end
+            
             if @current_playlist.length >= @playing_song + 2
                 download_next
             end

@@ -332,7 +332,7 @@ class Subsonic
             path_step << '/'
         end
         response = data.writeToFile(path, atomically:true)
-        #NSLog "Saved downloaded file to #{path}"
+        NSLog "Saved downloaded file to #{path}"
     end
 	
     def scrobble_response(xml, options)
@@ -527,7 +527,7 @@ class Subsonic
     def parse_song(xml_song)
         return if xml_song.nil?
         attributeNames = ["id", "title", "artist", "coverArt", "parent", "isDir", "duration", "bitRate", "track", "year", "genre", "size", "suffix",
-        "album", "path", "size", "userRating"]
+        "album", "path", "size", "userRating", "isVideo"]
         song = {}
         attributeNames.each do |name|
             song[name.to_sym] = xml_song.attributeForName(name).stringValue unless xml_song.attributeForName(name).nil? 
@@ -549,12 +549,14 @@ class Subsonic
                 DB[:songs].insert(:id => song[:id], :title => song[:title], :artist => song[:artist], :duration => song[:duration], 
                                   :bitrate => song[:bitrate], :track => song[:track], :year => song[:year], :genre => song[:genre],
                                   :size => song[:size], :suffix => song[:suffix], :album => song[:album], :album_id => song[:album_id],
-                                  :cover_art => song[:cover_art], :path => song[:path], :cache_path => song[:cache_path], :rating => song[:rating])
+                                  :cover_art => song[:cover_art], :path => song[:path], :cache_path => song[:cache_path], :rating => song[:rating], 
+                                  :isVideo => song[:isVideo])
             else
                 DB[:songs].filter(:id => song[:id]).all.first.update(:title => song[:title], :artist => song[:artist], :duration => song[:duration], 
                                   :bitrate => song[:bitrate], :track => song[:track], :year => song[:year], :genre => song[:genre],
                                   :size => song[:size], :suffix => song[:suffix], :album => song[:album], :album_id => song[:album_id],
-                                  :cover_art => song[:cover_art], :path => song[:path], :cache_path => song[:cache_path], :rating => song[:rating])
+                                  :cover_art => song[:cover_art], :path => song[:path], :cache_path => song[:cache_path], :rating => song[:rating],
+                                  :isVideo => song[:isVideo])
             end 
         end
         

@@ -55,9 +55,11 @@ class Song < Sequel::Model
         String :path
         String :cache_path
         String :rating
+        String :isVideo
         String :album_id, :index => true
     end
     drop_table if table_exists? && !self.columns.include?(:rating) 
+    drop_table if table_exists? && !self.columns.include?(:isVideo) 
     create_table unless table_exists?
 end
 

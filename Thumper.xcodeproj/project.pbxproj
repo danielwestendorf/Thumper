@@ -41,6 +41,7 @@
 		82E048FF14996C01004F9507 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E048FE14996C01004F9507 /* MacRuby.framework */; };
 		82E0490D149BDE81004F9507 /* LogoWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E0490C149BDD1A004F9507 /* LogoWhite.png */; };
 		82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E0748313F0491800D674E3 /* Carbon.framework */; };
+		82E7F16814AB9A9A00559E82 /* ThumperMovie.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82E7F16714AB9A8300559E82 /* ThumperMovie.rb */; };
 		82EA85A3134FA87200C38A05 /* ThumperApplicaiton.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */; };
 		82EA85A6134FB0B300C38A05 /* Database.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EA85A5134FB0B300C38A05 /* Database.rb */; };
 		82EF50A513576BA200E0C062 /* ThumperProgressIndicator.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */; };
@@ -105,6 +106,7 @@
 		82E048FE14996C01004F9507 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		82E0490C149BDD1A004F9507 /* LogoWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoWhite.png; path = Icons/LogoWhite.png; sourceTree = "<group>"; };
 		82E0748313F0491800D674E3 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		82E7F16714AB9A8300559E82 /* ThumperMovie.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperMovie.rb; sourceTree = "<group>"; };
 		82EA85A2134FA87200C38A05 /* ThumperApplicaiton.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperApplicaiton.rb; sourceTree = "<group>"; };
 		82EA85A5134FB0B300C38A05 /* Database.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Database.rb; sourceTree = "<group>"; };
 		82EF50A413576BA200E0C062 /* ThumperProgressIndicator.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperProgressIndicator.rb; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				827CE5CC1347B49D00170589 /* Supporting Files */,
 				8289379A14A4E3A700B20D65 /* FBScrollingTextView.h */,
 				8289379B14A4E3A700B20D65 /* FBScrollingTextView.m */,
+				82E7F16714AB9A8300559E82 /* ThumperMovie.rb */,
 			);
 			path = Thumper;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				82645E22135CE8CF00B3CDEF /* ThumperSearchDelegate.rb in Resources */,
 				82CD71F8135F6BDA008B6F80 /* Stop.png in Resources */,
 				82C0648A136C525300A6F2C6 /* Logo.png in Resources */,
+				82E7F16814AB9A9A00559E82 /* ThumperMovie.rb in Resources */,
 				82441781137442DA00B0EF2F /* ThumperTable.rb in Resources */,
 				82EFCC9813A663980046D08F /* ThumperQuickPlaylistDelegate.rb in Resources */,
 				82EFCC9A13A6C39B0046D08F /* ThumperSmartPlaylistDelegate.rb in Resources */,
