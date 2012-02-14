@@ -193,7 +193,7 @@ class ThumperDelegate
                     @playing_song_object = QTMovie.alloc.initWithFile(song[:cache_path], error:nil)
                 end
             else
-                url_string = "#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.7.0&c=Thumper&f=xml&id=#{song[:id]}&format=mp3"
+                url_string = "#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.7.0&c=Thumper&f=xml&id=#{song[:id]}&format=mp3&estimateContentLength=true"
                 url_string << "&maxBitRate=#{@bitrate}" if @bitrate && @bitrate != 0 && @bitrate != ""
                 url = NSURL.alloc.initWithString(url_string)
                 @playing_song_object.stop if @playing_song_object
@@ -584,7 +584,7 @@ class ThumperDelegate
                 end
             end
         else
-            url_string = "#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}&format=mp3"
+            url_string = "#{@server_url}/rest/stream.view?u=#{@username}&p=#{@enc_password}&v=1.4.0&c=Thumper&v=1.4.0&f=xml&id=#{song[:id]}&format=mp3&estimateContentLength=true"
             url_string << "&maxBitRate=#{@bitrate}" if @bitrate && @bitrate != 0 && @bitrate != ""
             url = NSURL.alloc.initWithString(url_string)
             #NSLog "Streaming song"
