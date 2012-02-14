@@ -14,8 +14,18 @@ class ThumperAlbumDelegate
         @rate_enabled = true
     end
     
+    def awakeFromNib
+        parent.albums_table_view.doubleAction = 'double_click:'
+        parent.albums_table_view.target = self 
+    end
+    
     def represented_objects
        parent.albums 
+    end
+    
+    def double_click(sender)
+        return if parent.songs.length < 1
+        add_album_to_playlist(sender)
     end
     
     def numberOfRowsInTableView(tableView)
