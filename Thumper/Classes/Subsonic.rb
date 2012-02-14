@@ -514,7 +514,8 @@ class Subsonic
     end
     
     def connection(connection, didReceiveResponse:response)
-        if response.statusCode == 200..300
+        case response.statusCode
+        when 200..300
             @conn.cancel
             #NSLog "Canceled KilledResposne"
         else
