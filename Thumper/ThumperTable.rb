@@ -1,6 +1,6 @@
 class ThumperCMTable < NSTableView
     
-    def menuForEvent(event)
+    git def menuForEvent(event)
         
         where = self.convertPoint(event.locationInWindow, fromView:nil)
         row = self.rowAtPoint(where)
