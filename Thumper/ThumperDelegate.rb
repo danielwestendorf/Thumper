@@ -102,6 +102,8 @@ class ThumperDelegate
         
         #setup remote
         #ThumperRemoteListener.alloc.init
+        @settings = NSUserDefaultsController.sharedUserDefaultsController
+        @settings.setInitialValues({'volume' => 1.0})
     end
     
     def get_now_playing(timer)
@@ -599,7 +601,7 @@ class ThumperDelegate
         end
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'loadStateChanged:', name:QTMovieLoadStateDidChangeNotification, object:@playing_song_object)
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'songEnded:', name:QTMovieDidEndNotification, object:@playing_song_object)
-        @playing_song_object.setVolume(@volume)
+        @playing_song_object.setVolume(@settings.values.valueForKey('volume').to_f)
         start_timer if @progress_timer.nil?
         @playing_song_object.autoplay
         set_playing_info
@@ -780,8 +782,8 @@ class ThumperDelegate
     end
     
     def volume_changed(sender)
-        @volume = @volume_slider.floatValue
-        @playing_song_object.setVolume(@volume)
+        @volume = @settings.values.valueForKey('volume').to_f
+        @playing_song_object.setVolume(@settings.values.valueForKey('volume').to_f)
     end
     
     def play_next 
@@ -911,6 +913,8 @@ class ThumperDelegate
         @volume < 0.1 ? @volume = 0.0 : @volume -= 0.1
         @playing_song_object.setVolume(@volume)
         @volume_slider.setFloatValue(@volume)
+        @settings.values.setValue(@volume, forKey: 'volume')
+        NSUserDefaults.standardUserDefaults.synchronize
     end
     
     def increaseVolume(sender)
@@ -918,6 +922,8 @@ class ThumperDelegate
         @playing_song_object.setVolume(@volume)
         @volume_slider.setFloatValue(@volume)
         @mute_menu_item.setState(NSOffState)
+        @settings.values.setValue(@volume, forKey: 'volume')
+        NSUserDefaults.standardUserDefaults.synchronize
     end
     
     def muteVolume(sender)

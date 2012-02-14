@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
   <data>
     <int key="IBDocument.SystemTarget">1060</int>
-    <string key="IBDocument.SystemVersion">11C74</string>
+    <string key="IBDocument.SystemVersion">11D50b</string>
     <string key="IBDocument.InterfaceBuilderVersion">851</string>
-    <string key="IBDocument.AppKitVersion">1138.23</string>
-    <string key="IBDocument.HIToolboxVersion">567.00</string>
+    <string key="IBDocument.AppKitVersion">1138.32</string>
+    <string key="IBDocument.HIToolboxVersion">568.00</string>
     <object class="NSMutableDictionary" key="IBDocument.PluginVersions">
       <bool key="EncodedWithXMLCoder">YES</bool>
       <object class="NSArray" key="dict.sortedKeys">
@@ -22,14 +22,14 @@
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
       <integer value="1631"/>
-      <integer value="1667"/>
       <integer value="1428"/>
-      <integer value="1455"/>
-      <integer value="1538"/>
-      <integer value="1642"/>
-      <integer value="582"/>
       <integer value="1946"/>
+      <integer value="1538"/>
+      <integer value="582"/>
       <integer value="2067"/>
+      <integer value="1455"/>
+      <integer value="1642"/>
+      <integer value="1667"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -4566,6 +4566,10 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
         <string key="NSClassName">ThumperPlaylistSongsDelegate</string>
       </object>
       <object class="NSUserDefaultsController" id="357973096">
+        <object class="NSMutableArray" key="NSDeclaredKeys">
+          <bool key="EncodedWithXMLCoder">YES</bool>
+          <string>volume</string>
+        </object>
         <bool key="NSSharedInstance">YES</bool>
       </object>
       <object class="NSCustomObject" id="387127234">
@@ -4995,7 +4999,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
               </object>
               <object class="BWToolbarItem" id="491149895">
                 <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                  <characters key="NS.bytes">15B73505-81E8-448F-AFA7-1E7B2D786458</characters>
+                  <characters key="NS.bytes">9BACA29C-4571-4FB8-977E-FF56532FBB43</characters>
                 </object>
                 <string key="NSToolbarItemLabel">Cache</string>
                 <string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -5018,7 +5022,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
               </object>
               <object class="BWToolbarItem" id="721798759">
                 <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                  <characters key="NS.bytes">42B9FA3C-4088-4193-ADCA-ACAE9C05CA86</characters>
+                  <characters key="NS.bytes">10A2FDE2-A847-4BE4-A440-973311D28115</characters>
                 </object>
                 <string key="NSToolbarItemLabel">Subsonic</string>
                 <string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -5154,7 +5158,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
                 </object>
                 <object class="BWToolbarItem" id="136917394">
                   <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                    <characters key="NS.bytes">A3730B2B-B4D6-4C44-82E0-AFDD115CE66C</characters>
+                    <characters key="NS.bytes">B187EB6A-FEA2-48A2-9678-656AB856A131</characters>
                   </object>
                   <string key="NSToolbarItemLabel">Cache</string>
                   <string key="NSToolbarItemPaletteLabel">Cache</string>
@@ -5174,7 +5178,7 @@ A1YAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
                 </object>
                 <object class="BWToolbarItem" id="385880920">
                   <object class="NSMutableString" key="NSToolbarItemIdentifier">
-                    <characters key="NS.bytes">E058F259-BCB1-4003-9A40-5DAF2E43226D</characters>
+                    <characters key="NS.bytes">8894C2A5-986A-4591-8E0E-B5CF915A492A</characters>
                   </object>
                   <string key="NSToolbarItemLabel">Subsonic</string>
                   <string key="NSToolbarItemPaletteLabel">Subsonic</string>
@@ -7842,6 +7846,41 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
             <reference key="destination" ref="649796088"/>
           </object>
           <int key="connectionID">2158</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.volume</string>
+            <reference key="source" ref="782612861"/>
+            <reference key="destination" ref="357973096"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="782612861"/>
+              <reference key="NSDestination" ref="357973096"/>
+              <string key="NSLabel">value: values.volume</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.volume</string>
+              <object class="NSDictionary" key="NSOptions">
+                <bool key="EncodedWithXMLCoder">YES</bool>
+                <object class="NSArray" key="dict.sortedKeys">
+                  <bool key="EncodedWithXMLCoder">YES</bool>
+                  <string>NSConditionallySetsEnabled</string>
+                  <string>NSMultipleValuesPlaceholder</string>
+                  <string>NSNoSelectionPlaceholder</string>
+                  <string>NSNotApplicablePlaceholder</string>
+                  <string>NSNullPlaceholder</string>
+                </object>
+                <object class="NSMutableArray" key="dict.values">
+                  <bool key="EncodedWithXMLCoder">YES</bool>
+                  <boolean value="NO"/>
+                  <real value="0.90000000000000002"/>
+                  <real value="1"/>
+                  <real value="1"/>
+                  <real value="1"/>
+                </object>
+              </object>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
+          </object>
+          <int key="connectionID">2174</int>
         </object>
       </object>
       <object class="IBMutableOrderedSet" key="objectRecords">
@@ -13048,7 +13087,7 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
         </object>
       </object>
       <nil key="sourceID"/>
-      <int key="maxID">2158</int>
+      <int key="maxID">2174</int>
     </object>
     <object class="IBClassDescriber" key="IBDocument.Classes">
       <object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -14821,8 +14860,8 @@ RDlCQTQzQzmGkoSYmZmagRsCgeAAhoY</bytes>
         <string>{32, 32}</string>
         <string>{100, 100}</string>
         <string>{8, 8}</string>
-        <string>{9, 8}</string>
-        <string>{7, 2}</string>
+        <string>{11, 11}</string>
+        <string>{10, 3}</string>
         <string>{32, 32}</string>
         <string>{32, 32}</string>
         <string>{32, 32}</string>
