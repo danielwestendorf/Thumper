@@ -381,11 +381,11 @@ class Subsonic
         if xml.class == NSXMLDocument && xml.nodesForXPath('subsonic-response', error:nil).first.attributeForName(:status).stringValue == "ok"
             user = xml.nodesForXPath("subsonic-response", error:nil).first.nodesForXPath('user', error:nil).first
             #user.attributeForName("scrobblingEnabled").stringValue == "true" ? @parent.scrobbling_enabled = true : @parent.scrobbling_enabled = false
-            user.attributeForName("downloadRole").stringValue == "true" ? @parent.downloading_enabled = true : @parent.downloading_enabled = false
+            #user.attributeForName("downloadRole").stringValue == "true" ? @parent.downloading_enabled = true : @parent.downloading_enabled = false
             user.attributeForName("shareRole") && user.attributeForName("shareRole").stringValue == "true" ? @parent.sharing_enabled = true : @parent.sharing_enabled = false
             user.attributeForName("commentRole") && user.attributeForName("commentRole").stringValue == "true" ? @parent.rating_enabled = true : @parent.rating_enabled = false
             NSLog "Sharing is not enabled for #{@username}" unless @parent.sharing_enabled
-            NSLog "Downloading is not enabled for #{@username}" unless @parent.downloading_enabled
+            #NSLog "Downloading is not enabled for #{@username}" unless @parent.downloading_enabled
             NSLog "Rating and Commenting is not enabled for #{@username}" unless @parent.rating_enabled
             
             #NSLog "Scrobbling is not enabled for #{@username}" unless @parent.scrobbling_enabled
@@ -481,7 +481,7 @@ class Subsonic
     def download_media(path, id, delegate, method)
         @parent.downloading_song.cancel if @parent.downloading_song
         #NSLog "Attempting to download #{id}"
-        request = build_request('/rest/download.view', {:id => id})
+        request = build_request('/rest/stream.view', {:id => id})
         @parent.downloading_song = NSURLConnection.connectionWithRequest(request, delegate:DownloadResponse.new(path, id, delegate, method))
     end
     
@@ -537,7 +537,7 @@ class Subsonic
         song[:album_id] = song[:parent]
         song[:bitrate] = song[:bitRate]
         song[:duration] = @parent.format_time(song[:duration].to_i)
-        song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path] unless song[:isDir] == "true"
+        song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path].gsub(/.flac$/, '.mp3') unless song[:isDir] == "true"
         #xml_song.attributes.each {|attr| p attr.name}
         if xml_song.attributeForName("userRating").nil?
             song[:rating] = "Unrated"

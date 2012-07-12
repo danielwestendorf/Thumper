@@ -1,5 +1,6 @@
 class ThumperCMTable < NSTableView
     
+    
     def menuForEvent(event)
         
         where = self.convertPoint(event.locationInWindow, fromView:nil)
@@ -36,8 +37,8 @@ class ThumperCMTable < NSTableView
                     (0..5).each do |i|
                         menu_item = NSMenuItem.alloc.init
                         menu_item.setTitle("#{i} Stars")
-                        menu_item.representedObject = object.merge({:rating => i})
-                        menu_item.setTarget(self.delegate.parent)
+                        menu_item.representedObject = object.merge({:rating => i, :row => row})
+                        menu_item.setTarget(self.delegate)
                         menu_item.setAction("rate_item:")
                         rate_sub_menu.addItem(menu_item)
                     end

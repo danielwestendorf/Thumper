@@ -17,6 +17,13 @@ class ThumperSongsDelegate
         @rate_enabled = true
     end
     
+    def rate_item(sender)
+        object = sender.representedObject
+        parent.songs[object[:row]][:rating] = object[:rating]
+        @parent.subsonic.rate(object)
+        @parent.songs_table_view.reloadData
+    end
+    
     def represented_objects
         parent.songs 
     end

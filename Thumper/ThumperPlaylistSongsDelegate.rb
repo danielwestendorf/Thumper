@@ -17,6 +17,13 @@ class ThumperPlaylistSongsDelegate
         parent.playlist_songs 
     end
     
+    def rate_item(sender)
+        object = sender.representedObject
+        parent.playlist_songs[object[:row]][:rating] = object[:rating]
+        @parent.subsonic.rate(object)
+        @parent.playlist_songs_table_view.reloadData
+    end
+    
     def awakeFromNib
         parent.playlist_songs_table_view.doubleAction = 'double_click:'
         parent.playlist_songs_table_view.target = self

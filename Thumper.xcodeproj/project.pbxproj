@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		823516A815AF65670028799B /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 823516A715AF65670028799B /* SPMediaKeyTap.m */; };
+		823516AB15AF68490028799B /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 823516AA15AF68490028799B /* NSObject+SPInvocationGrabbing.m */; };
 		82441781137442DA00B0EF2F /* ThumperTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82441780137442DA00B0EF2F /* ThumperTable.rb */; };
 		8249080514929D53009024AF /* MRNotifier.rb in Resources */ = {isa = PBXBuildFile; fileRef = 8249080214929AA0009024AF /* MRNotifier.rb */; };
 		826170AE134914EA0026F381 /* ThumperAlbumDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */; };
@@ -23,7 +25,6 @@
 		827CE5DA1347B49D00170589 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5D91347B49D00170589 /* rb_main.rb */; };
 		827CE5DC1347B49D00170589 /* ThumperDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5DB1347B49D00170589 /* ThumperDelegate.rb */; };
 		827CE5E61347B4D200170589 /* Subsonic.rb in Resources */ = {isa = PBXBuildFile; fileRef = 827CE5E51347B4D200170589 /* Subsonic.rb */; };
-		8289379C14A4E3A700B20D65 /* FBScrollingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8289379B14A4E3A700B20D65 /* FBScrollingTextView.m */; };
 		8289379E14A4F30D00B20D65 /* MenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8289379D14A4F30C00B20D65 /* MenuIcon.png */; };
 		828937A014A5066C00B20D65 /* ThumperCustomImageView.rb in Resources */ = {isa = PBXBuildFile; fileRef = 8289379F14A5066C00B20D65 /* ThumperCustomImageView.rb */; };
 		828D56E41358BA9C0072A9EC /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 828D56E31358BA9C0072A9EC /* Play.png */; };
@@ -67,8 +68,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		823516A615AF65670028799B /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMediaKeyTap.h; path = Thumper/SPMediaKeyTap.h; sourceTree = "<group>"; };
+		823516A715AF65670028799B /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMediaKeyTap.m; path = Thumper/SPMediaKeyTap.m; sourceTree = "<group>"; };
+		823516A915AF68490028799B /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
+		823516AA15AF68490028799B /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
 		82441780137442DA00B0EF2F /* ThumperTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperTable.rb; sourceTree = "<group>"; };
 		8249080214929AA0009024AF /* MRNotifier.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MRNotifier.rb; sourceTree = "<group>"; };
+		825F79FB15AF467A00AA023A /* Thumper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Thumper.entitlements; sourceTree = "<group>"; };
 		826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperAlbumDelegate.rb; sourceTree = "<group>"; };
 		826170B0134922400026F381 /* ThumperSongsDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperSongsDelegate.rb; sourceTree = "<group>"; };
 		826170B2134AC2E90026F381 /* ThumperCurrentPlaylistDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperCurrentPlaylistDelegate.rb; sourceTree = "<group>"; };
@@ -86,8 +92,6 @@
 		827CE5D91347B49D00170589 /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		827CE5DB1347B49D00170589 /* ThumperDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = ThumperDelegate.rb; sourceTree = "<group>"; };
 		827CE5E51347B4D200170589 /* Subsonic.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = Subsonic.rb; path = Classes/Subsonic.rb; sourceTree = "<group>"; };
-		8289379A14A4E3A700B20D65 /* FBScrollingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBScrollingTextView.h; sourceTree = "<group>"; };
-		8289379B14A4E3A700B20D65 /* FBScrollingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBScrollingTextView.m; sourceTree = "<group>"; };
 		8289379D14A4F30C00B20D65 /* MenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuIcon.png; path = Icons/MenuIcon.png; sourceTree = "<group>"; };
 		8289379F14A5066C00B20D65 /* ThumperCustomImageView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperCustomImageView.rb; sourceTree = "<group>"; };
 		828D56E31358BA9C0072A9EC /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play.png; path = Icons/Play.png; sourceTree = "<group>"; };
@@ -102,7 +106,6 @@
 		82C06489136C525300A6F2C6 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Icons/Logo.png; sourceTree = "<group>"; };
 		82CD71F7135F6BDA008B6F80 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = Icons/Stop.png; sourceTree = "<group>"; };
 		82D6360B13A7D0A1002452C6 /* SimpleModal.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SimpleModal.rb; sourceTree = "<group>"; };
-		82E048FD14996AB0004F9507 /* Thumper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Thumper.entitlements; sourceTree = "<group>"; };
 		82E048FE14996C01004F9507 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		82E0490C149BDD1A004F9507 /* LogoWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoWhite.png; path = Icons/LogoWhite.png; sourceTree = "<group>"; };
 		82E0748313F0491800D674E3 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -157,6 +160,10 @@
 		827CE5B71347B49D00170589 = {
 			isa = PBXGroup;
 			children = (
+				823516A915AF68490028799B /* NSObject+SPInvocationGrabbing.h */,
+				823516AA15AF68490028799B /* NSObject+SPInvocationGrabbing.m */,
+				823516A615AF65670028799B /* SPMediaKeyTap.h */,
+				823516A715AF65670028799B /* SPMediaKeyTap.m */,
 				82E0748313F0491800D674E3 /* Carbon.framework */,
 				827CE5CB1347B49D00170589 /* Thumper */,
 				827CE5C51347B49D00170589 /* Frameworks */,
@@ -186,7 +193,7 @@
 		827CE5CB1347B49D00170589 /* Thumper */ = {
 			isa = PBXGroup;
 			children = (
-				82E048FD14996AB0004F9507 /* Thumper.entitlements */,
+				825F79FB15AF467A00AA023A /* Thumper.entitlements */,
 				8249080214929AA0009024AF /* MRNotifier.rb */,
 				82D6360B13A7D0A1002452C6 /* SimpleModal.rb */,
 				82EFCC9913A6C39B0046D08F /* ThumperSmartPlaylistDelegate.rb */,
@@ -208,8 +215,6 @@
 				827CE5D41347B49D00170589 /* Resources */,
 				827CE5D81347B49D00170589 /* Other Sources */,
 				827CE5CC1347B49D00170589 /* Supporting Files */,
-				8289379A14A4E3A700B20D65 /* FBScrollingTextView.h */,
-				8289379B14A4E3A700B20D65 /* FBScrollingTextView.m */,
 				82E7F16714AB9A8300559E82 /* ThumperMovie.rb */,
 			);
 			path = Thumper;
@@ -248,7 +253,7 @@
 /* Begin PBXLegacyTarget section */
 		82FF087213799BB5007DD06A /* Deployment */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--compile --embed --gem sqlite3 --gem sequel --codesign \"3rd Party Mac Developer Application: Daniel Westendorf\"";
+			buildArgumentsString = "--compile --embed --gem sqlite3 --gem sequel";
 			buildConfigurationList = 82FF087313799BB5007DD06A /* Build configuration list for PBXLegacyTarget "Deployment" */;
 			buildPhases = (
 			);
@@ -287,7 +292,7 @@
 		827CE5B91347B49D00170589 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Daniel Westendorf";
 			};
 			buildConfigurationList = 827CE5BC1347B49D00170589 /* Build configuration list for PBXProject "Thumper" */;
@@ -360,7 +365,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				827CE5D31347B49D00170589 /* main.m in Sources */,
-				8289379C14A4E3A700B20D65 /* FBScrollingTextView.m in Sources */,
+				823516A815AF65670028799B /* SPMediaKeyTap.m in Sources */,
+				823516AB15AF68490028799B /* NSObject+SPInvocationGrabbing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,12 +437,15 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Thumper/Thumper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer: Daniel Westendorf (E8C3C6AS95)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Library/BWToolkit\"",
 					"\"$(SRCROOT)/../../Downloads/BWToolKit_125_without_pAPI\"",
 					"\"$(SRCROOT)\"",
+					"/Library/Frameworks/**",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -444,9 +453,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Thumper/Thumper-Prefix.pch";
 				INFOPLIST_FILE = "Thumper/Thumper-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -457,6 +467,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Thumper/Thumper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer: Daniel Westendorf (E8C3C6AS95)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -464,15 +476,17 @@
 					"\"$(SRCROOT)/../../Library/BWToolkit\"",
 					"\"$(SRCROOT)/../../Downloads/BWToolKit_125_without_pAPI\"",
 					"\"$(SRCROOT)\"",
+					"/Library/Frameworks/**",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Thumper/Thumper-Prefix.pch";
 				INFOPLIST_FILE = "Thumper/Thumper-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -482,6 +496,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer: Daniel Westendorf (E8C3C6AS95)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -500,6 +516,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer: Daniel Westendorf (E8C3C6AS95)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;

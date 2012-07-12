@@ -106,6 +106,13 @@ class ThumperDelegate
         @settings.setInitialValues({'volume' => 1.0})
     end
     
+    def sendEvent(theEvent)
+        shouldHandleMediaKeyEventLocally = !SPMediaKeyTap.usesGlobalMediaKeyTap
+        if shouldHandleMediaKeyEventLocally && theEvent == NSSystemDefined && theEvent.subtype == SPSystemDefinedEventMediaKeys
+            self.delegate(mediaKeyTap:nil, recievedMediaKeyEvent:theEvent)
+        end
+    end
+    
     def get_now_playing(timer)
         @subsonic.get_now_playing(@subsonic, :now_playing_response) if @subsonic
     end
@@ -169,9 +176,32 @@ class ThumperDelegate
         return true
     end
     
+    def mediaKeyTap(keytap, receivedMediaKeyEvent:event)
+        keyCode = (event.data1 & 0xFFFF0000) >> 16
+        keyFlags = event.data1 & 0x0000FFFF
+        keyIsPressed = (keyFlags & 0xFF00) >> 8 == 0xA
+        keyRepeat = (keyFlags & 0x1)
+        
+        if keyIsPressed
+            if keyCode == 20
+                NSNotificationCenter.defaultCenter.postNotificationName('ThumperPreviousTrack', object:nil)
+            elsif keyCode == 19
+                NSNotificationCenter.defaultCenter.postNotificationName('ThumperNextTrack', object:nil)
+            elsif keyCode == 16
+                NSNotificationCenter.defaultCenter.postNotificationName('ThumperPlayToggle', object:nil)
+            end
+        end
+    end
+    
     def applicationDidFinishLaunching(a_notification)
+        #media keys
+        keyTap = SPMediaKeyTap.alloc.initWithDelegate(self)
+        if SPMediaKeyTap.usesGlobalMediaKeyTap
+            keyTap.startWatchingMediaKeys
+        end
+        
         @status_item = NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
-        @notification_view = FBScrollingTextView.alloc.initWithFrame(NSRect.new([0,0], [0,22]))
+        #@notification_view = FBScrollingTextView.alloc.initWithFrame(NSRect.new([0,0], [0,22]))
         @status_item.setView(@notification_view)
         @icon_item = NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
         icon_image = NSImage.imageNamed('MenuIcon')
@@ -183,7 +213,7 @@ class ThumperDelegate
         server_url_field.stringValue = @server_url if @server_url
         username_field.stringValue = @username if @username
         password_field.stringValue = @password if @password
-        @bitrate && @bitrate == 0 ? bitrate_field.stringValue = "Unlimited" : @bitrate
+        @bitrate && @bitrate == 0 ? bitrate_field.stringValue = "Unlimited" : bitrate_field.stringValue = @bitrate
         
         @app_version.stringValue = "Version: #{NSBundle.mainBundle.infoDictionary.objectForKey(:CFBundleShortVersionString)}"
         
@@ -305,6 +335,7 @@ class ThumperDelegate
         @username = username_field.stringValue
         @password = password_field.stringValue
         @bitrate =  bitrate_field.stringValue
+        p @bitrate
         NSUserDefaults.standardUserDefaults['thumper.com.server_url'] = @server_url
         NSUserDefaults.standardUserDefaults['thumper.com.username'] = @username
         NSUserDefaults.standardUserDefaults['thumper.com.bitrate'] = @bitrate
@@ -649,36 +680,36 @@ class ThumperDelegate
     end
     
     def change_notification_text(new_text)
-        @notification_view.setString(new_text)
-        @notification_timer.invalidate if @notification_timer
-        NSAnimationContext.beginGrouping
-        NSAnimationContext.currentContext.setDuration(0.5)
-        show_notification_view
-        NSAnimationContext.endGrouping
+        #@notification_view.setString(new_text)
+        #@notification_timer.invalidate if @notification_timer
+        #NSAnimationContext.beginGrouping
+        #NSAnimationContext.currentContext.setDuration(0.5)
+        #show_notification_view
+        #NSAnimationContext.endGrouping
     end
     
     def show_notification_view
-        if @notification_view.string
-            @notification_view.setString(@notification_view.string)
-            @notification_view.animator.setFrameSize([100,22])
-            @notification_timer = NSTimer.scheduledTimerWithTimeInterval 10.0,
-                target: self,
-                selector: 'hide_notification_view:',
-                userInfo: nil,
-                repeats: false
-        end
+        #if @notification_view.string
+        #    @notification_view.setString(@notification_view.string)
+        #    @notification_view.animator.setFrameSize([100,22])
+        #    @notification_timer = NSTimer.scheduledTimerWithTimeInterval 10.0,
+        #        target: self,
+        #        selector: 'hide_notification_view:',
+        #        userInfo: nil,
+        #        repeats: false
+        #end
     end
     
     def hide_notification_view(timer)
-        @notification_timer = nil
-        NSAnimationContext.beginGrouping
-        NSAnimationContext.currentContext.setDuration(0.5)
-        @notification_view.animator.setFrameSize([0,22])
-        NSAnimationContext.endGrouping
-        if @playing_song
-            song = @current_playlist[@playing_song]
-            @notification_view.setString("#{song[:title]} by #{song[:artist]}")
-        end
+        #@notification_timer = nil
+        #NSAnimationContext.beginGrouping
+        #NSAnimationContext.currentContext.setDuration(0.5)
+        #@notification_view.animator.setFrameSize([0,22])
+        #NSAnimationContext.endGrouping
+        #if @playing_song
+        #    song = @current_playlist[@playing_song]
+        #    @notification_view.setString("#{song[:title]} by #{song[:artist]}")
+        #end
     end
     
     def set_playing_info
@@ -973,6 +1004,7 @@ class ThumperDelegate
             @playing_song_object_progress.stopAnimation(nil)
             @playing_song_object_progress.setHidden(true)
             path = @current_playlist[@playing_song][:cache_path]
+
             path_step = "/"
             split_path = path.split('/')
             split_path.delete_at(0)
@@ -1004,12 +1036,14 @@ class ThumperDelegate
     def download_next
         next_song = @current_playlist[@playing_song + 1]
         #NSLog "#{next_song[:suffix]}"
-        if !File.exists?(next_song[:cache_path]) && !["flac", "flv"].include?(next_song[:suffix])
+        if !File.exists?(next_song[:cache_path])
             change_notification_text("Attempting to download the next song, #{next_song[:title]} by #{next_song[:artist]}")
             #@notification_queue.add_notification({:title => "Downloading next song....", :message => "Attempting to download the next song in the current playlist.", :image => NSImage.imageNamed("LogoWhite")}) if @downloading_enabled
             #g = Growl.new("Thumper", ["notification"])
-            #g.notify("notification", "Downloading next song...", "Attempting to download the next song in the current playlist.", {:NotificationPriority => -1}) 
-            @subsonic.download_media(next_song[:cache_path], next_song[:id], @subsonic, :download_media_response) if @downloading_enabled
+            #g.notify("notification", "Downloading next song...", "Attempting to download the next song in the current playlist.", {:NotificationPriority => -1})
+            
+            path = next_song[:cache_path]
+            @subsonic.download_media(path, next_song[:id], @subsonic, :download_media_response)
         end
         if !File.exists?(next_song[:cover_art])
             get_cover_art(next_song[:cover_art].split("/").last.split(".").first)

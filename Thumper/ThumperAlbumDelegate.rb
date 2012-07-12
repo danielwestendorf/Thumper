@@ -14,6 +14,13 @@ class ThumperAlbumDelegate
         @rate_enabled = true
     end
     
+    def rate_item(sender)
+        object = sender.representedObject
+        parent.albums[object[:row]][:rating] = object[:rating]
+        @parent.subsonic.rate(object)
+        @parent.albums_table_view.reloadData
+    end
+    
     def awakeFromNib
         parent.albums_table_view.doubleAction = 'double_click:'
         parent.albums_table_view.target = self 
@@ -55,9 +62,26 @@ class ThumperAlbumDelegate
             elsif column.identifier.to_s == "rating"
                 return @parent.albums[row][:rating].to_i
             end
-            return parent.albums[row].valueForKey(column.identifier.to_sym)
+            return album_name(row)
         end
         nil
+    end
+    
+    def album_name(row)
+        if parent.quick_playlists_table_view.selectedRow > -1
+           "#{parent.albums[row].valueForKey(:artist)}\r\n#{parent.albums[row].valueForKey(:title)}"
+        else
+            parent.albums[row].valueForKey(:title)
+        end
+    end
+    
+    def tableView(tableView, heightOfRow:row)
+        string = album_name(row)
+        column = tableView.tableColumns[1]
+        columnDataCell = NSCell.alloc.initTextCell(string)
+        
+        height = columnDataCell.cellSizeForBounds(NSMakeRect(0.0, 0.0, column.width, Float::MAX)).height + 20.0
+        height > 60.0 ? height : 60.0
     end
     
     def tableViewSelectionDidChange(notification)
