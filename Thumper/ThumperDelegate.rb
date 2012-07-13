@@ -50,7 +50,7 @@ class ThumperDelegate
     attr_accessor :notification_view
     attr_accessor :current_music_folder
     attr_accessor :music_folders
-    attr_accessor :main_menu
+    attr_accessor :main_menu, :status_item
     
     def initialize
         @quick_playlists = [["Random", "random"], ["Newest", "newest"], ["Highest Rated", "highest"], ["Most Frequent", "frequent"], ["Recently Played", "recent"]]
@@ -199,16 +199,6 @@ class ThumperDelegate
         if SPMediaKeyTap.usesGlobalMediaKeyTap
             keyTap.startWatchingMediaKeys
         end
-        
-        @status_item = NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
-        #@notification_view = FBScrollingTextView.alloc.initWithFrame(NSRect.new([0,0], [0,22]))
-        @status_item.setView(@notification_view)
-        @icon_item = NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
-        icon_image = NSImage.imageNamed('MenuIcon')
-        icon_image.setSize([15,15])
-        image_view = ThumperCustomImageView.alloc.init.setImage(icon_image)
-        @icon_item.setView(image_view)
-        @icon_item.setLength(22)
                 
         server_url_field.stringValue = @server_url if @server_url
         username_field.stringValue = @username if @username
@@ -249,6 +239,12 @@ class ThumperDelegate
        
         NSNotificationCenter.defaultCenter.addObserver(self, selector:'rateDidChange:', name:QTMovieRateDidChangeNotification, object:nil)
         check_for_update
+        
+        status_bar = NSStatusBar.systemStatusBar
+        @status_item = status_bar.statusItemWithLength(NSVariableStatusItemLength)
+        @status_item.setImage(NSImage.imageNamed('MenuIcon'))
+        @status_item.setHighlightMode(true)
+        @thumperMenu = ThumperMenu.new
     end
     
     def check_for_update
@@ -997,6 +993,7 @@ class ThumperDelegate
                 change_notification_text("#{song[:title]} by #{song[:artist]}")
             end
         end
+        @thumperMenu.build_menu
     end
     
     def loadStateChanged(notification)

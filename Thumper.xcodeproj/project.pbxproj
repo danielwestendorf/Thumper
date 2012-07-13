@@ -37,6 +37,7 @@
 		82B71E7113E750130079C730 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B71E7013E750130079C730 /* IOKit.framework */; };
 		82B7E412135234EC0064907A /* album.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82B7E411135234EC0064907A /* album.jpg */; };
 		82C0648A136C525300A6F2C6 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 82C06489136C525300A6F2C6 /* Logo.png */; };
+		82C4CA2115B08E55005ACBDF /* ThumperMenu.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82C4CA2015B08E55005ACBDF /* ThumperMenu.rb */; };
 		82CD71F8135F6BDA008B6F80 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CD71F7135F6BDA008B6F80 /* Stop.png */; };
 		82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82D6360B13A7D0A1002452C6 /* SimpleModal.rb */; };
 		82E048FF14996C01004F9507 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E048FE14996C01004F9507 /* MacRuby.framework */; };
@@ -104,6 +105,7 @@
 		82B71E7013E750130079C730 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		82B7E411135234EC0064907A /* album.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = album.jpg; path = Icons/album.jpg; sourceTree = "<group>"; };
 		82C06489136C525300A6F2C6 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Icons/Logo.png; sourceTree = "<group>"; };
+		82C4CA2015B08E55005ACBDF /* ThumperMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperMenu.rb; sourceTree = "<group>"; };
 		82CD71F7135F6BDA008B6F80 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = Icons/Stop.png; sourceTree = "<group>"; };
 		82D6360B13A7D0A1002452C6 /* SimpleModal.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SimpleModal.rb; sourceTree = "<group>"; };
 		82E048FE14996C01004F9507 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
@@ -216,6 +218,7 @@
 				827CE5D81347B49D00170589 /* Other Sources */,
 				827CE5CC1347B49D00170589 /* Supporting Files */,
 				82E7F16714AB9A8300559E82 /* ThumperMovie.rb */,
+				82C4CA2015B08E55005ACBDF /* ThumperMenu.rb */,
 			);
 			path = Thumper;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */,
 				8289379E14A4F30D00B20D65 /* MenuIcon.png in Resources */,
 				828937A014A5066C00B20D65 /* ThumperCustomImageView.rb in Resources */,
+				82C4CA2115B08E55005ACBDF /* ThumperMenu.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,9 +409,9 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = macosx;
+				SDKROOT = "";
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -424,9 +428,9 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = "";
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;
