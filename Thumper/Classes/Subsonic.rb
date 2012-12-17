@@ -5,8 +5,9 @@ class Subsonic
     attr_reader :connectivity
     
 	def initialize(parent, base_url, username, password)
-        @username = username
-        @parent = parent
+    @username = username
+    @parent = parent
+    @password = password
 		@base_url = base_url
 		@auth_token = Base64.encode64("#{username}:#{password}").strip
 		@extra_params = "&f=xml&v=1.7.0&c=Thumper"
@@ -537,7 +538,9 @@ class Subsonic
         song[:album_id] = song[:parent]
         song[:bitrate] = song[:bitRate]
         song[:duration] = @parent.format_time(song[:duration].to_i)
-        song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path].gsub(/.flac$/, '.mp3') unless song[:isDir] == "true"
+      #NSLog "#{song[:path]}"
+        song[:cache_path] = Dir.home + '/Music/Thumper/' + song[:path].gsub(/\.[^.]+$/, '.mp3') unless song[:isDir] == "true"
+      #NSLog "#{song[:cache_path]}"
         #xml_song.attributes.each {|attr| p attr.name}
         if xml_song.attributeForName("userRating").nil?
             song[:rating] = "Unrated"
@@ -560,7 +563,7 @@ class Subsonic
                                   :isVideo => song[:isVideo])
             end 
         end
-        
+      
         return song
     end
 	
@@ -573,7 +576,8 @@ class Subsonic
             end
         end
         url = NSURL.URLWithString(@base_url + resource + "?" + options_string.join("&") + @extra_params)
-        request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData, timeoutInterval:20.0)
+        NSLog "#{url.absoluteString}"
+        request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData, timeoutInterval:5.0)
         request.setValue("Basic #{@auth_token}", forHTTPHeaderField:"Authorization")
         return request
 	end

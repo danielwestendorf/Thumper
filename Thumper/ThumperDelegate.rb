@@ -193,6 +193,10 @@ class ThumperDelegate
         end
     end
     
+    def applicationWillTerminate(a_notification)
+        @playing_song_object.stop if @playing_song_object.rate != 0
+    end
+    
     def applicationDidFinishLaunching(a_notification)
         #media keys
         keyTap = SPMediaKeyTap.alloc.initWithDelegate(self)
@@ -331,7 +335,6 @@ class ThumperDelegate
         @username = username_field.stringValue
         @password = password_field.stringValue
         @bitrate =  bitrate_field.stringValue
-        p @bitrate
         NSUserDefaults.standardUserDefaults['thumper.com.server_url'] = @server_url
         NSUserDefaults.standardUserDefaults['thumper.com.username'] = @username
         NSUserDefaults.standardUserDefaults['thumper.com.bitrate'] = @bitrate

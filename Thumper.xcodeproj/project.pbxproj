@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		822D40BB164178DB007DC298 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822D40BA164178DB007DC298 /* MacRuby.framework */; };
 		823516A815AF65670028799B /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 823516A715AF65670028799B /* SPMediaKeyTap.m */; };
 		823516AB15AF68490028799B /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 823516AA15AF68490028799B /* NSObject+SPInvocationGrabbing.m */; };
+		8235511015DB0C4100E881B1 /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8235510F15DB0C4100E881B1 /* icon.iconset */; };
 		82441781137442DA00B0EF2F /* ThumperTable.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82441780137442DA00B0EF2F /* ThumperTable.rb */; };
 		8249080514929D53009024AF /* MRNotifier.rb in Resources */ = {isa = PBXBuildFile; fileRef = 8249080214929AA0009024AF /* MRNotifier.rb */; };
 		826170AE134914EA0026F381 /* ThumperAlbumDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 826170AD134914EA0026F381 /* ThumperAlbumDelegate.rb */; };
@@ -40,7 +42,6 @@
 		82C4CA2115B08E55005ACBDF /* ThumperMenu.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82C4CA2015B08E55005ACBDF /* ThumperMenu.rb */; };
 		82CD71F8135F6BDA008B6F80 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CD71F7135F6BDA008B6F80 /* Stop.png */; };
 		82D6360C13A7D0A1002452C6 /* SimpleModal.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82D6360B13A7D0A1002452C6 /* SimpleModal.rb */; };
-		82E048FF14996C01004F9507 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E048FE14996C01004F9507 /* MacRuby.framework */; };
 		82E0490D149BDE81004F9507 /* LogoWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E0490C149BDD1A004F9507 /* LogoWhite.png */; };
 		82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E0748313F0491800D674E3 /* Carbon.framework */; };
 		82E7F16814AB9A9A00559E82 /* ThumperMovie.rb in Resources */ = {isa = PBXBuildFile; fileRef = 82E7F16714AB9A8300559E82 /* ThumperMovie.rb */; };
@@ -69,10 +70,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		822D40BA164178DB007DC298 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = ../../../../Library/Frameworks/MacRuby.framework; sourceTree = "<group>"; };
 		823516A615AF65670028799B /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMediaKeyTap.h; path = Thumper/SPMediaKeyTap.h; sourceTree = "<group>"; };
 		823516A715AF65670028799B /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMediaKeyTap.m; path = Thumper/SPMediaKeyTap.m; sourceTree = "<group>"; };
 		823516A915AF68490028799B /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		823516AA15AF68490028799B /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		8235510F15DB0C4100E881B1 /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icon.iconset; path = Thumper/icon.iconset; sourceTree = "<group>"; };
 		82441780137442DA00B0EF2F /* ThumperTable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperTable.rb; sourceTree = "<group>"; };
 		8249080214929AA0009024AF /* MRNotifier.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MRNotifier.rb; sourceTree = "<group>"; };
 		825F79FB15AF467A00AA023A /* Thumper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Thumper.entitlements; sourceTree = "<group>"; };
@@ -108,7 +111,6 @@
 		82C4CA2015B08E55005ACBDF /* ThumperMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperMenu.rb; sourceTree = "<group>"; };
 		82CD71F7135F6BDA008B6F80 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = Icons/Stop.png; sourceTree = "<group>"; };
 		82D6360B13A7D0A1002452C6 /* SimpleModal.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SimpleModal.rb; sourceTree = "<group>"; };
-		82E048FE14996C01004F9507 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
 		82E0490C149BDD1A004F9507 /* LogoWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoWhite.png; path = Icons/LogoWhite.png; sourceTree = "<group>"; };
 		82E0748313F0491800D674E3 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		82E7F16714AB9A8300559E82 /* ThumperMovie.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ThumperMovie.rb; sourceTree = "<group>"; };
@@ -127,7 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82E048FF14996C01004F9507 /* MacRuby.framework in Frameworks */,
+				822D40BB164178DB007DC298 /* MacRuby.framework in Frameworks */,
 				82E0748413F0491800D674E3 /* Carbon.framework in Frameworks */,
 				82B71E7113E750130079C730 /* IOKit.framework in Frameworks */,
 				827CE5C71347B49D00170589 /* Cocoa.framework in Frameworks */,
@@ -162,6 +164,8 @@
 		827CE5B71347B49D00170589 = {
 			isa = PBXGroup;
 			children = (
+				822D40BA164178DB007DC298 /* MacRuby.framework */,
+				8235510F15DB0C4100E881B1 /* icon.iconset */,
 				823516A915AF68490028799B /* NSObject+SPInvocationGrabbing.h */,
 				823516AA15AF68490028799B /* NSObject+SPInvocationGrabbing.m */,
 				823516A615AF65670028799B /* SPMediaKeyTap.h */,
@@ -184,7 +188,6 @@
 		827CE5C51347B49D00170589 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				82E048FE14996C01004F9507 /* MacRuby.framework */,
 				82B71E7013E750130079C730 /* IOKit.framework */,
 				827CE5C61347B49D00170589 /* Cocoa.framework */,
 				82FE78C1137DD3EB00238800 /* BWToolkitFramework.framework */,
@@ -256,7 +259,7 @@
 /* Begin PBXLegacyTarget section */
 		82FF087213799BB5007DD06A /* Deployment */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--compile --embed --gem sqlite3 --gem sequel";
+			buildArgumentsString = "--compile --gem sqlite3 --gem sequel --embed";
 			buildConfigurationList = 82FF087313799BB5007DD06A /* Build configuration list for PBXLegacyTarget "Deployment" */;
 			buildPhases = (
 			);
@@ -358,6 +361,7 @@
 				8289379E14A4F30D00B20D65 /* MenuIcon.png in Resources */,
 				828937A014A5066C00B20D65 /* ThumperCustomImageView.rb in Resources */,
 				82C4CA2115B08E55005ACBDF /* ThumperMenu.rb in Resources */,
+				8235511015DB0C4100E881B1 /* icon.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Daniel Westendorf";
+				CODE_SIGN_IDENTITY = "Mac Developer: Daniel Westendorf (E8C3C6AS95)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -409,8 +413,9 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				VALID_ARCHS = x86_64;
 			};
@@ -420,7 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Daniel Westendorf";
+				CODE_SIGN_IDENTITY = "Mac Developer: Daniel Westendorf (E8C3C6AS95)";
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -428,8 +433,9 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				VALID_ARCHS = x86_64;
 			};
