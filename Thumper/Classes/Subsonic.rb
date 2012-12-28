@@ -575,7 +575,7 @@ class Subsonic
                 value.collect {|array_value| "#{key}=#{array_value}"}.join("&")
             end
         end
-        url = NSURL.URLWithString(@base_url + resource + "?" + options_string.join("&") + @extra_params)
+        url = NSURL.URLWithString(@base_url + resource + "?" + options_string.join("&") + @extra_params + "&u=#{@username}&p=#{@password}")
         NSLog "#{url.absoluteString}"
         request = NSMutableURLRequest.requestWithURL(url, cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData, timeoutInterval:5.0)
         request.setValue("Basic #{@auth_token}", forHTTPHeaderField:"Authorization")
