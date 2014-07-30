@@ -1,7 +1,7 @@
 Thumper
 =======
 
-Thumper is now open source!
+Thumper is now open source! Sandworms kept wrecking my home.
 
 Personally, I've moved on to iTunes Match. Thus, I'm not the right one to lead this product any longer. I'm looking for someone
 to take over the project.
